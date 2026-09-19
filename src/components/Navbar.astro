@@ -4,38 +4,38 @@ import Logo from './Logo.astro';
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { name: 'Home', href: '/' },
-  { name: 'Studio', href: '/studio/' },
+  { name: '首页', href: '/' },
+  { name: 'Studio 介绍', href: '/studio/' },
   {
-    name: 'Tutorials',
+    name: '教程中心',
     href: '/tutorials/',
     dropdown: [
-      { name: '📘 Getting Started', desc: '从零开始注册与首个站点搭建', href: '/tutorials/getting-started/' },
-      { name: '🎨 Design & Layout', desc: '流体网格、断点与响应式设计', href: '/tutorials/design/' },
-      { name: '💻 Velo Dev', desc: 'JavaScript代码扩展与全端动态CMS', href: '/tutorials/velo/' },
-      { name: '🔍 SEO Guide', desc: '百度与Google双引擎收录排名优化', href: '/tutorials/seo/' },
-      { name: '🛒 E-Commerce', desc: '外贸商城搭建与国际金流支付设置', href: '/tutorials/ecommerce/' },
+      { name: '📘 新手入门实战', desc: '从零开始注册与首个站点搭建', href: '/tutorials/getting-started/' },
+      { name: '🎨 设计与流体排版', desc: '流体网格、断点与响应式设计', href: '/tutorials/design/' },
+      { name: '💻 Velo 全栈开发', desc: 'JavaScript代码扩展与全端动态CMS', href: '/tutorials/velo/' },
+      { name: '🔍 SEO 优化与收录', desc: '百度与Google双引擎收录排名优化', href: '/tutorials/seo/' },
+      { name: '🛒 外贸独立站与商城', desc: '外贸商城搭建与国际金流支付设置', href: '/tutorials/ecommerce/' },
     ],
   },
   {
-    name: 'Compare',
+    name: '平台横评',
     href: '/compare/',
     dropdown: [
       { name: 'Wix vs Shopify', desc: '外贸商城与独立站深度对决', href: '/compare/wix-vs-shopify/' },
       { name: 'Wix vs WordPress', desc: '现代SaaS与开源CMS终极选型', href: '/compare/wix-vs-wordpress/' },
       { name: 'Wix vs Webflow', desc: '设计师高端建站平台对比', href: '/compare/wix-vs-webflow/' },
       { name: 'Wix vs Squarespace', desc: '极简视觉美学建站对比', href: '/compare/wix-vs-squarespace/' },
-      { name: 'All Comparisons →', desc: '查看完整建站平台横评指南', href: '/compare/' },
+      { name: '查看全部对比报告 →', desc: '查看完整建站平台横评指南', href: '/compare/' },
     ],
   },
-  { name: 'Pricing', href: '/pricing/' },
-  { name: 'Blog', href: '/blog/' },
+  { name: '套餐价格', href: '/pricing/' },
+  { name: '博客资讯', href: '/blog/' },
 ];
 ---
 
 <header class="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-xl border-b border-gray-200/80 transition-all shadow-xs">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-    <!-- Brand Logo with New Emblem -->
+    <!-- Brand Logo -->
     <a href="/" class="flex items-center gap-3 group transition">
       <Logo size="md" />
       <div class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-purple-50 text-[#6D28D9] border border-purple-100 group-hover:border-purple-200 transition">
@@ -44,7 +44,7 @@ const navLinks = [
       </div>
     </a>
 
-    <!-- Desktop Navigation Links -->
+    <!-- Desktop Navigation Links (Chinese Labels, English Slugs) -->
     <nav class="hidden lg:flex items-center gap-1">
       {navLinks.map((item) => (
         item.dropdown ? (
@@ -62,7 +62,7 @@ const navLinks = [
               </svg>
             </button>
 
-            <!-- Dropdown Menu with Crisp Light Glassmorphism -->
+            <!-- Dropdown Menu -->
             <div class="absolute left-0 mt-2 w-72 p-2 bg-white border border-gray-200/90 rounded-2xl shadow-xl shadow-gray-200/70 backdrop-blur-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
               {item.dropdown.map((subItem) => (
                 <a
@@ -98,7 +98,7 @@ const navLinks = [
         href="/contact/"
         class="btn-primary-glow inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md shadow-purple-500/20 active:scale-95 transition"
       >
-        <span>Get Started</span>
+        <span>委托建站咨询</span>
         <svg class="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
         </svg>
@@ -153,7 +153,7 @@ const navLinks = [
         href="/contact/"
         class="w-full inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md"
       >
-        <span>Get Started</span>
+        <span>委托建站咨询</span>
         <span>→</span>
       </a>
     </div>

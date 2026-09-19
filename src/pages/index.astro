@@ -5,42 +5,42 @@ const tutorials = [
   {
     icon: '📘',
     title: '入门基础',
-    tag: 'Beginner',
+    tag: '新手首选',
     desc: '从账号注册、工作空间认知到发布首个响应式站点，零基础手把手教程。',
     href: '/tutorials/getting-started/',
   },
   {
     icon: '🎨',
     title: '响应式设计',
-    tag: 'Design',
+    tag: '流体排版',
     desc: '掌握断点设置、流体排版（Fluid Engine）与高级微交互动画，告别多端错乱。',
     href: '/tutorials/design/',
   },
   {
     icon: '💻',
     title: 'Velo开发',
-    tag: 'Code',
+    tag: '全栈进阶',
     desc: '利用 JavaScript、Wix CMS 数据库及 API 接口，轻松实现企业级动态数据交互。',
     href: '/tutorials/velo/',
   },
   {
     icon: '🔍',
     title: 'SEO优化',
-    tag: 'SEO',
+    tag: '收录排名',
     desc: '百度与 Google 双引擎技术 SEO 调优、Sitemap 自动提交及 Core Web Vitals 达标。',
     href: '/tutorials/seo/',
   },
   {
     icon: '🛒',
     title: '电商建站',
-    tag: 'E-Com',
+    tag: '跨境出海',
     desc: '跨境多币种独立站、PayPal / Stripe 海外金流收款及库存物流系统全流程配置。',
     href: '/tutorials/ecommerce/',
   },
   {
     icon: '⚡',
     title: '竞品对比',
-    tag: 'Compare',
+    tag: '架构选型',
     desc: '深度横评 Wix 与 Shopify、WordPress、Webflow、Squarespace，明晰各家优劣。',
     href: '/compare/',
   },
@@ -140,13 +140,13 @@ const faqs = [
             中文互联网最系统的 Wix Studio 专属生态。从零基础建站到设计师进阶，提供实战教程、平台横评与高水准外贸出海官网定制。
           </p>
 
-          <!-- Dual CTAs -->
+          <!-- Dual CTAs (Chinese Labels, English Slugs) -->
           <div class="flex flex-wrap items-center gap-4 pt-2">
             <a
               href="/tutorials/"
               class="btn-primary-glow inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-lg shadow-purple-500/20 active:scale-95 transition"
             >
-              <span>Browse Tutorials</span>
+              <span>查看全部教程</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
@@ -155,7 +155,7 @@ const faqs = [
               href="/contact/"
               class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-semibold text-gray-800 bg-white hover:bg-gray-50 border border-gray-300/80 shadow-xs hover:border-purple-300 active:scale-95 transition"
             >
-              <span>Get a Website</span>
+              <span>委托建站咨询</span>
               <span class="text-gray-400">→</span>
             </a>
           </div>
@@ -200,7 +200,7 @@ const faqs = [
               <!-- Publish Status -->
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span class="text-[11px] font-semibold text-emerald-600">Published</span>
+                <span class="text-[11px] font-semibold text-emerald-600">已发布上线</span>
               </div>
             </div>
 
@@ -227,9 +227,9 @@ const faqs = [
 
                   <div class="flex items-center justify-between mb-3">
                     <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-purple-100 text-[#6D28D9] font-bold">
-                      Fluid: Scale Proportionally
+                      流体缩放: 比例适配 100%
                     </span>
-                    <span class="text-[10px] text-gray-400 font-mono">W: 100% | Auto</span>
+                    <span class="text-[10px] text-gray-400 font-mono">宽度: 100% | 高度自适应</span>
                   </div>
 
                   <div class="space-y-2.5">
@@ -239,15 +239,15 @@ const faqs = [
                   </div>
 
                   <div class="mt-4 flex items-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#6D28D9] text-white">Explore</span>
-                    <span class="px-3 py-1 rounded-full text-[11px] font-medium border border-gray-300 text-gray-700 bg-white">Demo</span>
+                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#6D28D9] text-white">开始探索</span>
+                    <span class="px-3 py-1 rounded-full text-[11px] font-medium border border-gray-300 text-gray-700 bg-white">在线演示</span>
                   </div>
                 </div>
 
                 <!-- Bottom Status info -->
                 <div class="mt-4 flex items-center justify-between text-[10px] text-gray-400 font-mono">
-                  <span>CSS Grid: 12 Cols</span>
-                  <span>Velo: Ready</span>
+                  <span>CSS 网格: 12列流体</span>
+                  <span>Velo: 已连接</span>
                 </div>
               </div>
             </div>
@@ -343,7 +343,7 @@ const faqs = [
           </div>
 
           <div class="pt-6 mt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-gray-700 group-hover:text-[#6D28D9] transition">
-            <span>Learn More</span>
+            <span>阅读教程专栏</span>
             <span class="transform group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </a>
@@ -507,13 +507,13 @@ const faqs = [
           href="/tutorials/"
           class="btn-primary-glow inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-lg shadow-purple-500/20 transition"
         >
-          Browse Tutorials
+          查看全部教程
         </a>
         <a
           href="/contact/"
           class="inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 shadow-xs transition"
         >
-          Get a Website →
+          委托建站咨询 →
         </a>
       </div>
     </div>
