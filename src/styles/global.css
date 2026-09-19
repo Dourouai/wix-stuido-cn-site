@@ -1,107 +1,129 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-base: #0D0D0D;
-  --color-bg-surface: #161616;
-  --color-bg-elevated: #1E1E1E;
-  --color-accent-purple: #7C5CFC;
-  --color-accent-purple-light: #9D82FF;
-  --color-accent-blue: #4A90E2;
-  --color-border-subtle: rgba(255, 255, 255, 0.08);
-  --color-border-glow: rgba(124, 92, 252, 0.4);
+  --color-bg-base: #FFFFFF;
+  --color-bg-surface: #F9FAFB;
+  --color-bg-elevated: #F3F4F6;
+  --color-accent-purple: #6D28D9;
+  --color-accent-purple-light: #7C3AED;
+  --color-accent-blue: #2563EB;
+  --color-border-subtle: rgba(0, 0, 0, 0.08);
 
   --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --radius-card: 16px;
-  --radius-btn: 8px;
+  --radius-btn: 9999px;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #0D0D0D;
-    color: #FFFFFF;
+    background-color: #FAFAFB;
+    color: #111827;
   }
   ::selection {
-    background: rgba(124, 92, 252, 0.35);
-    color: #FFFFFF;
+    background: rgba(124, 58, 237, 0.15);
+    color: #4C1D95;
   }
 }
 
-/* Glassmorphism card utilities */
-.glass-card {
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Crisp Light Cards with Soft Elevated Shadows */
+.light-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 16px;
-  backdrop-filter: blur(12px);
-  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.glass-card:hover {
-  border-color: rgba(124, 92, 252, 0.4);
+.light-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 30px -10px rgba(124, 92, 252, 0.15);
+  border-color: rgba(124, 58, 237, 0.3);
+  box-shadow: 0 16px 32px -8px rgba(109, 40, 217, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Text Gradient utility */
-.text-gradient {
-  background: linear-gradient(135deg, #FFFFFF 30%, #9D82FF 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Light Background Grid & Dot Textures */
+.bg-grid-light {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
-.text-gradient-purple {
-  background: linear-gradient(135deg, #9D82FF 0%, #7C5CFC 50%, #4A90E2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.bg-dots-light {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
-/* Hero background glow */
-.hero-glow-bg {
+/* Bright Pastel Glow Effect for Hero */
+.hero-glow-light {
   position: absolute;
-  top: -150px;
+  top: -120px;
   left: 50%;
   transform: translateX(-50%);
-  width: 850px;
-  height: 650px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(124, 92, 252, 0.28) 0%,
-    rgba(74, 144, 226, 0.12) 40%,
-    transparent 70%
-  );
-  filter: blur(60px);
+  width: 950px;
+  height: 600px;
+  background: 
+    radial-gradient(ellipse at 40% 40%, rgba(167, 139, 250, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 60% 45%, rgba(147, 197, 253, 0.25) 0%, transparent 60%),
+    radial-gradient(circle at 50% 60%, rgba(244, 114, 182, 0.12) 0%, transparent 70%);
+  filter: blur(80px);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Custom scrollbar */
+/* High-contrast Text Gradient */
+.text-gradient-dark {
+  background: linear-gradient(135deg, #0F172A 0%, #4338CA 60%, #6D28D9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-brand {
+  background: linear-gradient(135deg, #6D28D9 0%, #2563EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light Marquee Fade Mask */
+.marquee-mask-light {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+/* Button Glow on Light */
+.btn-primary-glow {
+  position: relative;
+  transition: all 0.2s ease;
+}
+.btn-primary-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #7C3AED, #2563EB);
+  filter: blur(8px);
+  opacity: 0.25;
+  transition: opacity 0.2s ease;
+  z-index: -1;
+}
+.btn-primary-glow:hover::after {
+  opacity: 0.55;
+  filter: blur(12px);
+}
+
+/* Custom Scrollbar for Light */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #0D0D0D;
+  background: #F3F4F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #D1D5DB;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #383838;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
-}
-
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
+  background: #9CA3AF;
 }

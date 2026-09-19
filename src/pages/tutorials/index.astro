@@ -63,35 +63,35 @@ const tracks = [
   description="中国最系统全面的 Wix Studio 中文教程体系。提供零基础入门、流体响应式排版、Velo 代码开发、SEO优化与外贸独立站全流程指南。"
   keywords="Wix 教程, Wix Studio 教程, Wix Studio 怎么用, Wix 建站教程, Wix 中文教程, Wix Velo"
 >
-  <section class="relative py-20 overflow-hidden text-center">
-    <div class="hero-glow-bg opacity-70"></div>
+  <section class="relative py-20 overflow-hidden text-center bg-dots-light">
+    <div class="hero-glow-light opacity-60"></div>
     <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
         TUTORIAL CENTER
       </div>
-      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight">
-        Wix Studio <span class="text-gradient">中文教程中心</span>
+      <h1 class="text-4xl sm:text-6xl font-black text-[#0F172A] tracking-tight">
+        Wix Studio <span class="text-gradient-brand">中文教程中心</span>
       </h1>
-      <p class="text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
         系统化、实战导向的课程路径。无论您是追求极致视觉的设计师，还是开拓海外市场的外贸创业者，这里都有最清晰的中文指引。
       </p>
     </div>
   </section>
 
-  <!-- Tutorial Tracks List -->
+  <!-- Tutorial Tracks List in Crisp White Cards -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-8">
     {tracks.map((track) => (
-      <div class="glass-card p-8 border border-white/10 hover:border-[#7C5CFC]/40 transition space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+      <div class="light-card p-8 border border-gray-200 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
           <div>
-            <h2 class="text-2xl font-bold text-white hover:text-[#9D82FF] transition">
+            <h2 class="text-2xl font-bold text-[#0F172A] hover:text-[#6D28D9] transition">
               <a href={track.slug}>{track.title}</a>
             </h2>
-            <p class="text-xs sm:text-sm text-white/60 mt-1">{track.desc}</p>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">{track.desc}</p>
           </div>
           <a
             href={track.slug}
-            class="shrink-0 px-4 py-2 rounded-full text-xs font-semibold text-white bg-white/10 hover:bg-[#7C5CFC] transition text-center"
+            class="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-gray-700 hover:text-white bg-gray-100 hover:bg-[#6D28D9] transition text-center"
           >
             进入系列专栏 →
           </a>
@@ -99,11 +99,11 @@ const tracks = [
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {track.articles.map((item, idx) => (
-            <div class="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-white/15 transition flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-bold flex items-center justify-center shrink-0">
+            <div class="p-3.5 rounded-xl bg-gray-50/80 border border-gray-150 hover:border-purple-200 transition flex items-center gap-3">
+              <span class="w-6 h-6 rounded-full bg-purple-100 text-[#6D28D9] text-xs font-bold flex items-center justify-center shrink-0">
                 {idx + 1}
               </span>
-              <span class="text-xs sm:text-sm text-white/80 line-clamp-1">{item}</span>
+              <span class="text-xs sm:text-sm text-gray-700 line-clamp-1 font-medium">{item}</span>
             </div>
           ))}
         </div>
@@ -111,39 +111,39 @@ const tracks = [
     ))}
   </section>
 
-  <!-- Learning Path Roadmap -->
-  <section class="py-20 bg-[#0A0A0A] border-t border-white/[0.08]">
+  <!-- Learning Path Roadmap in Light Slate -->
+  <section class="py-20 bg-[#F8FAFC] border-t border-gray-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       <div class="text-center space-y-2">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-white">推荐学习路径 (Learning Path)</h2>
-        <p class="text-sm text-white/60">根据您的背景，选择最适合的高效进阶路线</p>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">推荐学习路径 (Learning Path)</h2>
+        <p class="text-sm text-gray-600">根据您的背景，选择最适合的高效进阶路线</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="glass-card p-6 space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-[#9D82FF]">PATH 1</div>
-          <h3 class="text-lg font-bold text-white">零基础新手路线</h3>
-          <div class="text-xs text-white/60 space-y-2">
+        <div class="light-card p-6 space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#6D28D9]">PATH 1</div>
+          <h3 class="text-lg font-bold text-[#0F172A]">零基础新手路线</h3>
+          <div class="text-xs text-gray-600 space-y-2">
             <p>1. 熟悉工作区面板与常用组件</p>
             <p>2. 掌握容器与基础布局逻辑</p>
             <p>3. 学习模板修改并绑定域名上线</p>
           </div>
         </div>
 
-        <div class="glass-card p-6 space-y-3 border-[#7C5CFC]/40">
-          <div class="text-xs font-bold uppercase tracking-wider text-emerald-400">PATH 2 (推荐)</div>
-          <h3 class="text-lg font-bold text-white">设计师接单进阶</h3>
-          <div class="text-xs text-white/60 space-y-2">
+        <div class="light-card p-6 space-y-3 border-2 border-purple-200 bg-purple-50/30">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-600">PATH 2 (推荐)</div>
+          <h3 class="text-lg font-bold text-[#0F172A]">设计师接单进阶</h3>
+          <div class="text-xs text-gray-600 space-y-2">
             <p>1. 深入理解流体断点与比例缩放</p>
             <p>2. 熟练运用 Figma 转换插件</p>
             <p>3. 打造高级悬停微动效与交付体系</p>
           </div>
         </div>
 
-        <div class="glass-card p-6 space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-[#4A90E2]">PATH 3</div>
-          <h3 class="text-lg font-bold text-white">全栈与商业定制</h3>
-          <div class="text-xs text-white/60 space-y-2">
+        <div class="light-card p-6 space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">PATH 3</div>
+          <h3 class="text-lg font-bold text-[#0F172A]">全栈与商业定制</h3>
+          <div class="text-xs text-gray-600 space-y-2">
             <p>1. 学习 Velo JavaScript 事件与API</p>
             <p>2. 构建 CMS 数据库与动态列表</p>
             <p>3. 整合海外第三方支付与工作流</p>
