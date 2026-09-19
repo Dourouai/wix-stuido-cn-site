@@ -2,128 +2,152 @@
 
 @theme {
   --color-bg-base: #FFFFFF;
-  --color-bg-surface: #F9FAFB;
-  --color-bg-elevated: #F3F4F6;
-  --color-accent-purple: #6D28D9;
-  --color-accent-purple-light: #7C3AED;
+  --color-bg-surface: #F8FAFC;
+  --color-bg-elevated: #F1F5F9;
+  --color-accent-purple: #7C3AED;
+  --color-accent-purple-dark: #6D28D9;
   --color-accent-blue: #2563EB;
-  --color-border-subtle: rgba(0, 0, 0, 0.08);
 
   --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-
-  --radius-card: 16px;
-  --radius-btn: 9999px;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
-    background-color: #FAFAFB;
-    color: #111827;
+    background-color: #FFFFFF;
+    color: #0F172A;
   }
   ::selection {
-    background: rgba(124, 58, 237, 0.15);
+    background: rgba(124, 58, 237, 0.2);
     color: #4C1D95;
   }
 }
 
-/* Crisp Light Cards with Soft Elevated Shadows */
-.light-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.07);
-  border-radius: 16px;
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.light-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(124, 58, 237, 0.3);
-  box-shadow: 0 16px 32px -8px rgba(109, 40, 217, 0.1), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Light Background Grid & Dot Textures */
-.bg-grid-light {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-}
-
-.bg-dots-light {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
-/* Bright Pastel Glow Effect for Hero */
-.hero-glow-light {
+/* Rich Aurora Light Effect (Vibrant, Not Washed Out) */
+.hero-aurora {
   position: absolute;
-  top: -120px;
+  top: -100px;
   left: 50%;
   transform: translateX(-50%);
-  width: 950px;
-  height: 600px;
+  width: 1000px;
+  height: 650px;
   background: 
-    radial-gradient(ellipse at 40% 40%, rgba(167, 139, 250, 0.25) 0%, transparent 60%),
-    radial-gradient(ellipse at 60% 45%, rgba(147, 197, 253, 0.25) 0%, transparent 60%),
-    radial-gradient(circle at 50% 60%, rgba(244, 114, 182, 0.12) 0%, transparent 70%);
-  filter: blur(80px);
+    radial-gradient(ellipse at 30% 30%, rgba(139, 92, 246, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 35%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 65%, rgba(236, 72, 153, 0.18) 0%, transparent 55%);
+  filter: blur(75px);
   pointer-events: none;
   z-index: 0;
 }
 
-/* High-contrast Text Gradient */
-.text-gradient-dark {
-  background: linear-gradient(135deg, #0F172A 0%, #4338CA 60%, #6D28D9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Subtle Grid Texture */
+.bg-subtle-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
 }
 
-.text-gradient-brand {
-  background: linear-gradient(135deg, #6D28D9 0%, #2563EB 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Light Marquee Fade Mask */
-.marquee-mask-light {
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-}
-
-/* Button Glow on Light */
-.btn-primary-glow {
+/* Elevated Premium Card with Multi-layer Shadow & Hover Glow */
+.premium-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px -2px rgba(15, 23, 42, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
-  transition: all 0.2s ease;
+  overflow: hidden;
 }
-.btn-primary-glow::after {
+
+.premium-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 
+    0 20px 35px -10px rgba(124, 58, 237, 0.15),
+    0 8px 16px -4px rgba(15, 23, 42, 0.06);
+}
+
+/* Gradient Text Utilities */
+.text-gradient-purple {
+  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 50%, #2563EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth Marquee Mask */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-scroll {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Primary Button Glow */
+.btn-vibrant-glow {
+  position: relative;
+  transition: all 0.25s ease;
+}
+.btn-vibrant-glow::before {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: -2px;
   border-radius: 9999px;
   background: linear-gradient(135deg, #7C3AED, #2563EB);
-  filter: blur(8px);
-  opacity: 0.25;
-  transition: opacity 0.2s ease;
+  filter: blur(10px);
+  opacity: 0.4;
+  transition: opacity 0.25s ease, filter 0.25s ease;
   z-index: -1;
 }
-.btn-primary-glow:hover::after {
-  opacity: 0.55;
-  filter: blur(12px);
+.btn-vibrant-glow:hover::before {
+  opacity: 0.8;
+  filter: blur(14px);
 }
 
-/* Custom Scrollbar for Light */
-::-webkit-scrollbar {
-  width: 8px;
+/* Shimmer Animation */
+@keyframes badge-shimmer-anim {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(200%) rotate(25deg); }
 }
-::-webkit-scrollbar-track {
-  background: #F3F4F6;
+
+.shimmer-pill {
+  position: relative;
+  overflow: hidden;
 }
-::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #9CA3AF;
+.shimmer-pill::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  animation: badge-shimmer-anim 3.5s infinite ease-in-out;
 }

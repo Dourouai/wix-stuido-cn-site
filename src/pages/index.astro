@@ -1,47 +1,69 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const platforms = [
+  { name: 'Wix Studio', icon: '⚡', color: 'bg-purple-100 text-purple-700 border-purple-200' },
+  { name: 'Velo JavaScript', icon: '💻', color: 'bg-indigo-100 text-indigo-700 border-indigo-200' },
+  { name: 'Shopify', icon: '🛍️', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
+  { name: 'WordPress', icon: '🌐', color: 'bg-sky-100 text-sky-700 border-sky-200' },
+  { name: 'Webflow', icon: '🎨', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  { name: 'Squarespace', icon: '📐', color: 'bg-slate-100 text-slate-700 border-slate-200' },
+  { name: 'Framer', icon: '🚀', color: 'bg-pink-100 text-pink-700 border-pink-200' },
+];
+
 const tutorials = [
   {
     icon: '📘',
-    title: '入门基础',
-    tag: '新手首选',
-    desc: '从账号注册、工作空间认知到发布首个响应式站点，零基础手把手教程。',
+    iconBg: 'from-blue-500 to-indigo-600',
+    title: '入门基础实战',
+    tag: '新手第一课',
+    tagColor: 'bg-blue-50 text-blue-700 border-blue-200',
+    desc: '从账号注册、Studio 界面工作流认知到发布首个响应式站点，手把手零基础教程。',
     href: '/tutorials/getting-started/',
   },
   {
     icon: '🎨',
-    title: '响应式设计',
-    tag: '流体排版',
-    desc: '掌握断点设置、流体排版（Fluid Engine）与高级微交互动画，告别多端错乱。',
+    iconBg: 'from-purple-500 to-violet-600',
+    title: '流体响应式排版',
+    tag: '设计核心',
+    tagColor: 'bg-purple-50 text-purple-700 border-purple-200',
+    desc: '掌握比例缩放（Fluid Engine）、无限断点适配与滚动微交互动效，告别多端错乱。',
     href: '/tutorials/design/',
   },
   {
     icon: '💻',
-    title: 'Velo开发',
-    tag: '全栈进阶',
+    iconBg: 'from-emerald-500 to-teal-600',
+    title: 'Velo 全栈开发',
+    tag: '动态扩展',
+    tagColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     desc: '利用 JavaScript、Wix CMS 数据库及 API 接口，轻松实现企业级动态数据交互。',
     href: '/tutorials/velo/',
   },
   {
     icon: '🔍',
-    title: 'SEO优化',
-    tag: '收录排名',
+    iconBg: 'from-amber-500 to-orange-600',
+    title: 'SEO 排名优化',
+    tag: '流量收录',
+    tagColor: 'bg-amber-50 text-amber-700 border-amber-200',
     desc: '百度与 Google 双引擎技术 SEO 调优、Sitemap 自动提交及 Core Web Vitals 达标。',
     href: '/tutorials/seo/',
   },
   {
     icon: '🛒',
-    title: '电商建站',
+    iconBg: 'from-rose-500 to-pink-600',
+    title: '外贸商城独立站',
     tag: '跨境出海',
+    tagColor: 'bg-rose-50 text-rose-700 border-rose-200',
     desc: '跨境多币种独立站、PayPal / Stripe 海外金流收款及库存物流系统全流程配置。',
     href: '/tutorials/ecommerce/',
   },
   {
     icon: '⚡',
-    title: '竞品对比',
-    tag: '架构选型',
-    desc: '深度横评 Wix 与 Shopify、WordPress、Webflow、Squarespace，明晰各家优劣。',
+    iconBg: 'from-cyan-500 to-blue-600',
+    title: '主流平台深度横评',
+    tag: '技术选型',
+    tagColor: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    desc: '客观深度对比 Wix 与 Shopify、WordPress、Webflow、Squarespace，明晰优劣。',
     href: '/compare/',
   },
 ];
@@ -49,23 +71,23 @@ const tutorials = [
 const compareItems = [
   {
     name: 'Wix vs Shopify',
-    badge: '跨境出海',
+    badge: '跨境出海选型',
     highlight: '外贸商城与独立站首选对比',
-    wixAdv: '设计自由度极高，无需月度昂贵插件堆砌，展示型电商与 B2B 品牌官网首选',
-    otherAdv: '超大 SKU 铺货型 B2C 具备深厚 ERP 生态',
+    wixAdv: '设计自由度极高，无需月度昂贵插件堆砌，展示型外贸B2B与精品独立站首选',
+    otherAdv: '海量 SKU 铺货型 B2C 具备深厚 ERP 发货生态',
     href: '/compare/wix-vs-shopify/',
   },
   {
     name: 'Wix vs WordPress',
-    badge: '现代选型',
+    badge: '现代架构对比',
     highlight: '闭源现代SaaS vs 开源CMS终极选型',
-    wixAdv: '零运维成本、无需担心安全漏洞升级、原生云端全托管高防，省心省力',
-    otherAdv: '开源生态与二次开发自主权最高',
+    wixAdv: '零运维成本、无需担心安全漏洞攻击挂马、原生云端全托管高防，极度省心',
+    otherAdv: '开源生态与二次开发源码自主权最高',
     href: '/compare/wix-vs-wordpress/',
   },
   {
     name: 'Wix Studio vs Webflow',
-    badge: '设计进阶',
+    badge: '高阶设计工具',
     highlight: '专业设计师建站平台深度较量',
     wixAdv: '原生内置全套商务应用（预约/商城/会员/表单）、中文生态友好、交付周期更短',
     otherAdv: '底层 CSS 盒模型代码控制极深',
@@ -105,162 +127,158 @@ const faqs = [
 ---
 
 <BaseLayout>
-  <!-- Hero Section with Light Grid and Soft Pastel Glow -->
-  <section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-32 bg-dots-light">
-    <!-- Soft Dreamy Glow -->
-    <div class="hero-glow-light"></div>
+  <!-- Section 1: Hero Section (Vibrant Light Aurora + Grid Texture) -->
+  <section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-36 bg-subtle-grid">
+    <!-- Rich Aurora Gradient Glow -->
+    <div class="hero-aurora"></div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         <!-- Left Hero Content -->
         <div class="lg:col-span-7 space-y-7 text-left">
-          <!-- Trust Badge Pill -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-purple-200/80 shadow-xs shadow-purple-500/5 hover:border-purple-300 transition">
-            <span class="flex h-2 w-2 relative">
+          <!-- Official Trust Badge Pill with Shimmer and Gold Star -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-purple-200/90 shadow-lg shadow-purple-500/5 shimmer-pill backdrop-blur-md hover:border-purple-300 transition">
+            <span class="flex h-2.5 w-2.5 relative">
               <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#7C3AED]"></span>
+              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#7C3AED]"></span>
             </span>
-            <span class="text-xs font-semibold text-gray-800 tracking-wide">
-              Wix 官方认证 <span class="text-[#6D28D9] font-bold">Legend</span> 合作伙伴
+            <span class="text-xs font-bold text-slate-800 tracking-wide">
+              ⭐ Wix 官方认证 <span class="text-[#6D28D9] font-black">Legend</span> 最高级合作伙伴
             </span>
           </div>
 
-          <!-- Headline -->
-          <div class="space-y-2">
-            <div class="text-[#0F172A] text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter leading-none">
+          <!-- Hero Headline -->
+          <div class="space-y-3">
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 leading-none">
               Wix Studio
-            </div>
-            <div class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight text-gradient-brand">
+            </h1>
+            <div class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-gradient-purple leading-tight">
               中文学习与建站平台
             </div>
           </div>
 
           <!-- Subtitle -->
-          <p class="text-base sm:text-xl text-gray-600 max-w-xl font-normal leading-relaxed">
+          <p class="text-lg sm:text-xl text-slate-600 max-w-xl font-normal leading-relaxed">
             中文互联网最系统的 Wix Studio 专属生态。从零基础建站到设计师进阶，提供实战教程、平台横评与高水准外贸出海官网定制。
           </p>
 
-          <!-- Dual CTAs (Chinese Labels, English Slugs) -->
+          <!-- Dual CTAs -->
           <div class="flex flex-wrap items-center gap-4 pt-2">
             <a
               href="/tutorials/"
-              class="btn-primary-glow inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-lg shadow-purple-500/20 active:scale-95 transition"
+              class="btn-vibrant-glow inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 active:scale-95 transition"
             >
               <span>查看全部教程</span>
-              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </a>
             <a
               href="/contact/"
-              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-base font-semibold text-gray-800 bg-white hover:bg-gray-50 border border-gray-300/80 shadow-xs hover:border-purple-300 active:scale-95 transition"
+              class="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-md shadow-slate-200/50 hover:border-purple-300 active:scale-95 transition"
             >
               <span>委托建站咨询</span>
-              <span class="text-gray-400">→</span>
+              <span class="text-purple-600 font-black">→</span>
             </a>
           </div>
 
-          <!-- Social Proof / Stats Grid -->
-          <div class="pt-6 border-t border-gray-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+          <!-- Stats Strip -->
+          <div class="pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
             {stats.map((s) => (
-              <div>
-                <div class="text-2xl sm:text-3xl font-black text-[#0F172A] tracking-tight">{s.value}</div>
-                <div class="text-xs text-gray-500 mt-0.5">{s.label}</div>
+              <div class="p-3 rounded-2xl bg-white/60 border border-slate-100 backdrop-blur-xs">
+                <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{s.value}</div>
+                <div class="text-xs font-medium text-slate-500 mt-0.5">{s.label}</div>
               </div>
             ))}
           </div>
         </div>
 
-        <!-- Right Hero Mockup: Modern Crisp Editor Frame -->
+        <!-- Right Hero Mockup: High-Contrast Creative Studio Window -->
         <div class="lg:col-span-5 relative">
-          <div class="relative light-card border border-gray-200/90 p-2 sm:p-3 shadow-2xl shadow-purple-950/10 bg-white overflow-hidden">
-            <!-- Studio Editor Top Toolbar -->
-            <div class="flex items-center justify-between px-3 py-2 border-b border-gray-100 bg-gray-50 rounded-t-xl text-xs">
-              <!-- Window Dots -->
+          <!-- Window Outer Shadow and Border -->
+          <div class="relative rounded-3xl p-3 bg-gradient-to-b from-slate-800 to-slate-950 shadow-2xl shadow-purple-950/25 border border-slate-700/60 overflow-hidden">
+            <!-- Studio Dark App Chrome Header -->
+            <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800 bg-slate-900/90 rounded-t-2xl text-xs">
               <div class="flex items-center gap-1.5">
-                <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-emerald-400"></div>
+                <div class="w-3 h-3 rounded-full bg-[#EF4444]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#F59E0B]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#10B981]"></div>
               </div>
 
-              <!-- Breakpoint Switcher (Desktop / Tablet / Mobile) -->
-              <div class="flex items-center gap-1 bg-white p-0.5 rounded-lg border border-gray-200 shadow-xs">
-                <button class="px-2 py-0.5 rounded bg-[#6D28D9] text-white text-[11px] font-semibold flex items-center gap-1">
-                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                  <span>1920</span>
-                </button>
-                <button class="px-2 py-0.5 rounded text-gray-400 hover:text-gray-700 text-[11px] flex items-center">
-                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </button>
-                <button class="px-2 py-0.5 rounded text-gray-400 hover:text-gray-700 text-[11px] flex items-center">
-                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-                </button>
+              <!-- Breakpoint Switcher Pills -->
+              <div class="flex items-center gap-1 bg-slate-800 p-1 rounded-xl border border-slate-700">
+                <span class="px-2 py-0.5 rounded-lg bg-[#7C3AED] text-white text-[10px] font-bold flex items-center gap-1">
+                  <span>1920 桌面端</span>
+                </span>
+                <span class="px-2 py-0.5 text-slate-400 text-[10px]">平板</span>
+                <span class="px-2 py-0.5 text-slate-400 text-[10px]">移动端</span>
               </div>
 
-              <!-- Publish Status -->
-              <div class="flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                <span class="text-[11px] font-semibold text-emerald-600">已发布上线</span>
+              <!-- Status badge -->
+              <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>已上线</span>
               </div>
             </div>
 
-            <!-- Editor Inner Canvas with Side Rail -->
-            <div class="flex bg-gray-50/70 rounded-b-xl overflow-hidden min-h-[300px]">
+            <!-- Workspace Editor Layout -->
+            <div class="flex bg-slate-950 rounded-b-2xl overflow-hidden min-h-[320px]">
               <!-- Left Tool Rail -->
-              <div class="w-10 border-r border-gray-200/80 bg-white py-3 flex flex-col items-center gap-3 text-gray-400 text-xs">
-                <span class="w-6 h-6 rounded-md flex items-center justify-center bg-purple-50 text-[#6D28D9] font-bold cursor-pointer">+</span>
-                <span class="hover:text-gray-700 cursor-pointer">📄</span>
-                <span class="hover:text-gray-700 cursor-pointer">🎨</span>
-                <span class="hover:text-gray-700 cursor-pointer">📦</span>
-                <span class="hover:text-[#6D28D9] cursor-pointer font-mono font-bold text-[10px] text-purple-600">{ }</span>
+              <div class="w-11 border-r border-slate-800 bg-slate-900/70 py-3 flex flex-col items-center gap-3 text-slate-400 text-xs">
+                <span class="w-7 h-7 rounded-lg flex items-center justify-center bg-[#7C3AED] text-white font-black cursor-pointer shadow-md">+</span>
+                <span class="hover:text-white cursor-pointer">📄</span>
+                <span class="hover:text-white cursor-pointer">🎨</span>
+                <span class="hover:text-white cursor-pointer">📦</span>
+                <span class="hover:text-white cursor-pointer font-mono font-bold text-xs text-purple-400">{ }</span>
               </div>
 
-              <!-- Canvas Preview Area -->
-              <div class="flex-1 p-5 relative flex flex-col justify-between bg-gradient-to-br from-white to-purple-50/30">
-                <!-- Selection Box Handles Simulated -->
-                <div class="border-2 border-[#6D28D9] rounded-xl p-5 relative bg-white shadow-lg shadow-purple-500/5">
-                  <!-- Handle points -->
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#6D28D9] absolute -top-1.5 -left-1.5 border-2 border-white"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#6D28D9] absolute -top-1.5 -right-1.5 border-2 border-white"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#6D28D9] absolute -bottom-1.5 -left-1.5 border-2 border-white"></div>
-                  <div class="w-2.5 h-2.5 rounded-full bg-[#6D28D9] absolute -bottom-1.5 -right-1.5 border-2 border-white"></div>
+              <!-- Center Interactive Canvas Simulator -->
+              <div class="flex-1 p-5 relative flex flex-col justify-between bg-gradient-to-br from-slate-900 via-slate-950 to-[#1e1438]">
+                <!-- Active Visual Element Selection Frame -->
+                <div class="border-2 border-[#8B5CF6] rounded-2xl p-5 relative bg-slate-900/90 shadow-2xl backdrop-blur-md">
+                  <!-- Responsive resize handles -->
+                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -top-1.5 -left-1.5 border-2 border-white shadow-sm"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -top-1.5 -right-1.5 border-2 border-white shadow-sm"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -bottom-1.5 -left-1.5 border-2 border-white shadow-sm"></div>
+                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -bottom-1.5 -right-1.5 border-2 border-white shadow-sm"></div>
 
                   <div class="flex items-center justify-between mb-3">
-                    <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-purple-100 text-[#6D28D9] font-bold">
-                      流体缩放: 比例适配 100%
+                    <span class="text-[10px] uppercase font-mono px-2.5 py-0.5 rounded-full bg-purple-500/25 text-purple-300 font-bold border border-purple-500/30">
+                      Fluid: 等比缩放 100%
                     </span>
-                    <span class="text-[10px] text-gray-400 font-mono">宽度: 100% | 高度自适应</span>
+                    <span class="text-[10px] text-slate-400 font-mono">12 列 CSS 网格</span>
                   </div>
 
                   <div class="space-y-2.5">
-                    <div class="h-3 w-1/3 rounded bg-purple-200"></div>
-                    <div class="h-6 w-5/6 rounded bg-gradient-to-r from-gray-900 to-gray-600"></div>
-                    <div class="h-2.5 w-1/2 rounded bg-gray-300"></div>
+                    <div class="h-3 w-1/3 rounded-full bg-purple-400/80"></div>
+                    <div class="h-6 w-5/6 rounded-lg bg-gradient-to-r from-white via-slate-100 to-slate-400 font-bold"></div>
+                    <div class="h-2.5 w-1/2 rounded-full bg-slate-600"></div>
                   </div>
 
                   <div class="mt-4 flex items-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-[11px] font-semibold bg-[#6D28D9] text-white">开始探索</span>
-                    <span class="px-3 py-1 rounded-full text-[11px] font-medium border border-gray-300 text-gray-700 bg-white">在线演示</span>
+                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-[#7C3AED] text-white shadow-md">品牌案例</span>
+                    <span class="px-3.5 py-1 rounded-full text-xs font-semibold border border-slate-600 text-slate-300 bg-slate-800">在线交互</span>
                   </div>
                 </div>
 
                 <!-- Bottom Status info -->
-                <div class="mt-4 flex items-center justify-between text-[10px] text-gray-400 font-mono">
-                  <span>CSS 网格: 12列流体</span>
-                  <span>Velo: 已连接</span>
+                <div class="mt-4 flex items-center justify-between text-[11px] text-slate-400 font-mono border-t border-slate-800/80 pt-2">
+                  <span>断点: 响应式流体引擎</span>
+                  <span class="text-purple-400 font-bold">Velo: Connected</span>
                 </div>
               </div>
             </div>
 
-            <!-- Floating Wix Partner Legend Badge with Drop Shadow -->
-            <div class="absolute -bottom-3 -right-3 w-20 h-20 sm:w-24 sm:h-24 z-20 transition-transform hover:scale-105">
+            <!-- Floating Wix Partner Legend Badge Seal -->
+            <div class="absolute -bottom-4 -right-4 w-22 h-22 sm:w-26 sm:h-26 z-20 transition-transform hover:scale-105">
               <div class="relative w-full h-full">
+                <div class="absolute inset-0 rounded-full bg-purple-500 blur-xl opacity-50 animate-pulse"></div>
                 <img
                   src="/assets/badges/wix-partner-legend-200.png"
                   alt="Wix Partner Legend"
-                  width="96"
-                  height="96"
-                  class="rounded-full border-2 border-white shadow-xl shadow-gray-900/20"
+                  width="104"
+                  height="104"
+                  class="relative rounded-full border-4 border-slate-900 shadow-2xl shadow-black/80"
                 />
               </div>
             </div>
@@ -270,117 +288,104 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 2: Platform Marquee Ticker in Crisp Light Banner -->
-  <section class="border-y border-gray-200/80 bg-white py-5 overflow-hidden">
-    <div class="marquee-mask-light">
-      <div class="animate-marquee items-center gap-12 text-sm sm:text-base font-semibold tracking-wider text-gray-400 whitespace-nowrap">
-        <span class="text-[#0F172A] font-bold">WIX STUDIO</span>
-        <span>•</span>
-        <span>VELO JAVASCRIPT</span>
-        <span>•</span>
-        <span>SHOPIFY</span>
-        <span>•</span>
-        <span>WORDPRESS</span>
-        <span>•</span>
-        <span>WEBFLOW</span>
-        <span>•</span>
-        <span>SQUARESPACE</span>
-        <span>•</span>
-        <span>FRAMER</span>
-        <span>•</span>
-        <span class="text-[#0F172A] font-bold">WIX STUDIO</span>
-        <span>•</span>
-        <span>VELO JAVASCRIPT</span>
-        <span>•</span>
-        <span>SHOPIFY</span>
-        <span>•</span>
-        <span>WORDPRESS</span>
-        <span>•</span>
-        <span>WEBFLOW</span>
-        <span>•</span>
-        <span>SQUARESPACE</span>
-        <span>•</span>
-        <span>FRAMER</span>
+  <!-- Section 2: Rich Platform Marquee with Styled Badge Chips -->
+  <section class="border-y border-slate-200 bg-slate-50/80 py-6 overflow-hidden">
+    <div class="marquee-mask">
+      <div class="animate-marquee-scroll items-center gap-6 whitespace-nowrap">
+        {platforms.concat(platforms).map((p) => (
+          <div class={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border shadow-xs bg-white ${p.color}`}>
+            <span>{p.icon}</span>
+            <span>{p.name}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Tutorials Cards Grid in Clean White Cards -->
+  <!-- Section 3: Tutorials Cards Grid (Elevated Cards with Color Accents) -->
   <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-      <div class="inline-block text-xs font-bold uppercase tracking-widest text-[#6D28D9] px-3 py-1 rounded-full bg-purple-50 border border-purple-200">
+      <div class="inline-block text-xs font-black uppercase tracking-widest text-[#6D28D9] px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/90 shadow-xs">
         TUTORIALS 教程体系
       </div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-[#0F172A] tracking-tight">
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
         从零开始学 Wix Studio
       </h2>
-      <p class="text-base text-gray-600">
+      <p class="text-base sm:text-lg text-slate-600">
         循序渐进的系统化中文课程，覆盖从基础搭建、高阶设计到代码扩展全流程。
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {tutorials.map((card) => (
         <a
           href={card.href}
-          class="light-card p-7 group flex flex-col justify-between block relative overflow-hidden"
+          class="premium-card p-8 group flex flex-col justify-between block relative"
         >
-          <div class="space-y-4">
+          <!-- Top Colored Accent Stripe on Hover -->
+          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#6D28D9] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+          <div class="space-y-5">
             <div class="flex items-center justify-between">
-              <div class="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+              <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg shadow-slate-200`}>
                 {card.icon}
               </div>
-              <span class="text-[11px] font-semibold uppercase tracking-wider text-purple-700 bg-purple-50 border border-purple-100 px-2.5 py-1 rounded-full">
+              <span class={`text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${card.tagColor}`}>
                 {card.tag}
               </span>
             </div>
-            <h3 class="text-xl font-bold text-[#0F172A] group-hover:text-[#6D28D9] transition">
+            <h3 class="text-xl font-extrabold text-slate-900 group-hover:text-[#6D28D9] transition">
               {card.title}
             </h3>
-            <p class="text-sm text-gray-500 leading-relaxed">
+            <p class="text-sm text-slate-600 leading-relaxed">
               {card.desc}
             </p>
           </div>
 
-          <div class="pt-6 mt-4 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-gray-700 group-hover:text-[#6D28D9] transition">
-            <span>阅读教程专栏</span>
-            <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+          <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-[#6D28D9] transition">
+            <span>进入专栏学习</span>
+            <span class="transform group-hover:translate-x-1.5 transition-transform text-purple-600 text-sm">→</span>
           </div>
         </a>
       ))}
     </div>
 
-    <div class="mt-12 text-center">
+    <div class="mt-14 text-center">
       <a
         href="/tutorials/"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-gray-700 hover:text-gray-900 bg-white border border-gray-300 hover:border-purple-300 shadow-xs transition"
+        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 hover:border-purple-300 shadow-md shadow-slate-200/50 hover:shadow-lg transition"
       >
-        <span>查看所有 35+ 篇教程大纲</span>
-        <span>→</span>
+        <span>查看全部 35+ 篇系统教程大纲</span>
+        <span class="text-purple-600">→</span>
       </a>
     </div>
   </section>
 
-  <!-- Section 4: Platform Compare Highlights in Clean Slate Style -->
-  <section class="py-24 bg-[#F8FAFC] border-y border-gray-200/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- Section 4: High-Contrast Midnight Navy Compare Section (Breaks monotony, brings premium drama) -->
+  <section class="py-24 bg-[#0B0F19] text-white relative overflow-hidden border-y border-slate-800">
+    <!-- Ambient Blue & Purple Glow behind dark container -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <div class="lg:col-span-4 space-y-4">
-          <div class="inline-block text-xs font-bold uppercase tracking-widest text-[#6D28D9] px-3 py-1 rounded-full bg-purple-100/60 border border-purple-200">
+        <div class="lg:col-span-4 space-y-5">
+          <div class="inline-block text-xs font-black uppercase tracking-widest text-purple-400 px-3.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/30">
             COMPARISONS 选型横评
           </div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A] tracking-tight leading-snug">
-            选对建站平台<br />事半功倍
+          <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+            选对建站平台<br />
+            <span class="text-gradient-purple">事半功倍</span>
           </h2>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            不知道是用 Wix、Shopify 还是 WordPress？我们以中国企业和出海卖家的真实业务场景为准绳，为您做客观剖析。
+          <p class="text-sm text-slate-400 leading-relaxed">
+            不知道是用 Wix、Shopify 还是 WordPress？我们以中国企业和出海卖家的真实业务场景为准绳，为您做客观深度的剖析横评。
           </p>
           <div class="pt-2">
             <a
               href="/compare/"
-              class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6D28D9] hover:underline"
+              class="inline-flex items-center gap-1.5 text-sm font-bold text-purple-400 hover:text-purple-300 hover:underline"
             >
-              <span>查看 5 大主流平台综合横评报告</span>
+              <span>查看 5 大主流建站平台综合横评报告</span>
               <span>→</span>
             </a>
           </div>
@@ -390,28 +395,28 @@ const faqs = [
           {compareItems.map((item) => (
             <a
               href={item.href}
-              class="light-card p-6 block group hover:border-purple-300 transition"
+              class="p-6 rounded-2xl block group border border-slate-800 bg-slate-900/80 hover:border-purple-500/60 hover:bg-slate-900 transition-all shadow-xl"
             >
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-100">
-                <div class="flex items-center gap-2">
-                  <h3 class="text-lg font-bold text-[#0F172A] group-hover:text-[#6D28D9] transition">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                  <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition">
                     {item.name}
                   </h3>
-                  <span class="text-[11px] px-2.5 py-0.5 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
+                  <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                     {item.badge}
                   </span>
                 </div>
-                <span class="text-xs text-[#6D28D9] font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  查看深度对比 →
+                <span class="text-xs font-bold text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  查看深度对比报告 →
                 </span>
               </div>
-              <div class="mt-3.5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs leading-relaxed">
-                <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200 text-gray-700">
-                  <span class="text-emerald-700 font-semibold block mb-0.5">Wix 优势：</span>
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs leading-relaxed">
+                <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
+                  <span class="text-emerald-400 font-bold block mb-1">✓ Wix 核心优势：</span>
                   {item.wixAdv}
                 </div>
-                <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-600">
-                  <span class="text-gray-800 font-semibold block mb-0.5">竞品侧重点：</span>
+                <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300">
+                  <span class="text-slate-400 font-bold block mb-1">• 竞品核心侧重点：</span>
                   {item.otherAdv}
                 </div>
               </div>
@@ -422,44 +427,62 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 5: Wix Partner Legend Certification Authority (Bright Premium Banner) -->
+  <!-- Section 5: Wix Partner Legend Certification Authority (Signature Showstopper Card) -->
   <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="rounded-3xl p-8 sm:p-14 border border-purple-200/80 bg-gradient-to-br from-purple-50/70 via-white to-blue-50/60 relative overflow-hidden shadow-xl shadow-purple-500/5">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-        <div class="lg:col-span-8 space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-            OFFICIAL CERTIFICATION
+    <div class="rounded-3xl p-8 sm:p-14 border border-purple-200/90 bg-gradient-to-br from-purple-100/60 via-white to-blue-100/50 relative overflow-hidden shadow-2xl shadow-purple-500/10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+        <div class="lg:col-span-8 space-y-5">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-200/60 text-[#6D28D9] text-xs font-black border border-purple-300/80">
+            OFFICIAL CERTIFIED PARTNER
           </div>
-          <h2 class="text-2xl sm:text-4xl font-extrabold text-[#0F172A] leading-tight">
+          <h2 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight">
             Wix 官方最高级 Legend 认证合作伙伴
           </h2>
-          <p class="text-sm sm:text-base text-gray-600 leading-relaxed max-w-2xl">
-            wixstudio.cn 不只是教程分享者，更是拥有实战交付能力的专业团队。依托 Wix Studio 尖端流体引擎与 Velo 动态架构，为中国出海企业与品牌商量身打造高水准官网与外贸独立站。
+          <p class="text-base text-slate-600 leading-relaxed max-w-2xl">
+            wixstudio.cn 不只是教程分享者，更是拥有丰富实战交付经验的专业团队。依托 Wix Studio 尖端流体引擎与 Velo 动态架构，为中国出海企业与品牌商量身打造高水准官网与外贸独立站。
           </p>
-          <div class="pt-2 flex flex-wrap gap-4">
+
+          <!-- Delivery Metrics Chips -->
+          <div class="grid grid-cols-3 gap-3 max-w-lg pt-1">
+            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
+              <div class="text-xl font-black text-purple-700">100%</div>
+              <div class="text-[11px] text-slate-500 font-medium">响应式适配</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
+              <div class="text-xl font-black text-purple-700">5-10天</div>
+              <div class="text-[11px] text-slate-500 font-medium">极速周期交付</div>
+            </div>
+            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
+              <div class="text-xl font-black text-purple-700">7x24</div>
+              <div class="text-[11px] text-slate-500 font-medium">售后运维保障</div>
+            </div>
+          </div>
+
+          <div class="pt-3 flex flex-wrap gap-4">
             <a
               href="/contact/"
-              class="btn-primary-glow inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md shadow-purple-500/20 transition"
+              class="btn-vibrant-glow inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 transition"
             >
               委托我们建站咨询
             </a>
             <a
               href="/studio/"
-              class="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold text-gray-700 hover:text-gray-900 bg-white border border-gray-300 shadow-xs transition"
+              class="inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 shadow-md shadow-slate-200/50 transition"
             >
-              了解 Wix Studio
+              深入了解 Wix Studio
             </a>
           </div>
         </div>
 
         <div class="lg:col-span-4 flex justify-center lg:justify-end">
           <div class="relative group">
+            <div class="absolute inset-0 rounded-full bg-purple-400 blur-2xl opacity-40 group-hover:opacity-70 transition duration-300"></div>
             <img
               src="/assets/badges/wix-partner-legend-400.png"
               alt="Wix Partner Legend 认证徽章"
-              width="190"
-              height="190"
-              class="rounded-full shadow-2xl shadow-gray-900/30 hover:scale-105 transition"
+              width="210"
+              height="210"
+              class="relative rounded-full shadow-2xl shadow-purple-950/30 hover:scale-105 transition"
             />
           </div>
         </div>
@@ -468,23 +491,23 @@ const faqs = [
   </section>
 
   <!-- Section 6: FAQs -->
-  <section class="py-20 bg-[#F8FAFC] border-t border-gray-200">
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-14 space-y-2">
-        <div class="inline-block text-xs font-bold uppercase tracking-widest text-[#6D28D9] px-3 py-1 rounded-full bg-purple-100/70 border border-purple-200">
+        <div class="inline-block text-xs font-black uppercase tracking-widest text-[#6D28D9] px-4 py-1.5 rounded-full bg-purple-100/70 border border-purple-200">
           FAQS 常见问题
         </div>
-        <h2 class="text-3xl font-extrabold text-[#0F172A]">关于 Wix Studio 的常见解答</h2>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900">关于 Wix Studio 的常见解答</h2>
       </div>
 
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <div class="light-card p-6 border border-gray-200">
-            <h3 class="text-base font-bold text-[#0F172A] mb-2 flex items-center gap-2">
-              <span class="text-[#6D28D9]">Q:</span>
+          <div class="premium-card p-6 border border-slate-200">
+            <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center text-xs font-black shrink-0">问</span>
               <span>{faq.q}</span>
             </h3>
-            <p class="text-sm text-gray-600 leading-relaxed pl-6">{faq.a}</p>
+            <p class="text-sm text-slate-600 leading-relaxed pl-8.5">{faq.a}</p>
           </div>
         ))}
       </div>
@@ -492,26 +515,26 @@ const faqs = [
   </section>
 
   <!-- Section 7: Final CTA -->
-  <section class="py-24 relative overflow-hidden text-center bg-white border-t border-gray-200">
-    <div class="hero-glow-light opacity-60"></div>
+  <section class="py-24 relative overflow-hidden text-center bg-white border-t border-slate-200">
+    <div class="hero-aurora opacity-70"></div>
     <div class="relative z-10 max-w-3xl mx-auto px-4 space-y-6">
-      <h2 class="text-3xl sm:text-5xl font-black text-[#0F172A] tracking-tight leading-tight">
+      <h2 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
         准备好开始打造您的<br />
-        <span class="text-gradient-brand">国际水准网站了吗？</span>
+        <span class="text-gradient-purple">国际水准网站了吗？</span>
       </h2>
-      <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto">
+      <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto">
         无论您是希望通过我们的教程自学掌握 Wix Studio，还是需要由官方认证专家为您代劳定制，我们都在这里。
       </p>
       <div class="flex flex-wrap justify-center gap-4 pt-2">
         <a
           href="/tutorials/"
-          class="btn-primary-glow inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-lg shadow-purple-500/20 transition"
+          class="btn-vibrant-glow inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 transition"
         >
-          查看全部教程
+          查看全部教程体系
         </a>
         <a
           href="/contact/"
-          class="inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 shadow-xs transition"
+          class="inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-md shadow-slate-200/50 transition"
         >
           委托建站咨询 →
         </a>
