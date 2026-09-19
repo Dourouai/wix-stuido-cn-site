@@ -1,0 +1,96 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  canonical?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title = 'Wix Studio 中文学习平台 | 专业建站教程与服务 - wixstudio.cn',
+  description = 'wixstudio.cn 是国内首个系统化的 Wix Studio 中文学习与建站推广平台。提供 Wix Studio 入门进阶教程、Velo开发、响应式设计、SEO优化及 Wix 与 Shopify/WordPress 深度对比。官方认证 Legend 合作伙伴。',
+  keywords = 'Wix Studio, Wix Studio 中文, Wix 建站, Wix 教程, Wix Studio 怎么用, Wix vs Shopify, Wix 代建站, Wix 外贸建站',
+  canonical = Astro.url.href,
+  image = '/assets/badges/wix-partner-legend-400.png',
+  type = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://wixstudio.cn';
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const schemaOrg = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  'name': 'Wix Studio 中文学习平台',
+  'url': siteUrl,
+  'description': description,
+  'inLanguage': ['zh-CN', 'zh-TW', 'en'],
+};
+
+const schemaPartner = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  'name': 'wixstudio.cn - Wix Studio 建站服务',
+  'url': siteUrl,
+  'logo': `${siteUrl}/assets/badges/wix-partner-legend-400.png`,
+  'description': 'Wix 官方认证 Legend 级合作伙伴，提供高水准 Wix Studio 外贸独立站、品牌官网定制与 Velo 动态开发。',
+};
+---
+
+<!doctype html>
+<html lang="zh-CN" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/assets/badges/wix-partner-legend-200.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="wixstudio.cn" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:site_name" content="wixstudio.cn" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonical} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullImageUrl} />
+
+    <!-- Fonts: Inter & Noto Sans SC -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured Data Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaPartner)} />
+  </head>
+  <body class="bg-[#0D0D0D] text-white min-h-screen flex flex-col font-sans antialiased selection:bg-[#7C5CFC]/30 selection:text-white">
+    <Navbar />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

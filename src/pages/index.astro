@@ -1,0 +1,435 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const tutorials = [
+  {
+    icon: '📘',
+    title: '入门基础',
+    tag: 'Beginner',
+    desc: '从账号注册、工作空间认知到发布首个响应式站点，零基础手把手教程。',
+    href: '/tutorials/getting-started/',
+  },
+  {
+    icon: '🎨',
+    title: '响应式设计',
+    tag: 'Design',
+    desc: '掌握断点设置、流体排版（Fluid Engine）与高级微交互动画，告别多端错乱。',
+    href: '/tutorials/design/',
+  },
+  {
+    icon: '💻',
+    title: 'Velo开发',
+    tag: 'Code',
+    desc: '利用 JavaScript、Wix CMS 数据库及 API 接口，轻松实现企业级动态数据交互。',
+    href: '/tutorials/velo/',
+  },
+  {
+    icon: '🔍',
+    title: 'SEO优化',
+    tag: 'SEO',
+    desc: '百度与 Google 双引擎技术 SEO 调优、Sitemap 自动提交及 Core Web Vitals 达标。',
+    href: '/tutorials/seo/',
+  },
+  {
+    icon: '🛒',
+    title: '电商建站',
+    tag: 'E-Com',
+    desc: '跨境多币种独立站、PayPal / Stripe 海外金流收款及库存物流系统全流程配置。',
+    href: '/tutorials/ecommerce/',
+  },
+  {
+    icon: '⚡',
+    title: '竞品对比',
+    tag: 'Compare',
+    desc: '深度横评 Wix 与 Shopify、WordPress、Webflow、Squarespace，明晰各家优劣。',
+    href: '/compare/',
+  },
+];
+
+const compareItems = [
+  {
+    name: 'Wix vs Shopify',
+    highlight: '外贸商城与独立站首选对比',
+    wixAdv: '设计自由度极高，无需月度昂贵插件堆砌，展示型电商与B2B官网首选',
+    otherAdv: '超大SKU铺货型B2C更强',
+    href: '/compare/wix-vs-shopify/',
+  },
+  {
+    name: 'Wix vs WordPress',
+    highlight: '闭源现代SaaS vs 开源CMS终极选型',
+    wixAdv: '零运维成本、无需担心安全漏洞升级、原生云端托管速度优异',
+    otherAdv: '深度二次开发自主权高',
+    href: '/compare/wix-vs-wordpress/',
+  },
+  {
+    name: 'Wix Studio vs Webflow',
+    highlight: '设计师专业进阶建站平台对决',
+    wixAdv: '内置全套商务应用（预订/商城/会员/表单）、中文生态友好、交付周期更短',
+    otherAdv: '前端代码底层控制极深',
+    href: '/compare/wix-vs-webflow/',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Wix Studio 是什么？和普通的经典版 Wix 有什么区别？',
+    a: 'Wix Studio 是 Wix 专门面向设计师、建站代理商和技术开发者推出的下一代专业平台。它支持像素级流体断点（Fluid Responsive）、自定义 CSS、团队共享设计系统（Design System）及更强大的 Velo 代码扩展，相比经典版 Wix 更加专业和灵活。',
+  },
+  {
+    q: '使用 Wix 建站需要懂得写代码吗？',
+    a: '完全不需要。Wix Studio 提供所见即所得的可视化编辑器与内置智能 AI 辅助，新手可以轻松拖拽排版发布上线；如果遇到复杂业务逻辑，进阶开发者也可以开启 Velo 编写 JavaScript。',
+  },
+  {
+    q: 'Wix 网站在中国大陆访问速度如何？能做外贸独立站吗？',
+    a: 'Wix 是全球部署的多区域 CDN 架构，针对海外客户访问极其顺畅，非常适合外贸 B2B 官网和跨境品牌出海；对于国内大陆访客，我们提供了针对国内网络环境的静态资源优化与解析指导方案。',
+  },
+  {
+    q: 'wixstudio.cn 能够帮我们定制企业官网或商城吗？',
+    a: '可以！我们是获得 Wix 官方认证的最高级别 Legend 级合作伙伴（Wix Partner Legend），拥有丰富的出海官网、设计作品集及动态交互网站定制经验，提供从策划、设计到交付上线的一站式服务。',
+  },
+  {
+    q: 'Wix 建站如何绑定自己的独立顶级域名？',
+    a: '您只需购买任意 Wix Premium 商业套餐，即可在后台直接将您的 .com、.cn 或其他国际域名 DNS 解析至 Wix 服务器，系统会自动签发免费的全球 SSL 安全证书。',
+  },
+];
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden pt-20 pb-28 md:pt-28 md:pb-36">
+    <!-- Ambient Glow Orb -->
+    <div class="hero-glow-bg"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-6 text-left">
+          <!-- Trust Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md">
+            <span class="text-amber-400 text-xs">★</span>
+            <span class="text-xs font-semibold text-white/90">Wix 官方认证 Legend 合作伙伴</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.1] text-white">
+            Wix Studio<br />
+            <span class="text-gradient">中文学习平台</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="text-lg sm:text-xl text-white/70 max-w-xl font-normal leading-relaxed">
+            中文世界最系统的 Wix Studio 学习生态。从零基础新手到专业自由设计师，提供深度教程、实战竞品对比与高水准建站交付。
+          </p>
+
+          <!-- Dual CTAs -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a
+              href="/tutorials/"
+              class="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 shadow-lg shadow-[#7C5CFC]/25 transition active:scale-98"
+            >
+              Browse Tutorials
+            </a>
+            <a
+              href="/contact/"
+              class="inline-flex items-center justify-center px-6 py-3.5 rounded-full text-base font-semibold text-white bg-white/[0.05] hover:bg-white/[0.1] border border-white/15 transition active:scale-98"
+            >
+              Get a Website →
+            </a>
+          </div>
+
+          <!-- Social Proof / Stats -->
+          <div class="pt-6 border-t border-white/[0.08] flex items-center gap-6 text-sm text-white/50">
+            <div><span class="text-white font-bold text-base">35+</span> 篇深度教程</div>
+            <div class="w-1 h-1 rounded-full bg-white/20"></div>
+            <div><span class="text-white font-bold text-base">5年+</span> Wix 实战经验</div>
+            <div class="w-1 h-1 rounded-full bg-white/20"></div>
+            <div><span class="text-[#9D82FF] font-bold text-base">Legend</span> 顶级官方认证</div>
+          </div>
+        </div>
+
+        <!-- Right Hero Preview Card -->
+        <div class="lg:col-span-5 relative">
+          <!-- Glassmorphism Preview Mockup -->
+          <div class="relative glass-card p-4 sm:p-6 shadow-2xl border border-white/15 overflow-hidden">
+            <!-- Simulated Browser Header -->
+            <div class="flex items-center justify-between pb-4 border-b border-white/[0.08]">
+              <div class="flex items-center gap-2">
+                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
+              </div>
+              <div class="text-[11px] font-mono text-white/40 bg-white/[0.05] px-3 py-0.5 rounded-full">
+                wixstudio.cn/preview
+              </div>
+            </div>
+
+            <!-- Preview Card Inner Content -->
+            <div class="pt-6 pb-2 space-y-4">
+              <div class="p-6 rounded-xl bg-gradient-to-br from-[#161616] to-[#201c30] border border-white/10 space-y-3">
+                <div class="inline-block text-[11px] px-2 py-0.5 rounded bg-[#7C5CFC]/20 text-[#9D82FF] font-semibold">
+                  NEXT-GEN STUDIO
+                </div>
+                <h3 class="text-lg font-bold text-white leading-snug">
+                  高自由度响应式排版 · 动效系统 · 全端无代码
+                </h3>
+                <p class="text-xs text-white/60 leading-relaxed">
+                  专为品牌官网与高要求外贸客户定制，满足像素级视觉表现。
+                </p>
+                <div class="pt-2 flex items-center gap-2 text-xs text-[#9D82FF] font-medium">
+                  <span>Explore Showcase</span>
+                  <span>→</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Legend Badge on top corner -->
+            <div class="absolute -top-3 -right-3 w-16 h-16 sm:w-20 sm:h-20 drop-shadow-2xl animate-pulse">
+              <img
+                src="/assets/badges/wix-partner-legend-200.png"
+                alt="Wix Partner Legend"
+                width="80"
+                height="80"
+                class="rounded-full border-2 border-white/20"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Platform Marquee Ticker -->
+  <section class="border-y border-white/[0.08] bg-[#0A0A0A] py-5 overflow-hidden">
+    <div class="animate-marquee items-center gap-12 text-sm sm:text-base font-semibold tracking-wider text-white/30 whitespace-nowrap">
+      <span>WIX STUDIO</span>
+      <span>•</span>
+      <span>VELO CODE</span>
+      <span>•</span>
+      <span>SHOPIFY</span>
+      <span>•</span>
+      <span>WORDPRESS</span>
+      <span>•</span>
+      <span>WEBFLOW</span>
+      <span>•</span>
+      <span>SQUARESPACE</span>
+      <span>•</span>
+      <span>FRAMER</span>
+      <span>•</span>
+      <span>WIX STUDIO</span>
+      <span>•</span>
+      <span>VELO CODE</span>
+      <span>•</span>
+      <span>SHOPIFY</span>
+      <span>•</span>
+      <span>WORDPRESS</span>
+      <span>•</span>
+      <span>WEBFLOW</span>
+      <span>•</span>
+      <span>SQUARESPACE</span>
+      <span>•</span>
+      <span>FRAMER</span>
+    </div>
+  </section>
+
+  <!-- Section 3: Tutorials Cards Grid -->
+  <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+      <div class="text-xs font-bold uppercase tracking-widest text-[#9D82FF]">TUTORIALS 教程体系</div>
+      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+        从零开始学 Wix Studio
+      </h2>
+      <p class="text-base text-white/60">
+        循序渐进的系统化中文课程，覆盖从基础搭建、高阶设计到代码扩展全流程。
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {tutorials.map((card) => (
+        <a
+          href={card.href}
+          class="glass-card p-7 group flex flex-col justify-between block relative overflow-hidden"
+        >
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="w-12 h-12 rounded-xl bg-[#7C5CFC]/15 border border-[#7C5CFC]/30 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                {card.icon}
+              </div>
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-white/40 bg-white/[0.05] px-2.5 py-1 rounded-full">
+                {card.tag}
+              </span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-[#9D82FF] transition">
+              {card.title}
+            </h3>
+            <p class="text-sm text-white/60 leading-relaxed">
+              {card.desc}
+            </p>
+          </div>
+
+          <div class="pt-6 mt-4 border-t border-white/[0.06] flex items-center justify-between text-xs font-semibold text-white/80 group-hover:text-[#9D82FF] transition">
+            <span>Learn More</span>
+            <span class="transform group-hover:translate-x-1 transition-transform">→</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 text-center">
+      <a
+        href="/tutorials/"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white/80 hover:text-white border border-white/15 hover:border-[#7C5CFC]/50 hover:bg-white/[0.04] transition"
+      >
+        <span>查看所有教程大纲</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 4: Platform Compare Highlights -->
+  <section class="py-24 bg-[#0A0A0A] border-y border-white/[0.08]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-4 space-y-4">
+          <div class="text-xs font-bold uppercase tracking-widest text-[#9D82FF]">COMPARISONS 选型横评</div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            选对建站平台<br />事半功倍
+          </h2>
+          <p class="text-sm text-white/60 leading-relaxed">
+            不知道是用 Wix、Shopify 还是 WordPress？我们以中国企业和出海卖家的真实业务场景为准绳，为您做客观剖析。
+          </p>
+          <div class="pt-2">
+            <a
+              href="/compare/"
+              class="inline-flex items-center gap-2 text-sm font-semibold text-[#9D82FF] hover:underline"
+            >
+              <span>查看 5 大主流平台综合对比</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 space-y-4">
+          {compareItems.map((item) => (
+            <a
+              href={item.href}
+              class="glass-card p-6 block group hover:border-[#7C5CFC]/50 transition"
+            >
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-white/[0.06]">
+                <h3 class="text-lg font-bold text-white group-hover:text-[#9D82FF] transition flex items-center gap-2">
+                  <span>{item.name}</span>
+                  <span class="text-xs font-normal text-white/40">({item.highlight})</span>
+                </h3>
+                <span class="text-xs text-[#9D82FF] font-medium flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  查看深度对比 →
+                </span>
+              </div>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="text-white/70">
+                  <span class="text-emerald-400 font-semibold">Wix 优势：</span>
+                  {item.wixAdv}
+                </div>
+                <div class="text-white/50">
+                  <span class="text-white/70 font-semibold">竞品侧重点：</span>
+                  {item.otherAdv}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Wix Partner Legend Certification Authority -->
+  <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="glass-card p-8 sm:p-12 border border-[#7C5CFC]/30 bg-gradient-to-r from-[#12121e] via-[#101016] to-[#0D0D0D] relative overflow-hidden">
+      <!-- Glow decoration -->
+      <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-[#7C5CFC]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+            OFFICIAL CERTIFICATION
+          </div>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-white">
+            Wix 官方最高级 Legend 认证合作伙伴
+          </h2>
+          <p class="text-sm sm:text-base text-white/70 leading-relaxed">
+            wixstudio.cn 不只是教程编写者，更是拥有实战交付能力的专业团队。我们已为众多出海品牌、跨境企业定制过国际水准的 Wix Studio 网站。
+          </p>
+          <div class="pt-2 flex flex-wrap gap-4">
+            <a
+              href="/contact/"
+              class="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#7C5CFC] hover:bg-[#9D82FF] transition"
+            >
+              委托我们建站咨询
+            </a>
+            <a
+              href="/studio/"
+              class="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold text-white/80 hover:text-white border border-white/20 transition"
+            >
+              了解 Wix Studio
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 flex justify-center lg:justify-end">
+          <img
+            src="/assets/badges/wix-partner-legend-400.png"
+            alt="Wix Partner Legend 认证徽章"
+            width="180"
+            height="180"
+            class="rounded-full border-2 border-white/20 shadow-2xl drop-shadow-[0_0_25px_rgba(124,92,252,0.3)]"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: FAQs -->
+  <section class="py-20 bg-[#0A0A0A] border-t border-white/[0.08]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14 space-y-2">
+        <div class="text-xs font-bold uppercase tracking-widest text-[#9D82FF]">FAQS 常见问题</div>
+        <h2 class="text-3xl font-extrabold text-white">关于 Wix Studio 的常见解答</h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="glass-card p-6 border border-white/[0.08]">
+            <h3 class="text-base font-bold text-white mb-2">{faq.q}</h3>
+            <p class="text-sm text-white/60 leading-relaxed">{faq.a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Final CTA -->
+  <section class="py-24 relative overflow-hidden text-center">
+    <div class="hero-glow-bg opacity-75"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4 space-y-6">
+      <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        准备好开始打造您的<br />
+        <span class="text-gradient">国际水准网站了吗？</span>
+      </h2>
+      <p class="text-base sm:text-lg text-white/60 max-w-xl mx-auto">
+        无论您是希望通过我们的教程自学掌握 Wix Studio，还是需要由官方认证专家为您代劳定制，我们都在这里。
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 pt-2">
+        <a
+          href="/tutorials/"
+          class="inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 shadow-lg shadow-[#7C5CFC]/25 transition"
+        >
+          Browse Tutorials
+        </a>
+        <a
+          href="/contact/"
+          class="inline-flex items-center px-7 py-3.5 rounded-full text-base font-semibold text-white bg-white/[0.06] hover:bg-white/[0.12] border border-white/20 transition"
+        >
+          Get a Website →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

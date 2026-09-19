@@ -1,0 +1,79 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/[0.08] bg-[#0A0A0A] text-white/70 pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/[0.08]">
+      <!-- Brand & Legend Badge Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="text-white text-2xl font-black tracking-tighter">
+          wixstudio<span class="text-[#7C5CFC]">.cn</span>
+        </a>
+        <p class="text-sm text-white/60 leading-relaxed max-w-sm">
+          专为中文用户打造的系统化 Wix Studio 学习与建站推广平台。助力外贸出海、创意设计与企业官网交付。
+        </p>
+
+        <!-- Wix Partner Legend Badge Display -->
+        <div class="pt-2 flex items-center gap-4">
+          <img
+            src="/assets/badges/wix-partner-legend-200.png"
+            alt="Wix Partner Legend 认证徽章"
+            width="80"
+            height="80"
+            class="rounded-full border border-white/10 hover:border-[#7C5CFC]/60 transition shadow-lg shadow-black"
+            loading="lazy"
+          />
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-[#9D82FF]">Wix Partner Legend</div>
+            <div class="text-xs text-white/80 font-medium">官方认证最高等级合作伙伴</div>
+            <div class="text-[11px] text-white/40 mt-0.5">交付数十款企业出海独立站</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column: Tutorials -->
+      <div class="space-y-3">
+        <div class="text-xs font-semibold uppercase tracking-wider text-white">Tutorials 教程</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/tutorials/getting-started/" class="hover:text-white transition">入门基础指引</a></li>
+          <li><a href="/tutorials/design/" class="hover:text-white transition">响应式设计技巧</a></li>
+          <li><a href="/tutorials/velo/" class="hover:text-white transition">Velo 代码与CMS开发</a></li>
+          <li><a href="/tutorials/seo/" class="hover:text-white transition">SEO 优化与收录</a></li>
+          <li><a href="/tutorials/ecommerce/" class="hover:text-white transition">外贸电商与金流</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Compare -->
+      <div class="space-y-3">
+        <div class="text-xs font-semibold uppercase tracking-wider text-white">Compare 平台对比</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/compare/wix-vs-shopify/" class="hover:text-white transition">Wix vs Shopify</a></li>
+          <li><a href="/compare/wix-vs-wordpress/" class="hover:text-white transition">Wix vs WordPress</a></li>
+          <li><a href="/compare/wix-vs-webflow/" class="hover:text-white transition">Wix vs Webflow</a></li>
+          <li><a href="/compare/wix-vs-squarespace/" class="hover:text-white transition">Wix vs Squarespace</a></li>
+          <li><a href="/compare/" class="hover:text-white transition">全部对比大横评 →</a></li>
+        </ul>
+      </div>
+
+      <!-- Column: Platform & Services -->
+      <div class="space-y-3">
+        <div class="text-xs font-semibold uppercase tracking-wider text-white">Platform & More</div>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/studio/" class="hover:text-white transition">什么是 Wix Studio</a></li>
+          <li><a href="/pricing/" class="hover:text-white transition">套餐与价格详解</a></li>
+          <li><a href="/blog/" class="hover:text-white transition">博客与动态</a></li>
+          <li><a href="/contact/" class="text-[#9D82FF] hover:underline font-medium">代建站与企业咨询 →</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Disclaimer & Copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+      <p>© {currentYear} wixstudio.cn · 保留所有权利。</p>
+      <p class="text-center sm:text-right text-[11px] text-white/30 max-w-md">
+        免责声明：wixstudio.cn 为独立第三方教育、评测与建站服务站点，并非 Wix.com 官方网站。Wix、Wix Studio 及其标志均为 Wix.com Ltd. 的注册商标。
+      </p>
+    </div>
+  </div>
+</footer>

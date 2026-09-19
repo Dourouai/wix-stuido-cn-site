@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const features = [
+  {
+    title: '响应式流体引擎 (Fluid Responsive)',
+    desc: 'Wix Studio 独有的比例缩放与自定义断点技术，无论用户使用超宽曲面屏、笔记本还是手机，版面元素自动按设计意图优雅缩放，彻底解决断点错位难题。',
+    icon: '📐',
+  },
+  {
+    title: '现代 CSS 控制能力',
+    desc: '支持 CSS Grid、Flexbox、绝对定位、自定义 CSS 类与 CSS 变量直接编写。突破普通拖拽建站的局限，让专业前端开发如鱼得水。',
+    icon: '🎨',
+  },
+  {
+    title: '共享设计系统 (Design System)',
+    desc: '跨多个客户站点统一管理品牌设计资源、调色板、排版规范与自研定制小组件，设计资产一键复用，大幅提升团队与自由设计师的交付效率。',
+    icon: '💎',
+  },
+  {
+    title: '全栈开发平台 Velo',
+    desc: '基于 VS Code 体验的云端及本地 IDE。编写前后端 JavaScript，轻松连接 Wix CMS 动态数据库、第三方 REST API 与后台 Webhook。',
+    icon: '⚡',
+  },
+  {
+    title: '原生团队与客户协作工作区',
+    desc: '内置画板级评论、细粒度客户权限分配（可限制客户只修改文字内容不破坏版面）、集成计费与客户管理系统（CRM），专为接单工作室打造。',
+    icon: '👥',
+  },
+  {
+    title: 'Figma to Studio 智能转换',
+    desc: '通过官方 Figma 插件，直接将 Figma 设计稿无损导出为 Wix Studio 响应式网页结构，大幅省去从设计到切图开发的时间。',
+    icon: '🚀',
+  },
+];
+
+const compareTable = [
+  { feature: '目标定位', classic: '个人、小白与初创微型企业', studio: '专业网页设计师、自由职业者、建站机构' },
+  { feature: '响应式逻辑', classic: '桌面端与移动端双视图微调', studio: '全比例流体缩放 + 无限自定义断点' },
+  { feature: '代码与自定义', classic: '仅支持基础嵌入代码', studio: '完整 CSS 支持 + 全栈 Velo JavaScript + npm 包' },
+  { feature: '设计系统', classic: '无跨站点设计系统', studio: '支持跨项目 Design System 资源库' },
+  { feature: '团队协作与权限', classic: '简单管理员分享', studio: '工作区管理、客户画板批注、角色权限隔离' },
+  { feature: 'Figma 对接', classic: '需手动重做', studio: '官方 Figma 插件一键转换响应式页面' },
+];
+---
+
+<BaseLayout
+  title="Wix Studio 是什么？功能、特点与适用人群全面解析 - wixstudio.cn"
+  description="深度解析什么是 Wix Studio，它与传统 Wix 编辑器的本质区别是什么，核心功能有哪些，以及为什么它是专业设计师和外贸建站团队的首选。"
+  keywords="Wix Studio 是什么, Wix Studio 和 Wix 区别, Wix Studio 介绍, Wix Studio 教程, Wix Studio 适合谁"
+>
+  <!-- Studio Hero -->
+  <section class="relative py-20 lg:py-28 overflow-hidden">
+    <div class="hero-glow-bg opacity-70"></div>
+    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold border border-[#7C5CFC]/30">
+        PLATFORM OVERVIEW
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight">
+        什么是 <span class="text-gradient">Wix Studio</span>？
+      </h1>
+      <p class="text-lg sm:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+        Wix Studio 是全球知名建站平台 Wix 专为自由设计师、数字营销代理商和专业技术人员打造的全新专业级建站操作系统。
+      </p>
+      <div class="pt-4 flex flex-wrap justify-center gap-4">
+        <a
+          href="/tutorials/getting-started/"
+          class="px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 transition shadow-lg shadow-[#7C5CFC]/20"
+        >
+          开始入门教程
+        </a>
+        <a
+          href="/contact/"
+          class="px-6 py-3 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/15 border border-white/10 transition"
+        >
+          企业建站定制咨询
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studio vs Classic Wix Comparison Table -->
+  <section class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mb-10 text-center space-y-2">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Wix Studio vs 普通经典版 Wix：核心差异</h2>
+      <p class="text-sm text-white/60">一眼了解为什么你需要迁移或直接选择 Wix Studio</p>
+    </div>
+
+    <div class="glass-card overflow-hidden border border-white/10">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-white/[0.04] border-b border-white/10 text-white/80 font-bold">
+            <tr>
+              <th class="p-4 sm:p-5">对比维度</th>
+              <th class="p-4 sm:p-5 text-white/60">经典版 Wix (Classic Editor)</th>
+              <th class="p-4 sm:p-5 text-[#9D82FF]">专业版 Wix Studio</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/[0.06] text-white/80">
+            {compareTable.map((row) => (
+              <tr class="hover:bg-white/[0.02] transition">
+                <td class="p-4 sm:p-5 font-semibold text-white">{row.feature}</td>
+                <td class="p-4 sm:p-5 text-white/60">{row.classic}</td>
+                <td class="p-4 sm:p-5 text-white font-medium text-emerald-300">{row.studio}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Six Core Features -->
+  <section class="py-20 bg-[#0A0A0A] border-y border-white/[0.08]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <div class="text-xs font-bold uppercase tracking-widest text-[#9D82FF]">CORE CAPABILITIES</div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+          Wix Studio 六大核心技术亮点
+        </h2>
+        <p class="text-sm text-white/60">
+          突破无代码建站工具的天花板，兼具设计美学、研发生产力与交付安全性。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((item) => (
+          <div class="glass-card p-7 space-y-4 border border-white/[0.08] hover:border-[#7C5CFC]/40 transition">
+            <div class="text-3xl">{item.icon}</div>
+            <h3 class="text-lg font-bold text-white">{item.title}</h3>
+            <p class="text-sm text-white/60 leading-relaxed">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Who is it for? -->
+  <section class="py-20 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 space-y-2">
+      <h2 class="text-3xl font-extrabold text-white">Wix Studio 适合哪些人群？</h2>
+      <p class="text-sm text-white/60">如果属于以下几类，Wix Studio 将是您的生产力倍增器</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass-card p-6 space-y-3">
+        <div class="text-2xl">🎨</div>
+        <h3 class="text-lg font-bold text-white">自由设计师 & 接单顾问</h3>
+        <p class="text-xs text-white/60 leading-relaxed">
+          不再为还原不了复杂的响应式动效而苦恼。借助像素级流体排版，无需程序员介入即可独立承接 5K-30K 级别的品牌官网设计订单。
+        </p>
+      </div>
+
+      <div class="glass-card p-6 space-y-3">
+        <div class="text-2xl">🏢</div>
+        <h3 class="text-lg font-bold text-white">出海企业与外贸团队</h3>
+        <p class="text-xs text-white/60 leading-relaxed">
+          需要媲美硅谷初创公司的国际范儿官网，又希望后续内部市场人员能随时更新新闻与产品信息，Wix Studio 完美兼顾高档视觉与便捷维护。
+        </p>
+      </div>
+
+      <div class="glass-card p-6 space-y-3">
+        <div class="text-2xl">💻</div>
+        <h3 class="text-lg font-bold text-white">开发人员与代理机构</h3>
+        <p class="text-xs text-white/60 leading-relaxed">
+          利用内置的 Velo 全端 JavaScript 和企业级工作区，协同开发复杂交互与数据库逻辑，交付周期比传统从头编码缩短 60% 以上。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="py-16 text-center border-t border-white/[0.08] bg-[#0A0A0A]">
+    <div class="max-w-3xl mx-auto px-4 space-y-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white">想开启 Wix Studio 之旅？</h2>
+      <div class="flex justify-center gap-4">
+        <a href="/tutorials/getting-started/" class="px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#7C5CFC] hover:bg-[#9D82FF] transition">
+          浏览新手入门教程
+        </a>
+        <a href="/pricing/" class="px-6 py-3 rounded-full text-sm font-semibold text-white/80 hover:text-white border border-white/20 transition">
+          查看套餐与费用
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const steps = [
+  {
+    step: '01',
+    title: '注册与工作区设置',
+    desc: '推荐使用公司企业邮箱或海外常用邮箱（如 Gmail / Outlook）直接在 Wix 官网免费注册账号。登录后进入 Studio Workspace，这里可以管理所有客户项目与团队成员。',
+  },
+  {
+    step: '02',
+    title: '选择空白画布或专业预设模板',
+    desc: '对于新手，建议从 Studio 官方提供的优秀响应式预设模板开始；如果您希望完全按照自己的 Figma 原型制作，则直接选择“从空白画布（Blank Canvas）”启动。',
+  },
+  {
+    step: '03',
+    title: '掌握流体响应式 (Fluid Engine) 核心机制',
+    desc: '理解 Wix Studio 独特的缩放比例概念（Scale Proportionally）。学习设置断点（桌面端 1280+、平板端 768-1000、手机端 320-767），保证每个设备下的视觉呈现都能精准受控。',
+  },
+  {
+    step: '04',
+    title: '排版布局与组件添加',
+    desc: '在左侧添加面板中，挑选 Section、Container、Text、Image 与 Button。利用 CSS Grid 划分网格结构，避免在同一个画布上盲目堆放未受约束的漂浮元素。',
+  },
+  {
+    step: '05',
+    title: 'SEO 基础与域名绑定发布',
+    desc: '在后台完成页面 Title 和 Meta Description 编写，配置 Favicon。在“设置 -> 域名”中输入您拥有的域名，完成 DNS CNAME 和 A 记录解析，点击发布即可全球上线。',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio 新手入门完全教程（从零到发布全流程）- wixstudio.cn"
+  description="面向零基础建站者的 Wix Studio 入门实战指南。涵盖账号注册、工作台操作、流体响应式布局、断点调整与域名绑定发布全流程。"
+  keywords="Wix Studio 怎么用, Wix Studio 入门教程, Wix Studio 新手, Wix 建站全流程, Wix Studio 教学"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-white/50">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <span>›</span>
+      <a href="/tutorials/" class="hover:text-white transition">Tutorials</a>
+      <span>›</span>
+      <span class="text-white/80">Getting Started</span>
+    </nav>
+
+    <!-- Header -->
+    <header class="space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+        BEGINNER GUIDE
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        Wix Studio 新手从零到发布完全指南
+      </h1>
+      <p class="text-base sm:text-lg text-white/70 leading-relaxed">
+        不需要深厚编程经验，跟随这 5 个关键步骤，掌握全球领先的专业网页设计制作流程。
+      </p>
+    </header>
+
+    <!-- Step by Step Cards -->
+    <div class="space-y-6">
+      {steps.map((item) => (
+        <div class="glass-card p-6 sm:p-8 border border-white/10 flex flex-col sm:flex-row gap-6 items-start">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#7C5CFC] to-[#4A90E2] text-white font-black text-xl flex items-center justify-center shrink-0 shadow-lg shadow-[#7C5CFC]/30">
+            {item.step}
+          </div>
+          <div class="space-y-2">
+            <h2 class="text-xl font-bold text-white">{item.title}</h2>
+            <p class="text-sm text-white/70 leading-relaxed">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- In-Article CTA -->
+    <div class="glass-card p-8 border border-[#7C5CFC]/40 bg-gradient-to-r from-[#18142a] via-[#121118] to-[#0D0D0D] text-center space-y-4">
+      <h3 class="text-2xl font-bold text-white">看完教程觉得动手制作需要花太多时间？</h3>
+      <p class="text-sm text-white/60 max-w-xl mx-auto">
+        将您的设计图或企业需求交给我们，官方最高 Legend 认证团队 5-10 天极速高品质上线。
+      </p>
+      <div>
+        <a
+          href="/contact/"
+          class="inline-flex items-center px-6 py-3 rounded-full text-sm font-semibold text-white bg-[#7C5CFC] hover:bg-[#9D82FF] transition"
+        >
+          立即咨询代建站服务 →
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

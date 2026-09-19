@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    title: 'Wix Studio 2025 年新特性汇总与深度解读',
+    date: '2025-09-15',
+    category: '产品动态',
+    desc: '从 AI 生成代码到增强版 Figma 插件集成，一文看懂 Wix Studio 在今年带来的颠覆性升级。',
+    readTime: '6 分钟',
+  },
+  {
+    title: '外贸企业出海建站避坑指南：为什么 90% 的企业官网转化率低下？',
+    date: '2025-09-10',
+    category: '建站实战',
+    desc: '深度解析外贸官网在排版审美、移动端留白、CTA 按钮布局及海外买家信任背书方面的核心失误。',
+    readTime: '8 分钟',
+  },
+  {
+    title: '中国大陆访问 Wix 速度优化方案与 CDN 配置实践',
+    date: '2025-09-02',
+    category: '技术优化',
+    desc: '针对国内客户或公司内部预览加载缓慢的问题，系统拆解 DNS 智能解析、图片压缩及缓存优化策略。',
+    readTime: '7 分钟',
+  },
+];
+---
+
+<BaseLayout
+  title="博客与最新资讯 | Wix Studio 行业洞察与建站干货 - wixstudio.cn"
+  description="汇集 Wix Studio 最新产品功能解读、外贸独立站出海运营经验、建站避坑指南与高端网页设计实战技巧。"
+  keywords="Wix 博客, Wix 资讯, Wix 网站速度优化, 外贸建站避坑, Wix Studio 新功能"
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
+    <!-- Header -->
+    <header class="space-y-4 text-center max-w-2xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+        BLOG & INSIGHTS
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        建站干货与 <span class="text-gradient">官方最新动态</span>
+      </h1>
+      <p class="text-sm sm:text-base text-white/60">
+        定期分享设计经验、外贸出海获客心得与 Wix 生态前沿观察。
+      </p>
+    </header>
+
+    <!-- Post List -->
+    <div class="space-y-6">
+      {posts.map((post) => (
+        <article class="glass-card p-6 sm:p-8 border border-white/10 hover:border-[#7C5CFC]/40 transition space-y-3">
+          <div class="flex items-center gap-3 text-xs">
+            <span class="px-2.5 py-0.5 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] font-semibold">{post.category}</span>
+            <span class="text-white/40">{post.date}</span>
+            <span class="text-white/40">•</span>
+            <span class="text-white/40">{post.readTime}</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-bold text-white hover:text-[#9D82FF] transition">
+            <a href="#">{post.title}</a>
+          </h2>
+          <p class="text-sm text-white/60 leading-relaxed">{post.desc}</p>
+          <div class="pt-2">
+            <a href="#" class="text-xs font-semibold text-[#9D82FF] hover:underline inline-flex items-center gap-1">
+              <span>阅读全文</span>
+              <span>→</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

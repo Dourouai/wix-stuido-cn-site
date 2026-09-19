@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://wixstudio.cn/sitemap-index.xml

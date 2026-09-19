@@ -1,0 +1,167 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'Studio', href: '/studio/' },
+  {
+    name: 'Tutorials',
+    href: '/tutorials/',
+    dropdown: [
+      { name: '📘 Getting Started', desc: '从零开始注册与首个站点搭建', href: '/tutorials/getting-started/' },
+      { name: '🎨 Design & Layout', desc: '流体网格、断点与响应式设计', href: '/tutorials/design/' },
+      { name: '💻 Velo Dev', desc: 'JavaScript代码扩展与全端动态CMS', href: '/tutorials/velo/' },
+      { name: '🔍 SEO Guide', desc: '百度与Google双引擎收录排名优化', href: '/tutorials/seo/' },
+      { name: '🛒 E-Commerce', desc: '外贸商城搭建与国际金流支付设置', href: '/tutorials/ecommerce/' },
+    ],
+  },
+  {
+    name: 'Compare',
+    href: '/compare/',
+    dropdown: [
+      { name: 'Wix vs Shopify', desc: '外贸商城与独立站深度对决', href: '/compare/wix-vs-shopify/' },
+      { name: 'Wix vs WordPress', desc: '现代SaaS与开源CMS终极选型', href: '/compare/wix-vs-wordpress/' },
+      { name: 'Wix vs Webflow', desc: '设计师高端建站平台对比', href: '/compare/wix-vs-webflow/' },
+      { name: 'Wix vs Squarespace', desc: '极简视觉美学建站对比', href: '/compare/wix-vs-squarespace/' },
+      { name: 'All Comparisons →', desc: '查看完整建站平台横评指南', href: '/compare/' },
+    ],
+  },
+  { name: 'Pricing', href: '/pricing/' },
+  { name: 'Blog', href: '/blog/' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full bg-[#0D0D0D]/80 backdrop-blur-md border-b border-white/[0.08]">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-2 group text-white font-bold text-xl tracking-tight transition">
+      <span class="text-white text-2xl font-black tracking-tighter">wixstudio<span class="text-[#7C5CFC]">.cn</span></span>
+      <span class="hidden md:inline-block text-[11px] px-2 py-0.5 rounded-full bg-white/10 text-white/70 border border-white/10 group-hover:border-[#7C5CFC]/50 transition">中文站</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-1">
+      {navLinks.map((item) => (
+        item.dropdown ? (
+          <div class="relative group">
+            <button
+              class={`px-3.5 py-2 rounded-lg text-sm font-medium transition flex items-center gap-1.5 cursor-pointer ${
+                currentPath.startsWith(item.href)
+                  ? 'text-white bg-white/[0.06]'
+                  : 'text-white/70 hover:text-white hover:bg-white/[0.04]'
+              }`}
+            >
+              <span>{item.name}</span>
+              <svg class="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 text-white/50 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="absolute left-0 mt-1 w-72 p-2 bg-[#161616] border border-white/10 rounded-xl shadow-2xl backdrop-blur-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-2 group-hover:translate-y-0">
+              {item.dropdown.map((subItem) => (
+                <a
+                  href={subItem.href}
+                  class="block p-2.5 rounded-lg hover:bg-white/[0.06] transition group/item"
+                >
+                  <div class="text-sm font-medium text-white group-hover/item:text-[#9D82FF] transition flex items-center justify-between">
+                    <span>{subItem.name}</span>
+                  </div>
+                  <div class="text-xs text-white/50 mt-0.5 line-clamp-1">{subItem.desc}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <a
+            href={item.href}
+            class={`px-3.5 py-2 rounded-lg text-sm font-medium transition ${
+              currentPath === item.href
+                ? 'text-white bg-white/[0.06]'
+                : 'text-white/70 hover:text-white hover:bg-white/[0.04]'
+            }`}
+          >
+            {item.name}
+          </a>
+        )
+      ))}
+    </nav>
+
+    <!-- Right Actions -->
+    <div class="hidden sm:flex items-center gap-3">
+      <a
+        href="/contact/"
+        class="inline-flex items-center justify-center px-4 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 shadow-lg shadow-[#7C5CFC]/20 transition active:scale-98"
+      >
+        Get Started
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="flex lg:hidden items-center">
+      <button
+        id="mobile-menu-btn"
+        aria-label="Toggle menu"
+        class="p-2 rounded-lg text-white/70 hover:text-white hover:bg-white/[0.06] transition"
+      >
+        <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/[0.08] bg-[#111111]/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-1">
+    {navLinks.map((item) => (
+      item.dropdown ? (
+        <div class="py-1">
+          <div class="px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/40">{item.name}</div>
+          <div class="pl-2 space-y-1">
+            {item.dropdown.map((subItem) => (
+              <a
+                href={subItem.href}
+                class="block px-3 py-2 rounded-md text-sm text-white/70 hover:text-white hover:bg-white/[0.04]"
+              >
+                {subItem.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <a
+          href={item.href}
+          class="block px-3 py-2 rounded-md text-sm font-medium text-white/80 hover:text-white hover:bg-white/[0.04]"
+        >
+          {item.name}
+        </a>
+      )
+    ))}
+    <div class="pt-4 mt-2 border-t border-white/[0.08]">
+      <a
+        href="/contact/"
+        class="w-full inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2]"
+      >
+        Get Started →
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const close = document.getElementById('close-icon');
+
+  if (btn && menu && hamburger && close) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+      hamburger.classList.toggle('hidden');
+      close.classList.toggle('hidden');
+    });
+  }
+</script>

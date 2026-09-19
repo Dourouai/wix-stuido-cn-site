@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'matrix', title: '核心维度对比表' },
+  { id: 'positioning', title: '平台定位差异' },
+  { id: 'pricing', title: '价格与隐性抽成' },
+  { id: 'ecommerce', title: '电商与交易功能' },
+  { id: 'design', title: '设计与排版自由度' },
+  { id: 'seo', title: 'SEO 搜索引擎优化' },
+  { id: 'verdict', title: '到底该选哪一个？' },
+];
+
+const tableRows = [
+  { dimension: '核心定位', wix: '内容展示、品牌官网与多功能一体化', shopify: '专注大规模高并发跨境电商交易' },
+  { dimension: '设计排版自由度', wix: '所见即所得、流体断点、像素级自由度 ★★★★★', shopify: '基于 Liquid 模块化框架，布局受限 ★★★☆☆' },
+  { dimension: '额外交易抽成', wix: '0% 平台抽成 (仅收网关通道费)', shopify: '若不使用 Shopify Payments 额外加收 0.5%-2% 抽成' },
+  { dimension: '多业务整合', wix: '原生内置博客、预约、会员、表单、活动', shopify: '需安装多款第三方月租 App 拼装' },
+  { dimension: '超大SKU处理', wix: '适合 1-1000 款精品 SKU', shopify: '适合上万级海量 SKU 铺货及复杂仓储' },
+  { dimension: '学习门槛', wix: '低到中等 (上手即用)', shopify: '中等 (需理解电商后台各层逻辑)' },
+  { dimension: '技术维护', wix: '零维护，全托管云端服务器', shopify: '零维护，全托管云端服务器' },
+];
+---
+
+<BaseLayout
+  title="Wix vs Shopify 深度对比（2025）：哪个建站平台更适合你？- wixstudio.cn"
+  description="2025全面对比 Wix 和 Shopify 在价格套餐、电商能力、设计自由度、SEO优化及交易抽成上的关键差异，助外贸出海与独立站卖家做出最优选型决策。"
+  keywords="Wix vs Shopify, Wix 和 Shopify 哪个好, Shopify 对比 Wix, 外贸独立站平台, 跨境电商建站"
+  type="article"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-white/50 mb-8">
+      <a href="/" class="hover:text-white transition">Home</a>
+      <span>›</span>
+      <a href="/compare/" class="hover:text-white transition">Compare</a>
+      <span>›</span>
+      <span class="text-white/80">Wix vs Shopify</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Sticky Sidebar (TOC) -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 space-y-6">
+        <div class="glass-card p-5 border border-white/10 space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white/40">目录 CONTENTS</div>
+          <nav class="space-y-1.5 text-xs">
+            {toc.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="block py-1.5 text-white/70 hover:text-[#9D82FF] transition border-l-2 border-transparent hover:border-[#7C5CFC] pl-2.5"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <!-- Sidebar Legend Partner Badge -->
+        <div class="glass-card p-4 border border-[#7C5CFC]/30 bg-[#14121f] flex items-center gap-3">
+          <img
+            src="/assets/badges/wix-partner-legend-200.png"
+            alt="Wix Partner Legend"
+            width="52"
+            height="52"
+            class="rounded-full shrink-0"
+          />
+          <div>
+            <div class="text-[11px] font-bold text-[#9D82FF]">Wix Partner Legend</div>
+            <div class="text-xs text-white/80 font-medium">官方认证建站专家</div>
+            <a href="/contact/" class="text-[11px] text-white/60 hover:text-white underline mt-0.5 block">
+              免费评估您的建站需求 →
+            </a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <article class="lg:col-span-9 space-y-12 max-w-3xl">
+        <!-- Article Header -->
+        <header class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+            IN-DEPTH COMPARISON 2025
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.2]">
+            Wix vs Shopify 深度对比（2025）：哪个建站平台更适合你？
+          </h1>
+          <p class="text-base sm:text-lg text-white/70">
+            全面分析两大平台在功能深度、费用陷阱、设计自由度与外贸实际转化上的差异。
+          </p>
+          <div class="flex items-center gap-4 text-xs text-white/40 pt-2 border-b border-white/[0.08] pb-6">
+            <span>更新时间：2025-09</span>
+            <span>•</span>
+            <span>阅读时长约 10 分钟</span>
+            <span>•</span>
+            <span>来源：wixstudio.cn</span>
+          </div>
+        </header>
+
+        <!-- 30s Quick Verdict -->
+        <section id="summary" class="glass-card p-6 sm:p-8 border border-[#7C5CFC]/50 bg-gradient-to-br from-[#1b172c] to-[#121218] space-y-3">
+          <div class="flex items-center gap-2 text-[#9D82FF] text-sm font-bold uppercase tracking-wider">
+            <span>⚡</span>
+            <span>30秒结论先行 (Executive Verdict)</span>
+          </div>
+          <p class="text-sm sm:text-base text-white/90 leading-relaxed">
+            <strong class="text-white font-semibold">选 Wix (特别是 Wix Studio)：</strong> 如果您是做外贸 B2B 品牌出海、工业品定制展示、精品创意独立站，或者需要同时整合精美博客、在线预约与品牌故事。Wix 的设计自由度与视觉冲击力完胜 Shopify，且无需背负复杂的第三方插件月租与额外交易佣金。
+          </p>
+          <p class="text-sm sm:text-base text-white/90 leading-relaxed">
+            <strong class="text-white font-semibold">选 Shopify：</strong> 如果您的业务核心是做海量 SKU 铺货（如快时尚服装、几千款数码配件）、依赖高度定制化的自动化订单发货 ERP 与海外分销联盟。
+          </p>
+        </section>
+
+        <!-- Matrix Table -->
+        <section id="matrix" class="space-y-4">
+          <h2 class="text-2xl font-extrabold text-white">核心维度对照速查表</h2>
+          <div class="glass-card overflow-hidden border border-white/10">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-white/[0.04] border-b border-white/10 text-white font-bold">
+                  <tr>
+                    <th class="p-4">对比维度</th>
+                    <th class="p-4 text-[#9D82FF]">Wix / Wix Studio</th>
+                    <th class="p-4 text-emerald-400">Shopify</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-white/[0.06] text-white/80">
+                  {tableRows.map((row) => (
+                    <tr class="hover:bg-white/[0.02]">
+                      <td class="p-4 font-semibold text-white">{row.dimension}</td>
+                      <td class="p-4 text-white/90">{row.wix}</td>
+                      <td class="p-4 text-white/70">{row.shopify}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section: Positioning -->
+        <section id="positioning" class="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <h2 class="text-2xl font-extrabold text-white">1. 平台定位与设计逻辑的根本不同</h2>
+          <p>
+            很多初涉独立站的朋友容易把 Wix 和 Shopify 归为一类，但两者的底层基因完全不同：
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-white/70">
+            <li>
+              <strong class="text-white">Shopify 本质上是一个“线上收银机”：</strong> 它的所有逻辑均围绕着“购物车”、“支付网关”和“订单履行”展开。页面排版只是为了让买家快速点击购买，因此其模板风格较为同质化。
+            </li>
+            <li>
+              <strong class="text-white">Wix 本质上是一个“数字品牌空间”：</strong> 特别是随着 Wix Studio 的推出，它赋予了创作者像操作 Figma 一样自由的排版权力。在传递品牌调性、展现出海企业制造实力方面，Wix 具备得天独厚的表现力。
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section: Pricing -->
+        <section id="pricing" class="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <h2 class="text-2xl font-extrabold text-white">2. 价格成本与隐性费用分析</h2>
+          <p>
+            在订阅费用表面上两者相仿（Shopify Basic 约 $39/月，Wix 商业套餐约 $29-$36/月），但深层成本有很大差异：
+          </p>
+          <div class="glass-card p-5 border border-white/10 space-y-3 text-xs sm:text-sm">
+            <div class="font-bold text-amber-300">⚠️ Shopify 的“隐形 App 税”：</div>
+            <p class="text-white/70">
+              Shopify 原生功能非常克制。为了实现表单定制、高级页面布局、评价展示、甚至简单的多语言功能，往往需要订阅数款第三方应用。一个运营成熟的 Shopify 店铺，每月的插件账单往往在 <strong>$100 - $300</strong> 之间。
+            </p>
+          </div>
+          <p>
+            而 Wix 则践行“一体化整合（All-in-One）”哲学，其表单收集、博客系统、多语言管理（Wix Multilingual）和邮件营销工具原生内置，极大降低了长期持有成本。
+          </p>
+        </section>
+
+        <!-- Section: Design -->
+        <section id="design" class="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <h2 class="text-2xl font-extrabold text-white">3. 设计自由度对比</h2>
+          <p>
+            如果您希望自己的官网让人眼前一亮，打破传统的“上方横幅+下方三个商品卡片”格式，Wix Studio 拥有断层式优势：
+          </p>
+          <ul class="list-disc pl-5 space-y-2 text-white/70">
+            <li><strong>真正的所见即所得：</strong> 元素可以放置在页面的任意位置，支持 CSS Grid 和 Flexbox 的灵活嵌套。</li>
+            <li><strong>流体断点（Fluid Responsive）：</strong> 支持按屏幕比例平滑缩放文字与间距，在超大显示器和折叠屏手机上均能完美呈现。</li>
+            <li><strong>内置微动效：</strong> 滚动视差、元素淡入、悬停交互无需写一行复杂 JS 即可开箱即用。</li>
+          </ul>
+        </section>
+
+        <!-- Section: SEO -->
+        <section id="seo" class="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <h2 class="text-2xl font-extrabold text-white">4. 搜索引擎优化 (SEO) 能力</h2>
+          <p>
+            早年网络上有传言说“Wix SEO 较弱”，这在 2025 年早已成为历史偏见。在 Google 官方与权威 SEO 机构近年测评中，Wix Studio 的技术 SEO 评分与 Core Web Vitals 达标率已名列前茅。
+          </p>
+          <p>
+            两者在 SEO 上的关键区别在于：Wix 允许您高度自定义 URL 结构、精准注入 Schema 结构化数据并提供引导式 SEO Checklist；而 Shopify 在 URL 目录层级上（必须包含 /collections/ 或 /products/）限制相对僵化。
+          </p>
+        </section>
+
+        <!-- Section: Final Verdict -->
+        <section id="verdict" class="space-y-6 pt-4 border-t border-white/[0.08]">
+          <h2 class="text-2xl font-extrabold text-white">5. 总结：您到底该选哪一个？</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+            <div class="glass-card p-6 border-[#7C5CFC]/40 space-y-2">
+              <div class="font-bold text-white text-base">坚定选择 Wix Studio：</div>
+              <ul class="space-y-1.5 text-white/70">
+                <li>• 外贸制造型企业出海官网 (B2B)</li>
+                <li>• 重视品牌视觉调性的设计工作室与作品集</li>
+                <li>• SKU 数量在几十到几百款的精品独立店铺</li>
+                <li>• 希望一站式解决博客、预约、官网与展示</li>
+              </ul>
+            </div>
+
+            <div class="glass-card p-6 border-white/10 space-y-2">
+              <div class="font-bold text-white text-base">建议选择 Shopify：</div>
+              <ul class="space-y-1.5 text-white/70">
+                <li>• 主打大规模铺货、爆款跟卖型跨境卖家</li>
+                <li>• 严重依赖特定复杂跨境 ERP 或自动化打单工具</li>
+                <li>• 拥有专职电商运营人员，追求极速结账流转</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sticky In-Article CTA -->
+        <div class="glass-card p-8 border border-[#7C5CFC]/50 bg-gradient-to-r from-[#18142a] via-[#121118] to-[#0D0D0D] space-y-4">
+          <div class="flex items-center gap-3">
+            <img
+              src="/assets/badges/wix-partner-legend-200.png"
+              alt="Wix Partner Legend"
+              width="48"
+              height="48"
+              class="rounded-full"
+            />
+            <div>
+              <h3 class="text-lg font-bold text-white">还在纠结您的出海独立站技术选型？</h3>
+              <p class="text-xs text-white/60">免费获得资深官方认证专家的 1 对 1 架构建议</p>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-white/70 leading-relaxed">
+            把您的业务模式与参考案例发给我们，我们帮您客观评估到底是 Wix Studio 还是 Shopify 能为您带来更高的投资回报率。
+          </p>
+          <div class="pt-2">
+            <a
+              href="/contact/"
+              class="inline-flex items-center px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 transition shadow-lg shadow-[#7C5CFC]/25"
+            >
+              获取免费选型诊断与建站评估 →
+            </a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

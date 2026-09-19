@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #0D0D0D;
+  --color-bg-surface: #161616;
+  --color-bg-elevated: #1E1E1E;
+  --color-accent-purple: #7C5CFC;
+  --color-accent-purple-light: #9D82FF;
+  --color-accent-blue: #4A90E2;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-border-glow: rgba(124, 92, 252, 0.4);
+
+  --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-card: 16px;
+  --radius-btn: 8px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #0D0D0D;
+    color: #FFFFFF;
+  }
+  ::selection {
+    background: rgba(124, 92, 252, 0.35);
+    color: #FFFFFF;
+  }
+}
+
+/* Glassmorphism card utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(124, 92, 252, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -10px rgba(124, 92, 252, 0.15);
+}
+
+/* Text Gradient utility */
+.text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 30%, #9D82FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #9D82FF 0%, #7C5CFC 50%, #4A90E2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero background glow */
+.hero-glow-bg {
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 850px;
+  height: 650px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 92, 252, 0.28) 0%,
+    rgba(74, 144, 226, 0.12) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0D0D0D;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #383838;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

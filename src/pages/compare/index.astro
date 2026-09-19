@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const comparisons = [
+  {
+    title: 'Wix vs Shopify 深度对比（2025）',
+    target: 'Shopify',
+    slug: '/compare/wix-vs-shopify/',
+    verdict: '展示型品牌官网、轻量电商与外贸B2B选 Wix；超大海量SKU与强铺货电商选 Shopify。',
+    wixStrengths: ['设计排版自由度极高', '零额外月租抽成', '内置商务博客与预约'],
+    competitorStrengths: ['海量电商ERP插件生态', '高并发交易结算能力'],
+  },
+  {
+    title: 'Wix vs WordPress 深度对比（2025）',
+    target: 'WordPress',
+    slug: '/compare/wix-vs-wordpress/',
+    verdict: '追求省心免维护、稳定云端托管选 Wix；具备专业技术运维团队且追求完全源码自主选 WordPress。',
+    wixStrengths: ['零服务器与漏洞维护成本', '原生开箱即用可视化编辑', '全托管高防网络'],
+    competitorStrengths: ['开源自由度最高', '插件主题海量丰富'],
+  },
+  {
+    title: 'Wix Studio vs Webflow 深度对比（2025）',
+    target: 'Webflow',
+    slug: '/compare/wix-vs-webflow/',
+    verdict: '需要内置全套商业应用、快速交付且支持中文生态选 Wix Studio；追求代码级细微控制选 Webflow。',
+    wixStrengths: ['内置全套业务系统 (商城/预约/会员)', '交付周期短', '学习曲线较平缓'],
+    competitorStrengths: ['底层盒模型前端代码导向极深'],
+  },
+  {
+    title: 'Wix vs Squarespace 深度对比（2025）',
+    target: 'Squarespace',
+    slug: '/compare/wix-vs-squarespace/',
+    verdict: '追求高级个性化定制与拓展选 Wix Studio；只需要标准极简模板快速替换图文选 Squarespace。',
+    wixStrengths: ['更强定制能力与Velo代码拓展', '中文交互支持更优'],
+    competitorStrengths: ['模板原生文艺质感极强'],
+  },
+];
+---
+
+<BaseLayout
+  title="主流建站平台横评指南（2025）| Wix vs Shopify / WordPress / Webflow - wixstudio.cn"
+  description="2025最新主流建站平台全方位横评。从费用、功能、SEO、设计自由度到技术维护，对比 Wix 与 Shopify、WordPress、Webflow 及 Squarespace，助您做对技术选型。"
+  keywords="建站平台对比, Wix vs Shopify, Wix vs WordPress, Wix vs Webflow, 最好的建站工具, 外贸建站哪个好"
+>
+  <section class="relative py-20 overflow-hidden text-center">
+    <div class="hero-glow-bg opacity-70"></div>
+    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
+        PLATFORM COMPARISON
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-black text-white tracking-tight">
+        主流建站平台 <span class="text-gradient">全方位客观横评</span>
+      </h1>
+      <p class="text-base sm:text-lg text-white/70 max-w-2xl mx-auto">
+        没有绝对完美的平台，只有最符合您当下商业阶段与团队能力的工具。我们拒绝拉踩，用事实说话。
+      </p>
+    </div>
+  </section>
+
+  <!-- Comparison Cards -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-6">
+    {comparisons.map((item) => (
+      <div class="glass-card p-8 border border-white/10 hover:border-[#7C5CFC]/40 transition space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/[0.08]">
+          <h2 class="text-xl sm:text-2xl font-bold text-white hover:text-[#9D82FF] transition">
+            <a href={item.slug}>{item.title}</a>
+          </h2>
+          <a
+            href={item.slug}
+            class="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#7C5CFC] to-[#4A90E2] hover:brightness-110 transition text-center"
+          >
+            阅读完整深度横评 →
+          </a>
+        </div>
+
+        <div class="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] text-xs sm:text-sm text-white/90">
+          <span class="text-amber-400 font-bold">💡 核心结论：</span>
+          {item.verdict}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-emerald-500/[0.04] border border-emerald-500/20 space-y-2">
+            <div class="font-bold text-emerald-300">Wix 核心优势：</div>
+            <ul class="space-y-1 text-white/70">
+              {item.wixStrengths.map((s) => (
+                <li class="flex items-center gap-1.5"><span>✓</span> <span>{s}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
+            <div class="font-bold text-white/80">{item.target} 核心侧重点：</div>
+            <ul class="space-y-1 text-white/60">
+              {item.competitorStrengths.map((s) => (
+                <li class="flex items-center gap-1.5"><span>•</span> <span>{s}</span></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
+</BaseLayout>
