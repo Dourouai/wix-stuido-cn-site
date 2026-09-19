@@ -1,0 +1,186 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'email-tips', title: '1. 国内用户注册与邮箱选型建议' },
+  { id: 'workspace-init', title: '2. 初始创建 Studio 工作空间' },
+  { id: 'roles-permissions', title: '3. 团队成员与细粒度权限分配' },
+  { id: 'client-collaboration', title: '4. 客户协同与“防破坏”排版锁定' },
+  { id: 'partner-points', title: '5. 进阶：如何加入 Wix Partner 计划' },
+];
+---
+
+<ArticleLayout
+  title="从零开始：Wix Studio 账号注册与团队工作空间初始化"
+  description="面向中国出海企业与建站设计师的 Wix Studio 注册实战。从邮箱选型避坑、Workspace 工作空间搭建，到团队多角色权限分配与客户交付防破坏机制。"
+  keywords="Wix 注册, Wix Studio 注册, Wix 工作空间, Wix 权限设置, Wix Partner 申请"
+  category="新手入门实战"
+  categorySlug="/tutorials/getting-started/"
+  readTime="8 分钟"
+  publishDate="2025-09"
+  toc={toc}
+  prevArticle={{
+    title: "Wix Studio 是什么？与普通经典版 Wix 的核心区别全解析",
+    href: "/tutorials/getting-started/what-is-wix-studio/",
+  }}
+  nextArticle={{
+    title: "深入浅出：Wix Studio 工作台与核心工具面板完全图解",
+    href: "/tutorials/getting-started/editor-walkthrough/",
+  }}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#6D28D9] text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      注册 Wix Studio 是开启专业出海建站的第一步。很多国内新手往往直接使用普通个人邮箱注册普通版 Wix，导致错失了 Studio 的团队协作和项目资产复用能力。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      正确的姿势是：使用稳定的企业域名邮箱或海外常用邮箱注册，直接进入 <strong>Studio Workspace（机构工作区）</strong>。在此处统一管理客户项目、集中绑定结算卡，并为团队设计师与客户分配隔离权限。
+    </p>
+  </section>
+
+  <!-- Section 1: Email selection -->
+  <section id="email-tips" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>1. 国内用户注册与邮箱选型建议</span>
+    </h2>
+    <p>
+      在注册 Wix 账号时，选择正确的邮箱能极大降低后续运营中的收信与验证障碍：
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+        <div class="font-bold text-emerald-900 flex items-center gap-1.5 text-sm">
+          <Icon name="check" class="w-4 h-4 text-emerald-600" />
+          <span>强烈推荐使用的邮箱</span>
+        </div>
+        <ul class="text-xs text-slate-700 space-y-1.5 pl-4 list-disc">
+          <li><strong>企业域名专业邮箱：</strong> 例如 `contact@yourcompany.com`（腾讯企业邮海外版、飞书商业邮、Google Workspace）。</li>
+          <li><strong>国际主流邮箱：</strong> Gmail、Outlook / Hotmail，验证码秒级送达，不被当成垃圾邮件拦截。</li>
+        </ul>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-rose-50/60 border border-rose-200 space-y-2">
+        <div class="font-bold text-rose-900 flex items-center gap-1.5 text-sm">
+          <Icon name="x" class="w-4 h-4 text-rose-600" />
+          <span>不建议优先使用的邮箱</span>
+        </div>
+        <ul class="text-xs text-slate-700 space-y-1.5 pl-4 list-disc">
+          <li><strong>普通个人 QQ 邮箱 / 163 邮箱：</strong> 偶发国际邮件延迟或安全拦截，导致重置密码和客户账单提醒收不到。</li>
+          <li><strong>临时临时邮箱：</strong> 极易触发官方风控系统，导致账号被临时冻结。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Workspace initialization -->
+  <section id="workspace-init" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>2. 初始创建 Studio 工作空间 (Workspace)</span>
+    </h2>
+    <p>
+      完成注册并首次登录后，系统会引导您选择身份。请务必选择 <strong>“建站机构或自由职业者（Agency or Freelancer）”</strong>，这将直接为您开通 Wix Studio Workspace 控制台。
+    </p>
+    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs sm:text-sm">
+      <div class="font-bold text-slate-900 flex items-center gap-2">
+        <Icon name="layout" class="w-4 h-4 text-[#6D28D9]" />
+        <span>Studio 工作空间的核心板块概览：</span>
+      </div>
+      <ol class="space-y-2 pl-4 list-decimal text-slate-600">
+        <li><strong>Sites（项目站点）：</strong> 平铺显示所有您正在搭建和已上线的客户网站，支持按标签分组（如“进行中”、“已交付”、“待续费”）。</li>
+        <li><strong>Custom Apps & Widgets（自定义组件）：</strong> 跨项目共享的排版小部件。比如您自研的高级产品对比条，可一键复用给其它客户。</li>
+        <li><strong>Team & Clients（团队与客户）：</strong> 统一管理企业同事与外部客户的访问列表。</li>
+        <li><strong>Earnings & Referral（佣金与账单）：</strong> 查看客户通过您的邀请链接购买套餐所产生的官方 Affiliate 返佣明细。</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Section 3: Roles and permissions -->
+  <section id="roles-permissions" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>3. 团队成员与细粒度权限分配</span>
+    </h2>
+    <p>
+      如果您是一个建站团队或出海公司市场部，不要把管理员主账号密码直接给所有人使用。Wix Studio 支持细粒度角色分配：
+    </p>
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
+      <table class="w-full text-left text-xs sm:text-sm">
+        <thead class="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
+          <tr>
+            <th class="p-3.5">角色名称</th>
+            <th class="p-3.5">权限范围</th>
+            <th class="p-3.5">推荐分配人群</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 text-slate-700">
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-slate-900">Owner (所有人)</td>
+            <td class="p-3.5">全部权限，包括转让所有权、结算卡扣款、注销网站</td>
+            <td class="p-3.5 text-slate-500">企业创始人 / 工作室主理人</td>
+          </tr>
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-slate-900">Studio Designer</td>
+            <td class="p-3.5">可完全编辑画布、断点样式与动效，无权查看账单信用卡</td>
+            <td class="p-3.5 text-slate-500">主力网页设计师</td>
+          </tr>
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-slate-900">Studio Developer</td>
+            <td class="p-3.5">可编辑 Velo 前后端代码、CMS 数据库与 API 接口</td>
+            <td class="p-3.5 text-slate-500">技术研发人员</td>
+          </tr>
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-slate-900">Content Editor</td>
+            <td class="p-3.5">仅能替换文本与图片，无法更改流体排版结构与代码</td>
+            <td class="p-3.5 text-slate-500">日常运营 / 外聘文案 / 甲方对接人</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 4: Client collaboration -->
+  <section id="client-collaboration" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>4. 客户协同与“防破坏”排版锁定机制</span>
+    </h2>
+    <p>
+      在传统建站交付中，最让人头疼的问题是：<strong>网站辛辛苦苦调好的精美排版，交付给客户后，客户一改文字就把布局搞崩溃了。</strong>
+    </p>
+    <p>
+      Wix Studio 针对这一痛点推出了<strong>画布锁定与受限编辑模式</strong>：
+    </p>
+    <ul class="space-y-2 pl-4 text-xs sm:text-sm text-slate-700 list-disc">
+      <li><strong>元素锁定（Locking）：</strong> 在设计完成的核心 Section 右键选择锁定。锁定后，非管理员无法拖动或删除该容器。</li>
+      <li><strong>仅允许内容替换（Content Only Editing）：</strong> 为客户开启专用视图，客户双击文字只能修改打字内容，字体大小、行高、CSS 响应式参数均不可篡改。</li>
+      <li><strong>实时画板批注（Canvas Comments）：</strong> 客户可在页面任意位置打点留下修改意见，设计师在后台直接回复勾选解决，避免混乱的微信截图沟通。</li>
+    </ul>
+  </section>
+
+  <!-- Section 5: Partner Points -->
+  <section id="partner-points" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>5. 进阶：如何加入 Wix Partner 计划</span>
+    </h2>
+    <p>
+      只要您在 Studio Workspace 中创建了第一个网站，您就自动成为了 Wix Partner 生态的一员。
+    </p>
+    <div class="p-5 rounded-2xl bg-purple-50/50 border border-purple-200 text-xs sm:text-sm space-y-2 text-slate-700">
+      <p class="font-bold text-[#6D28D9]">Partner 积分与等级体系：</p>
+      <p>
+        每上线一个包含商业订阅套餐的客户网站，您将获得官方积分（通常为 100 积分/站）。随着交付站点数量的积累，您的身份将逐步从 Partner 晋级至 Icon、Champion，直至最高的 <strong>Legend（传奇合作伙伴）</strong> 级别。
+      </p>
+      <p>
+        最高级别 Legend 合作伙伴享有官方专属客户成功经理、优先技术工单支持以及最高 20%-50% 的收入分成返佣。
+      </p>
+    </div>
+  </section>
+</ArticleLayout>

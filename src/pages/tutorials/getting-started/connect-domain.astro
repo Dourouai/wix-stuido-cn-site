@@ -1,0 +1,191 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'prep', title: '1. 域名注册与出海选型建议' },
+  { id: 'methods', title: '2. 两种绑定方式对比：指向解析 (Pointing) vs 域名服务器 (Name Servers)' },
+  { id: 'aliyun-step', title: '3. 阿里云 / 腾讯云实战解析配置' },
+  { id: 'ssl-cert', title: '4. 免费 SSL 证书自动化签发' },
+  { id: 'troubleshooting', title: '5. 常见解析生效问题排查与解决' },
+];
+---
+
+<ArticleLayout
+  title="域名绑定与解析完全指南：从阿里云/腾讯云到 Wix Studio"
+  description="详细讲解如何将国内阿里云、腾讯云或海外注册的独立域名绑定至 Wix Studio 网站。包含 CNAME/A 记录配置实操、免费 SSL 证书开通与生效排错。"
+  keywords="Wix 域名绑定, Wix 域名解析, 阿里云解析到 Wix, 腾讯云解析 Wix, Wix SSL 证书"
+  category="新手入门实战"
+  categorySlug="/tutorials/getting-started/"
+  readTime="9 分钟"
+  publishDate="2025-09"
+  toc={toc}
+  prevArticle={{
+    title: "深入浅出：Wix Studio 工作台与核心工具面板完全图解",
+    href: "/tutorials/getting-started/editor-walkthrough/",
+  }}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#6D28D9] text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      拥有独立域名是出海独立站获取海外买家与搜索引擎信任的基石。在 Wix Studio 中绑定域名非常简单，且不需要给工信部备案（网站服务器托管于海外全防高可用节点）。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      强烈建议采用 <strong>指向解析（Pointing via DNS Records）</strong>：在您的域名商（阿里云/腾讯云）后台添加 1 条 `@` 的 A 记录和 1 条 `www` 的 CNAME 记录。这样既能让网站快速上线，又完全不影响企业已有的腾讯企业邮箱解析。
+    </p>
+  </section>
+
+  <!-- Section 1: Domain preparation -->
+  <section id="prep" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>1. 域名注册与出海选型建议</span>
+    </h2>
+    <p>
+      对于做外贸出海与跨境品牌的企业，域名的后缀选择对海外客户转化有直接影响：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm">
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+        <div class="font-bold text-[#6D28D9]">首选：.com 顶级后缀</div>
+        <p class="text-slate-500 text-xs">
+          全球通用信任度最高，海外 B2B 买家习惯性输入，利于品牌长期沉淀。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+        <div class="font-bold text-blue-600">科技/SaaS 首选：.io / .ai</div>
+        <p class="text-slate-500 text-xs">
+          欧美高科技、AI 初创公司偏好，时尚极客感强。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
+        <div class="font-bold text-amber-600">慎用或特定用途：.cn</div>
+        <p class="text-slate-500 text-xs">
+          .cn 域名面向国内用户，海外用户对 .cn 域名的信任度较低。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Methods comparison -->
+  <section id="methods" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>2. 两种绑定方式对比：指向解析 (Pointing) vs 域名服务器 (Name Servers)</span>
+    </h2>
+    <p>
+      在 Wix Studio 仪表盘的「设置 -> 域名」中，系统会提供两种连接模式：
+    </p>
+    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
+      <table class="w-full text-left text-xs sm:text-sm">
+        <thead class="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
+          <tr>
+            <th class="p-3.5">连接方式</th>
+            <th class="p-3.5">工作原理</th>
+            <th class="p-3.5">优缺点</th>
+            <th class="p-3.5">推荐指数</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100 text-slate-700">
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-[#6D28D9]">指向解析 (Pointing)</td>
+            <td class="p-3.5">保留域名商 DNS，仅添加 A 记录和 CNAME 记录指向 Wix</td>
+            <td class="p-3.5"><strong>安全无扰：</strong> 域名的邮箱 MX 记录、子域名系统完全不受影响</td>
+            <td class="p-3.5 font-bold text-emerald-600">强烈首选 (推荐度 5/5)</td>
+          </tr>
+          <tr class="hover:bg-slate-50/80">
+            <td class="p-3.5 font-bold text-slate-900">域名服务器 (Name Servers)</td>
+            <td class="p-3.5">将 DNS 服务器整体改成 `ns1.wixdns.net` 等</td>
+            <td class="p-3.5">Wix 全权托管 DNS，但原有企业邮箱必须在 Wix 后台重新手动配置 MX 记录，容易遗漏</td>
+            <td class="p-3.5 text-slate-500">仅全新域名适用 (推荐度 3/5)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 3: Aliyun / Tencent steps -->
+  <section id="aliyun-step" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>3. 阿里云 / 腾讯云实战解析配置</span>
+    </h2>
+    <p>
+      以最常用的<strong>指向解析（Pointing）</strong>为例，请按照以下标准参数添加 2 条解析记录：
+    </p>
+
+    <div class="space-y-4">
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+        <div class="text-xs font-bold text-[#6D28D9] uppercase tracking-wider">记录 1：针对主域名的 A 记录</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+          <div><span class="text-slate-400">记录类型：</span><strong class="text-slate-900">A 记录</strong></div>
+          <div><span class="text-slate-400">主机记录：</span><strong class="text-slate-900">@</strong></div>
+          <div><span class="text-slate-400">记录值：</span><strong class="text-slate-900 text-purple-700">23.236.62.147</strong></div>
+          <div><span class="text-slate-400">TTL：</span><strong class="text-slate-900">10分钟 (或默认)</strong></div>
+        </div>
+        <p class="text-[11px] text-slate-500 pt-1">
+          *注：具体 A 记录 IP 地址请以您 Wix Studio 仪表盘实际给出的 IP 为准（一般为 23.236.62.x）。
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
+        <div class="text-xs font-bold text-blue-600 uppercase tracking-wider">记录 2：针对 www 的 CNAME 记录</div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+          <div><span class="text-slate-400">记录类型：</span><strong class="text-slate-900">CNAME</strong></div>
+          <div><span class="text-slate-400">主机记录：</span><strong class="text-slate-900">www</strong></div>
+          <div><span class="text-slate-400">记录值：</span><strong class="text-slate-900 text-blue-700">pointing.wixdns.net</strong></div>
+          <div><span class="text-slate-400">TTL：</span><strong class="text-slate-900">10分钟 (或默认)</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: SSL certificate -->
+  <section id="ssl-cert" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>4. 免费 SSL 证书自动化签发</span>
+    </h2>
+    <p>
+      添加完成解析记录后，通常等待 <strong>10 分钟到 2 小时</strong>，全球 DNS 节点即可同步生效。
+    </p>
+    <div class="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 text-xs sm:text-sm space-y-2 text-emerald-950">
+      <div class="font-bold flex items-center gap-1.5 text-emerald-900">
+        <Icon name="shield-check" class="w-4 h-4 text-emerald-600" />
+        <span>自动开通 HTTPS 安全小绿锁：</span>
+      </div>
+      <p>
+        一旦 Wix Studio 系统检测到您的 DNS 记录生效，会自动为您免费申请由主流 CA 机构颁发的高可用 SSL 证书，无需您手动去阿里云下载证书包再上传配置。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 5: Troubleshooting -->
+  <section id="troubleshooting" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span>5. 常见解析生效问题排查与解决</span>
+    </h2>
+    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900 block font-bold">Q1：为什么添加解析过了 2 小时还是显示“未连接”？</strong>
+        <p class="text-slate-600 text-xs">
+          答：检查原域名商后台是否留有旧的 `@` 记录或冲突的转发 URL。删除旧冲突记录后，在电脑终端输入 `ping yourdomain.com` 检查返回的 IP 是否与 Wix 一致。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900 block font-bold">Q2：绑定域名后，国内用户访问速度如何？</strong>
+        <p class="text-slate-600 text-xs">
+          答：Wix 在全球拥有 300+ 边缘 CDN 加速节点，并在亚太（日本东京、中国香港）设有边缘节点。外贸海外买家（欧美、东南亚、中东）访问体验极速流畅。
+        </p>
+      </div>
+    </div>
+  </section>
+</ArticleLayout>
