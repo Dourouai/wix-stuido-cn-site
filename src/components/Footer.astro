@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const currentYear = new Date().getFullYear();
 ---
 
@@ -7,9 +9,8 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-gray-200">
       <!-- Brand & Legend Badge Column -->
       <div class="lg:col-span-2 space-y-4">
-        <a href="/" class="flex items-baseline text-2xl font-black tracking-tight">
-          <span class="text-[#0F172A]">wixstudio</span>
-          <span class="text-[#6D28D9]">.cn</span>
+        <a href="/" class="inline-block">
+          <Logo size="md" />
         </a>
         <p class="text-sm text-gray-500 leading-relaxed max-w-sm">
           专为中文用户打造的系统化 Wix Studio 学习与建站推广平台。助力外贸出海、创意设计与企业官网高水准交付。

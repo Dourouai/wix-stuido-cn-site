@@ -1,4 +1,6 @@
 ---
+import Logo from './Logo.astro';
+
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
@@ -33,12 +35,9 @@ const navLinks = [
 
 <header class="sticky top-0 z-50 w-full bg-white/85 backdrop-blur-xl border-b border-gray-200/80 transition-all shadow-xs">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-    <!-- Brand Logo -->
-    <a href="/" class="flex items-center gap-2.5 group transition">
-      <div class="flex items-baseline">
-        <span class="text-[#0F172A] text-2xl font-black tracking-tight group-hover:opacity-90 transition">wixstudio</span>
-        <span class="text-[#6D28D9] text-2xl font-black tracking-tight">.cn</span>
-      </div>
+    <!-- Brand Logo with New Emblem -->
+    <a href="/" class="flex items-center gap-3 group transition">
+      <Logo size="md" />
       <div class="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-purple-50 text-[#6D28D9] border border-purple-100 group-hover:border-purple-200 transition">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
         <span>中文站</span>
