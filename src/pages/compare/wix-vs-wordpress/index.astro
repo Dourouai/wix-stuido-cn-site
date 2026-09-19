@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
 
 const toc = [
   { id: 'summary', title: '30秒核心速览' },
@@ -95,7 +96,7 @@ const tableRows = [
         <!-- 30s Summary -->
         <section id="summary" class="glass-card p-6 sm:p-8 border border-[#7C5CFC]/50 bg-gradient-to-br from-[#1b172c] to-[#121218] space-y-3">
           <div class="flex items-center gap-2 text-[#9D82FF] text-sm font-bold uppercase tracking-wider">
-            <span>⚡</span>
+            <Icon name="zap" class="w-4 h-4 text-[#9D82FF]" />
             <span>30秒核心结论 (Executive Summary)</span>
           </div>
           <p class="text-sm sm:text-base text-white/90 leading-relaxed">

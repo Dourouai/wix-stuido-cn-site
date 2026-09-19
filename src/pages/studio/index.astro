@@ -1,36 +1,43 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 
 const features = [
   {
     title: '响应式流体引擎 (Fluid Responsive)',
     desc: 'Wix Studio 独有的比例缩放与自定义断点技术，无论用户使用超宽曲面屏、笔记本还是手机，版面元素自动按设计意图优雅缩放，彻底解决断点错位难题。',
-    icon: '📐',
+    icon: 'ruler',
+    color: 'from-blue-500 to-indigo-600',
   },
   {
     title: '现代 CSS 控制能力',
     desc: '支持 CSS Grid、Flexbox、绝对定位、自定义 CSS 类与 CSS 变量直接编写。突破普通拖拽建站的局限，让专业前端开发如鱼得水。',
-    icon: '🎨',
+    icon: 'palette',
+    color: 'from-purple-500 to-pink-600',
   },
   {
     title: '共享设计系统 (Design System)',
     desc: '跨多个客户站点统一管理品牌设计资源、调色板、排版规范与自研定制小组件，设计资产一键复用，大幅提升团队与自由设计师的交付效率。',
-    icon: '💎',
+    icon: 'gem',
+    color: 'from-amber-500 to-orange-600',
   },
   {
     title: '全栈开发平台 Velo',
     desc: '基于 VS Code 体验的云端及本地 IDE。编写前后端 JavaScript，轻松连接 Wix CMS 动态数据库、第三方 REST API 与后台 Webhook。',
-    icon: '⚡',
+    icon: 'zap',
+    color: 'from-yellow-500 to-amber-600',
   },
   {
     title: '原生团队与客户协作工作区',
     desc: '内置画板级评论、细粒度客户权限分配（可限制客户只修改文字内容不破坏版面）、集成计费与客户管理系统（CRM），专为接单工作室打造。',
-    icon: '👥',
+    icon: 'users',
+    color: 'from-emerald-500 to-teal-600',
   },
   {
     title: 'Figma to Studio 智能转换',
     desc: '通过官方 Figma 插件，直接将 Figma 设计稿无损导出为 Wix Studio 响应式网页结构，大幅省去从设计到切图开发的时间。',
-    icon: '🚀',
+    icon: 'rocket',
+    color: 'from-rose-500 to-red-600',
   },
 ];
 
@@ -54,7 +61,8 @@ const compareTable = [
     <div class="hero-glow-light opacity-60"></div>
     <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-        PLATFORM OVERVIEW
+        <Icon name="sparkles" class="w-3.5 h-3.5" />
+        <span>PLATFORM OVERVIEW / 深度解析</span>
       </div>
       <h1 class="text-4xl sm:text-6xl font-black text-[#0F172A] tracking-tight">
         什么是 <span class="text-gradient-brand">Wix Studio</span>？
@@ -65,15 +73,16 @@ const compareTable = [
       <div class="pt-4 flex flex-wrap justify-center gap-4">
         <a
           href="/tutorials/getting-started/"
-          class="btn-primary-glow px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition"
+          class="btn-primary-glow px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition flex items-center gap-2"
         >
-          开始入门教程
+          <span>开始入门教程</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
         </a>
         <a
           href="/contact/"
-          class="px-6 py-3 rounded-full text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 shadow-xs transition"
+          class="px-6 py-3 rounded-full text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 shadow-xs transition flex items-center gap-2"
         >
-          企业建站定制咨询
+          <span>企业建站定制咨询</span>
         </a>
       </div>
     </div>
@@ -114,8 +123,9 @@ const compareTable = [
   <section class="py-20 bg-[#F8FAFC] border-y border-gray-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-        <div class="inline-block text-xs font-bold uppercase tracking-widest text-[#6D28D9] px-3 py-1 rounded-full bg-purple-100 border border-purple-200">
-          CORE CAPABILITIES
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#6D28D9] px-3.5 py-1 rounded-full bg-purple-100 border border-purple-200">
+          <Icon name="cpu" class="w-3.5 h-3.5" />
+          <span>CORE CAPABILITIES</span>
         </div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-[#0F172A]">
           Wix Studio 六大核心技术亮点
@@ -128,7 +138,9 @@ const compareTable = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((item) => (
           <div class="light-card p-7 space-y-4 border border-gray-200">
-            <div class="text-3xl">{item.icon}</div>
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-[#6D28D9] border border-purple-200/60 flex items-center justify-center">
+              <Icon name={item.icon} class="w-6 h-6" />
+            </div>
             <h3 class="text-lg font-bold text-[#0F172A]">{item.title}</h3>
             <p class="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
           </div>
@@ -145,24 +157,30 @@ const compareTable = [
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="light-card p-6 space-y-3">
-        <div class="text-2xl">🎨</div>
+      <div class="light-card p-6 space-y-3 border border-gray-200">
+        <div class="w-10 h-10 rounded-lg bg-purple-50 text-[#6D28D9] border border-purple-200/60 flex items-center justify-center">
+          <Icon name="palette" class="w-5 h-5" />
+        </div>
         <h3 class="text-lg font-bold text-[#0F172A]">自由设计师 & 接单顾问</h3>
         <p class="text-xs text-gray-600 leading-relaxed">
           不再为还原不了复杂的响应式动效而苦恼。借助像素级流体排版，无需程序员介入即可独立承接 5K-30K 级别的品牌官网设计订单。
         </p>
       </div>
 
-      <div class="light-card p-6 space-y-3">
-        <div class="text-2xl">🏢</div>
+      <div class="light-card p-6 space-y-3 border border-gray-200">
+        <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 border border-blue-200/60 flex items-center justify-center">
+          <Icon name="building" class="w-5 h-5" />
+        </div>
         <h3 class="text-lg font-bold text-[#0F172A]">出海企业与外贸团队</h3>
         <p class="text-xs text-gray-600 leading-relaxed">
           需要媲美硅谷初创公司的国际范儿官网，又希望后续内部市场人员能随时更新新闻与产品信息，Wix Studio 完美兼顾高档视觉与便捷维护。
         </p>
       </div>
 
-      <div class="light-card p-6 space-y-3">
-        <div class="text-2xl">💻</div>
+      <div class="light-card p-6 space-y-3 border border-gray-200">
+        <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 border border-indigo-200/60 flex items-center justify-center">
+          <Icon name="code" class="w-5 h-5" />
+        </div>
         <h3 class="text-lg font-bold text-[#0F172A]">开发人员与代理机构</h3>
         <p class="text-xs text-gray-600 leading-relaxed">
           利用内置的 Velo 全端 JavaScript 和企业级工作区，协同开发复杂交互与数据库逻辑，交付周期比传统从头编码缩短 60% 以上。
@@ -176,8 +194,9 @@ const compareTable = [
     <div class="max-w-3xl mx-auto px-4 space-y-6">
       <h2 class="text-2xl sm:text-3xl font-bold text-[#0F172A]">想开启 Wix Studio 之旅？</h2>
       <div class="flex justify-center gap-4">
-        <a href="/tutorials/getting-started/" class="btn-primary-glow px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition">
-          浏览新手入门教程
+        <a href="/tutorials/getting-started/" class="btn-primary-glow px-6 py-3 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition flex items-center gap-2">
+          <span>浏览新手入门教程</span>
+          <Icon name="arrow-right" class="w-4 h-4" />
         </a>
         <a href="/pricing/" class="px-6 py-3 rounded-full text-sm font-semibold text-gray-700 bg-white hover:bg-gray-50 border border-gray-300 shadow-xs transition">
           查看套餐与费用

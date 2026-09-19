@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
 
 const toc = [
   { id: 'summary', title: '30秒核心速览' },
@@ -14,7 +15,7 @@ const toc = [
 
 const tableRows = [
   { dimension: '核心定位', wix: '内容展示、品牌官网与多功能一体化', shopify: '专注大规模高并发跨境电商交易' },
-  { dimension: '设计排版自由度', wix: '所见即所得、流体断点、像素级自由度 ★★★★★', shopify: '基于 Liquid 模块化框架，布局受限 ★★★☆☆' },
+  { dimension: '设计排版自由度', wix: '所见即所得、流体断点、像素级自由度 (评分 5/5)', shopify: '基于 Liquid 模块化框架，布局受限 (评分 3/5)' },
   { dimension: '额外交易抽成', wix: '0% 平台抽成 (仅收网关通道费)', shopify: '若不使用 Shopify Payments 额外加收 0.5%-2% 抽成' },
   { dimension: '多业务整合', wix: '原生内置博客、预约、会员、表单、活动', shopify: '需安装多款第三方月租 App 拼装' },
   { dimension: '超大SKU处理', wix: '适合 1-1000 款精品 SKU', shopify: '适合上万级海量 SKU 铺货及复杂仓储' },
@@ -100,7 +101,7 @@ const tableRows = [
         <!-- 30s Quick Verdict -->
         <section id="summary" class="rounded-2xl p-6 sm:p-8 border border-purple-200 bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 space-y-3 shadow-md shadow-purple-500/5">
           <div class="flex items-center gap-2 text-[#6D28D9] text-sm font-bold uppercase tracking-wider">
-            <span>⚡</span>
+            <Icon name="zap" class="w-4 h-4 text-[#6D28D9]" />
             <span>30秒结论先行 (Executive Verdict)</span>
           </div>
           <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
@@ -161,7 +162,10 @@ const tableRows = [
             在订阅费用表面上两者相仿（Shopify Basic 约 $39/月，Wix 商业套餐约 $29-$36/月），但深层成本有很大差异：
           </p>
           <div class="light-card p-5 border border-amber-200 bg-amber-50/40 space-y-2 text-xs sm:text-sm">
-            <div class="font-bold text-amber-900">⚠️ Shopify 的“隐形 App 税”：</div>
+            <div class="font-bold text-amber-900 flex items-center gap-1.5">
+              <Icon name="alert-triangle" class="w-4 h-4 text-amber-600 shrink-0" />
+              <span>Shopify 的“隐形 App 税”：</span>
+            </div>
             <p class="text-amber-800">
               Shopify 原生功能非常克制。为了实现表单定制、高级页面布局、评价展示、甚至简单的多语言功能，往往需要订阅数款第三方应用。一个运营成熟的 Shopify 店铺，每月的插件账单往往在 <strong>$100 - $300</strong> 之间。
             </p>

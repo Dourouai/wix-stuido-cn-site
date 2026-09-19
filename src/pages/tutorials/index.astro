@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 
 const tracks = [
   {
-    title: '📘 Getting Started (新手入门)',
+    title: '新手入门实战 (Getting Started)',
     slug: '/tutorials/getting-started/',
+    icon: 'book-open',
+    color: 'from-blue-500 to-indigo-600',
     desc: '专为初次接触 Wix Studio 的用户设计。从账户创建、编辑器核心面板、流体响应式机制到发布第一个网站。',
     articles: [
       'Wix Studio 是什么？与普通经典版 Wix 的核心区别',
@@ -14,8 +17,10 @@ const tracks = [
     ],
   },
   {
-    title: '🎨 Design & Layout (设计与响应式)',
+    title: '设计与响应式排版 (Design & Layout)',
     slug: '/tutorials/design/',
+    icon: 'palette',
+    color: 'from-purple-500 to-pink-600',
     desc: '从视觉设计出发，探索比例缩放（Scale Proportionally）、网格系统（Grid）、CSS 布局与微交互动效。',
     articles: [
       '流体引擎完全指南：彻底搞懂自定义断点与等比缩放',
@@ -25,8 +30,10 @@ const tracks = [
     ],
   },
   {
-    title: '💻 Velo Dev (全栈开发与代码)',
+    title: 'Velo 全栈开发与动态代码 (Velo Dev)',
     slug: '/tutorials/velo/',
+    icon: 'code',
+    color: 'from-indigo-500 to-purple-600',
     desc: '面向有编程或进阶动态数据需求的用户。掌握 JavaScript 语法、Wix CMS 数据集与第三方 API 联动。',
     articles: [
       'Velo 开发入门：前端页面元素交互与代码逻辑',
@@ -36,8 +43,10 @@ const tracks = [
     ],
   },
   {
-    title: '🔍 SEO Guide (搜索引擎优化)',
+    title: 'SEO 搜索引擎优化指南 (SEO Guide)',
     slug: '/tutorials/seo/',
+    icon: 'search',
+    color: 'from-emerald-500 to-teal-600',
     desc: '打通百度与 Google 双端搜索引擎收录逻辑。从元标签、结构化数据 Schema 到核心网页指标速度调优。',
     articles: [
       'Wix 网站 SEO 全攻略：让 Google 与百度快速抓取',
@@ -46,8 +55,10 @@ const tracks = [
     ],
   },
   {
-    title: '🛒 E-Commerce (外贸电商与出海独立站)',
+    title: '外贸电商与出海独立站 (E-Commerce)',
     slug: '/tutorials/ecommerce/',
+    icon: 'shopping-bag',
+    color: 'from-amber-500 to-orange-600',
     desc: '专为跨境与出海商家提供。涵盖产品目录管理、PayPal / Stripe 多币种海外金流配置与运费规则。',
     articles: [
       '从零搭建跨境外贸商城：商品录入与品类规划',
@@ -67,7 +78,8 @@ const tracks = [
     <div class="hero-glow-light opacity-60"></div>
     <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-        TUTORIAL CENTER
+        <Icon name="book-open" class="w-3.5 h-3.5" />
+        <span>教程中心 / TUTORIAL CENTER</span>
       </div>
       <h1 class="text-4xl sm:text-6xl font-black text-[#0F172A] tracking-tight">
         Wix Studio <span class="text-gradient-brand">中文教程中心</span>
@@ -83,17 +95,23 @@ const tracks = [
     {tracks.map((track) => (
       <div class="light-card p-8 border border-gray-200 space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
-          <div>
-            <h2 class="text-2xl font-bold text-[#0F172A] hover:text-[#6D28D9] transition">
-              <a href={track.slug}>{track.title}</a>
-            </h2>
-            <p class="text-xs sm:text-sm text-gray-500 mt-1">{track.desc}</p>
+          <div class="flex items-start sm:items-center gap-3.5">
+            <div class="w-11 h-11 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center shrink-0 text-[#6D28D9]">
+              <Icon name={track.icon} class="w-5 h-5" />
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-[#0F172A] hover:text-[#6D28D9] transition">
+                <a href={track.slug}>{track.title}</a>
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500 mt-1">{track.desc}</p>
+            </div>
           </div>
           <a
             href={track.slug}
-            class="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-gray-700 hover:text-white bg-gray-100 hover:bg-[#6D28D9] transition text-center"
+            class="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-gray-700 hover:text-white bg-gray-100 hover:bg-[#6D28D9] transition text-center flex items-center justify-center gap-1.5"
           >
-            进入系列专栏 →
+            <span>进入系列专栏</span>
+            <Icon name="arrow-right" class="w-3.5 h-3.5" />
           </a>
         </div>
 

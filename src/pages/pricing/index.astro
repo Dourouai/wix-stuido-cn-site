@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
 
 const plans = [
   {
@@ -33,56 +34,57 @@ const plans = [
     ],
     highlight: true,
     badge: 'MOST POPULAR 推荐',
-    ctaText: '选择专业版',
+    ctaText: '首选专业版',
   },
   {
-    name: 'Elite 企业精英版',
+    name: 'Elite 旗舰旗舰版',
     price: '$159',
     period: '/月 (按年付)',
-    desc: '专为大型企业、高流量品牌独立站及复杂电商定制。',
+    desc: '高流量出海品牌、大型商企与高并发业务专属。',
     features: [
-      '无限媒体存储空间',
-      '最高优先级客服通道',
-      '高级电子商务与多币种金流',
-      '无限流媒体视频时长',
-      '企业级开发者自定义限额',
-      '专属客户成功经理对接',
+      '所有进阶版权益',
+      '无限媒体云存储空间',
+      '最高级别企业基础设施支持',
+      '专属客户成功经理与技术热线',
+      '高级定制数据分析报表',
+      '支持自定义代码性能保障',
     ],
     highlight: false,
-    ctaText: '选择企业版',
+    ctaText: '咨询旗舰方案',
   },
 ];
 
 const extraCosts = [
   {
-    title: '顶级独立域名',
-    cost: '约 ¥60 - ¥100 / 年',
-    desc: '如 .com 或 .cn。购买 Wix 年付以上套餐通常会赠送首年免费域名凭据。',
+    title: '独立域名年费',
+    cost: '约 60 - 100 元 / 年',
+    desc: '推荐在阿里云、腾讯云或 Namecheap 购买 .com 域名，并通过 DNS CNAME 记录直接解析到 Wix Studio。',
   },
   {
-    title: '企业个性化邮箱',
-    cost: '约 $6 / 用户 / 月 (Google Workspace)',
-    desc: '带有您域名的企业邮箱（如 info@yourdomain.com），增强出海买家信任度。',
+    title: '企业企业邮箱',
+    cost: '免费 或 约 30 元 / 用户 / 月',
+    desc: '出海建站建议配置腾讯企业邮（免费版）或 Google Workspace 邮箱，极大提升海外买家询盘信任度。',
   },
   {
-    title: '应用商店付费插件',
-    cost: '视插件而定 ($0 - $30/月)',
-    desc: '绝大多数常用基础功能（表单、聊天客服、图库）免费版已完全足够。',
+    title: '海外支付与网关费',
+    cost: '按交易抽取（约 2.9% + $0.3）',
+    desc: '接入 PayPal 或 Stripe 均无月租费用，仅在买家成功下单付款时扣取标准交易手续费。',
   },
 ];
 ---
 
 <BaseLayout
   title="Wix Studio 价格详解（2025最新）| 套餐费用与选购指南 - wixstudio.cn"
-  description="详细解读 2025 年 Wix Studio 商业套餐价格、各级别功能差异、隐性成本分析，以及自己建站与找人代建站的综合成本对比。"
-  keywords="Wix Studio 价格, Wix 建站多少钱, Wix 套餐费用, Wix 免费版够用吗, Wix Studio 怎么买"
+  description="详细解析 Wix Studio 2025 最新套餐价格表，包含 Standard、Plus、Elite 各版本费用差异，外贸建站隐性成本说明，以及自建与定制建站成本对比。"
+  keywords="Wix 价格, Wix Studio 多少钱, Wix 套餐费用, Wix 收费标准, Wix 建站成本"
 >
   <!-- Pricing Hero -->
   <section class="relative py-20 overflow-hidden text-center bg-dots-light">
     <div class="hero-glow-light opacity-60"></div>
     <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-        PRICING & PLANS
+        <Icon name="sparkles" class="w-3.5 h-3.5" />
+        <span>PRICING & PLANS / 价格详解</span>
       </div>
       <h1 class="text-4xl sm:text-5xl font-black text-[#0F172A] tracking-tight">
         清晰透明的 <span class="text-gradient-brand">Wix Studio 套餐价格</span>
@@ -126,9 +128,7 @@ const extraCosts = [
               <ul class="space-y-2.5 text-sm text-gray-700">
                 {plan.features.map((feat) => (
                   <li class="flex items-start gap-2.5">
-                    <svg class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                     <span>{feat}</span>
                   </li>
                 ))}
@@ -177,8 +177,9 @@ const extraCosts = [
   <section class="py-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="light-card p-8 sm:p-12 border-2 border-purple-200 bg-gradient-to-br from-white via-purple-50/20 to-white space-y-8 shadow-xl shadow-purple-500/5">
       <div class="text-center space-y-3">
-        <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-[#6D28D9]">
-          DECISION MATRIX
+        <div class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1 rounded-full bg-purple-100 text-[#6D28D9]">
+          <Icon name="scale" class="w-3.5 h-3.5" />
+          <span>DECISION MATRIX / 选型决策</span>
         </div>
         <h2 class="text-2xl sm:text-4xl font-extrabold text-[#0F172A]">自己搭建 vs 委托我们定制</h2>
       </div>
@@ -186,35 +187,62 @@ const extraCosts = [
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200">
         <div class="space-y-4 pr-0 md:pr-4">
           <h3 class="text-lg font-bold text-[#0F172A] flex items-center gap-2">
-            <span>🛠 自己对照教程搭建</span>
+            <Icon name="wrench" class="w-5 h-5 text-slate-700" />
+            <span>自己对照教程搭建</span>
           </h3>
           <p class="text-xs text-gray-600 leading-relaxed">
             适合有一定时间、学习能力强，且网站需求较基础的个人创作者。
           </p>
           <ul class="space-y-2 text-xs text-gray-700">
-            <li>✓ 费用极低：仅需支付 Wix 套餐与域名年费</li>
-            <li>✓ 自由掌控：随时改动与练习</li>
-            <li>✕ 耗费时间：需摸索排版动效与移动端适配</li>
-            <li>✕ 视觉上限受限：非专业设计容易造成版面失衡</li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>费用极低：仅需支付 Wix 套餐与域名年费</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>自由掌控：随时改动与练习</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="x" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+              <span>耗费时间：需摸索排版动效与移动端适配</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="x" class="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+              <span>视觉上限受限：非专业设计容易造成版面失衡</span>
+            </li>
           </ul>
         </div>
 
         <div class="space-y-4 pt-6 md:pt-0 pl-0 md:pl-8">
           <h3 class="text-lg font-bold text-[#6D28D9] flex items-center gap-2">
-            <span>⭐ 委托 Wix Partner Legend 团队定制</span>
+            <Icon name="shield-check" class="w-5 h-5 text-[#6D28D9]" />
+            <span>委托 Wix Partner Legend 团队定制</span>
           </h3>
           <p class="text-xs text-gray-600 leading-relaxed">
             适合外贸出海企业、品牌商家及对视觉和交付速度有高要求的客户。
           </p>
           <ul class="space-y-2 text-xs text-gray-700">
-            <li>✓ 省时省力：5-15 天极速交付国际水准官网</li>
-            <li>✓ 官方最高认证：深谙 Wix Studio 动效与流体引擎</li>
-            <li>✓ 售后无忧：交付后提供后台修改培训与技术保障</li>
-            <li>✓ 转化倍增：针对出海买家习惯优化排版与CTA</li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>省时省力：5-15 天极速交付国际水准官网</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>官方最高认证：深谙 Wix Studio 动效与流体引擎</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>售后无忧：交付后提供后台修改培训与技术保障</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <Icon name="check" class="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
+              <span>转化倍增：针对出海买家习惯优化排版与CTA</span>
+            </li>
           </ul>
           <div class="pt-2">
-            <a href="/contact/" class="btn-primary-glow inline-block px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition">
-              获取代建站服务评估报价 →
+            <a href="/contact/" class="btn-primary-glow inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition">
+              <span>获取代建站服务评估报价</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5" />
             </a>
           </div>
         </div>

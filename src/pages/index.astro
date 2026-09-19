@@ -1,19 +1,20 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 
 const platforms = [
-  { name: 'Wix Studio', icon: '⚡', color: 'bg-purple-100 text-purple-700 border-purple-200' },
-  { name: 'Velo JavaScript', icon: '💻', color: 'bg-indigo-100 text-indigo-700 border-indigo-200' },
-  { name: 'Shopify', icon: '🛍️', color: 'bg-emerald-100 text-emerald-700 border-emerald-200' },
-  { name: 'WordPress', icon: '🌐', color: 'bg-sky-100 text-sky-700 border-sky-200' },
-  { name: 'Webflow', icon: '🎨', color: 'bg-blue-100 text-blue-700 border-blue-200' },
-  { name: 'Squarespace', icon: '📐', color: 'bg-slate-100 text-slate-700 border-slate-200' },
-  { name: 'Framer', icon: '🚀', color: 'bg-pink-100 text-pink-700 border-pink-200' },
+  { name: 'Wix Studio', icon: 'zap', color: 'bg-purple-50 text-purple-700 border-purple-200' },
+  { name: 'Velo JavaScript', icon: 'code', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
+  { name: 'Shopify', icon: 'shopping-bag', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
+  { name: 'WordPress', icon: 'globe', color: 'bg-sky-50 text-sky-700 border-sky-200' },
+  { name: 'Webflow', icon: 'layout', color: 'bg-blue-50 text-blue-700 border-blue-200' },
+  { name: 'Squarespace', icon: 'scale', color: 'bg-slate-50 text-slate-700 border-slate-200' },
+  { name: 'Framer', icon: 'sparkles', color: 'bg-pink-50 text-pink-700 border-pink-200' },
 ];
 
 const tutorials = [
   {
-    icon: '📘',
+    icon: 'book-open',
     iconBg: 'from-blue-500 to-indigo-600',
     title: '入门基础实战',
     tag: '新手第一课',
@@ -22,7 +23,7 @@ const tutorials = [
     href: '/tutorials/getting-started/',
   },
   {
-    icon: '🎨',
+    icon: 'palette',
     iconBg: 'from-purple-500 to-violet-600',
     title: '流体响应式排版',
     tag: '设计核心',
@@ -31,7 +32,7 @@ const tutorials = [
     href: '/tutorials/design/',
   },
   {
-    icon: '💻',
+    icon: 'code',
     iconBg: 'from-emerald-500 to-teal-600',
     title: 'Velo 全栈开发',
     tag: '动态扩展',
@@ -40,7 +41,7 @@ const tutorials = [
     href: '/tutorials/velo/',
   },
   {
-    icon: '🔍',
+    icon: 'search',
     iconBg: 'from-amber-500 to-orange-600',
     title: 'SEO 排名优化',
     tag: '流量收录',
@@ -49,7 +50,7 @@ const tutorials = [
     href: '/tutorials/seo/',
   },
   {
-    icon: '🛒',
+    icon: 'shopping-bag',
     iconBg: 'from-rose-500 to-pink-600',
     title: '外贸商城独立站',
     tag: '跨境出海',
@@ -58,7 +59,7 @@ const tutorials = [
     href: '/tutorials/ecommerce/',
   },
   {
-    icon: '⚡',
+    icon: 'scale',
     iconBg: 'from-cyan-500 to-blue-600',
     title: '主流平台深度横评',
     tag: '技术选型',
@@ -136,14 +137,11 @@ const faqs = [
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         <!-- Left Hero Content -->
         <div class="lg:col-span-7 space-y-7 text-left">
-          <!-- Official Trust Badge Pill with Shimmer and Gold Star -->
-          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/90 border border-purple-200/90 shadow-lg shadow-purple-500/5 shimmer-pill backdrop-blur-md hover:border-purple-300 transition">
-            <span class="flex h-2.5 w-2.5 relative">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#7C3AED]"></span>
-            </span>
+          <!-- Official Trust Badge Pill with Shimmer and SVG Star Icon (No Emojis) -->
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-purple-200/90 shadow-lg shadow-purple-500/5 shimmer-pill backdrop-blur-md hover:border-purple-300 transition">
+            <Icon name="star" class="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
             <span class="text-xs font-bold text-slate-800 tracking-wide">
-              ⭐ Wix 官方认证 <span class="text-[#6D28D9] font-black">Legend</span> 最高级合作伙伴
+              Wix 官方认证 <span class="text-[#6D28D9] font-black">Legend</span> 最高级合作伙伴
             </span>
           </div>
 
@@ -223,13 +221,13 @@ const faqs = [
 
             <!-- Workspace Editor Layout -->
             <div class="flex bg-slate-950 rounded-b-2xl overflow-hidden min-h-[320px]">
-              <!-- Left Tool Rail -->
+              <!-- Left Tool Rail with Clean Vector Icons (No Emojis) -->
               <div class="w-11 border-r border-slate-800 bg-slate-900/70 py-3 flex flex-col items-center gap-3 text-slate-400 text-xs">
                 <span class="w-7 h-7 rounded-lg flex items-center justify-center bg-[#7C3AED] text-white font-black cursor-pointer shadow-md">+</span>
-                <span class="hover:text-white cursor-pointer">📄</span>
-                <span class="hover:text-white cursor-pointer">🎨</span>
-                <span class="hover:text-white cursor-pointer">📦</span>
-                <span class="hover:text-white cursor-pointer font-mono font-bold text-xs text-purple-400">{ }</span>
+                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="layout" class="w-4 h-4" /></span>
+                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="palette" class="w-4 h-4" /></span>
+                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="layers" class="w-4 h-4" /></span>
+                <span class="p-1 rounded hover:text-purple-400 font-mono font-bold text-xs text-purple-400 cursor-pointer">{ }</span>
               </div>
 
               <!-- Center Interactive Canvas Simulator -->
@@ -288,13 +286,13 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 2: Rich Platform Marquee with Styled Badge Chips -->
+  <!-- Section 2: Rich Platform Marquee with SVG Icons (Zero Emojis) -->
   <section class="border-y border-slate-200 bg-slate-50/80 py-6 overflow-hidden">
     <div class="marquee-mask">
       <div class="animate-marquee-scroll items-center gap-6 whitespace-nowrap">
         {platforms.concat(platforms).map((p) => (
           <div class={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border shadow-xs bg-white ${p.color}`}>
-            <span>{p.icon}</span>
+            <Icon name={p.icon} class="w-4 h-4" />
             <span>{p.name}</span>
           </div>
         ))}
@@ -302,7 +300,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 3: Tutorials Cards Grid (Elevated Cards with Color Accents) -->
+  <!-- Section 3: Tutorials Cards Grid with Vector SVG Icons -->
   <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
       <div class="inline-block text-xs font-black uppercase tracking-widest text-[#6D28D9] px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/90 shadow-xs">
@@ -328,7 +326,7 @@ const faqs = [
           <div class="space-y-5">
             <div class="flex items-center justify-between">
               <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg shadow-slate-200`}>
-                {card.icon}
+                <Icon name={card.icon} class="w-7 h-7" />
               </div>
               <span class={`text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${card.tagColor}`}>
                 {card.tag}
@@ -361,9 +359,8 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 4: High-Contrast Midnight Navy Compare Section (Breaks monotony, brings premium drama) -->
+  <!-- Section 4: High-Contrast Midnight Navy Compare Section -->
   <section class="py-24 bg-[#0B0F19] text-white relative overflow-hidden border-y border-slate-800">
-    <!-- Ambient Blue & Purple Glow behind dark container -->
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -412,7 +409,10 @@ const faqs = [
               </div>
               <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs leading-relaxed">
                 <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
-                  <span class="text-emerald-400 font-bold block mb-1">✓ Wix 核心优势：</span>
+                  <span class="text-emerald-400 font-bold mb-1 flex items-center gap-1.5">
+                    <Icon name="check" class="w-3.5 h-3.5" />
+                    <span>Wix 核心优势：</span>
+                  </span>
                   {item.wixAdv}
                 </div>
                 <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300">
@@ -427,7 +427,7 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Section 5: Wix Partner Legend Certification Authority (Signature Showstopper Card) -->
+  <!-- Section 5: Wix Partner Legend Certification Authority -->
   <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="rounded-3xl p-8 sm:p-14 border border-purple-200/90 bg-gradient-to-br from-purple-100/60 via-white to-blue-100/50 relative overflow-hidden shadow-2xl shadow-purple-500/10">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
