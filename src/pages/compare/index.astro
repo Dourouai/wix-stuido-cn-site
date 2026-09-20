@@ -4,11 +4,9 @@ import HeroListing from '../../components/HeroListing.astro';
 import Icon from '../../components/Icon.astro';
 
 interface PlatformEvaluation {
-  stars: number;
   score: string;
   tag: string;
-  title: string;
-  desc: string;
+  text: string;
 }
 
 interface DimensionRow {
@@ -26,234 +24,174 @@ const dimensionMatrix: DimensionRow[] = [
     dimension: '视觉排版与流体响应式',
     advantage: '极致视觉与高效交付兼备',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '行业标杆',
-      title: '独创等比流体引擎',
-      desc: '按比例流体缩放，9点智能停靠与无代码 CSS Grid。',
+      text: '等比流体缩放，免代码自由像素排版',
     },
     shopify: {
-      stars: 3,
       score: '3.0',
       tag: '模板骨架',
-      title: '固定 Section 框架',
-      desc: '布局受限于固定模块，深度定制需直接写代码。',
+      text: '固定条状框架，深度排版需手写代码',
     },
     wordpress: {
-      stars: 3,
       score: '3.0',
       tag: '外挂依赖',
-      title: '依赖 Elementor / Divi',
-      desc: '多层 DOM 嵌套，跨端易发生错位与代码冲突。',
+      text: '依赖 Elementor 等插件，易错位冲突',
     },
     webflow: {
-      stars: 4,
       score: '4.0',
       tag: '手写代码',
-      title: '标准 CSS 盒模型',
-      desc: '还原度高但需逐个断点配置 Class，工时高出 50%+。',
+      text: '严格 CSS 盒模型，各端需手写 Class',
     },
     squarespace: {
-      stars: 3,
       score: '3.0',
       tag: '固定栅格',
-      title: '标准化模块栅格',
-      desc: '内容受限行列，无法实现自由错位与深度微动效。',
+      text: '固定行列栅格，无法自由错位交叠',
     },
   },
   {
     dimension: '商业生态闭环与平台抽成',
     advantage: '0% 额外抽成，全套原生闭环',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '0% 抽成',
-      title: '原生全套商业系统',
-      desc: '0% 平台交易抽佣；开箱即用商城、预约、会员与 CMS。',
+      text: '0% 平台抽佣，原生全套应用闭环',
     },
     shopify: {
-      stars: 4,
       score: '4.0',
       tag: '含抽成',
-      title: '成熟电商但含抽佣',
-      desc: '外部支付加收 0.5%~2% 抽成，多项功能需购月租 App。',
+      text: '加收 0.5%~2% 交易费，依赖月租 App',
     },
     wordpress: {
-      stars: 3,
       score: '3.0',
       tag: '拼装繁重',
-      title: '拼装 WooCommerce',
-      desc: '核心开源，但需采购大量商业插件年费授权。',
+      text: '核心开源，但商业插件年费高昂',
     },
     webflow: {
-      stars: 2,
       score: '2.0',
       tag: '依赖外部',
-      title: '依赖 Zapier 拼装',
-      desc: '自带电商基础，复杂结算与会员需外接第三方工具。',
+      text: '自带电商基础，复杂结算需外接工具',
     },
     squarespace: {
-      stars: 3,
       score: '3.0',
       tag: '含3%佣金',
-      title: '基础电商含 3% 佣金',
-      desc: '基础套餐加收 3% 佣金，支付与币种在非美地区受限。',
+      text: '加收 3% 平台佣金，多币种支持有限',
     },
   },
   {
     dimension: '免运维与企业级安全合规',
     advantage: '金融级安全认证，99.99% 高可用',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '顶级安全',
-      title: 'SOC 2 / PCI-DSS L1',
-      desc: '全球多云架构，金融级认证，全天候静默热补丁。',
+      text: 'SOC 2 / PCI-DSS L1 全托管免维护',
     },
     shopify: {
-      stars: 5,
       score: '5.0',
       tag: '企业云端',
-      title: '全托管 SaaS 云端',
-      desc: '官方统一安全防护，抗高并发大促稳定性强。',
+      text: '全托管 SaaS 云端，高并发大促保障',
     },
     wordpress: {
-      stars: 2,
       score: '2.0',
       tag: '高危漏洞',
-      title: '自建主机安全风险高',
-      desc: '需自配主机环境，全球多数挂马源于插件漏洞。',
+      text: '自建主机安全风险高，插件漏洞易被黑',
     },
     webflow: {
-      stars: 4,
       score: '4.0',
       tag: '稳定云端',
-      title: 'AWS 全托管云端',
-      desc: '免日常服务器维护，运行稳定性表现优异。',
+      text: 'AWS 云端托管，免服务器日常运维',
     },
     squarespace: {
-      stars: 4,
       score: '4.0',
       tag: '免运维',
-      title: '闭环全托管 SaaS',
-      desc: '免日常服务器升级，满足中小企业常规展示。',
+      text: '闭环全托管 SaaS，免日常服务器升级',
     },
   },
   {
     dimension: '全栈代码扩展与定制深度',
     advantage: 'Velo 打通前后端，无技术天花板',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '全栈无界',
-      title: 'Velo 原生全栈 JS',
-      desc: '支持后端 Serverless 函数、机密密钥库与外接 API。',
+      text: 'Velo 全栈 JS，内置 Serverless 与 API',
     },
     shopify: {
-      stars: 4,
       score: '4.0',
       tag: '接口丰富',
-      title: 'Liquid + Storefront API',
-      desc: '接口丰富，但复杂后端逻辑通常需自行搭建服务。',
+      text: 'Liquid + 接口成熟，复杂后端需自建',
     },
     wordpress: {
-      stars: 4,
       score: '4.0',
       tag: '开源掌控',
-      title: 'PHP 源码完全可控',
-      desc: '自主权最高，但代码质量无统一规范，维护成本高。',
+      text: 'PHP 完全开源，但代码质量缺乏统一规范',
     },
     webflow: {
-      stars: 2,
       score: '2.0',
       tag: '仅限前台',
-      title: '仅支持前台代码嵌入',
-      desc: '仅支持注入前端片段，无原生后端与数据库逻辑。',
+      text: '仅限前端代码嵌入，无原生后端逻辑',
     },
     squarespace: {
-      stars: 1,
       score: '1.0',
       tag: '扩展受限',
-      title: '封闭生态扩展受限',
-      desc: '仅支持基础代码块注入，无后端扩展与数据库能力。',
+      text: '仅基础代码块注入，无后端扩展能力',
     },
   },
   {
     dimension: '出海多语言与全球 SEO 本地化',
     advantage: '原生多语言独立 Slug，双引擎秒级收录',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '原生出海',
-      title: '独立多语言 Slug + SSR',
-      desc: '自动生成多语 Sitemap，深度兼顾 Google 与百度收录。',
+      text: '独立多语 Slug，双引擎 SSR 秒级收录',
     },
     shopify: {
-      stars: 4,
       score: '4.0',
       tag: '多币种佳',
-      title: 'Shopify Markets 跨国结算',
-      desc: '国际货币换算成熟，但高级多语言需单独购 App。',
+      text: '多币种结算成熟，高级多语言需单独购 App',
     },
     wordpress: {
-      stars: 3,
       score: '3.0',
       tag: '插件繁琐',
-      title: '需依赖 WPML / Yoast',
-      desc: '配置重型多语言插件易产生冗余表并导致后台卡顿。',
+      text: '外挂多语言插件配置繁琐，易卡顿冗余',
     },
     webflow: {
-      stars: 3,
       score: '3.0',
       tag: '额外按月',
-      title: 'Localization 按月收费',
-      desc: '多语言需额外加价按月收费，长期支出较高。',
+      text: 'Localization 多语言功能高额按月加价',
     },
     squarespace: {
-      stars: 2,
       score: '2.0',
       tag: '较初级',
-      title: '多语言支持较初级',
-      desc: '通常需依赖第三方翻译插件，出海 SEO 灵活性较弱。',
+      text: '多语言支持较初级，出海灵活度不足',
     },
   },
   {
     dimension: '综合拥有成本 (TCO) 与交付周期',
     advantage: '交付提速 40%-50%，年省数万维护费',
     wix: {
-      stars: 5,
       score: '5.0',
       tag: '最高 ROI',
-      title: '透明订阅一价全包',
-      desc: '交付提速 40%~50%，免运维免采购外挂，年省数万。',
+      text: '一价全包订阅，交付提速 40%~50%，年省数万',
     },
     shopify: {
-      stars: 3,
       score: '3.0',
       tag: '隐形成本',
-      title: '套餐费 + 抽佣 + App月租',
-      desc: '大量月租 App 与外部支付扣点使实际支出远超预期。',
+      text: '套餐 + 抽成 + App 月租累加，隐形成本高',
     },
     wordpress: {
-      stars: 2,
       score: '2.0',
       tag: '沉没成本',
-      title: '主机 + 插件年费 + 运维',
-      desc: '表面免费，但排障、升级与安全维护成本极高。',
+      text: '主机 + 插件年费 + 持续人工运维排障',
     },
     webflow: {
-      stars: 3,
       score: '3.0',
       tag: '席位昂贵',
-      title: '团队席位费 + 站点套餐',
-      desc: '多成员协作席位费昂贵，综合持有成本偏高。',
+      text: '团队席位费贵 + 外接插件，持有成本偏高',
     },
     squarespace: {
-      stars: 4,
       score: '4.0',
       tag: '资费固定',
-      title: '资费透明但存在天花板',
-      desc: '适合小微展示站，业务拓展后缺乏平滑演进空间。',
+      text: '资费透明固定，但业务拓展后易遇天花板',
     },
   },
 ];
@@ -445,8 +383,7 @@ const comparisons = [
                           {row.wix.tag}
                         </span>
                       </div>
-                      <div class="font-bold text-gray-900 text-xs leading-snug">{row.wix.title}</div>
-                      <p class="text-[11px] text-gray-600 leading-normal">{row.wix.desc}</p>
+                      <div class="text-xs font-bold text-gray-900 leading-snug">{row.wix.text}</div>
                     </div>
                   </td>
 
@@ -462,8 +399,7 @@ const comparisons = [
                           {row.shopify.tag}
                         </span>
                       </div>
-                      <div class="font-bold text-gray-800 text-xs leading-snug">{row.shopify.title}</div>
-                      <p class="text-[11px] text-gray-500 leading-normal">{row.shopify.desc}</p>
+                      <div class="text-xs text-gray-700 leading-snug">{row.shopify.text}</div>
                     </div>
                   </td>
 
@@ -479,8 +415,7 @@ const comparisons = [
                           {row.wordpress.tag}
                         </span>
                       </div>
-                      <div class="font-bold text-gray-800 text-xs leading-snug">{row.wordpress.title}</div>
-                      <p class="text-[11px] text-gray-500 leading-normal">{row.wordpress.desc}</p>
+                      <div class="text-xs text-gray-700 leading-snug">{row.wordpress.text}</div>
                     </div>
                   </td>
 
@@ -496,8 +431,7 @@ const comparisons = [
                           {row.webflow.tag}
                         </span>
                       </div>
-                      <div class="font-bold text-gray-800 text-xs leading-snug">{row.webflow.title}</div>
-                      <p class="text-[11px] text-gray-500 leading-normal">{row.webflow.desc}</p>
+                      <div class="text-xs text-gray-700 leading-snug">{row.webflow.text}</div>
                     </div>
                   </td>
 
@@ -513,8 +447,7 @@ const comparisons = [
                           {row.squarespace.tag}
                         </span>
                       </div>
-                      <div class="font-bold text-gray-800 text-xs leading-snug">{row.squarespace.title}</div>
-                      <p class="text-[11px] text-gray-500 leading-normal">{row.squarespace.desc}</p>
+                      <div class="text-xs text-gray-700 leading-snug">{row.squarespace.text}</div>
                     </div>
                   </td>
                 </tr>
