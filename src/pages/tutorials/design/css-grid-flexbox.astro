@@ -3,19 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'grid-vs-flexbox', title: 'CSS Grid 与 Flexbox 在 Studio 中的分工' },
-  { id: 'grid-12-col', title: '12 列网格实战：跨列与跨行自由排版' },
-  { id: 'stack-auto-layout', title: 'Stack 堆叠容器：等同于 Figma Auto Layout' },
-  { id: 'repeaters', title: 'Repeater 重复列表：结构统一与动态赋能' },
-  { id: 'responsive-reorder', title: '移动端网格重排序（Order）与断点重组' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'grid-vs-flexbox', title: '1. CSS Grid 与 Flexbox 在 Studio 中的分工矩阵' },
+  { id: 'grid-12-col', title: '2. 12 列网格实战：跨列与跨行自由排版' },
+  { id: 'stack-auto-layout', title: '3. Stack 堆叠容器：等同于 Figma Auto Layout' },
+  { id: 'repeaters', title: '4. Repeater 重复列表：结构统一与动态 CMS 赋能' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：移动端错位与网格断裂急救' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: Setting Up CSS Grid on a Section',
+    desc: '官方关于在 Section 切分自定义网格行列、设置 fr 比例及跨单元格布局的权威指南。',
+    url: 'https://support.wix.com/en/article/wix-studio-setting-up-css-grid-on-a-section',
+  },
+  {
+    title: 'Wix Studio: Using Flexbox Layout Containers',
+    desc: '官方对 Flexbox 弹性布局容器与 Stack 自动流式排版的完整操作规程。',
+    url: 'https://support.wix.com/en/article/wix-studio-using-flexbox-layout-containers',
+  },
+  {
+    title: 'Wix Studio: Working with Repeaters',
+    desc: '如何使用 Repeater 搭建结构统一的动态列表，并与 CMS 集合及数据集无缝绑定。',
+    url: 'https://support.wix.com/en/article/wix-studio-working-with-repeaters',
+  },
 ];
 ---
 
 <ArticleLayout
   title="CSS Grid 与 Flexbox 在 Wix Studio 中的深度排版实战"
-  description="掌握 Wix Studio 现代布局核心。深度讲解 12 列网格系统、嵌套单元格、Stack 堆叠（Figma Auto Layout 对应概念）与 Repeater 重复列表响应式实战。"
-  keywords="Wix Studio CSS Grid, Wix Studio Flexbox, Wix Studio Stack, 网页排版, 响应式布局, 网站架构设计"
+  description="掌握 Wix Studio 现代布局核心。深度讲解 12 列网格系统、嵌套单元格、Stack 堆叠（Figma Auto Layout 对应概念）与 Repeater 重复列表响应式实战与官方 Support 参考。"
+  keywords="Wix Studio CSS Grid, Wix Studio Flexbox, Wix Studio Stack, 网页排版, 响应式布局, 网站架构设计, Wix Support"
   category="设计与流体排版"
   categorySlug="/tutorials/design/"
   readTime="12 分钟"
@@ -24,6 +44,10 @@ const toc = [
   prevArticle={{
     title: "Wix Studio 流体排版完全指南：彻底搞懂自定义断点与等比缩放机制",
     href: "/tutorials/design/fluid-engine/",
+  }}
+  nextArticle={{
+    title: "Wix Studio 元素停靠与边距完全指南：彻底掌握 Docking、Margins 与 Padding",
+    href: "/tutorials/design/docking-and-margins/",
   }}
   toc={toc}
 >
@@ -34,10 +58,10 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      如果你熟悉 Figma 的 Auto Layout，那么 Wix Studio 的 <strong>Stack（堆叠容器）</strong> 和 <strong>CSS Grid（网格）</strong> 会让你有如神助。
+      如果你熟悉 Figma 的 Auto Layout，那么 Wix Studio 的 <strong>Stack（堆叠容器）</strong> 和 <strong>CSS Grid（网格）</strong> 会让你如虎添翼。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      掌握两者的黄金协作原则：<strong>宏观骨架用 Grid（二维控制行与列），微观内容用 Stack（一维控制横向或纵向自动间距排列）</strong>。这种架构能彻底杜绝绝对定位导致的元素挤压和移动端错乱。
+      掌握两者的黄金协作原则：<strong>宏观骨架用 Grid（二维控制行与列），微观内容用 Stack（一维控制横向或纵向自动间距排列）</strong>。这种架构能彻底杜绝绝对定位导致的元素挤压重叠和移动端错乱。
     </p>
   </section>
 
@@ -45,13 +69,13 @@ const toc = [
   <section id="grid-vs-flexbox" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>1. CSS Grid 与 Flexbox 在 Studio 中的分工</span>
+      <span>1. CSS Grid 与 Flexbox 在 Studio 中的分工矩阵</span>
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
         <div class="text-sm font-bold text-violet-700 flex items-center gap-1.5">
           <Icon name="layout" class="w-4 h-4" />
-          <span>CSS Grid (网格容器)</span>
+          <span>CSS Grid (网格容器 - 二维布局)</span>
         </div>
         <p class="text-xs text-slate-600 leading-relaxed">
           适合构建页面宏观结构，如 Bento 卡片网格、12 列设计栅格、不规则图文交织混排。可以精准定义每一个单元格占据几行几列（fr 或 %）。
@@ -61,7 +85,7 @@ const toc = [
       <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
         <div class="text-sm font-bold text-blue-700 flex items-center gap-1.5">
           <Icon name="layers" class="w-4 h-4" />
-          <span>Stack (Flexbox 堆叠)</span>
+          <span>Stack (Flexbox 堆叠 - 一维流式)</span>
         </div>
         <p class="text-xs text-slate-600 leading-relaxed">
           适合构建局部微观内容，如：头像+标题+描述+按钮的垂直组合，或者标签组、导航链接的水平排列。自带统一的 Gap 间距设定。
@@ -77,12 +101,12 @@ const toc = [
       <span>2. 12 列网格实战：跨列与跨行自由排版</span>
     </h2>
     <p>
-      在任何 Section 选中后，点击右侧检查器的 <strong>Layout Grid</strong>，即可添加 12 默认列栅格。
+      在任何 Section 选中后，点击右侧检查器的 <strong>Layout -> Grid</strong>，即可添加 12 默认列栅格。
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
+    <ul class="space-y-2 pl-4 text-slate-700 text-xs sm:text-sm">
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>跨列拉伸（Span）：</strong> 按住元素右边缘拖动，直接跨越 6 列（占据屏幕 50% 宽）或 4 列（占据三分之一宽）；</span>
+        <span><strong>跨列拉伸（Span）：</strong> 按住元素右边缘手柄拖动，直接跨越 6 列（占据屏幕 50% 宽）或 4 列（占据三分之一宽）；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
@@ -90,12 +114,12 @@ const toc = [
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>列间距（Gutter）：</strong> 统一设置列与行之间的 Padding 与 Gap，避免手动测量像素偏差。</span>
+        <span><strong>列间距（Gutter/Gap）：</strong> 统一设置列与行之间的 Gap（如 24px 或 2vw），避免手动测量像素偏差。</span>
       </li>
     </ul>
   </section>
 
-  <!-- Section 3: Stack -->
+  <!-- Section 3: Stack Auto Layout -->
   <section id="stack-auto-layout" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
@@ -118,13 +142,95 @@ const toc = [
   <section id="repeaters" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>4. Repeater 重复列表：结构统一与动态赋能</span>
+      <span>4. Repeater 重复列表：结构统一与动态 CMS 赋能</span>
     </h2>
     <p>
       当需要展示服务项目、团队成员、博客卡片或产品特性时，<strong>切勿手动复制 4 个普通容器</strong>！应当使用 <strong>Repeater（重复项组件）</strong>：
     </p>
-    <p class="text-slate-600">
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
       在 Repeater 中，您只需设计第 1 个项（Item 1），其余各项会自动同步结构、字体与动画。后续连接 CMS 数据库或 Velo 代码时，Repeater 能自动根据数据行数无缝展开，极大地减少了重复劳动。
     </p>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：移动端错位与网格断裂急救</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：桌面端 4 列 Grid 继承到手机未拆行</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>现象：</strong> 4 张产品卡片在手机端被强行挤在 390px 宽度内，文字细成单列字。<strong>解法：</strong> 切换至 Mobile 断点，在 Grid 设置面板将列数由 4 改为 1（或 2），系统会自动按 1 列纵向垂直流动，不会影响桌面端。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：在 Stack 内部随意使用绝对定位</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>现象：</strong> 元素在 Stack 内部被拖拽脱离流式排列，导致文字变多时其他兄弟元素被遮挡。<strong>解法：</strong> Stack 内部的对齐应完全交由 Align items 与 Spacing 处理，严禁强行设定绝对坐标。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于网格布局与 Flexbox 容器的详细官方文档与进阶属性：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-violet-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-violet-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-violet-50 text-violet-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-violet-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：如何让 Repeater 中的所有卡片保持高度一致？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          选中 Repeater 后，在 Inspector 中将其每一项的 Item Height 设置为 <code>100%</code>，内部容器的高度行为同样设置为自适应拉伸，短文本卡片就会自动与最长文本卡片等高对齐。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：在移动端想调换图文左右顺序（左图右文变成上图下文），该怎么做？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          如果使用 Stack，切换为纵向后，可直接在图层面板中拖拽上下顺序；如果使用 Grid，在移动端断点下直接拖拽单元格即可自动触发 <code>order</code> 重排，完全不影响桌面端显示。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

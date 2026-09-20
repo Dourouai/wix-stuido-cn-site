@@ -3,28 +3,49 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'definition', title: '什么是 Wix Studio？' },
-  { id: 'differences', title: '与普通经典版 Wix 的 5 大核心差异' },
-  { id: 'fluid-engine', title: '核心黑科技：流体比例缩放引擎' },
-  { id: 'who-should-use', title: '哪些团队应该立即采用 Wix Studio？' },
-  { id: 'action-plan', title: '新手上手实操建议' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'definition', title: '1. 什么是 Wix Studio？核心架构与定位' },
+  { id: 'differences', title: '2. 与经典版 Wix 的 6 大代际差异对比' },
+  { id: 'fluid-engine', title: '3. 核心机制：等比流体缩放引擎 (Scale Proportionally)' },
+  { id: 'who-should-use', title: '4. 哪些出海团队应该立即采用？' },
+  { id: 'action-plan', title: '5. 保姆级新手起步四步实战指引' },
+  { id: 'pitfalls', title: '6. 常见认知误区与避坑指南' },
+  { id: 'official-references', title: '7. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '8. 高频常见问题解答 (FAQ)' },
 ];
 
 const compareTable = [
-  { feature: '定位客群', classic: '个人博主、小白商户、微型企业', studio: '专业网页设计师、建站工作室、技术代理商' },
-  { feature: '响应式引擎', classic: '仅支持电脑端与手机端双断点微调', studio: '全比例流体缩放 (Fluid) + 无限自定义屏幕断点' },
-  { feature: 'CSS 控制力', classic: '完全封闭，无法编写原生样式', studio: '支持 CSS Grid、Flexbox、全局变量与自定义 CSS 类' },
-  { feature: '代码与数据库', classic: '仅提供基础嵌入式 HTML 代码块', studio: '内置全栈 Velo IDE，支持前后端 JS 与 CMS 数据源' },
-  { feature: '团队权限隔离', classic: '仅基础管理员角色分享', studio: '画布级批注、细粒度客户文字权限隔离（防破坏排版）' },
-  { feature: 'Figma 联动', classic: '需人工逐个元素切图重建', studio: '官方 Figma 插件一键转换响应式网页结构' },
+  { feature: '目标客群', classic: '个人博主、小白商户、轻量微型展示', studio: '专业网页设计师、外贸出海企业、全栈技术代理商' },
+  { feature: '响应式引擎', classic: '仅支持桌面与移动双视口手动重排（容易拉伸错位）', studio: '等比流体缩放（Fluid Engine）+ 无限自定义屏幕断点' },
+  { feature: 'CSS 掌控力', classic: '完全封闭黑盒，无法编写或覆盖原生样式', studio: '支持 CSS Grid、Flexbox 弹性盒模型与原生自定义 CSS' },
+  { feature: '代码与数据库', classic: '仅提供基础嵌入式 HTML 代码块', studio: '内置完整 Velo IDE、无服务器服务端函数与 CMS 关系型数据库' },
+  { feature: '团队与客户模式', classic: '仅基础管理员角色分享，容易误删误改', studio: '画布级批注讨论、精细化客户内容锁（Client Mode 防破版）' },
+  { feature: 'Figma 联动工作流', classic: '需人工手动逐一切图重构', studio: '官方 Figma to Studio 插件一键转换无损响应式网页' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: About Wix Studio',
+    desc: 'Wix 官方对 Studio 核心平台架构、适用人群及生态演进的全面阐述。',
+    url: 'https://support.wix.com/en/article/wix-studio-about-wix-studio',
+  },
+  {
+    title: 'Wix Studio: Comparing the Studio Editor to the Wix Editor',
+    desc: '官方技术团队从排版引擎、断点管理到代码支持维度的代际差异对照表。',
+    url: 'https://support.wix.com/en/article/wix-studio-comparing-the-studio-editor-to-the-wix-editor',
+  },
+  {
+    title: 'Wix Studio: Responsive Behaviors Overview',
+    desc: '系统学习 Scale Proportionally、Fixed、Fluid 等核心响应式行为的官方指引。',
+    url: 'https://support.wix.com/en/article/wix-studio-responsive-behaviors',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio 是什么？与普通经典版 Wix 的核心区别全解析"
-  description="深度拆解什么是 Wix Studio。从流体响应式引擎、CSS底层支持、全栈 Velo 开发到团队权限隔离，全面对比普通经典版 Wix，助您做对技术选型。"
-  keywords="Wix Studio 是什么, Wix Studio 和 Wix 区别, Wix 经典版, Wix Studio 测评, 外贸建站选型"
+  description="深度拆解什么是 Wix Studio。从流体响应式引擎、CSS底层支持、全栈 Velo 开发到团队权限隔离，全面对比普通经典版 Wix，并附官方 Wix Support 原厂文档指引。"
+  keywords="Wix Studio 是什么, Wix Studio 和 Wix 区别, Wix 经典版, Wix Studio 测评, 外贸建站选型, Wix Support"
   category="新手入门实战"
   categorySlug="/tutorials/getting-started/"
   readTime="10 分钟"
@@ -37,60 +58,85 @@ const compareTable = [
   }}
 >
   <!-- 30s Executive Summary -->
-  <section id="summary" class="bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
-    <div class="flex items-center gap-2 text-[#6D28D9] text-xs font-bold uppercase tracking-wider">
+  <section id="summary" class="bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/50 p-6 sm:p-8 rounded-2xl border border-blue-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#116DFF] text-xs font-bold uppercase tracking-wider">
       <Icon name="sparkles" class="w-4 h-4" />
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      <strong class="text-slate-900 font-bold">一句话定义：</strong> Wix Studio 是 Wix 官方专为自由设计师、外贸出海企业与数字营销机构打造的<strong>新一代专业级网页设计与建站操作系统</strong>。
+      <strong class="text-slate-900 font-bold">一句话定义：</strong> Wix Studio 是 Wix 官方专为自由设计师、外贸出海企业与数字营销机构打造的<strong>新一代专业级 Web 创建操作系统</strong>。
     </p>
-    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      它彻底打破了传统“拖拽模板建站容易错位、样式死板”的刻板印象。引入了等比流体缩放引擎（Scale Proportionally）、现代 CSS 盒模型（Grid/Flexbox）、全栈 JavaScript 代码拓展（Velo）以及无缝 Figma 导入，让无代码的极速交付与手写代码的极致自由度完美合二为一。
-    </p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 text-xs">
+      <div class="p-3 bg-white rounded-xl border border-slate-200/70">
+        <span class="text-slate-400 block mb-1">预计掌握耗时</span>
+        <span class="font-bold text-slate-800">10 分钟研读</span>
+      </div>
+      <div class="p-3 bg-white rounded-xl border border-slate-200/70">
+        <span class="text-slate-400 block mb-1">技术要求</span>
+        <span class="font-bold text-slate-800">零代码基础</span>
+      </div>
+      <div class="p-3 bg-white rounded-xl border border-slate-200/70">
+        <span class="text-slate-400 block mb-1">核心突破</span>
+        <span class="font-bold text-[#116DFF]">等比流体缩放</span>
+      </div>
+      <div class="p-3 bg-white rounded-xl border border-slate-200/70">
+        <span class="text-slate-400 block mb-1">参考源头</span>
+        <span class="font-bold text-emerald-600">Wix Support 官方</span>
+      </div>
+    </div>
   </section>
 
   <!-- Section 1: Definition -->
   <section id="definition" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>1. 什么是 Wix Studio？</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>1. 什么是 Wix Studio？核心架构与定位</span>
     </h2>
     <p>
-      长久以来，外贸出海企业和设计师在建站工具的选择上常常陷入两难：
+      长久以来，中国出海制造企业、独立站品牌与设计师在建站工具的选择上常常陷入<strong>两难困境</strong>：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
-      <li class="flex items-start gap-2">
-        <Icon name="x" class="w-4 h-4 text-slate-400 shrink-0 mt-1" />
-        <span><strong>普通 SaaS 建站工具（如经典版 Wix、Squarespace）：</strong> 操作虽然傻瓜简单，但排版受限，一旦屏幕尺寸超出标准规格（例如超宽带鱼屏或小屏笔记本），页面元素极易错位拉伸，难以达到欧美一线品牌官网的高级感。</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="x" class="w-4 h-4 text-slate-400 shrink-0 mt-1" />
-        <span><strong>开源底层方案（如 WordPress）：</strong> 自由度虽高，但需要自建服务器、配置数据库、维护 PHP 版本，且第三方插件臃肿极易遭遇黑客挂马与白屏冲突，后续运维成本极高。</span>
-      </li>
-    </ul>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="flex items-center gap-2 text-slate-700 font-bold text-sm">
+          <Icon name="x" class="w-4 h-4 text-rose-500" />
+          <span>普通 SaaS 模板建站（如旧版 Wix / Shopify 模板）</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          虽然易于上手，但排版受限。一旦遇到超宽带鱼屏或小屏轻薄本，元素极其容易重叠拉伸或留下大块难看的空白，无法体现一线品牌的高级视觉。
+        </p>
+      </div>
+      <div class="p-5 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="flex items-center gap-2 text-slate-700 font-bold text-sm">
+          <Icon name="x" class="w-4 h-4 text-rose-500" />
+          <span>开源底层自建（如 WordPress + Elementor）</span>
+        </div>
+        <p class="text-xs text-slate-500 leading-relaxed">
+          虽然看似自由，但需要自建 Linux 服务器、配置 MySQL 与 PHP，且重度依赖第三方插件。安全挂马、版本冲突白屏的持续运维成本极其昂贵。
+        </p>
+      </div>
+    </div>
     <p>
-      <strong>Wix Studio</strong> 正是在此背景下应运而生。它保留了 Wix 原生全托管、高安全性、免服务器运维的云端 SaaS 优势，同时重构了整个排版渲染底层，赋予创作者像操作 Figma 一样自由的像素级控制权。
+      <strong>Wix Studio</strong> 诞生于 2023 年末并在 2026 年全面演进至 2.0。它完美结合了<strong>云端 SaaS 的免运维安全底层</strong>与<strong>专业设计工具（如 Figma / Webflow）的像素级自由度</strong>。
     </p>
   </section>
 
   <!-- Section 2: Comparison Table -->
   <section id="differences" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>2. 与普通经典版 Wix 的 5 大核心差异</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>2. 与普通经典版 Wix 的 6 大代际差异对比</span>
     </h2>
     <p>
-      很多初学者常问：“我已经在用普通 Wix 了，还有必要学习 Wix Studio 吗？”通过下表对比，您能迅速看清两者的代际差异：
+      初学者最常见的问题是：“我已经在用普通 Wix 了，还有必要转向 Wix Studio 吗？”下表为您提炼两者根本性的代际差异：
     </p>
 
     <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
       <table class="w-full text-left text-xs sm:text-sm">
         <thead class="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
           <tr>
-            <th class="p-4">对比维度</th>
-            <th class="p-4 text-slate-500">经典版 Wix (Classic Editor)</th>
-            <th class="p-4 text-[#6D28D9] bg-purple-50/50">专业版 Wix Studio</th>
+            <th class="p-4 w-1/4">对比维度</th>
+            <th class="p-4 text-slate-500 w-1/3">普通经典版 Wix (Classic Editor)</th>
+            <th class="p-4 text-[#116DFF] bg-blue-50/50 w-5/12">专业旗舰版 Wix Studio</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-100 text-slate-700">
@@ -98,7 +144,7 @@ const compareTable = [
             <tr class="hover:bg-slate-50/80 transition">
               <td class="p-4 font-semibold text-slate-900">{row.feature}</td>
               <td class="p-4 text-slate-500">{row.classic}</td>
-              <td class="p-4 font-semibold text-[#6D28D9] bg-purple-50/20">{row.studio}</td>
+              <td class="p-4 font-semibold text-[#116DFF] bg-blue-50/20">{row.studio}</td>
             </tr>
           ))}
         </tbody>
@@ -109,62 +155,75 @@ const compareTable = [
   <!-- Section 3: Fluid Responsive Engine -->
   <section id="fluid-engine" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>3. 核心黑科技：流体比例缩放引擎 (Scale Proportionally)</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>3. 核心机制：等比流体缩放引擎 (Scale Proportionally)</span>
     </h2>
     <p>
-      传统建站工具采用“固定像素（px）”排版，当屏幕变宽时，元素两侧会留出难看的巨大白边；屏幕变窄时，文字与图片挤压换行造成错位。
+      经典版拖拽工具依靠绝对像素（px）定死位置。当视窗变宽时，元素左右留下巨大空白；变窄时文字挤压折行。
     </p>
     <p>
-      Wix Studio 首创了<strong>等比流体缩放引擎（Scale Proportionally）</strong>。在默认情况下，只要您在设计基准宽度（如 1440px）下排好版面，引擎会自动将字体、内边距、间距与图形按照视窗宽度（vw）等比自适应缩放。
+      Wix Studio 的核心引擎基于<strong>等比流体缩放（Scale Proportionally）</strong>：
     </p>
-    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 text-xs sm:text-sm">
-      <div class="font-bold text-slate-900 flex items-center gap-1.5">
-        <Icon name="ruler" class="w-4 h-4 text-[#6D28D9]" />
-        <span>流体引擎带来的核心优势：</span>
+    <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 space-y-3 font-mono text-xs">
+      <div class="text-[#116DFF] font-bold flex items-center gap-2">
+        <Icon name="code" class="w-4 h-4" />
+        <span>// 流体等比数学公式原理</span>
       </div>
-      <ul class="space-y-1.5 text-slate-600 pl-4 list-disc">
-        <li><strong>超大屏幕完美沉浸：</strong> 无论客户使用的是 4K 巨幕还是 13 寸笔记本，设计层次感始终保持 1:1 完美比例。</li>
-        <li><strong>断点微调工作量减少 80%：</strong> 无需针对每个不同型号的手机电脑重写断点，系统自动平滑过渡。</li>
-        <li><strong>像素级精细控制：</strong> 允许单独对关键文字或按钮切换为“固定大小”或“按容器百分比”，收放自如。</li>
-      </ul>
+      <p class="text-slate-300 leading-relaxed">
+        实际像素 = (画布设计尺寸 / 基准断点宽度) * 当前视窗动态宽度(vw)<br />
+        系统自动配合 CSS <code>clamp(min, preferred_vw, max)</code> 锁定最小极值与最大保护值，防止大屏文字无限膨胀或移动端过小。
+      </p>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2 text-xs">
+      <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">大屏沉浸体验</strong>
+        <span class="text-slate-500">在 2K / 4K 宽屏显示器上，画面等比延展，无突兀两边大留白。</span>
+      </div>
+      <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">断点工作量减半</strong>
+        <span class="text-slate-500">不再需要为每个笔记本单独调断点，流体引擎平滑自适应。</span>
+      </div>
+      <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">局部精细控制</strong>
+        <span class="text-slate-500">文字、卡片、按钮可混合指定为“固定大小”、“流体”或“按百分比”。</span>
+      </div>
     </div>
   </section>
 
   <!-- Section 4: Who should use it -->
   <section id="who-should-use" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>4. 哪些团队应该立即采用 Wix Studio？</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>4. 哪些出海团队应该立即采用？</span>
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
       <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
-        <div class="w-9 h-9 rounded-xl bg-purple-50 text-[#6D28D9] flex items-center justify-center">
-          <Icon name="building" class="w-5 h-5" />
+        <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#116DFF] flex items-center justify-center">
+          <Icon name="globe" class="w-5 h-5" />
         </div>
-        <h3 class="font-bold text-slate-900 text-sm">外贸出海与 B2B 品牌企业</h3>
+        <h3 class="font-bold text-slate-900 text-sm">外贸 B2B 制造与跨境品牌</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
-          急需告别传统粗糙模板站，打造媲美欧美头部同行的国际化独立站，且后续无需专职程序员维护。
+          需要通过高端验厂官网树立国际买家信任，展示多语言本地化（/de/、/es/）且后续由运营人员直接维护。
         </p>
       </div>
 
       <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
-        <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+        <div class="w-9 h-9 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center">
           <Icon name="palette" class="w-5 h-5" />
         </div>
-        <h3 class="font-bold text-slate-900 text-sm">自由网页设计师与工作室</h3>
+        <h3 class="font-bold text-slate-900 text-sm">独立设计师与建站工作室</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
-          希望摆脱低价竞争，承接 5K-30K 级别的品牌定制网站，实现从 Figma 设计稿到全功能网页的快速交付。
+          承接高客单价品牌定制网站，利用 Figma 插件一键转换响应式排版，大幅压缩交付工时并提供客户锁权限。
         </p>
       </div>
 
       <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2">
-        <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
           <Icon name="code" class="w-5 h-5" />
         </div>
-        <h3 class="font-bold text-slate-900 text-sm">前端开发与技术团队</h3>
+        <h3 class="font-bold text-slate-900 text-sm">全栈前端与低代码工程师</h3>
         <p class="text-xs text-slate-500 leading-relaxed">
-          利用 Velo 编写自定义交互与接入复杂 CRM 数据库，大幅压缩底层重复造轮子的开发时间。
+          厌烦重复编写响应式 CSS 盒模型，希望利用 Velo JS 专注于商业逻辑、支付 Webhook 与关系型 CMS 数据打通。
         </p>
       </div>
     </div>
@@ -173,16 +232,120 @@ const compareTable = [
   <!-- Section 5: Action Plan -->
   <section id="action-plan" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>5. 新手上手实操建议</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>5. 保姆级新手起步四步实战指引</span>
     </h2>
-    <p>
-      如果您是第一次接触 Wix Studio，我们建议您按照以下路径循序渐进学习：
+    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex gap-3.5 items-start">
+        <span class="w-6 h-6 rounded-full bg-[#116DFF] text-white flex items-center justify-center text-xs font-bold shrink-0">1</span>
+        <div>
+          <strong class="text-slate-900 block mb-0.5">注册账号并初始化团队工作空间 (Workspace)</strong>
+          <span class="text-slate-500">登录 wix.com/studio 注册，建立您的机构 Workspace 并设置默认品牌色彩。</span>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex gap-3.5 items-start">
+        <span class="w-6 h-6 rounded-full bg-[#116DFF] text-white flex items-center justify-center text-xs font-bold shrink-0">2</span>
+        <div>
+          <strong class="text-slate-900 block mb-0.5">通过官方精选模板学习图层架构</strong>
+          <span class="text-slate-500">不要急于在空白画布直接拖入元素。先挑选一套优秀的官方行业模板，点击检查器拆解它的 Section 与 CSS Grid 结构。</span>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex gap-3.5 items-start">
+        <span class="w-6 h-6 rounded-full bg-[#116DFF] text-white flex items-center justify-center text-xs font-bold shrink-0">3</span>
+        <div>
+          <strong class="text-slate-900 block mb-0.5">动手搭建第一个全屏 Hero 横幅</strong>
+          <span class="text-slate-500">放入大标题、副文本与 CTA 按钮，拉动顶部的断点滑块，直观感受等比流体缩放的神奇效果。</span>
+        </div>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex gap-3.5 items-start">
+        <span class="w-6 h-6 rounded-full bg-[#116DFF] text-white flex items-center justify-center text-xs font-bold shrink-0">4</span>
+        <div>
+          <strong class="text-slate-900 block mb-0.5">完成域名解析与上线发布测试</strong>
+          <span class="text-slate-500">跟随本专栏后续章节完成企业独立域名绑定，享受全自动全球 CDN 加速与免费 SSL。</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>6. 常见认知误区与避坑指南</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>误区 1：把 Wix Studio 当作经典版拖拽使用，忽略图层包裹</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          在 Studio 中，绝对不能将孤立文字或按钮随意扔在画布空白处。应始终遵循“Section -> Container / Grid Cell -> Element”的标准现代盒模型嵌套，否则响应式拉伸时缺乏参照父级。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>误区 2：在移动端断点随意删除桌面端元素</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          如果您在手机端断点直接按 Delete 键删除某个元素，桌面端也会被同步删除！正确的做法是在左侧图层面板中将该元素设置为“在当前断点隐藏 (Hide on this breakpoint)”。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>7. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      本篇实战内容严格对齐 Wix 原厂官方技术文档。如需深入研读英文原版规格说明，推荐查阅以下 Wix Help Center 官方链接：
     </p>
-    <ol class="space-y-3 pl-4 text-xs sm:text-sm text-slate-700 list-decimal">
-      <li><strong>注册账号并探索官方 Workspace：</strong> 了解团队角色与项目管理，先不要急着拉元素（下一篇我们将详细讲解）。</li>
-      <li><strong>从官方优秀预设模板拆解开始：</strong> 在 Studio 模板库中选择一套商业模板，观察它的断点划分与图层容器嵌套。</li>
-      <li><strong>实践搭建一个单页 Hero 区域：</strong> 自己动手放置标题、背景图与行动按钮，尝试拉动屏幕宽度体验流体缩放。</li>
-    </ol>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-[#116DFF] hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-[#116DFF] flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-[#116DFF]">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-[#116DFF] shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 8: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>8. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：我已经用经典版 Wix 做了网站，可以直接一键升级到 Studio 吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          官方支持将普通 Wix 网站升级进入 Studio 模式，但由于底层排版引擎完全不同，升级后建议重新检查每个断点的容器嵌套与停靠关系。商业数据（订单、会员、CMS）完全不受影响，平滑保留。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：学习 Wix Studio 需要熟练手写 CSS 代码吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          不需要！Wix Studio 将现代 CSS 盒模型（Grid、Flexbox、Docking）全部转化为直观可视化的参数旋钮与滑块。理解盒模型逻辑即可做出顶尖设计，当然如果您懂 CSS，还可以解锁更自由的自定义类。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

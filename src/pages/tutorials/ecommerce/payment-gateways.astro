@@ -3,18 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'zero-commission', title: '0% 平台抽成：Wix 与 Shopify 费率对比' },
-  { id: 'paypal-integration', title: 'PayPal 跨境商家账户绑定与即时到账' },
-  { id: 'stripe-integration', title: 'Stripe 国际信用卡网关接入（Apple Pay/Google Pay）' },
-  { id: 'dispute-security', title: '防拒付与跨境欺诈拦截机制' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'zero-commission', title: '1. 0% 平台抽成：Wix 与 Shopify 费率透明对比' },
+  { id: 'paypal-integration', title: '2. PayPal 跨境商业账户绑定与即时清算' },
+  { id: 'stripe-integration', title: '3. Stripe 国际信用卡与 Apple Pay / Google Pay' },
+  { id: 'local-payments', title: '4. 欧美先买后付（BNPL Klarna）与本地钱包集成' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：海外恶意拒付（Dispute）与风控拦截' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Stores: Setting Up Payment Methods',
+    desc: '官方关于在 Wix 中开通与配置多种在线收款网关（PayPal, Stripe, Point of Sale）的完整指引。',
+    url: 'https://support.wix.com/en/article/wix-stores-setting-up-payment-methods',
+  },
+  {
+    title: 'Wix: Connecting Stripe as a Payment Provider',
+    desc: '如何合规授权并关联企业 Stripe 账户，开启信用卡快捷支付及多币种结算通道。',
+    url: 'https://support.wix.com/en/article/connecting-stripe-as-a-payment-provider',
+  },
+  {
+    title: 'Wix: Managing Chargebacks and Disputes',
+    desc: '处理国际买家拒付纠纷的官方操作指南，如何提交发货证据与配合银行风控申诉。',
+    url: 'https://support.wix.com/en/article/wix-payments-managing-chargebacks-and-retrieval-requests',
+  },
 ];
 ---
 
 <ArticleLayout
   title="出海金流避坑指南：Wix 接入 PayPal、Stripe 与多国本地支付全解析"
-  description="Wix Studio 跨境出海金流网关实战配置指南。深入 PayPal、Stripe 账户合规接入、开启 Apple Pay / Google Pay、0% Wix 抽成费率以及海外拒付风控策略。"
-  keywords="Wix 支付网关, PayPal 接入, Stripe 接入, 跨境支付, 信用卡结算, 独立站出海"
+  description="Wix Studio 跨境出海金流网关实战配置指南。深入 PayPal、Stripe 账户合规接入、开启 Apple Pay / Google Pay、0% Wix 抽成费率以及海外拒付风控策略与官方 Support 参考。"
+  keywords="Wix 支付网关, PayPal 接入, Stripe 接入, 跨境支付, 信用卡结算, 独立站出海, Wix Support"
   category="外贸独立站与商城"
   categorySlug="/tutorials/ecommerce/"
   readTime="14 分钟"
@@ -33,10 +54,10 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      搞定国际金流是在线出海出单的最后一步，也是技术最容易踩坑的环节。
+      搞定国际合规金流是在线跨境出海转化的关键临门一脚，也是最容易产生资金冻结或被拒付的环节。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      Wix 原生无缝集成 <strong>PayPal Checkout 与 Stripe</strong>，买家无需跳转离开网站即可在当前弹窗内通过信用卡、Apple Pay 或 Google Pay 一键极速完成付款。并且，<strong>Wix 绝不抽取任何每笔交易附加费</strong>，企业只需承担支付机构的基础费率。
+      Wix 原生无缝集成 <strong>PayPal Checkout 与 Stripe</strong>，买家无需跳出离开网站即可在弹窗内通过国际信用卡、Apple Pay 或 Google Pay 一键极速完成付款。并且，<strong>Wix 官方收取 0% 交易佣金</strong>，企业仅需承担银行和支付通道的基础结算费率。
     </p>
   </section>
 
@@ -44,18 +65,20 @@ const toc = [
   <section id="zero-commission" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>1. 0% 平台抽成：Wix 与 Shopify 费率对比</span>
+      <span>1. 0% 平台抽成：Wix 与 Shopify 费率透明对比</span>
     </h2>
-    <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-3">
-      <p class="text-xs text-slate-600 leading-relaxed">
-        在 Shopify 上，如果你没有使用其自有受限的 Shopify Payments，每笔订单都会被平台强制抽水 0.5% ~ 2.0% 的交易费。而在 Wix Studio：
+    <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-3 text-xs sm:text-sm">
+      <p class="text-slate-600 leading-relaxed">
+        在 Shopify 体系下，如果商家没有使用其受限的自有 Shopify Payments（如中国大陆主体商家无法开通），每笔订单都会被平台强制加收 0.5% ~ 2.0% 的额外“交易手续费”。而在 Wix Studio：
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-100 text-xs text-emerald-800 font-bold">
-          ✓ Wix 官方平台抽成：0.0% (零抽成)
+        <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold flex items-center gap-2">
+          <Icon name="check" class="w-4 h-4 text-emerald-600" />
+          <span>Wix 官方平台抽成：0.0% (零额外抽佣)</span>
         </div>
-        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
-          第三方网关结算费：按 PayPal/Stripe 官方公开标准支付
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 flex items-center gap-2">
+          <Icon name="credit-card" class="w-4 h-4 text-slate-500" />
+          <span>支付网关费率：按 PayPal / Stripe 官方公开标准</span>
         </div>
       </div>
     </div>
@@ -65,19 +88,19 @@ const toc = [
   <section id="paypal-integration" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>2. PayPal 跨境商家账户绑定与即时到账</span>
+      <span>2. PayPal 跨境商业账户绑定与即时清算</span>
     </h2>
     <p>
       在 <strong>Settings -&gt; Accept Payments</strong> 中找到 PayPal，点击 Connect：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
+    <ul class="space-y-2 pl-4 text-slate-700 text-xs sm:text-sm">
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span>系统会自动跳转至 PayPal 授权弹窗，登录具有企业资质的 PayPal 商业账户即可完成 API 秘钥双向对齐；</span>
+        <span><strong>快捷 OAuth 授权：</strong> 系统会自动跳转至 PayPal 授权弹窗，登录具有企业资质的 PayPal 商业账户即可完成 API 密钥双向绑定；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span>支持买家使用借记卡/信用卡（Pay with Debit or Credit Card）直接付款，即便买家没有注册 PayPal 账号也能顺利结算。</span>
+        <span><strong>免注册卡支付：</strong> 原生支持买家使用“Pay with Debit or Credit Card”直接付款，买家无须提前注册 PayPal 账号也能流畅结算。</span>
       </li>
     </ul>
   </section>
@@ -86,13 +109,118 @@ const toc = [
   <section id="stripe-integration" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>3. Stripe 国际信用卡网关接入（Apple Pay/Google Pay）</span>
+      <span>3. Stripe 国际信用卡与 Apple Pay / Google Pay</span>
     </h2>
     <p>
-      Stripe 是欧美接受度最高的信用卡网关，支持 Visa、MasterCard、Amex 等全部主流卡种：
+      Stripe 是欧美乃至全球认知度最高、欺诈拦截能力最强的一站式信用卡网关，全面支持 Visa、MasterCard、American Express、JCB 等主流卡组织：
     </p>
-    <p class="text-slate-600">
-      在 Wix 中接入 Stripe 后，移动端用户可以直接使用 <strong>Apple Pay（指纹或面容一键付款）</strong>，极大地缩短了繁琐的卡号输入步骤，直接将移动端出海转化率提升至极致。
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700">
+      <p>
+        <strong>移动端原生效能爆发：</strong> 在 Wix 中接入 Stripe 后，iPhone 和 Safari 访客将自动点亮 <strong>Apple Pay（面容或指纹一秒扣款）</strong>，Android 访客点亮 <strong>Google Pay</strong>，大幅省去买家掏出物理卡片输入 16 位卡号与 CVV 码的繁琐步骤。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: Local Payments -->
+  <section id="local-payments" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
+      <span>4. 欧美先买后付（BNPL Klarna）与本地钱包集成</span>
+    </h2>
+    <p>
+      在德国、荷兰或北欧市场，买家更青睐本地专有银行支付协议：
     </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900">Klarna / Afterpay (先买后付)</strong>
+        <p class="text-slate-600 text-xs">允许高客单价买家分 3-4 期免息还款，商家在发货后全额收到货款，有效刺激大件消费。</p>
+      </div>
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900">iDEAL (荷兰) &amp; Sofort (欧洲)</strong>
+        <p class="text-slate-600 text-xs">通过 Stripe 开启欧洲本地银行直连，无需信用卡直接借记账户，欧洲本土渗透率极高。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：海外恶意拒付（Dispute）与风控拦截</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：未及时上传国际物流追踪号触发买家拒付</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          PayPal 和信用卡发卡行极其重视履约时效。商家发货后必须第一时间在 Wix 订单后台录入 FedEx / DHL 国际单号。Wix 会自动同步 Tracking Number 给 PayPal，一旦发生买家以“未收到货（Item Not Received）”发起撤单，系统将自动触发卖家保护协议。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：账单名称（Statement Descriptor）与域名不一致</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          很多商家在 Stripe 注册时用了国内注册公司拼音，导致买家在信用卡账单上看到陌生的扣款公司名，误以为被盗刷并直接向银行发起争议拒付。务必将 Stripe 账单扣款名称设置为网站域名或品牌名（如 <code>WIXSTUDIO-STORE</code>）。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于在线支付方式配置、Stripe 绑定及拒付争议申诉的官方指导：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-orange-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-orange-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-orange-50 text-orange-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-orange-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：中国大陆公司主体可以开通 Stripe 吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          目前 Stripe 尚未对中国大陆主体直接开放。国内跨境卖家通常通过注册中国香港公司（或美国公司 / 英国公司）以及离岸银行账户来开通合规 Stripe，或者直接使用广泛支持的 PayPal 企业账户和 PingPong / 连连国际收付款。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：支持线下电汇（Manual Payment / Wire Transfer）吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          完全支持！在 Accept Payments 中添加 <strong>Manual Payment</strong>，可自定义展示公司的开户行、SWIFT Code 和受益人信息，适合传统外贸大额 B2B 定单的 T/T 电汇支付模式。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

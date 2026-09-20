@@ -3,19 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'add-wix-stores', title: '为 Studio 站点添加原生 Wix Stores 模块' },
-  { id: 'product-catalog', title: '商品录入与多规格属性（变体 SKU）' },
-  { id: 'multi-currency', title: '多币种自动汇率切换与本地定价' },
-  { id: 'shipping-rules', title: '全球运费模板与海关关税（Tax & Duty）' },
-  { id: 'abandoned-cart', title: '挽回未支付客户：自动召回邮件设置' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'add-wix-stores', title: '1. 为 Studio 站点添加原生 Wix Stores 电商引擎' },
+  { id: 'product-catalog', title: '2. 商品录入与多规格属性（变体 SKU）管理' },
+  { id: 'multi-currency', title: '3. 多币种自动汇率切换与本地化定价' },
+  { id: 'shipping-tax', title: '4. 全球运费模板分区分派与海关税率配置' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：变体库存遗漏与弃单挽回配置' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Stores: Setting Up Your Store',
+    desc: '官方关于在 Wix Studio 中开通电商商城、商品上架及基础设置的标准实操步骤。',
+    url: 'https://support.wix.com/en/article/wix-stores-setting-up-your-store',
+  },
+  {
+    title: 'Wix Stores: Setting Up Multi-Currency',
+    desc: '如何开启多币种转换器（Multi-Currency Converter）并配置各币种汇率浮动保护。',
+    url: 'https://support.wix.com/en/article/wix-stores-setting-up-multi-currency',
+  },
+  {
+    title: 'Wix Stores: Setting Up Shipping and Delivery',
+    desc: '按国家/地区划分运费规则、重量计费阶梯与免运费门槛（Free Shipping）的官方说明。',
+    url: 'https://support.wix.com/en/article/wix-stores-setting-up-shipping-and-delivery',
+  },
 ];
 ---
 
 <ArticleLayout
   title="从零搭建 Wix Stores 外贸独立站：商品录入、多变体 SKU 与多币种结算"
-  description="Wix Stores 外贸独立商城搭建实战。详细拆解商品多变体配置、库存联动、多币种自适应汇率、全球运费规则与弃单挽回自动化全流程。"
-  keywords="Wix 商城搭建, 外贸独立站, 多变体商品, 多币种商城, 跨境电商独立站, Wix Stores 教程"
+  description="Wix Stores 外贸独立商城搭建实战。详细拆解商品多变体配置、库存联动、多币种自适应汇率、全球运费规则与弃单挽回自动化全流程与官方 Support 参考。"
+  keywords="Wix 商城搭建, 外贸独立站, 多变体商品, 多币种商城, 跨境电商独立站, Wix Stores 教程, Wix Support"
   category="外贸独立站与商城"
   categorySlug="/tutorials/ecommerce/"
   readTime="15 分钟"
@@ -34,10 +54,10 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      相比 Shopify 动辄每月基础订阅 + 2% 平台抽佣 + 各类昂贵付费 App 插件，<strong>Wix Studio 官方内置了强大的原生外贸电商引擎（Wix Stores）</strong>。
+      相比 Shopify 动辄每月固定订阅费 + 额外 2% 平台交易抽成 + 各类付费第三方插件累加，<strong>Wix Studio 官方原生内置了功能完整的出海电商引擎（Wix Stores）</strong>。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      它完全 <strong>0% 官方抽佣（除第三方支付网关正常结算费率外不额外抽水）</strong>，开箱即提供完整的商品管理、折扣码、弃单自动挽回流、多币种动态换算与订阅制循环扣款功能。
+      它完全 <strong>0% 平台抽佣（仅需承担第三方支付通道正常的清算手续费）</strong>，开箱即提供完整的商品多变体库存管理、优惠券系统、弃单自动挽回流、多币种动态换算与订阅制循环扣款功能。
     </p>
   </section>
 
@@ -45,18 +65,18 @@ const toc = [
   <section id="add-wix-stores" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>1. 为 Studio 站点添加原生 Wix Stores 模块</span>
+      <span>1. 为 Studio 站点添加原生 Wix Stores 电商引擎</span>
     </h2>
     <p>
       在左侧 App 市场中搜索 <strong>Wix Stores</strong> 并点击添加：
     </p>
     <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
-      <div class="text-xs font-bold text-slate-900">自动生成的电商完整页面：</div>
-      <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
-        <li><strong>Shop (商品目录总览页)：</strong> 包含分类侧边栏、价格滑块过滤与多条件排序；</li>
-        <li><strong>Product Page (商品详情页)：</strong> 多图轮播画廊、变体选择器、加购动效与富文本参数；</li>
-        <li><strong>Cart &amp; Mini-Cart (侧边迷你购物车与完整结算页)：</strong> 实时计算运费与优惠码；</li>
-        <li><strong>Thank You Page (支付成功确认页)：</strong> 订单编号、追踪状态与推荐商品。</li>
+      <div class="text-xs font-bold text-slate-900">系统自动生成的完整商城页面闭环：</div>
+      <ul class="text-xs text-slate-600 space-y-2 list-disc pl-4">
+        <li><strong>Shop (商品目录总览页)：</strong> 包含分类侧边栏、价格区间筛选滑块、多规格属性过滤与排序器；</li>
+        <li><strong>Product Page (商品详情页)：</strong> 多图/视频轮播画廊、变体色块选择器、数量增减、加购动效与富文本技术参数；</li>
+        <li><strong>Cart &amp; Mini-Cart (侧边迷你购物车与完整结算页)：</strong> 实时计算关税运费与优惠券抵扣；</li>
+        <li><strong>Thank You Page (支付成功确认页)：</strong> 展示订单编号、物流追踪指引与个性化推荐商品。</li>
       </ul>
     </div>
   </section>
@@ -65,23 +85,23 @@ const toc = [
   <section id="product-catalog" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>2. 商品录入与多规格属性（变体 SKU）</span>
+      <span>2. 商品录入与多规格属性（变体 SKU）管理</span>
     </h2>
     <p>
       在外贸场景中，同一款产品往往拥有不同的颜色、尺寸、材质或包装规格：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
+    <ul class="space-y-2 pl-4 text-slate-700 text-xs sm:text-sm">
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>独立 SKU 编号与独立库存跟踪：</strong> 针对 <code>Color: Black / Size: XL</code> 设置独立的库存预警，售罄时自动显示 Sold Out；</span>
+        <span><strong>独立 SKU 编号与独立库存跟踪：</strong> 针对 <code>Color: Space Gray / Storage: 256GB</code> 设置独立的库存预警，某个规格售罄时自动显示 Sold Out；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>变体差价（Price Difference）：</strong> 例如大容量包装自动在基础款价格上累加 $20；</span>
+        <span><strong>变体差价（Price Difference）：</strong> 例如大容量规格自动在基础款价格上累加 $30，切换时界面价格无刷新平滑更新；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>变体联动配图：</strong> 当访客点击“军绿色”色块时，主图自动平滑切换至军绿色实拍图。</span>
+        <span><strong>变体联动配图：</strong> 当买家点击“极光银”色块时，商品主图自动平滑切换至对应颜色的高清产品实拍。</span>
       </li>
     </ul>
   </section>
@@ -90,13 +110,121 @@ const toc = [
   <section id="multi-currency" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
-      <span>3. 多币种自动汇率切换与本地定价</span>
+      <span>3. 多币种自动汇率切换与本地化定价</span>
     </h2>
     <p>
       出海欧美或亚太不同地区，让买家使用熟悉的原生币种结算能将结账放弃率降低 30% 以上：
     </p>
-    <p class="text-slate-600">
-      在 <strong>Settings -&gt; Multi-Currency Converter</strong> 中开启多币种。系统会自动根据访客的 IP 地理位置，将基准美元定价（USD）实时换算为欧元（EUR）、英镑（GBP）、澳元（AUD）或日元（JPY）。
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700">
+      <p>
+        在 <strong>Settings -&gt; Multi-Currency Converter</strong> 中开启多币种。系统会自动根据买家来访的 IP 地理位置，将基准美元定价（USD）实时智能换算为欧元（EUR）、英镑（GBP）、澳元（AUD）或日元（JPY）。
+      </p>
+      <p>
+        <strong>人工汇率保护锁：</strong> 为避免外汇汇率剧烈波动，您可以将默认的“每日动态汇率”切换为“自定义固定锁定汇率”，保障产品毛利率不受国际外汇震荡侵蚀。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: Shipping & Tax -->
+  <section id="shipping-tax" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
+      <span>4. 全球运费模板分区分派与海关税率配置</span>
+    </h2>
+    <p>
+      在 <strong>Settings -&gt; Shipping &amp; Fulfillment</strong> 中，可划分多个国际发货区域：
     </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900">北美区域（US & CA）</strong>
+        <p class="text-slate-600 text-xs">配置“满 $99 免运费（Free Shipping Over $99）”，未满额收取 $9.9 统一平邮费，提高客单价。</p>
+      </div>
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900">欧洲与其它区域</strong>
+        <p class="text-slate-600 text-xs">配置按订单实际重量（Weight-based）阶梯计算运费，精准匹配 DHL / FedEx 国际快递成本。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：变体库存遗漏与弃单挽回配置</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：未开启“弃单自动挽回邮件（Abandoned Cart Recovery）”</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          全球跨境独立站平均有 68% 的买家在加购填完邮箱后因运费或支付跳转中途离开。在 <strong>Automations</strong> 中开启原生弃单挽回，系统会在 1 小时与 24 小时后全自动向买家发送带优惠券链接的跟进邮件，能挽回 15%~25% 的失单！
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：实物商品未填写重量导致运费计算失效</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          若运费模板设置了“按重量计费”，但商品库中部分 SKU 漏填了重量（Weight），结账时系统将无法计算出运费并报错“Cannot ship to this address”。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于商城设置、多币种与全球运费管理的官方知识库文档：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-orange-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-orange-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-orange-50 text-orange-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-orange-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：Wix Stores 支持销售虚拟数字商品（如电子书、设计源文件）吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          完全支持！新建商品时选择“Digital File”，买家在线支付成功后，系统会在 Thank You 页面直接提供专属安全下载链接，并自动向买家邮箱发送带有效期限制的下载链接。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：支持从 Shopify 或 WooCommerce 迁移商品数据吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          是的！进入 Products 管理后台点击 <code>More Actions -&gt; Import</code>，支持上传标准 CSV 商品表格，一键将历史商品标题、主图、价格、SKU 与库存无缝导入。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

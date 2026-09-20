@@ -3,18 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'vitals-metrics', title: '核心网页指标三大核心：LCP、INP、CLS' },
-  { id: 'lcp-acceleration', title: '攻克 LCP 最大内容绘制：首屏大图优化' },
-  { id: 'cls-stability', title: '消除 CLS 累计布局偏移：图片尺寸占位' },
-  { id: 'cdn-china', title: '国内加速与全球 CDN 多节点协同实测' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'vitals-metrics', title: '1. 核心网页指标三大核心：LCP、INP、CLS' },
+  { id: 'lcp-acceleration', title: '2. 攻克 LCP 最大内容绘制：首屏大图与视频优化' },
+  { id: 'cls-stability', title: '3. 消除 CLS 累计布局偏移：明确宽高占位' },
+  { id: 'inp-optimization', title: '4. 优化 INP 交互延迟：精简第三方追踪脚本' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：字体闪烁 FOUT 与无节制安装插件' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix SEO: About Core Web Vitals',
+    desc: '官方解读 Google 核心网页指标对搜索排名的影响及 Wix 平台层面的持续架构优化。',
+    url: 'https://support.wix.com/en/article/wix-seo-about-core-web-vitals',
+  },
+  {
+    title: 'Wix Performance: Optimizing Your Media and Layout',
+    desc: '如何优化网站媒体素材（图片、视频、矢量动效）与排版容器，消除性能瓶颈。',
+    url: 'https://support.wix.com/en/article/wix-performance-optimizing-your-media-and-layout',
+  },
+  {
+    title: 'Wix Performance: Understanding Your Site Speed Score',
+    desc: '解读 Wix 仪表盘内嵌的实时站点速度评分报告与针对性调优建议。',
+    url: 'https://support.wix.com/en/article/wix-performance-understanding-your-sites-speed-score',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio Core Web Vitals 核心指标全绿攻关：图片、字体与性能提速"
-  description="Wix Studio 性能优化终极指南。拆解 Google Lighthouse 90+ 高分秘诀，攻克 LCP、INP 与 CLS 指标，深度优化全球 CDN 与国内访问加载速度。"
-  keywords="Core Web Vitals, Wix 速度优化, LCP 优化, CLS 偏移, 网页性能测试, Google Lighthouse"
+  description="Wix Studio 性能优化终极指南。拆解 Google Lighthouse 90+ 高分秘诀，攻克 LCP、INP 与 CLS 指标，深度优化全球 CDN 与国内访问加载速度与官方 Support 参考。"
+  keywords="Core Web Vitals, Wix 速度优化, LCP 优化, CLS 偏移, INP, 网页性能测试, Google Lighthouse, Wix Support"
   category="SEO 优化与收录"
   categorySlug="/tutorials/seo/"
   readTime="12 分钟"
@@ -36,7 +57,7 @@ const toc = [
       Google 官方已明确将 <strong>Core Web Vitals（核心网页体验指标）</strong> 列为搜索排名的关键权重算法。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      Wix Studio 底层拥有全球多活云端基础设施，原生支持 WebP/AVIF 图片无损转码、CSS 关键路径提前渲染与 Brotli 高倍压缩。只要建站时不盲目堆砌第三方无用 JS 插件并规范首屏配图尺寸，在 Google PageSpeed Insights 跑出 <strong>95+ 甚至 100 满分</strong> 完全可以轻松达成。
+      Wix Studio 底层拥有全球多活云端基础设施与四级边缘缓存，原生支持 WebP/AVIF 图片无损转码、CSS 关键路径提前渲染与 Brotli 高倍压缩。只要建站时不盲目堆砌第三方第三方跟踪脚本并规范首屏素材尺寸，在 Google PageSpeed Insights 跑出 <strong>95+ 甚至 100 满分</strong> 完全可以轻松达成。
     </p>
   </section>
 
@@ -48,16 +69,25 @@ const toc = [
     </h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-emerald-700">LCP (&lt; 2.5s)</div>
-        <div class="text-xs text-slate-500">最大内容绘制。首屏最显眼的巨幅封面图或主标语渲染完成的耗时。</div>
+        <div class="text-xs font-bold text-emerald-700 flex items-center gap-1">
+          <Icon name="zap" class="w-3.5 h-3.5" />
+          <span>LCP (&lt; 2.5s 绿标)</span>
+        </div>
+        <div class="text-xs text-slate-500">最大内容绘制。首屏最显眼的巨幅封面图或主标语渲染完成的真实耗时。</div>
       </div>
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-blue-700">INP (&lt; 200ms)</div>
-        <div class="text-xs text-slate-500">交互到下一次绘制。取代旧的 FID，衡量点击按钮或菜单后的响应流畅度。</div>
+        <div class="text-xs font-bold text-blue-700 flex items-center gap-1">
+          <Icon name="activity" class="w-3.5 h-3.5" />
+          <span>INP (&lt; 200ms 绿标)</span>
+        </div>
+        <div class="text-xs text-slate-500">交互到下一次绘制。取代旧的 FID，衡量点击按钮或展开导航菜单后的响应流畅度。</div>
       </div>
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-purple-700">CLS (&lt; 0.1)</div>
-        <div class="text-xs text-slate-500">累计布局偏移。页面加载过程中文字或按钮突然跳动位移的程度。</div>
+        <div class="text-xs font-bold text-purple-700 flex items-center gap-1">
+          <Icon name="layers" class="w-3.5 h-3.5" />
+          <span>CLS (&lt; 0.1 绿标)</span>
+        </div>
+        <div class="text-xs text-slate-500">累计布局偏移。页面加载过程中文字或按钮突然出现剧烈跳动位移的程度。</div>
       </div>
     </div>
   </section>
@@ -66,20 +96,146 @@ const toc = [
   <section id="lcp-acceleration" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
-      <span>2. 攻克 LCP 最大内容绘制：首屏大图优化</span>
+      <span>2. 攻克 LCP 最大内容绘制：首屏大图与视频优化</span>
     </h2>
     <p>
-      90% 的 LCP 飘红都是由首屏一张数兆大小的未压缩 PNG 图片造成的。实操准则：
+      90% 的 LCP 飘红都是由首屏一张数兆大小的未压缩 PNG 图片造成的。实操调优准则：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
+    <ul class="space-y-2 pl-4 text-slate-700 text-xs sm:text-sm">
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>上传前控制原始体积：</strong> 无论上传多大尺寸，建议单张原始图体积控制在 500KB 以内（上传后 Wix 会自动压缩生成 WebP 并按终端视口智能分发最佳尺寸）；</span>
+        <span><strong>上传前压缩原始体积：</strong> 无论上传多大分辨率，建议单张原始图体积控制在 500KB 以内（上传后 Wix 会自动压缩生成 WebP 并按访客屏幕尺寸智能分发最佳分辨率）；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>首屏主图禁用延迟加载（Lazy Loading）：</strong> 首屏第一视口图应保证在 HTML 首批解析中优先发起下载。</span>
+        <span><strong>避免在 Hero 首屏使用背景自动播放超清视频：</strong> 如果必须使用视频，请压缩至 2MB 以内，并务必配置轻量占位静态封面海报图（Poster Image）；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>首屏主视觉避免过度重型进入动画：</strong> 复杂的延迟 1.5 秒淡入动效会人为拖慢 LCP 统计判定时间。</span>
       </li>
     </ul>
+  </section>
+
+  <!-- Section 3: CLS -->
+  <section id="cls-stability" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
+      <span>3. 消除 CLS 累计布局偏移：明确宽高占位</span>
+    </h2>
+    <p>
+      当图片或自定义嵌入组件加载完毕后，突然将下方的文字“往下挤压一下”，就会产生严重的 CLS 扣分：
+    </p>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700">
+      <p>
+        <strong>使用固定宽高比（Aspect Ratio）：</strong> 在 Wix Studio 中，将图片容器设置为指定宽高比（例如 16:9 或 4:3）。在图片本体下载完成之前，浏览器已提前预留好物理渲染占位空间，页面结构坚如磐石，绝不跳动。
+      </p>
+      <p>
+        <strong>动态 Banner 预留容器高度：</strong> 针对顶部通知栏或倒计时挂件，确保其外层父容器设置了明确的高度，避免异步载入后将全站导航栏强行下推。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 4: INP -->
+  <section id="inp-optimization" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
+      <span>4. 优化 INP 交互延迟：精简第三方追踪脚本</span>
+    </h2>
+    <p>
+      INP 考察的是用户点击页面后的事件主线程阻塞情况：
+    </p>
+    <div class="space-y-2 text-xs sm:text-sm text-slate-700">
+      <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+        <strong class="text-slate-900 font-bold">精简第三方客服聊天插件：</strong>
+        <span class="text-slate-600">类似 Crisp 或 Intercom 等第三方全天候浮动插件体积动辄超过 1MB，建议使用延迟加载（用户发生滚动后或等待 3 秒后再注入脚本）。</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+        <strong class="text-slate-900 font-bold">长任务拆解（Velo 优化）：</strong>
+        <span class="text-slate-600">在 Velo 中避免在 <code>$w.onReady</code> 里执行高复杂度的前端大规模同步循环计算，利用异步 <code>setTimeout</code> 或放入服务端 Web 模块执行。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：字体闪烁 FOUT 与无节制安装插件</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：上传过多未裁剪的自定义中英文字体包</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          一个未经压缩的中文字体包往往高达 15MB~30MB！访客打开网页时会发生长达数秒的“文字隐形（FOIT）”或“字体跳动闪烁（FOUT）”。<strong>解法：</strong> 优先使用 Wix 官方字库中经过云端子集化（Subsetting）裁剪的 Google Fonts（如 Noto Sans SC / Inter）。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：在 App Market 安装大量同质化工具</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          每安装一个外部 Wix App，页面就会多引入对应的 iframe 或外部 JS 包。对于简单的社交分享、弹窗通知，优先使用 Wix Studio 自带的原生交互与 Lightbox，杜绝脚本膨胀。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于性能监控指标、页面轻量化与速度评分优化的官方手册：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-amber-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-amber-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：为什么我自己在电脑上打开很快，Google PageSpeed 评分却不高？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          PageSpeed 测试采用的是模拟弱网（Moto G4 移动端慢速 4G 网络及限速 CPU）环境。若想在移动端拿到 90+ 高分，重点需要压缩首屏图片、消除首屏重度动效并减少阻塞渲染的外部统计代码。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：Wix Studio 会自动帮我把图片转成 WebP 格式吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          是的！即便您上传的是高质量 JPG 或 PNG，Wix 全球 CDN 边缘节点在分发给支持 WebP/AVIF 的现代浏览器时，都会自动实时无损转码分发，无需建站者手动安装任何图片压缩插件。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

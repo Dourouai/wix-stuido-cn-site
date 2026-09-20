@@ -3,19 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'myth-busting', title: '破解误区：Wix 真的对国内百度不友好吗？' },
-  { id: 'seo-panel', title: 'Wix Studio SEO 面板全局与单页配置实战' },
-  { id: 'baidu-verification', title: '百度站长平台（资源平台）验证与提交 3 步法' },
-  { id: 'google-search-console', title: 'Google Search Console 与国际 Sitemap 提交' },
-  { id: 'redirects-301', title: '老站迁移与 301 重定向防止权重流失' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'myth-busting', title: '1. 破解误区：Wix 真的对国内百度不友好吗？' },
+  { id: 'seo-panel', title: '2. Wix Studio SEO 面板全局与单页配置实战' },
+  { id: 'baidu-verification', title: '3. 百度站长平台验证与 Sitemap 提交 3 步法' },
+  { id: 'google-search-console', title: '4. Google Search Console 与国际多语言 hreflang' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：老站迁移与 301 重定向权重防流失' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix SEO: About the SEO Setup Checklist',
+    desc: '官方关于 SEO 设置清单、Google Search Console 一键集成验证与索引申请的标准流程。',
+    url: 'https://support.wix.com/en/article/wix-seo-about-the-seo-setup-checklist',
+  },
+  {
+    title: 'Wix Multilingual: SEO for Multilingual Sites',
+    desc: '多语言站点如何自动生成 hreflang 规范标签与子目录独立 sitemap 的官方说明。',
+    url: 'https://support.wix.com/en/article/wix-multilingual-seo-for-multilingual-sites',
+  },
+  {
+    title: 'Wix SEO: Submitting Your Sitemap to Search Engines',
+    desc: '如何获取并向百度、Google、Bing 等全球搜索引擎提交 sitemap.xml 索引文件。',
+    url: 'https://support.wix.com/en/article/seo-submitting-your-sitemap-to-search-engines',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio 百度 + Google 双引擎 SEO 实战优化指南（2026 最新版）"
-  description="Wix Studio 百度与谷歌双引擎搜索优化终极实操。破解国内收录误区、详解 Meta 标签配置、百度站长 DNS 验证、301 权重无损重定向全流程。"
-  keywords="Wix SEO, Wix 百度收录, 百度站长平台, Google Search Console, 301 重定向, 独立站排名"
+  description="Wix Studio 百度与谷歌双引擎搜索优化终极实操。破解国内收录误区、详解 Meta 标签配置、百度站长 DNS 验证、301 权重无损重定向全流程与官方 Support 参考。"
+  keywords="Wix SEO, Wix 百度收录, 百度站长平台, Google Search Console, 301 重定向, 独立站排名, Wix Support"
   category="SEO 优化与收录"
   categorySlug="/tutorials/seo/"
   readTime="15 分钟"
@@ -34,10 +54,10 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      网络上常有陈旧谣言称“Wix 是纯 JS 客户端渲染，对百度搜索收录极差”。<strong>这已经是 5 年前甚至更早的旧闻了！</strong>
+      网络上常有陈旧谣言称“Wix 是纯前端 JS 客户端渲染，对百度等国内搜索引擎收录极差”。<strong>这已经是数年前的过时信息！</strong>
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      现代 <strong>Wix Studio 默认搭载了智能 SSR 服务端预渲染引擎</strong>。当百度蜘蛛（Baiduspider）或 Googlebot 发起请求时，服务器直接返回 100% 完整的静态 HTML 文本与结构化 Schema 数据。只要掌握正确的 DNS 验证与站点提交技巧，国内收录完全畅通无阻。
+      现代 <strong>Wix Studio 原生搭载了智能 SSR 服务端预渲染引擎</strong>。当百度蜘蛛（Baiduspider）或 Googlebot 发起请求时，服务器直接返回 100% 完整的静态 HTML 文本与结构化 Schema 标记。只要掌握正确的 DNS 验证与站点地图提交技巧，国内外搜索引擎收录完全畅通无阻。
     </p>
   </section>
 
@@ -50,18 +70,18 @@ const toc = [
     <p>
       早期 Wix 曾采用单页 Hash 结构（<code>#!/page</code>），导致国内早期老式蜘蛛无法爬取。但在 Wix Studio 时代，架构发生了根本性变革：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
+    <ul class="space-y-2 pl-4 text-slate-700 text-xs sm:text-sm">
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>规范的标准 URL：</strong> 所有页面采用标准静态路径（例如 <code>/about</code>、<code>/services/design</code>），绝无多余参数；</span>
+        <span><strong>规范的标准 URL：</strong> 所有页面采用标准静态路径（例如 <code>/about</code>、<code>/services/custom-parts</code>），绝无冗余参数；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>服务端动态渲染（SSR）：</strong> 搜索引擎蜘蛛访问时直接获取纯文本，无须执行沉重的前端 JS 脚本；</span>
+        <span><strong>服务端动态预渲染（SSR）：</strong> 搜索引擎蜘蛛访问时直接获取纯文本，无须在客户端爬虫中执行重度 JavaScript；</span>
       </li>
       <li class="flex items-start gap-2">
         <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>自动生成动态 Sitemap：</strong> 每次发布新页面或更新博客，<code>sitemap.xml</code> 会在数秒内自动更新。</span>
+        <span><strong>自动生成动态 Sitemap：</strong> 每次发布新页面或更新博客，<code>sitemap.xml</code> 会在数秒内自动全量更新并带有精准 lastmod 变更时间戳。</span>
       </li>
     </ul>
   </section>
@@ -77,13 +97,13 @@ const toc = [
     </p>
     <div class="space-y-3">
       <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
-        <div class="text-xs font-bold text-slate-900">Title Tag 标题结构公式</div>
-        <div class="text-xs text-slate-500 font-mono">核心业务关键词 - 核心卖点或地区 | 品牌名称</div>
+        <div class="text-xs font-bold text-slate-900">Title Tag 标题结构黄金公式</div>
+        <div class="text-xs text-slate-500 font-mono">核心业务词 - 核心卖点或地区 | 品牌名称</div>
         <div class="text-xs text-slate-600">例如：工业自动化设备出海定制 - 德国TUV认证源头工厂 | 浩泰机械</div>
       </div>
       <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
         <div class="text-xs font-bold text-slate-900">Meta Description 描述撰写原则</div>
-        <div class="text-xs text-slate-600">字数严格控制在 75-80 个汉字（英文 155 个字符）以内。务必在前半句出现目标关键词，并包含清晰的行动号召（如“点击免费获取 2026 最新行业白皮书”）。</div>
+        <div class="text-xs text-slate-600">字数严格控制在 75-80 个汉字（英文 155 个字符）以内。务必在前半句自然包含目标关键词，并带有明确的行动号召（如“点击在线获取 2026 最新行业解决方案及报价单”）。</div>
       </div>
     </div>
   </section>
@@ -92,15 +112,116 @@ const toc = [
   <section id="baidu-verification" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
-      <span>3. 百度站长平台（资源平台）验证与提交 3 步法</span>
+      <span>3. 百度站长平台验证与 Sitemap 提交 3 步法</span>
     </h2>
     <p>
-      让百度快速信任并收录 Wix 网站的最高效步骤：
+      让百度快速信任并收录 Wix 独立站的最高效步骤：
     </p>
-    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs text-slate-700">
-      <div><strong>第一步：选择 CNAME/DNS 记录验证</strong>（避免使用 HTML 标签验证，DNS 验证最为权威且永不失效）；</div>
-      <div><strong>第二步：提交站点地图</strong>，在百度后台输入 <code>https://yourdomain.com/sitemap.xml</code>；</div>
-      <div><strong>第三步：开启普通收录 API 推送</strong>，新发布的页面可通过每日配额主动推送给百度接口。</div>
+    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs sm:text-sm text-slate-700">
+      <div><strong>第一步：选择 CNAME/DNS 记录验证：</strong> 登录百度搜索资源平台（ziyuan.baidu.com），添加网站并优先选择 DNS 验证（在阿里云/腾讯云添加一条 TXT 或 CNAME 记录），权限最为权威稳定且永不失效。</div>
+      <div><strong>第二步：提交站点地图：</strong> 在“普通收录 -&gt; sitemap”中填入 <code>https://yourdomain.com/sitemap.xml</code>，让百度蜘蛛定期抓取全站索引。</div>
+      <div><strong>第三步：抓取诊断测试：</strong> 使用百度的“抓取诊断”工具输入首页 URL，观察返回的 HTTP 状态码是否为 200，并确认页面 HTML 内容包含完整文字。</div>
+    </div>
+  </section>
+
+  <!-- Section 4: Google Search Console -->
+  <section id="google-search-console" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
+      <span>4. Google Search Console 与国际多语言 hreflang</span>
+    </h2>
+    <p>
+      面向欧美出海市场的独立站，Google Search Console 是最关键的搜索引擎管理后台：
+    </p>
+    <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700">
+      <p>
+        <strong>一键官方绑定：</strong> 在 Wix 仪表盘通过 <strong>SEO Setup Checklist</strong> 授权 Google 账号，Wix 会自动在 Google 建立 Property 验证并完成 Sitemap 自动提报。
+      </p>
+      <p>
+        <strong>国际化多语言 hreflang 原生支持：</strong> 如果您的站点开通了英语（en）、德语（de）、西班牙语（es），Wix Multilingual 会在每个页面的 <code>&lt;head&gt;</code> 自动注入 <code>rel="alternate" hreflang="x"</code> 标签，杜绝多语种重复内容惩罚。
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：老站迁移与 301 重定向权重防流失</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：老站迁移改版后产生大量 404 死链</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>后果：</strong> 从 WordPress 或旧网站迁移至 Wix Studio 时，旧 URL 权重全部清零。<strong>解法：</strong> 进入 Wix 后台 <strong>URL Redirect Manager</strong>，批量上传 CSV 规则，将旧路径（如 <code>/product.php?id=12</code>）永久 301 重定向到对应的新页面（如 <code>/products/item-12</code>），权重 100% 无损传递。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：忘记关闭“禁止搜索引擎收录”测试开关</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          在建站测试阶段，很多人会勾选“Hide this page from search results”。上线前务必逐页检查 Page SEO 设置，确保 <code>Let search engines index this page</code> 选项处于开启状态，避免页面被自动添加 <code>noindex</code> 标签。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于 Wix SEO 设置清单、Sitemap 提报与多语言搜索优化的官方知识库文档：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-amber-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-amber-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-50 text-amber-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-amber-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：Wix Studio 网站的 robots.txt 文件可以自定义编辑吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          可以！进入 <strong>SEO Tools -&gt; Robots.txt Editor</strong>，您可以直接查看并修改 robots.txt 内容，例如屏蔽敏感目录或指定特定爬虫的抓取频次。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：结构化数据（Structured Data / Schema.org）在 Wix 中如何添加？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          Wix 博客、电商产品和活动页原生自带标准 Schema 标记。对于自定义页面，在 Page Settings 的 <strong>Advanced SEO</strong> 中可直接粘贴自定义 JSON-LD 代码，让 Google 搜索结果展示富摘要卡片（Rich Snippets）。
+        </p>
+      </div>
     </div>
   </section>
 </ArticleLayout>

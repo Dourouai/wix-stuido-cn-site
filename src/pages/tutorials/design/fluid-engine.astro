@@ -3,23 +3,42 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'traditional-pain', title: '传统响应式断点的痛点' },
-  { id: 'scale-proportionally', title: 'Wix Studio 等比流体缩放 (Scale Proportionally)' },
-  { id: 'fluid-typography', title: '流体排版算法：CSS clamp() 深度图解' },
-  { id: 'breakpoints-management', title: '断点级联规则（Cascade）与继承机制' },
-  { id: 'docking-rules', title: '元素停靠（Docking）与对齐避坑实践' },
-  { id: 'checklist', title: '上线前多视口校验清单' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'traditional-pain', title: '1. 传统响应式断点的痛点与流体革命' },
+  { id: 'scale-proportionally', title: '2. 等比流体缩放 (Scale Proportionally) 运作机制' },
+  { id: 'fluid-typography', title: '3. 流体字号算法：CSS clamp() 深度图解与配置' },
+  { id: 'cascade-rules', title: '4. 断点级联规则（Cascade）与继承覆盖机制' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：断点崩坏与缩放失真急救' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: Responsive Behaviors Overview',
+    desc: '官方关于 Scale Proportionally, Fixed, Fluid, Hug 等多种响应式行为的权威定义与选用建议。',
+    url: 'https://support.wix.com/en/article/wix-studio-responsive-behaviors',
+  },
+  {
+    title: 'Wix Studio: Customizing Breakpoints',
+    desc: '如何新增超大屏（>1920px）或特殊小屏断点，并管理级联样式的官方规范。',
+    url: 'https://support.wix.com/en/article/wix-studio-customizing-breakpoints',
+  },
+  {
+    title: 'Wix Studio: Using Text Scale and Text Clamp',
+    desc: '如何在右侧 Inspector 面板精细化控制文本 Min/Max 极值与视口流体比例计算。',
+    url: 'https://support.wix.com/en/article/wix-studio-using-text-scale-and-clamp',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio 流体排版完全指南：彻底搞懂自定义断点与等比缩放机制"
-  description="深度拆解 Wix Studio 流体设计引擎。从比例缩放 Scale Proportionally 原理、流体字号 clamp() 设置、级联继承规则到 Docking 停靠避坑实操。"
-  keywords="Wix Studio 流体排版, Scale Proportionally, Wix Studio 断点, 流体引擎, clamp, 响应式网页设计"
+  description="深度拆解 Wix Studio 流体设计引擎。从比例缩放 Scale Proportionally 原理、流体字号 clamp() 设置、级联继承规则到断点避坑实操与官方 Support 权威参考。"
+  keywords="Wix Studio 流体排版, Scale Proportionally, Wix Studio 断点, 流体引擎, clamp, 响应式网页设计, Wix Support"
   category="设计与流体排版"
   categorySlug="/tutorials/design/"
-  readTime="15 分钟"
+  readTime="12 分钟"
   publishDate="2026-09-20"
   heroImage="/assets/images/blog-design-trends.jpg"
   toc={toc}
@@ -35,7 +54,7 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      在传统网页设计中，我们在 1920px 桌面端调好的排版，一旦在 1366px 笔记本或 2560px 2K 显示器上打开，往往会出现可怕的留白或文字折行。
+      在传统网页设计中，我们在 1920px 桌面端调好的排版，一旦在 1366px 笔记本或 2560px 2K 显示器上打开，往往会出现可怕的空洞或文字折行。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
       <strong>Wix Studio 的核心革命性创新在于“等比流体缩放（Scale Proportionally）”：</strong> 元素不再使用固定的 px 绝对像素，而是基于当前屏幕宽度动态按比例平滑伸缩。配合 CSS <code>clamp()</code> 限制极值，让网站在从 1000px 到 3840px 之间的任何尺寸下，都精准保持设计师在画布上的黄金比例。
@@ -46,43 +65,60 @@ const toc = [
   <section id="traditional-pain" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>1. 传统响应式断点的痛点</span>
+      <span>1. 传统响应式断点的痛点与流体革命</span>
     </h2>
     <p>
-      传统的建站工具与 CSS 框架大多基于<strong>固定离散断点（Fixed Breakpoints）</strong>：
+      传统的建站工具与经典 CSS 框架大多基于<strong>固定离散断点（Fixed Breakpoints）</strong>：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
-      <li class="flex items-start gap-2">
-        <Icon name="x" class="w-4 h-4 text-rose-500 shrink-0 mt-1" />
-        <span><strong>断点间隙崩塌：</strong> 针对 1440px 做的设计，在 1280px 时元素挤压重叠，直到触发下一个 1024px 断点才强行切换样式；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="x" class="w-4 h-4 text-rose-500 shrink-0 mt-1" />
-        <span><strong>超大屏荒漠：</strong> 在 4K 宽屏显示器上，传统网页居中收缩为一个窄条，两侧留下极其刺眼的巨大空白；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="x" class="w-4 h-4 text-rose-500 shrink-0 mt-1" />
-        <span><strong>维护成本指数级上升：</strong> 每增加一个屏幕宽度，设计师就必须重新拖拽对齐一遍所有文字与间距。</span>
-      </li>
-    </ul>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs sm:text-sm">
+      <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 space-y-1.5">
+        <div class="font-bold text-rose-700 flex items-center gap-1">
+          <Icon name="x" class="w-3.5 h-3.5" />
+          <span>断点间隙崩塌</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          针对 1440px 做的设计，在 1280px 时元素挤压重叠，直到触发下一个 1024px 断点才强行切换样式。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 space-y-1.5">
+        <div class="font-bold text-rose-700 flex items-center gap-1">
+          <Icon name="x" class="w-3.5 h-3.5" />
+          <span>超大屏沙漠现象</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          在 4K 宽屏显示器上，传统网页居中收缩为一个窄条，两侧留下极其刺眼的巨大空洞空白。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-rose-100 bg-rose-50/40 space-y-1.5">
+        <div class="font-bold text-rose-700 flex items-center gap-1">
+          <Icon name="x" class="w-3.5 h-3.5" />
+          <span>维护成本指数级上升</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          每增加一个屏幕宽度，设计师就必须重新逐个拖拽对齐一遍所有文字、字号与边距。
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- Section 2: Scale Proportionally -->
   <section id="scale-proportionally" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>2. Wix Studio 等比流体缩放 (Scale Proportionally)</span>
+      <span>2. 等比流体缩放 (Scale Proportionally) 运作机制</span>
     </h2>
     <p>
       在 Wix Studio 中，每一个容器或元素的响应式行为（Responsive Behavior）默认设置为 <strong>Scale Proportionally（等比缩放）</strong>。
     </p>
-    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2 font-mono text-xs text-slate-700">
-      <div class="font-bold text-violet-700">// 底层数学逻辑</div>
-      <div>实际渲染尺寸 = (画布设定尺寸 / 当前断点基础宽度) × 100vw</div>
-      <div class="text-slate-400">例如：在 1920px 画布中设计了 64px 标题，在 1440px 屏幕时自动平滑过渡为 48px，无需额外编写 Media Query！</div>
+    <div class="p-5 rounded-2xl bg-slate-900 text-slate-200 space-y-2 font-mono text-xs">
+      <div class="text-violet-400 font-bold">// 渲染计算公式 (Mathematical Rendering Model)</div>
+      <div>实际渲染尺寸 = (画布设计设定尺寸 / 当前断点基准宽度) × 100vw</div>
+      <div class="text-slate-400">// 示例：在 1920px 画布设定的 64px 标题，在 1440px 视口时自动精准缩放为 48px，全程无需书写任何 CSS Media Query！</div>
     </div>
-    <p>
-      这意味着无论用户使用 MacBook Air、Surface 还是 iMac 24，视觉画面的层级、间距与留白比例始终严丝合缝，真正做到了“流体自适应”。
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      这意味着无论用户使用 MacBook Air (1440px)、Surface Pro (1368px) 还是 iMac 24 (2240px)，画面的排版比例、内外边距与留白负空间始终与设计稿严丝合缝。
     </p>
   </section>
 
@@ -90,99 +126,146 @@ const toc = [
   <section id="fluid-typography" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>3. 流体排版算法：CSS clamp() 深度图解</span>
+      <span>3. 流体字号算法：CSS clamp() 深度图解与配置</span>
     </h2>
     <p>
-      为了避免超大屏上文字无休止放大，或小屏上文字缩得过小无法辨认，Wix Studio 引入了高级排版控制 <code>clamp(最小值, 理想流体值, 最大值)</code>：
+      为了避免超大屏上文字无休止放大导致超出视口，或小屏上文字缩得过小无法辨认，Wix Studio 引入了现代 CSS <code>clamp(最小值, 理想流体值, 最大值)</code> 引擎：
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <div class="p-4 rounded-xl bg-violet-50/60 border border-violet-100 space-y-1">
-        <div class="text-xs font-bold text-violet-700">Min (下限)</div>
-        <div class="text-xs text-slate-600">保证在较小屏幕上字号不低于此阈值（如 14px），确保可读性。</div>
+        <div class="text-xs font-bold text-violet-700">Min 绝对下限值</div>
+        <div class="text-xs text-slate-600">保证在小屏幕上字号绝不低于此阈值（如正文 14px），确保基础阅读体验。</div>
       </div>
       <div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100 space-y-1">
-        <div class="text-xs font-bold text-blue-700">Ideal (流体变量)</div>
-        <div class="text-xs text-slate-600">随屏幕视口宽度平滑动态线性变换（如 2.5vw）。</div>
+        <div class="text-xs font-bold text-blue-700">Ideal 视口响应变量</div>
+        <div class="text-xs text-slate-600">根据当前断点视口宽度动态线性变换（如 2.5vw），随窗口拉伸平滑过渡。</div>
       </div>
       <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-100 space-y-1">
-        <div class="text-xs font-bold text-emerald-700">Max (上限)</div>
-        <div class="text-xs text-slate-600">即使在 4K/8K 巨幕上，字号也不会超出设计界限（如 72px）。</div>
+        <div class="text-xs font-bold text-emerald-700">Max 绝对上限值</div>
+        <div class="text-xs text-slate-600">即使在 4K/8K 巨幕上，文字也不会无限制膨胀挤占版心（如标题 72px）。</div>
       </div>
+    </div>
+    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-1">
+      <span class="font-bold text-slate-900">实操开启路径：</span>
+      <span>选中画布中任意文本框 -> 打开右侧 <strong>Inspector (检查器) -> Text -> Font Size</strong> -> 点击字号右侧的计算器图标开启 <strong>Text Scale</strong>，即可直接输入 Min / Max 限制范围。</span>
     </div>
   </section>
 
-  <!-- Section 4: Cascade & Breakpoints -->
-  <section id="breakpoints-management" class="space-y-4">
+  <!-- Section 4: Cascade Rules -->
+  <section id="cascade-rules" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>4. 断点级联规则（Cascade）与继承机制</span>
+      <span>4. 断点级联规则（Cascade）与继承覆盖机制</span>
     </h2>
     <p>
       Wix Studio 的样式继承遵循<strong>从大屏向下级联（Desktop First Cascade）</strong>的严密规则：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>桌面端修改（默认基础断点）：</strong> 更改会自动向下继承给平板端（Tablet 768px）和移动端（Mobile 390px）；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>移动端单独覆盖（Override）：</strong> 在移动端微调了字号或堆叠方向后，该属性会变成自定义覆盖，<strong>不会反向污染桌面端</strong>；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>重置继承（Reset）：</strong> 右键点击属性值选择 Reset to Cascade，即可随时恢复对上层大断点的继承。</span>
-      </li>
-    </ul>
-  </section>
-
-  <!-- Section 5: Docking Rules -->
-  <section id="docking-rules" class="space-y-4">
-    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>5. 元素停靠（Docking）与对齐避坑实践</span>
-    </h2>
-    <p>
-      新手使用 Studio 最常犯的错误，就是将所有元素盲目停靠在左上角。正确的姿势是依据视觉逻辑设置 <strong>Docking（停靠锚点）</strong>：
-    </p>
-    <div class="space-y-3">
-      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
-        <div class="text-xs font-bold text-slate-900">右上角悬浮按钮 / 导航菜单</div>
-        <div class="text-xs text-slate-500">必须设置 <strong>Dock to Right & Top</strong>。无论屏幕怎么拉伸，按钮永远距右边框固定距离，绝不会被推到画面中央。</div>
+    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+      <div class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white">
+        <div class="w-6 h-6 rounded-full bg-violet-100 text-violet-700 font-bold flex items-center justify-center shrink-0 text-xs">1</div>
+        <div>
+          <strong class="text-slate-900">桌面端修改（默认基准断点）：</strong>
+          <span class="text-slate-600">在 1920px 基础断点所做的所有修改（布局、排版、颜色），会自动自顶向下完整继承给平板端（Tablet 768-1000px）和移动端（Mobile 320-767px）。</span>
+        </div>
       </div>
-      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
-        <div class="text-xs font-bold text-slate-900">居中标语与主视觉按钮</div>
-        <div class="text-xs text-slate-500">停靠方式必须选择 <strong>Center Horizontally & Vertically</strong>，确保在任何视口比例下视觉稳固不偏离。</div>
+
+      <div class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white">
+        <div class="w-6 h-6 rounded-full bg-violet-100 text-violet-700 font-bold flex items-center justify-center shrink-0 text-xs">2</div>
+        <div>
+          <strong class="text-slate-900">移动端单独覆盖（Local Override）：</strong>
+          <span class="text-slate-600">在移动端微调字号或更改了 Stack 堆叠方向后，该属性会标记为“本地覆盖”，<strong>绝对不会反向污染桌面端</strong>。</span>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-3 p-3.5 rounded-xl border border-slate-200 bg-white">
+        <div class="w-6 h-6 rounded-full bg-violet-100 text-violet-700 font-bold flex items-center justify-center shrink-0 text-xs">3</div>
+        <div>
+          <strong class="text-slate-900">重置继承（Reset to Cascade）：</strong>
+          <span class="text-slate-600">若在子断点改乱了样式，只需右键点击属性选择 <code>Reset</code>，即可瞬间恢复对上级断点的自动同步。</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 6: Checklist -->
-  <section id="checklist" class="space-y-4">
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>6. 上线前多视口校验清单</span>
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：断点崩坏与缩放失真急救</span>
     </h2>
-    <div class="p-6 rounded-2xl bg-violet-50/50 border border-violet-200 space-y-3">
-      <div class="text-xs font-bold text-violet-800">4 步自检法（发布前必查）：</div>
-      <ul class="text-xs text-slate-700 space-y-2">
-        <li class="flex items-center gap-2">
-          <input type="checkbox" checked disabled class="rounded text-violet-600" />
-          <span>在 Studio 顶部按住断点滑块，从 1000px 连续拖拽至 2000px，观察是否存在文字错行重叠</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <input type="checkbox" checked disabled class="rounded text-violet-600" />
-          <span>切换至移动端（390px），检查多列横向排版是否已转换为纵向 Stack 堆叠</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <input type="checkbox" checked disabled class="rounded text-violet-600" />
-          <span>确认所有图片容器均配置了合适的填充模式（Cover / Fit）以避免失真变形</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <input type="checkbox" checked disabled class="rounded text-violet-600" />
-          <span>检查外链按钮是否已开启安全的新标签页打开属性（target="_blank" rel="noopener"）</span>
-        </li>
-      </ul>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：文字换行异常导致容器被撑破</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          当文本框设置了固定的 Height（高度）但文字在窄屏换行时，会导致文字溢出遮挡下方区块。<strong>解决方案：</strong>将文本容器高度始终设置为 <code>Auto</code> 或 <code>Max-content</code>，让容器随内容流自适应撑开。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：混用 Fixed 与 Scale Proportionally 造成错位</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          如果背景图片设置了 <code>Scale Proportionally</code> 随视口变小，而其内部的卡片设置了 <code>Fixed (固定像素)</code>，屏幕缩小时卡片将冲出背景。同一组件内子父级的响应式行为务必保持逻辑一致。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于 Studio 流体缩放行为参数定义与排版规范，可参考 Wix 官方知识库指南：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-violet-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-violet-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-violet-50 text-violet-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-violet-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：如果想支持 2560px 4K 显示器，必须手动添加断点吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          不需要！默认桌面断点配合 <code>Scale Proportionally</code> 会自动以等比放大逻辑覆盖到 4K 甚至 8K 屏幕。仅当您希望在 1920px 以上展示完全不同的多列布局（如 3 列变 5 列）时，才建议点击断点栏右侧的 <code>+</code> 号新增自定义大屏断点。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：如何让某个按钮在拉伸屏幕时完全不缩放保持固定大小？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          只需选中该按钮，在右侧 Inspector 检查器的 <strong>Responsive Behavior</strong> 下拉菜单中，将 <code>Scale Proportionally</code> 改为 <code>Fixed</code>（固定像素），按钮的宽高和内边距就会始终恒定。
+        </p>
+      </div>
     </div>
   </section>
 </ArticleLayout>

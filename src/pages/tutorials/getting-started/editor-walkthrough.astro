@@ -3,19 +3,40 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
   { id: 'top-bar', title: '1. 顶部控制栏：断点标尺条 (Breakpoint Bar)' },
-  { id: 'left-panel', title: '2. 左侧添加面板：核心元素结构' },
-  { id: 'inspector', title: '3. 右侧属性检查器：控制流体尺寸的命脉' },
-  { id: 'layers', title: '4. 图层面板：理解容器与 DOM 嵌套树' },
-  { id: 'bottom-code', title: '5. 底部代码面板：Velo 开发者模式' },
+  { id: 'left-panel', title: '2. 左侧核心面板：组件库与图层树 (Layers)' },
+  { id: 'inspector', title: '3. 右侧属性检查器 (Inspector Panel)：流体尺寸核心' },
+  { id: 'responsive-modes', title: '4. 六大响应式行为 (Responsive Behaviors)' },
+  { id: 'bottom-code', title: '5. 底部开发者抽屉：Velo 开发者模式入口' },
+  { id: 'pitfalls', title: '6. 画布排版常见失控与避坑' },
+  { id: 'official-references', title: '7. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '8. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: About the Canvas in the Studio Editor',
+    desc: '官方关于画布视口缩放、把手拉伸与流体视窗基准的全面图解说明。',
+    url: 'https://support.wix.com/en/article/wix-studio-about-the-canvas-in-the-studio-editor',
+  },
+  {
+    title: 'Wix Studio: Using the Inspector Panel',
+    desc: '系统解析右侧检查器中的布局（Layout）、设计（Design）与动效（Animations）。',
+    url: 'https://support.wix.com/en/article/wix-studio-using-the-inspector-panel',
+  },
+  {
+    title: 'Wix Studio: Using the Layers Panel to Organize Content',
+    desc: '学习 DOM 容器树层级、重命名图层、元素多选与断点级显隐隐藏技巧。',
+    url: 'https://support.wix.com/en/article/wix-studio-using-the-layers-panel',
+  },
 ];
 ---
 
 <ArticleLayout
   title="深入浅出：Wix Studio 工作台与核心工具面板完全图解"
-  description="完全解析 Wix Studio 编辑器界面四大核心区域：顶部断点标尺、左侧组件库、右侧属性检查器与图层嵌套树。掌握专业响应式排版的核心操作逻辑。"
-  keywords="Wix Studio 界面, Wix Studio 工具面板, Wix 断点设置, Wix Studio 检查器, Wix 布局"
+  description="完全图解 Wix Studio 编辑器界面四大核心区域：顶部断点标尺、左侧组件图层树、右侧属性检查器与六大响应式行为。掌握专业响应式排版的核心操作逻辑。"
+  keywords="Wix Studio 界面, Wix Studio 工具面板, Wix 断点设置, Wix Studio 检查器, Wix 布局, Wix Support"
   category="新手入门实战"
   categorySlug="/tutorials/getting-started/"
   readTime="12 分钟"
@@ -32,40 +53,40 @@ const toc = [
   }}
 >
   <!-- 30s Executive Summary -->
-  <section id="summary" class="bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
-    <div class="flex items-center gap-2 text-[#6D28D9] text-xs font-bold uppercase tracking-wider">
+  <section id="summary" class="bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/50 p-6 sm:p-8 rounded-2xl border border-blue-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#116DFF] text-xs font-bold uppercase tracking-wider">
       <Icon name="sparkles" class="w-4 h-4" />
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      第一次打开 Wix Studio 编辑器，很多习惯了普通拖拽建站的用户可能会被丰富的功能面板震撼。它看起来更像 Figma + VS Code 的结合体。
+      第一次打开 Wix Studio 编辑器，不少习惯了普通建站模板的用户会觉得面板丰富。它更像 Figma 的画板逻辑与 Chrome 开发者工具的完美结合。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      掌握它的核心只要记住一个原则：<strong>“结构看左侧图层树，行为看顶部断点尺，样式看右侧检查器”</strong>。只要搞懂右侧检查器中的“尺寸（Responsive Behavior）”逻辑，您就已经掌握了 Wix Studio 80% 的核心精髓。
+      掌握 Studio 编辑器的口诀是：<strong>“结构看左侧图层树，视口看顶部断点标尺，尺寸与行为看右侧检查器”</strong>。牢记不要把元素散落在画布外，始终用容器包裹，排版即永远可控。
     </p>
   </section>
 
   <!-- Section 1: Top Bar -->
   <section id="top-bar" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
       <span>1. 顶部控制栏：断点标尺条 (Breakpoint Bar)</span>
     </h2>
     <p>
-      编辑器顶部最显眼的特征是横向贯穿的<strong>断点标尺（Breakpoint Bar）</strong>：
+      编辑器正上方贯穿的是<strong>响应式断点标尺（Breakpoint Bar）</strong>，直接控制当前画布呈现的屏幕宽度：
     </p>
     <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3 text-xs sm:text-sm">
       <div class="font-bold text-slate-900 flex items-center gap-2">
-        <Icon name="ruler" class="w-4 h-4 text-[#6D28D9]" />
-        <span>默认三大基础断点划分：</span>
+        <Icon name="ruler" class="w-4 h-4 text-[#116DFF]" />
+        <span>系统默认三大核心基准断点：</span>
       </div>
       <ul class="space-y-2 pl-4 list-disc text-slate-600">
-        <li><strong>桌面端（Desktop）：</strong> 默认基准断点为 `1001px 及以上`（通常以 1440px 为设计画板）。在此断点下的改动会自动<strong>级联继承（Cascade Down）</strong>到平板和移动端。</li>
-        <li><strong>平板端（Tablet）：</strong> 覆盖 `768px - 1000px`。当您切换到此断点微调文字或间距时，只会覆盖平板及更小屏幕，不会破坏桌面端。</li>
-        <li><strong>移动端（Mobile）：</strong> 覆盖 `320px - 767px`。通常用于将横向多列改为单列竖排、调整汉堡菜单与移动端触控按钮。</li>
+        <li><strong>Desktop（桌面端）：</strong> 覆盖 `1001px 及以上`（画布默认设在 1440px 基准宽度）。在该断点下的所有布局变动，会自动向下<strong>级联继承（Cascade Down）</strong>到平板和手机。</li>
+        <li><strong>Tablet（平板端）：</strong> 覆盖 `768px - 1000px`。点击切换到该断点做出的样式微调，只覆盖平板及更小端，不会反向影响桌面端。</li>
+        <li><strong>Mobile（移动端）：</strong> 覆盖 `320px - 767px`。用于将横向多列卡片快速重构成单列瀑布流，以及配置移动端触控专享菜单。</li>
       </ul>
-      <p class="text-slate-500 pt-1 text-[11px]">
-        *高级提示：点击标尺右侧的加号 `+`，您可以添加任意无限数量的自定义断点（如 1920px 超宽屏专享断点）。
+      <p class="text-slate-500 pt-1 text-xs">
+        <strong>实操小窍门：</strong> 点击标尺右侧把手（Handle）向左或向右动态拖拽，即可直接在画布上进行全宽度范围的拉伸压测，实时检验流体等比缩放效果。
       </p>
     </div>
   </section>
@@ -73,50 +94,30 @@ const toc = [
   <!-- Section 2: Left Panel -->
   <section id="left-panel" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>2. 左侧添加面板：核心元素结构</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>2. 左侧核心面板：组件库与图层树 (Layers)</span>
     </h2>
     <p>
-      点击左上角快捷图标即可展开添加面板。Studio 规范了严格的现代网页文档流层级：
+      左侧工具栏包含页面组织架构的核心入口：
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
       <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
         <div class="font-bold text-slate-900 flex items-center gap-1.5">
-          <Icon name="layout" class="w-4 h-4 text-[#6D28D9]" />
-          <span>Section（章节视口）</span>
+          <Icon name="layout" class="w-4 h-4 text-[#116DFF]" />
+          <span>Add Panel（添加组件库）</span>
         </div>
         <p class="text-slate-500 text-xs">
-          页面的第一级横向承载块。通常设置全宽 100%，或固定视口高度（100vh）。
+          按照标准文档流提供了 Section（章节）、Container（容器盒）、Layout Tools（CSS Grid 与 Flexbox）、Text、Media、Buttons 及全套商业应用插件。
         </p>
       </div>
 
       <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
         <div class="font-bold text-slate-900 flex items-center gap-1.5">
-          <Icon name="layers" class="w-4 h-4 text-blue-600" />
-          <span>Container（内容容器）</span>
+          <Icon name="layers" class="w-4 h-4 text-violet-600" />
+          <span>Layers Panel（图层树面板）</span>
         </div>
         <p class="text-slate-500 text-xs">
-          页面核心包装器。限制最大宽度（如 max-w-1280px），利用 CSS Grid 将子元素整齐组织。
-        </p>
-      </div>
-
-      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-        <div class="font-bold text-slate-900 flex items-center gap-1.5">
-          <Icon name="palette" class="w-4 h-4 text-indigo-600" />
-          <span>Quick Add（基础元组件）</span>
-        </div>
-        <p class="text-slate-500 text-xs">
-          Text 标题段落、Image 高清媒体、Button 交互按钮、Video 视频播放框。
-        </p>
-      </div>
-
-      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1.5">
-        <div class="font-bold text-slate-900 flex items-center gap-1.5">
-          <Icon name="shopping-bag" class="w-4 h-4 text-emerald-600" />
-          <span>App Widgets（商业业务组件）</span>
-        </div>
-        <p class="text-slate-500 text-xs">
-          一键挂载 Wix Stores 商城模块、Wix Blog 博客文章列表、Wix Bookings 预约系统。
+          展示当前页面的完整 DOM 树状层级。在此处可以快速重命名图层（如 `Hero-Banner-Grid`）、调整 Z-Index 堆叠顺序，以及在特定视口设置“隐藏”。
         </p>
       </div>
     </div>
@@ -125,80 +126,172 @@ const toc = [
   <!-- Section 3: Inspector Panel -->
   <section id="inspector" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>3. 右侧属性检查器：控制流体尺寸的命脉</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>3. 右侧属性检查器 (Inspector Panel)：流体尺寸核心</span>
     </h2>
     <p>
-      选中国画布上的任意元素，右侧属性检查器（Inspector）将展示它的全部渲染参数。其中最核心的设置项是 <strong>Responsive Behavior（响应式行为）</strong>：
+      右侧检查器面板是整个 Studio 编辑器的灵魂，分为三大核心子选项卡：
     </p>
-    <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
-      <table class="w-full text-left text-xs sm:text-sm">
-        <thead class="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
-          <tr>
-            <th class="p-3.5">响应式行为选项</th>
-            <th class="p-3.5">底层计算机制</th>
-            <th class="p-3.5">最适用元素</th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-slate-100 text-slate-700">
-          <tr class="hover:bg-slate-50/80">
-            <td class="p-3.5 font-bold text-[#6D28D9]">Scale Proportionally (等比缩放)</td>
-            <td class="p-3.5">元素宽高随屏幕视口等比例缩放（基于 vw 计算）</td>
-            <td class="p-3.5 text-slate-500">大标题、卡片整体、带背景图的 Hero 区</td>
-          </tr>
-          <tr class="hover:bg-slate-50/80">
-            <td class="p-3.5 font-bold text-slate-900">Fixed (固定像素)</td>
-            <td class="p-3.5">无论屏幕如何变化，尺寸严格锁定 px 值不变</td>
-            <td class="p-3.5 text-slate-500">Logo 图标、导航栏高度、装饰性小圆点</td>
-          </tr>
-          <tr class="hover:bg-slate-50/80">
-            <td class="p-3.5 font-bold text-slate-900">Relative Width (相对宽度)</td>
-            <td class="p-3.5">宽度根据父容器的百分比（%）自适应拉伸</td>
-            <td class="p-3.5 text-slate-500">长文段落内容宽度、分割线、进度条</td>
-          </tr>
-          <tr class="hover:bg-slate-50/80">
-            <td class="p-3.5 font-bold text-slate-900">Fit to Content (适应内容)</td>
-            <td class="p-3.5">容器尺寸随内部文字长度或图片自动撑开</td>
-            <td class="p-3.5 text-slate-500">徽章药丸胶囊、操作按钮、标签 Chip</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- Section 4: Layers Tree -->
-  <section id="layers" class="space-y-4">
-    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>4. 图层面板：理解容器与 DOM 嵌套树</span>
-    </h2>
-    <p>
-      很多新手在做页面时，喜欢将文字和图片随手拖到空白画布上，结果在手机端看时全部错位乱飞。<strong>原因就是缺少了 Container（容器）包裹。</strong>
-    </p>
-    <div class="p-5 rounded-2xl bg-amber-50/70 border border-amber-200 text-xs sm:text-sm space-y-2 text-amber-950">
-      <div class="font-bold flex items-center gap-1.5 text-amber-900">
-        <Icon name="alert-triangle" class="w-4 h-4 text-amber-600" />
-        <span>必须遵守的专业容器规范（Stack 堆栈）：</span>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+        <div class="font-bold text-slate-900 mb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+          <span>Layout（布局与尺寸设置）</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          设置元素的宽度（Width）、高度（Height）、内外边距（Padding / Margins）、9 点停靠位置（Docking）以及响应式行为（Responsive Behavior）。
+        </p>
       </div>
-      <p>
-        当您有“标题 + 副标题 + 按钮”一组元素时，选中这三者，点击右键选择 <strong>Stack（创建堆栈）</strong>。Stack 会自动以 Flex 竖向排列约束它们，并允许设置恒定的竖向间距（Gap）。这样无论在任何屏幕上，这三者都会作为一个整体协同自适应，永不重叠。
-      </p>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+        <div class="font-bold text-slate-900 mb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-violet-500"></span>
+          <span>Design（视觉与设计渲染）</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          配置背景色、渐变画刷、边框样式、阴影层次（Box Shadow）、透明度与字体家族（支持直接上传自定义 TTF/WOFF2 字体）。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm">
+        <div class="font-bold text-slate-900 mb-1 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Animations & Interactions（微动效与交互）</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          无代码为元素赋予鼠标悬停（Hover）、滚动视差（Parallax Scroll）、渐入上浮（Reveal）与点击展开等前沿微交互。
+        </p>
+      </div>
     </div>
   </section>
 
-  <!-- Section 5: Bottom Code -->
+  <!-- Section 4: Responsive Behaviors -->
+  <section id="responsive-modes" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>4. 六大响应式行为 (Responsive Behaviors)</span>
+    </h2>
+    <p>
+      在右侧检查器的 <strong>Responsive Behavior</strong> 下拉菜单中，Studio 为每个组件提供了六种数学响应模式：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+      <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">Scale Proportionally（等比缩放 · 默认）</strong>
+        <span class="text-slate-500">元素按照视窗宽度等比动态放大缩小，保持排版视觉 100% 不变形。</span>
+      </div>
+      <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">Fixed（固定物理像素）</strong>
+        <span class="text-slate-500">无论屏幕多大多小，尺寸始终锁定为固定的 px（常用于图标、Logo 或特定按钮）。</span>
+      </div>
+      <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">Fluid（流体自适应）</strong>
+        <span class="text-slate-500">宽度根据父容器的百分比弹性伸缩，高度随内部内容自动撑开。</span>
+      </div>
+      <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200">
+        <strong class="text-slate-900 block mb-1">Relative to Parent（依附于父级）</strong>
+        <span class="text-slate-500">严格按照父级容器的宽或高按比例缩放，常用于复杂嵌套卡片内部。</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Bottom Code Drawer -->
   <section id="bottom-code" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-[#6D28D9] rounded-full inline-block"></span>
-      <span>5. 底部代码面板：Velo 开发者模式</span>
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>5. 底部开发者抽屉：Velo 开发者模式入口</span>
     </h2>
     <p>
-      在编辑器左侧点击 `{ }` 图标开启 <strong>Dev Mode（开发者模式）</strong>，底栏将弹出内置的代码控制台：
+      点击顶部工具栏的 <strong>“Code” 按钮</strong>（图标为 `&lt;/&gt;`），底部会弹起完整的内置代码 IDE：
     </p>
-    <ul class="space-y-2 pl-4 text-xs sm:text-sm text-slate-700 list-disc">
-      <li><strong>前端代码（Page Code）：</strong> 可以监听页面按钮的 `$w('#myButton').onClick(...)` 事件，实现自定义弹窗或动态动画。</li>
-      <li><strong>全局样式（Global CSS）：</strong> 直接在此处添加自定义 CSS 规则与类名。</li>
-      <li><strong>后端云函数（Backend）：</strong> 在 `backend/` 目录下编写 Node.js 逻辑，安全保存外部 API 秘钥（如企业私有 ERP 密钥）。</li>
-    </ul>
+    <div class="p-5 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs space-y-2">
+      <div class="text-emerald-400 font-bold">// 开发者模式核心功能</div>
+      <ul class="space-y-1.5 text-slate-300 pl-4 list-disc">
+        <li><strong>Page Code：</strong> 编写只针对当前页面的前端交互代码（如表单校验、Repeater 数据源绑定）。</li>
+        <li><strong>Global Code (masterPage.js)：</strong> 编写全局通用的页头页脚动态行为。</li>
+        <li><strong>Backend Files (.web.js)：</strong> 编写运行在无服务器云端的安全服务端逻辑与外部 API 对接。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 6: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>6. 画布排版常见失控与避坑</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑点 1：未搞清楚级联继承，在移动端随意乱改样式</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          级联规则是“从大屏向小屏单向流动”。推荐始终在 Desktop 桌面端把主版面调完美，再切换到 Tablet 和 Mobile 做减法微调。切勿先在移动端把文字改乱再回头看桌面端。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑点 2：忽略图层面板，误以为元素“丢失”</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          当拖入新元素后看不见时，通常是因为它被父容器的 `overflow: hidden` 裁剪，或者 Z-Index 层级低于背景图。打开左侧 Layers 面板即可一秒定位。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>7. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于编辑器的界面规格与检查器参数深度说明，推荐参考 Wix Help Center 原厂文档：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-[#116DFF] hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-[#116DFF] flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-blue-50 text-[#116DFF]">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-[#116DFF] shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 8: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>8. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：画布中央的蓝色虚线是什么含义？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          蓝色虚线代表安全内容边界（Grid Lines）。只要您的核心文字和关键按钮放置在蓝色虚线范围内，无论访客屏幕如何伸缩，内容都绝对不会被侧边裁剪。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：我不小心关闭了右侧的检查器面板，怎么重新调出？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          点击右上角工具栏的折叠展开图标，或者直接双击画布上的任意组件，右侧检查器面板会自动弹出并聚焦到该组件对应的参数页。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

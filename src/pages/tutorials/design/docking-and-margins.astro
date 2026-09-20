@@ -3,19 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'what-is-docking', title: '1. 什么是元素停靠（Docking）？' },
-  { id: 'margins-vs-padding', title: '2. Margins（外边距）与 Padding（内边距）' },
-  { id: 'docking-pitfalls', title: '3. 3 大常见停靠翻车陷阱与解法' },
-  { id: 'fluid-combo', title: '4. 停靠与流体比例缩放的完美组合' },
-  { id: 'mobile-overrides', title: '5. 移动端断点下的停靠重设技巧' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'what-is-docking', title: '1. 元素停靠（Docking）九宫格定位机制' },
+  { id: 'margins-vs-padding', title: '2. 外边距 (Margins) 与 内边距 (Padding) 本质区别' },
+  { id: 'step-by-step', title: '3. 实战操作步骤：从零配置安全对齐体系' },
+  { id: 'fluid-combo', title: '4. 停靠与流体比例缩放 (px*) 的协同原理' },
+  { id: 'pitfalls', title: '5. 3 大常见停靠翻车陷阱与避坑排查' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: Using Docking to Position Elements',
+    desc: '官方关于九宫格停靠锚定规则、水平与垂直对齐逻辑及自适应行为的详细指南。',
+    url: 'https://support.wix.com/en/article/wix-studio-using-docking-to-position-elements',
+  },
+  {
+    title: 'Wix Studio: Setting Margins and Padding',
+    desc: '如何为 Section 和容器正确配置内外边距（px, %, vw, vh）以建立弹性安全网。',
+    url: 'https://support.wix.com/en/article/wix-studio-setting-margins-and-padding',
+  },
+  {
+    title: 'Wix Studio: Stacking Elements to Maintain Vertical/Horizontal Order',
+    desc: '如何使用 Stack 堆叠容器将多个相关元素绑定成独立流体单元，避免分散停靠跑位。',
+    url: 'https://support.wix.com/en/article/wix-studio-stacking-elements',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio 元素停靠与边距完全指南：彻底掌握 Docking、Margins 与 Padding"
-  description="对标 Wix 官方支持中心（support.wix.com/en）响应式布局权威教程。深入解析 Docking 元素停靠锚定、外边距 Margins、内边距 Padding 以及多端避坑法则。"
-  keywords="Wix Studio 停靠, Wix Studio Docking, Margins, Padding, 响应式停靠, Wix 教程"
+  description="对操 Wix 官方支持中心（support.wix.com/en）响应式布局体系。深入解析 Docking 元素停靠锚定、外边距 Margins、内边距 Padding 以及多端避坑法则与官方 Support 参考。"
+  keywords="Wix Studio 停靠, Wix Studio Docking, Margins, Padding, 响应式停靠, Wix 教程, Wix Support"
   category="设计与流体排版"
   categorySlug="/tutorials/design/"
   readTime="11 分钟"
@@ -31,13 +51,13 @@ const toc = [
   <section id="summary" class="bg-gradient-to-br from-violet-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-violet-200/80 shadow-xs space-y-3">
     <div class="flex items-center gap-2 text-violet-700 text-xs font-bold uppercase tracking-wider">
       <Icon name="sparkles" class="w-4 h-4" />
-      <span>30秒核心速览 · 对标 support.wix.com/en 官方排版体系</span>
+      <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
       在 Wix Studio 中，决定一个元素在不同分辨率屏幕下“停留在哪”的核心机制不是绝对坐标（X/Y），而是<strong>停靠锚定（Docking）与边距体系（Margins & Padding）</strong>。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      掌握 Docking 的关键在于：<strong>“只锚定真正有相对依赖关系的边缘，避免过度四向锁定（Over-docking）”</strong>。配合父级容器的 Padding 内边距保护，即可实现严丝合缝、永不穿模的高端商业排版。
+      <strong>黄金原则：</strong> “只锚定真正有物理相对依赖关系的边缘，杜绝过度四向全锁定（Over-docking）”。优先使用父级容器的 <code>Padding</code> 内边距设立安全防护围栏，配合局部 <code>Stack</code> 堆叠，即可实现永不穿模的商业排版。
     </p>
   </section>
 
@@ -45,26 +65,35 @@ const toc = [
   <section id="what-is-docking" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>1. 什么是元素停靠（Docking）？</span>
+      <span>1. 元素停靠（Docking）九宫格定位机制</span>
     </h2>
     <p>
-      当您在右侧属性检查器（Inspector）中选中任何文字、按钮或图片时，会看到一个包含 9 个方向的九宫格锚点图——这就是 <strong>Docking（停靠面板）</strong>。
+      当您在右侧属性检查器（Inspector）中选中任何文字、按钮或图片时，会看到一个包含 9 个方向锚点的九宫格——这就是 <strong>Docking（停靠面板）</strong>。
     </p>
     <p>
-      停靠告诉浏览器：<strong>当屏幕变宽或变窄时，这个元素应当以父容器的哪一条边缘作为基准距离？</strong>
+      停靠告诉浏览器：<strong>当屏幕变宽或变窄时，这个元素应当以直接父容器（Section 或 Container）的哪一条边缘作为距离参考基准？</strong>
     </p>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
       <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-        <div class="font-bold text-[#116DFF]">左上停靠 (Top-Left)</div>
-        <p class="text-slate-600 leading-relaxed">常见于 Logo、主标题。保证元素始终贴合左上安全阅读区，右侧拉伸不影响其定位。</p>
+        <div class="font-bold text-[#116DFF] flex items-center gap-1.5">
+          <Icon name="layout" class="w-4 h-4" />
+          <span>左上停靠 (Top-Left)</span>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-xs">常见于 Logo、主品牌标题。保证元素始终贴合左上安全阅读区，右侧拉伸不会拉扯该元素。</p>
       </div>
       <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-        <div class="font-bold text-[#116DFF]">右侧停靠 (Right)</div>
-        <p class="text-slate-600 leading-relaxed">常见于导航菜单、CTA 动作按钮、浮动客服图标。无论屏幕多宽，永远距离右边缘固定边距。</p>
+        <div class="font-bold text-[#116DFF] flex items-center gap-1.5">
+          <Icon name="layout" class="w-4 h-4" />
+          <span>右侧停靠 (Dock Right)</span>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-xs">常见于导航菜单、CTA 转化按钮、浮动客服挂件。无论屏幕多宽，永远距离右边缘固定边距。</p>
       </div>
       <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
-        <div class="font-bold text-[#116DFF]">居中停靠 (Center)</div>
-        <p class="text-slate-600 leading-relaxed">常见于 Hero 核心标语、弹窗模态框。解除所有边缘强制约束，动态计算几何对齐。</p>
+        <div class="font-bold text-[#116DFF] flex items-center gap-1.5">
+          <Icon name="layout" class="w-4 h-4" />
+          <span>居中停靠 (Center)</span>
+        </div>
+        <p class="text-slate-600 leading-relaxed text-xs">常见于 Hero 核心标语、弹窗模态框。解除边缘绝对锁定，动态计算父级几何居中。</p>
       </div>
     </div>
   </section>
@@ -73,7 +102,7 @@ const toc = [
   <section id="margins-vs-padding" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>2. Margins（外边距）与 Padding（内边距）的本质区别</span>
+      <span>2. 外边距 (Margins) 与 内边距 (Padding) 本质区别</span>
     </h2>
     <p>
       许多初学者经常混淆 Margins 与 Padding。官方 Help Center 给出的清晰判定原则如下：
@@ -82,77 +111,168 @@ const toc = [
       <table class="w-full text-left text-xs sm:text-sm">
         <thead class="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
           <tr>
-            <th class="p-4">属性</th>
-            <th class="p-4">作用对象</th>
-            <th class="p-4">核心职责</th>
-            <th class="p-4">最佳使用场景</th>
+            <th class="p-3.5">属性</th>
+            <th class="p-3.5">作用对象</th>
+            <th class="p-3.5">核心职责</th>
+            <th class="p-3.5">最佳使用场景</th>
           </tr>
         </thead>
         <tbody class="divide-y divide-slate-100 text-slate-700">
           <tr class="hover:bg-slate-50/80 transition">
-            <td class="p-4 font-bold text-[#116DFF]">Margins (外边距)</td>
-            <td class="p-4">当前元素与停靠边界之间</td>
-            <td class="p-4">决定自身与外部边界保持多远距离</td>
-            <td class="p-4">按钮距离右侧边缘保持 40px 等</td>
+            <td class="p-3.5 font-bold text-[#116DFF]">Margins (外边距)</td>
+            <td class="p-3.5">当前元素与停靠边界之间</td>
+            <td class="p-3.5">决定自身与其停靠的父级边缘保持多远间距</td>
+            <td class="p-3.5">按钮距离右边缘 48px、标题距顶部 80px</td>
           </tr>
           <tr class="hover:bg-slate-50/80 transition">
-            <td class="p-4 font-bold text-emerald-600">Padding (内边距)</td>
-            <td class="p-4">父容器内部所有子元素</td>
-            <td class="p-4">建立内部安全围栏，防止子元素贴死边缘</td>
-            <td class="p-4">整个 Section 左右留出 5% 呼吸空间</td>
+            <td class="p-3.5 font-bold text-emerald-600">Padding (内边距)</td>
+            <td class="p-3.5">父容器自身的四周边缘</td>
+            <td class="p-3.5">建立内部安全围栏，防止所有子元素贴死边缘</td>
+            <td class="p-3.5">Section 左右统一保留 5vw 安全呼吸边距</td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- Section 3 -->
-  <section id="docking-pitfalls" class="space-y-4">
+  <!-- Section 3: Step-by-step -->
+  <section id="step-by-step" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>3. 3 大常见停靠翻车陷阱与解法</span>
+      <span>3. 实战操作步骤：从零配置安全对齐体系</span>
     </h2>
-    <ul class="space-y-3 text-xs sm:text-sm text-slate-700">
-      <li class="p-4 bg-rose-50/60 border border-rose-200 rounded-xl space-y-1">
-        <div class="font-bold text-rose-900">陷阱 1：过度四向锁定（Over-docking）</div>
-        <p class="text-slate-600">错误做法：同时将一个图片既停靠左边、又停靠右边，同时设定固定宽度。在小屏幕下因几何冲突导致元素被强行挤扁变形。<strong>解法：宽度设为百分比或仅停靠单侧。</strong></p>
-      </li>
-      <li class="p-4 bg-amber-50/60 border border-amber-200 rounded-xl space-y-1">
-        <div class="font-bold text-amber-900">陷阱 2：停靠基准选错父级（Wrong Parent Container）</div>
-        <p class="text-slate-600">错误做法：希望小图标跟着一段文字移动，却直接停靠到了整个屏幕的 Section 外层。<strong>解法：将文字和图标用 Stack（堆叠）组合为一个局部子容器再停靠。</strong></p>
-      </li>
-      <li class="p-4 bg-blue-50/60 border border-blue-200 rounded-xl space-y-1">
-        <div class="font-bold text-blue-900">陷阱 3：固定绝对值 px 导致大屏过密</div>
-        <p class="text-slate-600">错误做法：在 1440px 下设置 Margin-Left 为 200px，在 1920px 下依然是 200px 显得局促。<strong>解法：采用 <code>vw</code> 视口单位或比例缩放。</strong></p>
-      </li>
-    </ul>
+    <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900 block font-bold">步骤 1：为全宽 Section 注入内边距安全网</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          选中外层 Section -> 打开 Inspector 的 <strong>Layout -> Padding</strong> -> 设置左（Left）和右（Right）为 <code>4vw</code> 或 <code>60px</code>。无论内部怎么拖拽，子元素都不会贴着屏幕左右边缘。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900 block font-bold">步骤 2：对局部内容实行 Stack（堆叠编组）</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          同时按住 Shift 选中“小标签 + 主标题 + 描述文字 + CTA 按钮”，右键选择 <strong>Stack</strong>。将它们作为一个整体单元来停靠，而不是让 4 个元素各自单独停靠。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-1">
+        <strong class="text-slate-900 block font-bold">步骤 3：为 Stack 设定单一锚定基准</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          选中整个 Stack 容器 -> 在 Docking 面板中点击 <strong>Top-Left</strong> 或 <strong>Center</strong>，输入顶边距 Margin-Top。此时整个组内间距完全由 Stack Item Spacing 统一掌控，永不重叠。
+        </p>
+      </div>
+    </div>
   </section>
 
-  <!-- Section 4 -->
+  <!-- Section 4: Fluid combo -->
   <section id="fluid-combo" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>4. 停靠与流体比例缩放（Scale Proportionally）的完美组合</span>
+      <span>4. 停靠与流体比例缩放 (px*) 的协同原理</span>
     </h2>
     <p>
       当元素启用了 <code>Scale Proportionally</code> 响应式行为时，系统会在右侧尺寸输入框中自动添加一个带星号的 <code>px*</code> 单位。
     </p>
-    <p>
-      此时，停靠边距也会随屏幕宽度<strong>等比平滑缩放</strong>。在 1440px 下设置的 32px* 边距，在 1920px 会优雅等比扩大至约 42.6px，而在 1280px 会柔和收缩至约 28.4px，真正做到免人工干预的全局自适应。
+    <div class="p-4 rounded-xl bg-slate-900 text-slate-200 space-y-2 font-mono text-xs">
+      <div class="text-violet-400 font-bold">// 流体边距计算法则</div>
+      <div>实际渲染 Margin = (设定 px* 边距 / 基准 1920) × 当前屏幕实际宽度 (vw)</div>
+      <div class="text-slate-400">// 1440px 视口下输入的 32px*，在大屏 1920px 会等比放大为 42.6px，在小笔记本 1280px 会收缩为 28.4px。</div>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      这意味着设计师无需在不同桌面分辨率下反复微调像素值，页面整体的呼吸感与留白比例保持严格恒定。
     </p>
   </section>
 
-  <!-- Section 5 -->
-  <section id="mobile-overrides" class="space-y-4">
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
-      <span>5. 移动端断点下的停靠重设技巧</span>
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 3 大常见停靠翻车陷阱与避坑排查</span>
     </h2>
-    <p>
-      记住 Wix Studio 的核心设计定律：<strong>样式自上而下级联（Cascade Down），下级覆盖不影响上级（Overrides）</strong>。
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>陷阱 1：过度四向全锁定（Over-docking）</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>现象：</strong>同时将一个图片既停靠左边、又停靠右边，且自身指定了固定的 500px 宽度。在窄屏下因几何约束冲突，图片会被强行压缩扭曲。<strong>解法：</strong>宽度设为百分比，或仅锚定单侧边缘。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>陷阱 2：停靠基准选错父级（Wrong Parent Container）</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>现象：</strong>希望一个问号图标跟随标题文字并排显示，却直接停靠到了整个屏幕的 Section 外层。屏幕拉伸时图标与标题完全脱节。<strong>解法：</strong>将标题与图标放入同一个 Horizontal Stack 容器内。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>陷阱 3：移动端未解绑横向停靠导致内容溢出</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          <strong>现象：</strong>桌面端右侧停靠且 Margin-Right 为 200px，继承到 390px 手机屏上直接将元素推飞到屏幕左侧以外。<strong>解法：</strong>切换到 Mobile 断点，点击停靠中心将其重置为水平居中停靠，外边距设为 0。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于元素锚定对齐与边距属性的详细技术定义，建议查阅 Wix 官方知识库：
     </p>
-    <p>
-      在电脑端左右分栏的设计中，左侧停靠左边，右侧停靠右边；切换到移动端（Mobile 断点）后，点击停靠图标将其重置为<strong>“顶端水平居中停靠（Top-Center）”</strong>，元素便会顺滑切换为适合拇指滚动的单列竖排结构，完全不需要重新绘制组件。
-    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-violet-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-violet-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-violet-50 text-violet-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-violet-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：为什么在移动端修改了 Docking 停靠，桌面端没有跟着变？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          这正是 Wix Studio 的级联保护设计！样式遵循从大屏幕向下继承。在子断点（Mobile）所做的停靠重设属于“本地覆盖（Override）”，不会反向污染桌面端。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：如何让两个紧挨着的卡片在不同屏幕下始终保持 24px 固定间距？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          不要分别用 Margin 盲目定位！选中两张卡片右键组建成 <strong>Stack</strong>，在 Stack 的属性中直接设置 <code>Item Spacing = 24px</code>（且响应式行为设为 Fixed），卡片间距将永远严格保持 24px。
+        </p>
+      </div>
+    </div>
   </section>
 </ArticleLayout>

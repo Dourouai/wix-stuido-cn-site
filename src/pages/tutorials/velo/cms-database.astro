@@ -3,19 +3,39 @@ import ArticleLayout from '../../../layouts/ArticleLayout.astro';
 import Icon from '../../../components/Icon.astro';
 
 const toc = [
-  { id: 'summary', title: '30秒核心速览' },
-  { id: 'cms-architecture', title: 'Wix Studio CMS 底层架构设计' },
-  { id: 'create-collection', title: '创建数据集合（Collection）与字段选型' },
-  { id: 'dynamic-pages', title: '动态列表页与动态详情页（URL 路由规则）' },
-  { id: 'reference-fields', title: '引用字段（Reference）：构建多对多数据关联' },
-  { id: 'security-permissions', title: '数据权限隔离（Read/Write Roles）安全防线' },
+  { id: 'summary', title: '30秒核心速览 (Executive Summary)' },
+  { id: 'cms-architecture', title: '1. Wix Studio CMS 三层底层架构解析' },
+  { id: 'create-collection', title: '2. 创建数据集合（Collection）与字段选型' },
+  { id: 'dynamic-pages', title: '3. 动态列表页与动态详情页（URL 路由规则）' },
+  { id: 'reference-fields', title: '4. 引用字段（Reference）：构建多对多关系型数据模型' },
+  { id: 'pitfalls', title: '5. 实战避坑指南：权限未开放与未发布草稿 404' },
+  { id: 'official-references', title: '6. Wix 官方 Support 权威参考文档' },
+  { id: 'faq', title: '7. 高频常见问题解答 (FAQ)' },
+];
+
+const officialDocs = [
+  {
+    title: 'Wix Studio: Working with the CMS',
+    desc: '官方关于在 Wix Studio 中使用 CMS 动态数据集合、数据集连接器与组件绑定的核心手册。',
+    url: 'https://support.wix.com/en/article/wix-studio-working-with-the-cms',
+  },
+  {
+    title: 'CMS: Creating Reference Fields to Connect Collections',
+    desc: '如何利用单向引用和多对多引用（Multi-Reference）构建复杂的关系型数据模型。',
+    url: 'https://support.wix.com/en/article/cms-creating-reference-fields-to-connect-collections',
+  },
+  {
+    title: 'CMS: About Collection Permissions and Security Roles',
+    desc: '集合读写权限完全解读（Anyone, Site Member, Admin），保障私密数据不被泄露。',
+    url: 'https://support.wix.com/en/article/cms-about-collection-permissions',
+  },
 ];
 ---
 
 <ArticleLayout
   title="Wix Studio CMS 动态数据库实战：构建多对多关系型内容页面"
-  description="Wix Studio CMS 数据库权威教程。深入集合创建、字段规范、动态详情页路由绑定、多对多关联与前端零代码表单数据提交流程。"
-  keywords="Wix CMS, Wix 动态页面, Wix 数据库, 关系型数据库, 内容管理系统, 无代码数据库"
+  description="Wix Studio CMS 数据库权威教程。深入集合创建、字段规范、动态详情页路由绑定、多对多关联与前端零代码表单数据提交流程与官方 Support 参考。"
+  keywords="Wix CMS, Wix 动态页面, Wix 数据库, 关系型数据库, 内容管理系统, 无代码数据库, Wix Support"
   category="Velo 全栈开发"
   categorySlug="/tutorials/velo/"
   readTime="16 分钟"
@@ -24,6 +44,10 @@ const toc = [
   prevArticle={{
     title: "Velo 入门完全实战：从 $w 元素选择器到页面数据动态绑定",
     href: "/tutorials/velo/getting-started-velo/",
+  }}
+  nextArticle={{
+    title: "Velo 后端 Web 模块（.jsw）与三方 API 聚合对接",
+    href: "/tutorials/velo/backend-web-modules/",
   }}
   toc={toc}
 >
@@ -34,10 +58,10 @@ const toc = [
       <span>30秒核心速览 (Executive Summary)</span>
     </div>
     <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
-      如果一个网站有 100 个客户案例或 500 个产品，纯手工复制 500 个静态网页是灾难性的做法。
+      如果一个出海独立站拥有 100 个客户案例或 500 个产品，纯手工复制 500 个静态 HTML 网页是灾难性的维护做法。
     </p>
     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
-      <strong>Wix Studio CMS 的本质是“一套模板，无限渲染”：</strong> 你只需设计一个通用的“动态详情页模板”，并将排版容器中的文字、图片和按钮连接到数据库集合的对应字段。系统会自动根据每一条数据库记录，在访问时极速动态生成独立的 SEO 友好 URL（例如 <code>/portfolio/nike-redesign</code>）。
+      <strong>Wix Studio CMS 的精髓是“一套设计模板，无限数据渲染”：</strong> 你只需在画布上设计 1 个通用的“动态详情页模板”，并将排版容器中的文字、图片和按钮与数据库集合字段连接。系统会自动根据每一条数据库记录，在访问时极速动态生成独立的 SEO 友好 URL（例如 <code>/portfolio/industrial-robot-arm</code>）。
     </p>
   </section>
 
@@ -45,23 +69,32 @@ const toc = [
   <section id="cms-architecture" class="space-y-4">
     <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
       <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
-      <span>1. Wix Studio CMS 底层架构设计</span>
+      <span>1. Wix Studio CMS 三层底层架构解析</span>
     </h2>
     <p>
       Wix CMS 由三个核心支柱紧密协作构成：
     </p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-emerald-700">1. Collections (数据集合)</div>
-        <div class="text-xs text-slate-500">类似于 Excel 表格或云端数据库表，存储纯粹的文本、图片、富文本、标签与附件。</div>
+        <div class="text-xs font-bold text-emerald-700 flex items-center gap-1">
+          <Icon name="database" class="w-3.5 h-3.5" />
+          <span>1. Collections (数据集合)</span>
+        </div>
+        <div class="text-xs text-slate-500">类似于云端结构化数据表，存储纯粹的文本、高清图片、富文本、标签与附件。</div>
       </div>
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-blue-700">2. Datasets (数据中继器)</div>
-        <div class="text-xs text-slate-500">充当连接桥梁，控制页面从哪个集合取数、取多少条、如何排序与过滤。</div>
+        <div class="text-xs font-bold text-blue-700 flex items-center gap-1">
+          <Icon name="git-branch" class="w-3.5 h-3.5" />
+          <span>2. Datasets (数据连接器)</span>
+        </div>
+        <div class="text-xs text-slate-500">充当连接桥梁，控制页面从哪个集合取数、每页展示条数、排序规则与筛选条件。</div>
       </div>
       <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
-        <div class="text-xs font-bold text-purple-700">3. Dynamic UI (动态组件)</div>
-        <div class="text-xs text-slate-500">如 Repeater 列表、画廊、文字框，将数据中继器的数据实时渲染为页面视觉。</div>
+        <div class="text-xs font-bold text-purple-700 flex items-center gap-1">
+          <Icon name="layout" class="w-3.5 h-3.5" />
+          <span>3. Dynamic UI (动态视口)</span>
+        </div>
+        <div class="text-xs text-slate-500">如 Repeater 列表、多媒体画廊、文本框，将数据中继器的行数据实时渲染为交互界面。</div>
       </div>
     </div>
   </section>
@@ -75,20 +108,20 @@ const toc = [
     <p>
       在左侧工具栏点击 <strong>CMS</strong> 图标，点击 <strong>Create Collection</strong>：
     </p>
-    <ul class="space-y-2 pl-4 text-slate-700">
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>Title 字段（默认主键）：</strong> 用于生成 URL Slug 基础，建议填写英文标识或规范标题；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>Rich Text（富文本）：</strong> 适合存储长篇博客正文或多段落案例介绍，支持排版加粗与嵌入多媒体；</span>
-      </li>
-      <li class="flex items-start gap-2">
-        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
-        <span><strong>Multi-Reference（多对多引用）：</strong> 例如文章归属于多个分类，一个设计师参与过多个项目。</span>
-      </li>
-    </ul>
+    <div class="space-y-2 text-xs sm:text-sm text-slate-700">
+      <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+        <strong class="text-slate-900 font-bold">Title 字段（默认主键）：</strong>
+        <span class="text-slate-600">用于生成动态 URL 的 Slug 别名基础，建议统一使用规范的英文标识（如 <code>smart-gateway-hub</code>）。</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+        <strong class="text-slate-900 font-bold">Rich Content / Rich Text（富文本字段）：</strong>
+        <span class="text-slate-600">适合存储长篇产品白皮书或技术规格书，支持多级标题、代码块与自定义多媒体嵌入。</span>
+      </div>
+      <div class="p-3.5 rounded-xl border border-slate-200 bg-white">
+        <strong class="text-slate-900 font-bold">Reference / Multi-Reference（关系型引用）：</strong>
+        <span class="text-slate-600">关联其他数据集合。例如一个“案例项目”可以关联“所属行业（一对一）”与“项目负责人（多对多）”。</span>
+      </div>
+    </div>
   </section>
 
   <!-- Section 3: Dynamic Pages -->
@@ -98,18 +131,121 @@ const toc = [
       <span>3. 动态列表页与动态详情页（URL 路由规则）</span>
     </h2>
     <p>
-      在创建集合后，Wix Studio 允许您一键生成两种动态页面：
+      在创建集合后，Wix Studio 允许您一键生成两类动态页面：
     </p>
     <div class="space-y-3">
       <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
         <div class="text-xs font-bold text-slate-900">动态列表页（Category/Index Page）</div>
-        <div class="text-xs text-slate-500 font-mono">URL 示例：https://yourdomain.com/portfolio</div>
-        <div class="text-xs text-slate-600">放置 Repeater 列表，按创建时间倒序显示所有数据项缩略图，自带分页与搜索。</div>
+        <div class="text-xs text-slate-500 font-mono">URL 路由示例：https://yourdomain.com/portfolio</div>
+        <div class="text-xs text-slate-600">放置 Repeater 列表，按创建时间倒序显示所有数据项缩略图，自带分页器（Pagination）与分类筛选器。</div>
       </div>
       <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
         <div class="text-xs font-bold text-slate-900">动态详情页（Item Detail Page）</div>
-        <div class="text-xs text-slate-500 font-mono">URL 示例：https://yourdomain.com/portfolio/&#123;title&#125;</div>
-        <div class="text-xs text-slate-600">展示特定一条数据的完整细节，自动在 head 注入该条数据独有的 Title 和 Meta 标签。</div>
+        <div class="text-xs text-slate-500 font-mono">URL 路由示例：https://yourdomain.com/portfolio/&#123;title&#125;</div>
+        <div class="text-xs text-slate-600">展示特定一条记录的全部深度内容，并在页面 <code>&lt;head&gt;</code> 自动注入该记录专属的 SEO Title 与 Meta Description。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Reference Fields -->
+  <section id="reference-fields" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>4. 引用字段（Reference）：构建多对多关系型数据模型</span>
+    </h2>
+    <p>
+      在大型企业站中，避免数据冗余的关键是拆分集合：
+    </p>
+    <div class="p-4 rounded-xl bg-slate-900 text-slate-200 space-y-2 font-mono text-xs">
+      <div class="text-emerald-400 font-bold">// 示例数据实体关系 (Entity-Relationship)</div>
+      <div>1. 集合【Projects (工程案例)】- 包含标题、全景图片、完工年份</div>
+      <div>2. 集合【Industries (所属行业)】- 包含汽车制造、光伏储能、生物医疗</div>
+      <div class="text-slate-400">// 在 Projects 中添加 Multi-Reference 字段指向 Industries</div>
+      <div class="text-slate-400">// 一个光伏超级工厂案例，可同时打上 [光伏储能] 和 [智能制造] 两个行业标签</div>
+    </div>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      在前端页面，当用户点击任一“光伏储能”行业标签时，页面即可自动联动展示所有关联该行业的其他工程案例。
+    </p>
+  </section>
+
+  <!-- Section 5: Pitfalls -->
+  <section id="pitfalls" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-500 rounded-full inline-block"></span>
+      <span>5. 实战避坑指南：权限未开放与未发布草稿 404</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 1：沙盒环境（Sandbox）有数据，线上发布后空空如也</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          Wix CMS 严格区分 <strong>Sandbox（编辑期沙盒）</strong> 和 <strong>Live（线上生产库）</strong>。在编辑器填入数据后，必须在 CMS 菜单中点击 <strong>Sync -> Copy all items to Live</strong> 同步到线上，访客才能在前台看到真实内容。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/80 text-xs sm:text-sm text-slate-700 space-y-1">
+        <div class="font-bold text-amber-900 flex items-center gap-1.5">
+          <Icon name="shield-check" class="w-4 h-4 text-amber-600" />
+          <span>避坑 2：集合权限（Permissions）未设置为公开读取</span>
+        </div>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          若集合权限保持为默认的 <code>Site Member</code>，未登录的普通访客打开动态页面将提示 403 权限拒绝或直接白屏。公开展示的案例库和产品库必须将 Read content 权限设置为 <code>Anyone</code>。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Official References -->
+  <section id="official-references" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>6. Wix 官方 Support 权威参考文档</span>
+    </h2>
+    <p class="text-xs sm:text-sm text-slate-600">
+      关于 CMS 集合创建、动态页面路由与权限安全配置规范：
+    </p>
+    <div class="grid grid-cols-1 gap-3 pt-1">
+      {officialDocs.map((doc) => (
+        <a
+          href={doc.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-4 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 hover:shadow-xs transition group flex items-start justify-between gap-4"
+        >
+          <div class="space-y-1">
+            <div class="text-sm font-bold text-slate-900 group-hover:text-emerald-600 flex items-center gap-1.5">
+              <span>{doc.title}</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700">Official Support</span>
+            </div>
+            <p class="text-xs text-slate-500 leading-relaxed">{doc.desc}</p>
+          </div>
+          <Icon name="chevron-right" class="w-4 h-4 text-slate-400 group-hover:text-emerald-600 shrink-0 mt-1 transition-transform group-hover:translate-x-1" />
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Section 7: FAQ -->
+  <section id="faq" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>7. 高频常见问题解答 (FAQ)</span>
+    </h2>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：支持从 Excel 或 CSV 表格批量导入数据吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          完全支持！在 Collection 右上角点击 <code>... -&gt; Import items</code>，上传 .csv 文件后，系统支持对每一列字段与 CMS 数据库字段进行可视化映射，几秒钟即可批量导入成百上千条产品数据。
+        </p>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm space-y-1">
+        <strong class="text-slate-900 block font-bold">Q：动态详情页的 SEO Title 可以根据数据字段自动拼接吗？</strong>
+        <p class="text-slate-600 text-xs leading-relaxed">
+          是的！进入动态页面的 Page Settings -&gt; SEO，您可以将 Title 模式设为 <code>&#123;Title&#125; - &#123;Industry&#125; | 品牌名</code>，每个动态页面发布时都会自动抓取对应行的字段填充，实现全自动批量 SEO 优化。
+        </p>
       </div>
     </div>
   </section>
