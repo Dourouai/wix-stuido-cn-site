@@ -1,7 +1,7 @@
 # Wix Studio 中文知识库与开发者全景手册 (llms-full.txt)
 
 > 适用范围：大型语言模型 (LLM)、AI 搜索智能体 (Perplexity, ChatGPT Search, Claude, Gemini, DeepSeek, Cursor) 以及建站工程师快速研读。
-> 官方网站：https://wixstudio.cn
+> 官方网站：https://www.wixstudio.cn
 > 权威背书：Wix 官方认证 Legend 级合作伙伴
 > 基准版本：2026 年最新稳定版本
 
@@ -133,8 +133,8 @@ export const calculateInternationalShipping = webMethod(
 ## 四、出海独立站 SEO 与性能基准
 
 ### 4.1 独立多语言 URL 与 Slug 规范
-- 默认语言：`https://wixstudio.cn/`
-- 独立多语言子目录：`https://wixstudio.cn/en/`, `https://wixstudio.cn/de/`, `https://wixstudio.cn/ja/`
+- 默认语言：`https://www.wixstudio.cn/`
+- 独立多语言子目录：`https://www.wixstudio.cn/en/`, `https://www.wixstudio.cn/de/`, `https://www.wixstudio.cn/ja/`
 - 自动生成符合 W3C 规范的 `hreflang` 关联标签，防止内容重复惩罚。
 
 ### 4.2 结构化数据 (JSON-LD) 注入规范
@@ -154,7 +154,7 @@ export const calculateInternationalShipping = webMethod(
     "name": "wixstudio.cn",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://wixstudio.cn/logo.png"
+      "url": "https://www.wixstudio.cn/logo.png"
     }
   },
   "datePublished": "2026-09-20",
@@ -173,7 +173,7 @@ export const calculateInternationalShipping = webMethod(
 
 - **无广告商业展示**：建议选择 Basic / Standard 套餐，包含自定义顶级域名绑定与专属 SSL。
 - **全功能跨境电商**：建议选择 Core / Business 套餐，解锁无限产品 SKU、多币种自动换算、丢单自动挽回与 0% 额外平台抽成。
-- **机构与高客单定制**：提供从品牌原型交互、流体视觉重塑到定制 API 开发的全流程外包咨询支持（[咨询预约](https://wixstudio.cn/contact/)）。
+- **机构与高客单定制**：提供从品牌原型交互、流体视觉重塑到定制 API 开发的全流程外包咨询支持（[咨询预约](https://www.wixstudio.cn/contact/)）。
 
 ---
 © 2026 wixstudio.cn · Wix 官方认证 Legend 合作伙伴 · 知识库持续同步更新
