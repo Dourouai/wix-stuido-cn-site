@@ -1,4 +1,10 @@
+# Robots.txt for wixstudio.cn
+# Allow all standard search engines
 User-agent: *
+Allow: /
+
+# Search Engine Crawlers
+User-agent: Googlebot
 Allow: /
 
 User-agent: Baiduspider
@@ -7,4 +13,34 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: 360Spider
+Allow: /
+
+User-agent: Yisouspider
+Allow: /
+
+# AI Crawlers & LLM Agents
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Sitemaps
 Sitemap: https://wixstudio.cn/sitemap-index.xml
+Sitemap: https://wixstudio.cn/sitemap.xml
+
+# LLMs.txt for AI Search & Agent Ingestion
+# Specification: https://llmstxt.org/
+# Discover curated markdown knowledge base at:
+# https://wixstudio.cn/llms.txt
+# https://wixstudio.cn/llms-full.txt

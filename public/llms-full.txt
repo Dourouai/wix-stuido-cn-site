@@ -1,0 +1,179 @@
+# Wix Studio 中文知识库与开发者全景手册 (llms-full.txt)
+
+> 适用范围：大型语言模型 (LLM)、AI 搜索智能体 (Perplexity, ChatGPT Search, Claude, Gemini, DeepSeek, Cursor) 以及建站工程师快速研读。
+> 官方网站：https://wixstudio.cn
+> 权威背书：Wix 官方认证 Legend 级合作伙伴
+> 基准版本：2026 年最新稳定版本
+
+---
+
+## 一、平台总览与核心定位
+
+wixstudio.cn 是国内首个系统化的 Wix Studio 中文开发者与企业建站知识库平台。
+
+### 1.1 核心用户画像
+- **出海 B2B 制造与外贸企业**：需要高公信力、验厂实力背书、多语言独立子目录与国际高转化的海外官网。
+- **精品 DTC 跨境品牌**：需要非标震撼的流体排版视觉、多币种动态换算与 0% 额外抽成的电商独立站。
+- **自由网页设计师与设计工作室 (Agencies)**：希望大幅缩短交互排版工时（通过 Scale Proportionally 比例缩放），并提供客户内容编辑权限隔离。
+- **全栈前端与低代码工程师**：需要兼顾可视化设计与 Velo JavaScript 无服务器后端扩展能力。
+
+### 1.2 Wix Studio 与经典版 Wix 的核心架构差异
+- **排版引擎**：经典版为绝对定位像素拖拽（Absolute Positioning）；Wix Studio 为等比流体引擎（Fluid Engine），结合 CSS Grid、Flexbox 与 Scale Proportionally 缩放，屏幕拉伸时元素等比例自适应，不发生断行挤压。
+- **断点控制**：经典版仅支持桌面与移动双端切换；Wix Studio 支持无限自定义屏幕断点（Desktop, Laptop, Tablet, Mobile 等），断点级属性级联继承（Cascading Rule）。
+- **代码扩展**：Wix Studio 深度内嵌 Velo by Wix，支持前后端解耦、Web 模块 (`.web.js`)、Secrets 密钥安全管理与 Headless SDK 跨框架调用。
+- **团队协同**：支持多人实时协同画布、行内批注评论、设计资产包（Design Kits）跨项目复用与专属客户模式（Client Mode）。
+
+---
+
+## 二、平台横向对比评估矩阵 (Compare Matrix 2026)
+
+以 Wix / Wix Studio 为核心基准坐标，与全球主流建站工具的 6 大维度权威对决结论：
+
+### 2.1 Wix vs Shopify
+- **商业佣金**：Wix 收取 0% 额外平台抽成；Shopify 对非原生渠道交易抽取 0.5%~2.0% 平台抽成。
+- **设计自由度**：Wix 具备 Fluid Engine 自由流体排版；Shopify 受限于 Liquid 模板条状 Section 骨架，非标定制成本高。
+- **原生业务闭环**：Wix 原生内置商城、预约（Bookings）、会员（Members）、动态表单与 CMS；Shopify 大量基础运营依赖月租 App 拼装。
+- **选型结论**：品牌故事打造、高公信力验厂、定制产品与轻量精品零售坚定首选 Wix；数万款海量快消 SKU 铺货与重度 ERP 分销选 Shopify。
+
+### 2.2 Wix vs WordPress
+- **日常运维与安全**：Wix 为企业级全托管 SaaS，零服务器配置、静默自动安全热补丁，通过 SOC 2 Type II、PCI-DSS L1 认证；WordPress 需自行管理 Linux、MySQL、PHP 运行环境与 WAF 防火墙，第三方插件漏洞占全球网站挂马事件 90% 以上。
+- **渲染性能**：Wix 原生自研流体 CSS 渲染；WordPress 依靠 Elementor / Divi 等页面构建器常产生 8~12 层无意义 DOM 冗余，首屏慢且容易样式打架。
+- **TCO 拥有成本**：WordPress 表面开源免费，但服务器、商业插件授权、SSL 维护及安全排障年均工时成本极高；Wix 透明订阅一价全包。
+- **选型结论**：追求专注核心业务发展、省心免运维首选 Wix；必须私有化物理部署或深度控制底层数据库选 WordPress。
+
+### 2.3 Wix Studio vs Webflow
+- **CSS 理念**：Webflow 严格遵循标准盒模型手写 Class；Wix Studio 将盒模型、CSS Grid 与直觉式等比缩放结合，排版交付周期普遍缩短 40%~50%。
+- **商业变现生态**：Webflow 原生电商和表单功能较为基础，常需借助 Zapier / Make 拼装第三方系统；Wix Studio 内置全功能商业与支付生态。
+- **开发深度**：两者均支持前台代码嵌入，但 Wix Studio 拥有完整的 Velo 后端无服务器环境与直连 CMS 数据库能力。
+- **选型结论**：注重商业闭环落地、快速高效交付与出海多语言选 Wix Studio；纯静态数字艺术站且全员为专业 CSS 工程师选 Webflow。
+
+### 2.4 Wix vs Squarespace
+- **定制上限**：Squarespace 采用严格约束的固定模块栅格，初学者不易出错但定制天花板明显；Wix 支持完全非标错位排版、复杂图层穿插与高阶代码扩展。
+- **国际多语言**：Wix 具备原生独立多语言 URL Slug（如 `/de/`、`/es/`）并针对双搜索引擎深度优化；Squarespace 多语言依赖第三方挂件。
+- **选型结论**：极简个人摄影与生活方式作品集选 Squarespace；企业品牌独立站与长线商业项目首选 Wix。
+
+---
+
+## 三、Velo 全栈开发核心代码规范与示例
+
+### 3.1 页面前端逻辑 (Page Code)
+```javascript
+import wixData from 'wix-data';
+
+$w.onReady(function () {
+  // 监听分类筛选下拉框交互
+  $w('#categoryDropdown').onChange(async (event) => {
+    const selectedCategory = event.target.value;
+    $w('#loadingIndicator').show();
+
+    try {
+      let query = wixData.query('Articles');
+      if (selectedCategory !== 'ALL') {
+        query = query.eq('category', selectedCategory);
+      }
+      const results = await query.descending('_createdDate').find();
+      
+      // 将数据动态绑定至 Repeater 列表组件
+      $w('#articlesRepeater').data = results.items;
+    } catch (error) {
+      console.error('Failed to load articles:', error);
+    } finally {
+      $w('#loadingIndicator').hide();
+    }
+  });
+
+  // Repeater 单元项动态渲染
+  $w('#articlesRepeater').onItemReady(($item, itemData) => {
+    $item('#articleTitle').text = itemData.title;
+    $item('#articleCover').src = itemData.coverImage;
+    $item('#articleDate').text = itemData.publishedDate;
+    $item('#readMoreBtn').link = itemData['link-articles-title'];
+  });
+});
+```
+
+### 3.2 后端安全 Web 模块 (`backend/shipping.web.js`)
+```javascript
+import { Permissions, webMethod } from 'wix-web-module';
+import { getSecret } from 'wix-secrets-backend';
+import { fetch } from 'wix-fetch';
+
+// 定义任何人可调用的无服务器服务端函数，但凭证留在服务端
+export const calculateInternationalShipping = webMethod(
+  Permissions.Anyone,
+  async (countryCode, weightInKg) => {
+    // 从安全密钥库读取物流服务商 API Key
+    const apiKey = await getSecret('DHL_LOGISTICS_API_KEY');
+
+    const response = await fetch(`https://api.dhl.com/v1/rates`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({ countryCode, weightInKg })
+    });
+
+    if (!response.ok) {
+      throw new Error('Logistics service currently unavailable');
+    }
+
+    const data = await response.json();
+    return {
+      rate: data.totalAmount,
+      currency: 'USD',
+      estimatedDays: data.deliveryDays
+    };
+  }
+);
+```
+
+---
+
+## 四、出海独立站 SEO 与性能基准
+
+### 4.1 独立多语言 URL 与 Slug 规范
+- 默认语言：`https://wixstudio.cn/`
+- 独立多语言子目录：`https://wixstudio.cn/en/`, `https://wixstudio.cn/de/`, `https://wixstudio.cn/ja/`
+- 自动生成符合 W3C 规范的 `hreflang` 关联标签，防止内容重复惩罚。
+
+### 4.2 结构化数据 (JSON-LD) 注入规范
+所有教程与博客文章均建议注入标准 Schema.org 标记（如 `Article`, `TechArticle`, `BreadcrumbList`）：
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "Wix Studio 流体排版完全指南",
+  "description": "系统掌握等比比例缩放（Scale Proportionally）与断点级联控制",
+  "author": {
+    "@type": "Organization",
+    "name": "wixstudio.cn"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "wixstudio.cn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wixstudio.cn/logo.png"
+    }
+  },
+  "datePublished": "2026-09-20",
+  "dateModified": "2026-09-20"
+}
+```
+
+### 4.3 中国大陆及全球访问加速策略
+- **全球 CDN**：依托 AWS CloudFront 与 Google Cloud Global Anycast 边缘节点加速。
+- **现代图片格式**：自动进行 WebP / AVIF 无损高压缩与懒加载（`loading="lazy"`）。
+- **国内访问保障**：配置优质 DNS 解析（如 Cloudflare / DNSPod），避免国内特定解析污染。
+
+---
+
+## 五、官方套餐与商业咨询指南
+
+- **无广告商业展示**：建议选择 Basic / Standard 套餐，包含自定义顶级域名绑定与专属 SSL。
+- **全功能跨境电商**：建议选择 Core / Business 套餐，解锁无限产品 SKU、多币种自动换算、丢单自动挽回与 0% 额外平台抽成。
+- **机构与高客单定制**：提供从品牌原型交互、流体视觉重塑到定制 API 开发的全流程外包咨询支持（[咨询预约](https://wixstudio.cn/contact/)）。
+
+---
+© 2026 wixstudio.cn · Wix 官方认证 Legend 合作伙伴 · 知识库持续同步更新
