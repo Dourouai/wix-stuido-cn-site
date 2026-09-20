@@ -1,0 +1,102 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'add-wix-stores', title: '为 Studio 站点添加原生 Wix Stores 模块' },
+  { id: 'product-catalog', title: '商品录入与多规格属性（变体 SKU）' },
+  { id: 'multi-currency', title: '多币种自动汇率切换与本地定价' },
+  { id: 'shipping-rules', title: '全球运费模板与海关关税（Tax & Duty）' },
+  { id: 'abandoned-cart', title: '挽回未支付客户：自动召回邮件设置' },
+];
+---
+
+<ArticleLayout
+  title="从零搭建 Wix Stores 外贸独立站：商品录入、多变体 SKU 与多币种结算"
+  description="Wix Stores 外贸独立商城搭建实战。详细拆解商品多变体配置、库存联动、多币种自适应汇率、全球运费规则与弃单挽回自动化全流程。"
+  keywords="Wix 商城搭建, 外贸独立站, 多变体商品, 多币种商城, 跨境电商独立站, Wix Stores 教程"
+  category="外贸独立站与商城"
+  categorySlug="/tutorials/ecommerce/"
+  readTime="15 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-b2b-export.jpg"
+  toc={toc}
+  nextArticle={{
+    title: "出海金流避坑指南：Wix 接入 PayPal、Stripe 与多国本地支付全解析",
+    href: "/tutorials/ecommerce/payment-gateways/",
+  }}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-orange-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-orange-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-orange-800 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      相比 Shopify 动辄每月基础订阅 + 2% 平台抽佣 + 各类昂贵付费 App 插件，<strong>Wix Studio 官方内置了强大的原生外贸电商引擎（Wix Stores）</strong>。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      它完全 <strong>0% 官方抽佣（除第三方支付网关正常结算费率外不额外抽水）</strong>，开箱即提供完整的商品管理、折扣码、弃单自动挽回流、多币种动态换算与订阅制循环扣款功能。
+    </p>
+  </section>
+
+  <!-- Section 1: Add Stores -->
+  <section id="add-wix-stores" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
+      <span>1. 为 Studio 站点添加原生 Wix Stores 模块</span>
+    </h2>
+    <p>
+      在左侧 App 市场中搜索 <strong>Wix Stores</strong> 并点击添加：
+    </p>
+    <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
+      <div class="text-xs font-bold text-slate-900">自动生成的电商完整页面：</div>
+      <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
+        <li><strong>Shop (商品目录总览页)：</strong> 包含分类侧边栏、价格滑块过滤与多条件排序；</li>
+        <li><strong>Product Page (商品详情页)：</strong> 多图轮播画廊、变体选择器、加购动效与富文本参数；</li>
+        <li><strong>Cart &amp; Mini-Cart (侧边迷你购物车与完整结算页)：</strong> 实时计算运费与优惠码；</li>
+        <li><strong>Thank You Page (支付成功确认页)：</strong> 订单编号、追踪状态与推荐商品。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 2: Catalog -->
+  <section id="product-catalog" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
+      <span>2. 商品录入与多规格属性（变体 SKU）</span>
+    </h2>
+    <p>
+      在外贸场景中，同一款产品往往拥有不同的颜色、尺寸、材质或包装规格：
+    </p>
+    <ul class="space-y-2 pl-4 text-slate-700">
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>独立 SKU 编号与独立库存跟踪：</strong> 针对 <code>Color: Black / Size: XL</code> 设置独立的库存预警，售罄时自动显示 Sold Out；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>变体差价（Price Difference）：</strong> 例如大容量包装自动在基础款价格上累加 $20；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>变体联动配图：</strong> 当访客点击“军绿色”色块时，主图自动平滑切换至军绿色实拍图。</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Section 3: Multi-currency -->
+  <section id="multi-currency" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-orange-600 rounded-full inline-block"></span>
+      <span>3. 多币种自动汇率切换与本地定价</span>
+    </h2>
+    <p>
+      出海欧美或亚太不同地区，让买家使用熟悉的原生币种结算能将结账放弃率降低 30% 以上：
+    </p>
+    <p class="text-slate-600">
+      在 <strong>Settings -&gt; Multi-Currency Converter</strong> 中开启多币种。系统会自动根据访客的 IP 地理位置，将基准美元定价（USD）实时换算为欧元（EUR）、英镑（GBP）、澳元（AUD）或日元（JPY）。
+    </p>
+  </section>
+</ArticleLayout>

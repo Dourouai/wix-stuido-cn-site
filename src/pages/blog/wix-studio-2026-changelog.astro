@@ -1,0 +1,188 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'timeline', title: '2026 年度重大功能发版时间轴' },
+  { id: 'sep-2026', title: '2026 年 9 月：Alfred AI 电话代理与 Aria 扩展' },
+  { id: 'aug-2026', title: '2026 年 8 月：CMS 草稿暂存与多语言 URL Slug' },
+  { id: 'studio-2', title: 'Wix Studio 2.0：Plan Mode 规划模式与 Aria 2.0' },
+  { id: 'developer-apis', title: '开发者生态：GSC SEO 与 Partner API 矩阵' },
+  { id: 'how-to-enable', title: '企业与创作者如何开启新特性' },
+];
+---
+
+<ArticleLayout
+  title="Wix Studio 2026 官方更新日志与发版总览：从 Studio 2.0 到 9 月最新特性"
+  description="汇集 Wix Studio 2026 官方最新产品更新日志（Changelog）。深度解析 Wix Studio 2.0、Alfred AI 电话代理、CMS 草稿预发与多语言 SEO 重大功能。"
+  keywords="Wix Studio 更新日志, Wix Studio 2026 Changelog, Alfred AI, CMS 草稿审核, Wix Studio 2.0, Aria AI"
+  category="官方更新日志"
+  categorySlug="/blog/"
+  readTime="10 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  toc={toc}
+  nextArticle={{
+    title: "Wix Studio 2026 年 9 月产品功能周报：Alfred AI 语音代理、Aria 开发者扩展与 SEO API 详解",
+    href: "/blog/wix-studio-september-2026-updates/",
+  }}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-blue-50/80 via-white to-purple-50/50 p-6 sm:p-8 rounded-2xl border border-blue-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#116DFF] text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒更新速览 · Wix Studio Official Product Updates</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      2026 年是 Wix Studio 诞生以来<strong>技术进化最为激进的一年</strong>。官方从单纯的“无代码流体排版工具”正式迈向以 <strong>Studio 2.0、Aria 2.0 与原生自主 AI 代理（AI Agents）</strong>为核心的企业级数字交付平台。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      本文汇总了 2026 年官方最新发版特性，包括 <strong>9 月新鲜出炉的 Alfred AI 智能电话客服、Aria App Tools 开发者扩展、8 月上线的 CMS Drafts 数据库灰度审核与多语言 URL Slug 本地化 SEO 引擎</strong>。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-editor-interface.jpg"
+      alt="Wix Studio 2026 官方产品更新全景与全新操作工作台"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：Wix Studio 2026 全新发版工作台：从 Alfred AI 代理到 CMS 灰度暂存机制
+    </figcaption>
+  </figure>
+
+  <!-- Section 1: Timeline -->
+  <section id="timeline" class="space-y-6">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>1. 2026 年度重大功能发版时间轴（Changelog Timeline）</span>
+    </h2>
+
+    <div class="space-y-4">
+      <!-- 2026.09 -->
+      <div class="p-5 rounded-2xl bg-white border-2 border-blue-100 shadow-xs space-y-2.5">
+        <div class="flex items-center justify-between">
+          <span class="px-3 py-1 rounded-full bg-blue-50 text-[#116DFF] text-xs font-extrabold">2026 年 9 月发布</span>
+          <span class="text-xs text-slate-400 font-mono">v2.4.0 Production</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900">Alfred AI 智能语音电话代理 & Aria 2.0 开发者生态扩展</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          发布专为服务业与外贸客户定制的 <strong>Alfred AI 电话代理</strong>，支持自动接听跨国客户电话、自然语言对话转写、沉淀线索至 CRM；同时开放 <strong>App Tools Extensions</strong>，允许自建扩展被 Aria AI 实时调度。
+        </p>
+      </div>
+
+      <!-- 2026.08 -->
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2.5">
+        <div class="flex items-center justify-between">
+          <span class="px-3 py-1 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-extrabold">2026 年 8 月发布</span>
+          <span class="text-xs text-slate-400 font-mono">v2.3.2 Production</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900">CMS 数据库草稿保存与 Staging 灰度暂存机制 & 多语言 URL Slug 本地化</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          CMS 团队告别“一修改即上线”的风险操作，支持将数据项存为 Draft并在专属预发环境中安全预览；多语言站点现支持针对不同国家语言独立编写语义化 URL 别名。
+        </p>
+      </div>
+
+      <!-- 2026.Q1-Q2 -->
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-2.5">
+        <div class="flex items-center justify-between">
+          <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-extrabold">2026 旗舰大版本</span>
+          <span class="text-xs text-slate-400 font-mono">Wix Studio 2.0</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900">Wix Studio 2.0 全球公测：Plan Mode 规划模式全面普及</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          建站流程重构。在进入空白画布前，通过 Plan Mode 输入企业商业画像与目标群体，AI 自动生成信息架构图、页面导航流与推荐业务模块组合。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: September Details -->
+  <section id="sep-2026" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>2. 2026 年 9 月：Alfred AI 电话代理与 Aria 开发者扩展</span>
+    </h2>
+    <p>
+      在 9 月的官方更新中，Wix 推出了一项突破性的原生 AI 工具：<strong>Alfred (AI Phone Agent)</strong>。
+    </p>
+    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+      <div class="font-bold text-slate-900 text-sm">Alfred 的核心商业价值：</div>
+      <ul class="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-slate-700">
+        <li><strong>7x24 小时跨时区电话响应</strong>：针对海外不同时区的来电，Alfred 能够以流利的母语语音接听并解答常见业务疑问。</li>
+        <li><strong>自动化转写与信息提取</strong>：通话挂断后，系统在 10 秒内将录音提炼为结构化摘要，自动识别客户意向并新建 Wix Contacts 联系人。</li>
+        <li><strong>即时短信预约链接</strong>：若客户需要预约咨询，Alfred 可在通话中或挂断后自动发送 Wix Bookings 短信预订链接。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 3: August Details -->
+  <section id="aug-2026" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>3. 2026 年 8 月：CMS 草稿暂存与多语言 URL Slug 本地化</span>
+    </h2>
+    <p>
+      对于拥有大型团队或运营团队的建站客户，8 月更新解决了长达两年的历史痛点：
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+      <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+        <div class="font-bold text-[#116DFF]">CMS Drafts & Staging Review</div>
+        <p class="text-slate-600 leading-relaxed">
+          编辑人员对博客、产品库或案例的修改可保存为独立草稿（Draft），管理员可在 Staging 灰度链接中真实查看排版效果，确认无误后一键合并发布。
+        </p>
+      </div>
+      <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2">
+        <div class="font-bold text-[#116DFF]">多语言 URL Slug 自定义</div>
+        <p class="text-slate-600 leading-relaxed">
+          例如英文页为 <code>/products/industrial-pump</code>，西语页可自定义为 <code>/es/productos/bomba-industrial</code>，大幅提升当地 Google 搜索相关性权重。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Studio 2.0 & Plan Mode -->
+  <section id="studio-2" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>4. Wix Studio 2.0：Plan Mode 规划模式与 Aria 2.0</span>
+    </h2>
+    <p>
+      在 2.0 时代，Wix Studio 颠覆了“直接堆砌组件”的业余建站逻辑，引入了专业 Agency 的核心工作法——<strong>规划先于绘制（Architecture Before Design）</strong>。
+    </p>
+    <p>
+      设计师可以在 Plan Mode 视图中直观看到站点的全景架构树（Site Map Tree）、页面间的重定向与数据关联。Aria 2.0 则扮演实时咨询架构师角色，根据行业特征主动预警漏掉的关键页面（例如 GDPR 隐私政策页、外贸验厂背书页等）。
+    </p>
+  </section>
+
+  <!-- Section 5: Developer APIs -->
+  <section id="developer-apis" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>5. 开发者生态：GSC SEO 与 Partner API 矩阵</span>
+    </h2>
+    <p>
+      9 月针对 Wix Developers 开发者社区开放了一批全新底层 REST & SDK API：
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-slate-700 text-xs sm:text-sm">
+      <li><strong>Google Search Console APIs</strong>：无需离开 Wix 仪表盘即可通过 API 自动化读取海外独立站的关键词点击、展示与索引异常。</li>
+      <li><strong>App Tools Extensions for Aria</strong>：允许企业自研的 ERP、仓储或客服插件直接与 Aria 交互，创作者可以用自然语言向 Aria 查询库存状态。</li>
+      <li><strong>Partner Program Achievements & Earnings API</strong>：官方认证合作伙伴可直接通过 API 自动化同步客户订阅状态、返佣报表与项目交付健康度。</li>
+    </ul>
+  </section>
+
+  <!-- Section 6: How to Enable -->
+  <section id="how-to-enable" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>6. 企业与创作者如何开启与享受新特性</span>
+    </h2>
+    <p>
+      所有上述 2026 最新特性均已在 Wix Studio 全球云端服务中平滑上线。现有站点无需手动执行任何升级包，登录工作台后即可在左侧工具面板与应用市场中直接探索使用。
+    </p>
+  </section>
+</ArticleLayout>

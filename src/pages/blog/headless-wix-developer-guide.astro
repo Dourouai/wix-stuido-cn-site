@@ -1,0 +1,172 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'what-is-headless', title: '什么是 Headless Wix？' },
+  { id: 'wix-sdk', title: '安装与初始化 @wix/sdk 核心客户端' },
+  { id: 'ecommerce-api', title: '调用 Wix Stores API 实现独立商城结算' },
+  { id: 'cms-query-api', title: '高效调用 Wix CMS 动态数据并实现 ISR 增量渲染' },
+  { id: 'hybrid-architecture', title: '混合架构模式：营销页 Studio + 复杂业务 Next.js' },
+  { id: 'headless-security', title: 'OAuth 令牌与无头应用安全认证实践' },
+];
+---
+
+<ArticleLayout
+  title="Headless Wix 架构实战：用 React / Next.js 调用 Wix 商业核心能力"
+  description="现代全栈前端开发必读。利用 Headless Wix 与 @wix/sdk，在 React、Next.js 或 Vue 自建前端中调用 Wix 强大的电商、会员、预约与 CMS 底层引擎。"
+  keywords="Headless Wix, @wix/sdk, Next.js Wix, 无头电商, 前端解耦, API优先架构, 商业引擎API"
+  category="技术进阶"
+  categorySlug="/blog/"
+  readTime="12 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  prevArticle={{
+    title: "Wix Studio 开放平台深度探索：自定义原生 CSS 与全局设计令牌（Design Tokens）",
+    href: "/blog/custom-css-and-open-platform/",
+  }}
+  nextArticle={{
+    title: "出海合规与数据安全：Wix 全球 SOC 2、ISO 27001 与 GDPR / CCPA 认证全景",
+    href: "/blog/enterprise-security-and-compliance/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-teal-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-teal-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-teal-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      当企业需要打造高度自研的 React / Next.js 单页应用或原生移动端 App，但又不想耗费数月研发成本去从零造轮子编写复杂的电商收单、跨国运费、多货币结算与会员权限时，<strong>Headless Wix 就是杀手级架构方案</strong>。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      通过官方发布的 <code>@wix/sdk</code>，任何前端开发者都可以通过具备完整类型提示（TypeScript）的 API，直接调用 Wix 已经过全球数百万商户高并发验证的电商引擎、CMS 数据库与活动预约系统。前端享有极致的定制自由度，后端享有企业级免运维云基础设施。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-editor-interface.jpg"
+      alt="Headless Wix API 无头解耦架构与微服务数据链路"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：前端 React / Next.js 自建应用通过 @wix/sdk 与 Wix 商业后端云引擎无缝联动
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="what-is-headless" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>1. 什么是 Headless Wix？</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      传统建站模式是“前台展示 + 后台管理”紧密绑定的单体架构。而 <strong>Headless（无头解耦架构）</strong> 将前端呈现层与后端业务逻辑彻底拆分：
+    </p>
+    <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2 text-xs sm:text-sm text-slate-700">
+      <div><strong>前端呈现层（Presentation Layer）：</strong> 任意前端技术栈（Next.js 15, Remix, Astro, React Native, 甚至微信小程序）；</div>
+      <div><strong>数据桥梁（API Gateway）：</strong> 官方统一维护的 <code>@wix/sdk</code> 及 REST / GraphQL 端点；</div>
+      <div><strong>后端基础设施（Wix Commerce & CMS Engine）：</strong> 全球收单、多仓物流调度、折扣引擎、客户关系管理（CRM）与数据合规。</div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="wix-sdk" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>2. 安装与初始化 @wix/sdk 核心客户端</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在您的 Next.js 或 Node.js 项目中安装依赖：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2">
+      <div class="text-emerald-400">npm install @wix/sdk @wix/stores @wix/data</div>
+    </div>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      初始化客户端代码：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-1">
+      <div class="text-teal-400">// lib/wixClient.ts</div>
+      <div>import &#123; createClient, OAuthStrategy &#125; from '@wix/sdk';</div>
+      <div>import &#123; products &#125; from '@wix/stores';</div>
+      <div>import &#123; items &#125; from '@wix/data';</div>
+      <br />
+      <div>export const wixClient = createClient(&#123;</div>
+      <div class="pl-4">modules: &#123; products, items &#125;,</div>
+      <div class="pl-4">auth: OAuthStrategy(&#123;</div>
+      <div class="pl-8">clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID!,</div>
+      <div class="pl-4">&#125;),</div>
+      <div>&#125;);</div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="ecommerce-api" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>3. 调用 Wix Stores API 实现独立商城结算</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在 React 页面中查询商品并创建结账单：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-1">
+      <div class="text-teal-400">// 获取商品列表</div>
+      <div>const response = await wixClient.products.queryProducts().limit(10).find();</div>
+      <div>console.log(response.items); // 包含多货币价格、库存与媒体图</div>
+      <br />
+      <div class="text-teal-400">// 一键重定向至 Wix 官方合规安全结账页</div>
+      <div>const checkout = await wixClient.currentCart.createCheckoutFromCurrentCart(&#123;</div>
+      <div class="pl-4">channelType: 'WEB',</div>
+      <div>&#125;);</div>
+      <div>window.location.href = checkout.checkoutUrl;</div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="cms-query-api" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>4. 高效调用 Wix CMS 动态数据并实现 ISR 增量渲染</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      市场营销人员在 Wix Studio 后台录入博客文章或客户案例，Next.js 前端通过 ISR（Incremental Static Regeneration）每隔 60 秒增量拉取最新数据重新生成静态 HTML，兼具秒开速度与免重新发版的灵活性。
+    </p>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="hybrid-architecture" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>5. 混合架构模式：营销页 Studio + 复杂业务 Next.js</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      业内顶尖团队最推荐的<strong>“双轮驱动混合架构”</strong>：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-1">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="font-bold text-teal-700">官网主站与营销落地页（Wix Studio）</div>
+        <p class="text-slate-600 leading-relaxed">由市场与设计团队用 Wix Studio 自由搭建与改版，出海 SEO 极速优化，完全不占用工程师开发排期。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="font-bold text-teal-700">核心应用与用户控制台（Next.js + Headless）</div>
+        <p class="text-slate-600 leading-relaxed">在子域名（如 app.yourdomain.com）上运行自研业务系统，通过 SDK 无缝读取 Wix 会员与订单数据。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="headless-security" class="space-y-4 pt-4 border-t border-slate-150">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-teal-600 rounded-full inline-block"></span>
+      <span>6. OAuth 令牌与无头应用安全认证实践</span>
+    </h2>
+    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <p>在 Next.js 服务端路由（Route Handlers）中，务必将 <code>WIX_API_KEY</code> 与刷新令牌存储在安全环境变量中。游客身份使用匿名游客 Token，会员登录后静默置换为带权限签名的 JWT，确保全流程无密钥泄露风险。</p>
+    </div>
+  </section>
+</ArticleLayout>

@@ -1,0 +1,127 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'enable-dev-mode', title: '开启 Dev Mode 开发人员模式' },
+  { id: 'w-selector', title: '核心语法：$w 页面元素选择器' },
+  { id: 'events-lifecycle', title: '生命周期与事件监听：onReady & onClick' },
+  { id: 'wix-data-intro', title: '初探 wix-data API 数据库查询' },
+  { id: 'best-practices', title: 'Velo 前端安全与性能最佳实践' },
+];
+---
+
+<ArticleLayout
+  title="Velo 入门完全实战：从 $w 元素选择器到页面数据动态绑定"
+  description="Wix Studio Velo JavaScript 编程起步指南。从开启开发者模式、掌握 $w 页面元素选择器、生命周期函数到事件监听实操，突破可视化建站限制。"
+  keywords="Wix Velo 入门, $w 选择器, Wix JavaScript, Velo 代码, Wix 动态交互, 前端开发"
+  category="Velo 全栈开发"
+  categorySlug="/tutorials/velo/"
+  readTime="14 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  toc={toc}
+  nextArticle={{
+    title: "Wix Studio CMS 动态数据库实战：构建多对多关系型内容页面",
+    href: "/tutorials/velo/cms-database/",
+  }}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-emerald-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-emerald-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      当可视化拖拽无法满足复杂的业务逻辑（如多重表单联动校验、自定义货币换算器、外部 CRM 实时推送）时，<strong>Velo 就是 Wix Studio 的终极武器</strong>。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      Velo 允许你在浏览器端直接编写现代化 ES6+ JavaScript，通过类似 jQuery 却更加类型安全的 <code>$w('#elementId')</code> 语法直接操控页面上的任意按钮、输入框、文本与 Repeater，无需配置 Node.js 构建环境或 Webpack 打包工具。
+    </p>
+  </section>
+
+  <!-- Section 1: Dev Mode -->
+  <section id="enable-dev-mode" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>1. 开启 Dev Mode 开发人员模式</span>
+    </h2>
+    <p>
+      在 Wix Studio 编辑器顶部导航栏中，点击 <strong>Dev Mode（开发模式）</strong> 开关并点击开启。
+    </p>
+    <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
+      <div class="text-xs font-bold text-slate-900">开启后界面发生的变化：</div>
+      <ul class="text-xs text-slate-600 space-y-1.5 list-disc pl-4">
+        <li>底部滑出集成 Monaco IDE 的代码编辑器窗口，支持代码补全、语法高亮与 ESLint 校验；</li>
+        <li>左侧导航栏新增代码资源管理器，包含 Page Code、Public、Backend 与 Database Collections；</li>
+        <li>选中的任何画布元素，右侧属性栏均会显示其唯一的 <strong>ID（例如 #submitButton, #heroHeading）</strong>。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 2: $w Selector -->
+  <section id="w-selector" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>2. 核心语法：$w 页面元素选择器</span>
+    </h2>
+    <p>
+      在 Velo 中，<code>$w</code> 是用于获取页面 DOM 代理对象的全局函数：
+    </p>
+    <div class="bg-[#0C0C0E] text-white p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2 border border-slate-800">
+      <div class="text-emerald-400">// 1. 修改元素文字与样式</div>
+      <div>$w('#welcomeText').text = "欢迎回来，尊敬的会员！";</div>
+      <div>$w('#promoBanner').show('fade', &#123; 'duration': 400 &#125;);</div>
+      <br />
+      <div class="text-emerald-400">// 2. 读取输入框数值</div>
+      <div>const userEmail = $w('#emailInput').value;</div>
+    </div>
+  </section>
+
+  <!-- Section 3: Events & Lifecycle -->
+  <section id="events-lifecycle" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>3. 生命周期与事件监听：onReady & onClick</span>
+    </h2>
+    <p>
+      所有页面级别的代码都必须放在 <code>$w.onReady()</code> 回调函数中，确保所有视觉组件加载完毕后再执行：
+    </p>
+    <div class="bg-[#0C0C0E] text-white p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2 border border-slate-800">
+      <div>$w.onReady(function () &#123;</div>
+      <div class="pl-4 text-slate-400">// 页面加载完毕后绑定点击事件</div>
+      <div class="pl-4">$w('#calcButton').onClick(() =&gt; &#123;</div>
+      <div class="pl-8">const amount = Number($w('#amountInput').value);</div>
+      <div class="pl-8">const total = amount * 1.08; // 8% 汇率/税金</div>
+      <div class="pl-8">$w('#resultText').text = `预估总额：$&#123;total.toFixed(2)&#125;`;</div>
+      <div class="pl-4">&#125;);</div>
+      <div>&#125;);</div>
+    </div>
+  </section>
+
+  <!-- Section 4: wix-data -->
+  <section id="wix-data-intro" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>4. 初探 wix-data API 数据库查询</span>
+    </h2>
+    <p>
+      无需手写 SQL，通过内置的 <code>wix-data</code> 模块即可对 CMS 数据库发起异步链式查询：
+    </p>
+    <div class="bg-[#0C0C0E] text-white p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2 border border-slate-800">
+      <div><span class="text-purple-400">import</span> wixData <span class="text-purple-400">from</span> <span class="text-emerald-300">'wix-data'</span>;</div>
+      <br />
+      <div><span class="text-purple-400">async function</span> <span class="text-blue-300">loadFeaturedProjects</span>() &#123;</div>
+      <div class="pl-4"><span class="text-purple-400">const</span> results = <span class="text-purple-400">await</span> wixData.query(<span class="text-emerald-300">"Portfolio"</span>)</div>
+      <div class="pl-8">.eq(<span class="text-emerald-300">"isFeatured"</span>, <span class="text-amber-300">true</span>)</div>
+      <div class="pl-8">.descending(<span class="text-emerald-300">"_createdDate"</span>)</div>
+      <div class="pl-8">.limit(6)</div>
+      <div class="pl-8">.find();</div>
+      <br />
+      <div class="pl-4 text-slate-400">// 将查询结果直接绑定到页面的 Repeater 列表</div>
+      <div class="pl-4">$w('#portfolioRepeater').data = results.items;</div>
+      <div>&#125;</div>
+    </div>
+  </section>
+</ArticleLayout>

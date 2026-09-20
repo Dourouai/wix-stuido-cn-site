@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const chapters = [
+  {
+    order: '01',
+    title: '从零搭建 Wix Stores 外贸独立站：商品录入、多变体 SKU 与多币种结算',
+    desc: '从独立商城后台开启、多属性变体（颜色/尺寸）管理、多币种动态汇率换算到国际税费与运费模板实操。',
+    href: '/tutorials/ecommerce/setup-store/',
+    readTime: '15 分钟',
+    tag: '商城搭建必修',
+  },
+  {
+    order: '02',
+    title: '出海金流避坑指南：Wix 接入 PayPal、Stripe 与多国本地支付全解析',
+    desc: '跨境支付账户合规要求、0% Wix 交易手续费配置优势、Stripe 争议风控以及防欺诈风控机制。',
+    href: '/tutorials/ecommerce/payment-gateways/',
+    readTime: '14 分钟',
+    tag: '海外金流支付',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio 外贸独立站与电商专栏 | 跨境外贸与国际金流实战 - wixstudio.cn"
+  description="面向跨境电商与外贸出海企业的 Wix Studio 教程。系统化讲解外贸独立站搭建、多变体商品目录、多币种多语言、PayPal与Stripe跨境支付对接全流程。"
+  keywords="Wix 电商, 外贸独立站搭建, Wix Stores, 跨境电商独立站, PayPal 接入, Stripe 支付"
+>
+  <!-- Track Hero Header -->
+  <section class="relative py-16 sm:py-20 overflow-hidden text-center bg-gradient-to-b from-orange-50/60 via-white to-white border-b border-gray-150">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
+      <nav class="flex justify-center items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="/" class="hover:text-slate-900 transition">首页</a>
+        <span>/</span>
+        <a href="/tutorials/" class="hover:text-slate-900 transition">教程中心</a>
+        <span>/</span>
+        <span class="text-slate-900 font-medium">外贸独立站与商城</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-50 text-orange-800 text-xs font-bold border border-orange-200">
+        <Icon name="shopping-bag" class="w-3.5 h-3.5" />
+        <span>E-COMMERCE TRACK / 外贸独立站与商城</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+        Wix Studio <span class="bg-gradient-to-r from-orange-600 to-amber-600 bg-clip-text text-transparent">外贸独立站与跨境电商专栏</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        打通跨境出海商品规划、国际多币种转换、PayPal 与 Stripe 支付结算全链路，打造高转化外贸品牌独立站。
+      </p>
+    </div>
+  </section>
+
+  <!-- Track Chapters List -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div class="text-sm font-bold text-slate-900">专栏章节列表</div>
+      <div class="text-xs text-slate-500">累计深度阅读约 29 分钟</div>
+    </div>
+
+    <div class="space-y-4">
+      {chapters.map((item) => (
+        <a
+          href={item.href}
+          class="block p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-500/5 transition group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 rounded-xl bg-orange-50 text-orange-700 font-black text-sm flex items-center justify-center shrink-0 border border-orange-200/60 group-hover:bg-orange-600 group-hover:text-white transition">
+                {item.order}
+              </span>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    {item.tag}
+                  </span>
+                  <span class="text-[11px] text-slate-400">阅读约 {item.readTime}</span>
+                </div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-orange-700 transition">
+                  {item.title}
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-3xl">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-orange-700 shrink-0 self-end sm:self-center">
+              <span>阅读长文</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

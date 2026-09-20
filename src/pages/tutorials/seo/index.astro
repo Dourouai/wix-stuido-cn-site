@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const chapters = [
+  {
+    order: '01',
+    title: 'Wix Studio 百度 + Google 双引擎 SEO 实战优化指南（2026 最新版）',
+    desc: '从 Meta 标签配置、URL 静态化重写、301 重定向、百度站长平台快速收录验证到 Google Search Console 提交。',
+    href: '/tutorials/seo/baidu-google-seo/',
+    readTime: '15 分钟',
+    tag: '双端收录必修',
+  },
+  {
+    order: '02',
+    title: 'Wix Studio Core Web Vitals 核心指标全绿攻关：图片、字体与性能提速',
+    desc: '彻底攻克 LCP、INP、CLS 性能三大指标。深入全球 CDN 边缘节点缓存、图片现代格式转换与字体防闪烁优化。',
+    href: '/tutorials/seo/core-web-vitals/',
+    readTime: '12 分钟',
+    tag: '性能与体验',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio SEO 双引擎优化专栏 | 百度与 Google 收录排名全流程 - wixstudio.cn"
+  description="面向中国出海企业与站长的 Wix Studio SEO 优化教程。深度覆盖百度站长平台国内收录验证、Google 国际 SEO、结构化数据 Schema 与性能跑分优化。"
+  keywords="Wix SEO 优化, Wix 百度收录, Wix Google SEO, Core Web Vitals, 独立站 SEO, 外贸推广"
+>
+  <!-- Track Hero Header -->
+  <section class="relative py-16 sm:py-20 overflow-hidden text-center bg-gradient-to-b from-amber-50/60 via-white to-white border-b border-gray-150">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
+      <nav class="flex justify-center items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="/" class="hover:text-slate-900 transition">首页</a>
+        <span>/</span>
+        <a href="/tutorials/" class="hover:text-slate-900 transition">教程中心</a>
+        <span>/</span>
+        <span class="text-slate-900 font-medium">SEO 优化与收录</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 text-amber-800 text-xs font-bold border border-amber-200">
+        <Icon name="search" class="w-3.5 h-3.5" />
+        <span>SEO TRACK / SEO 优化与双端收录</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+        Wix Studio <span class="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">百度与 Google 双引擎 SEO 专栏</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        打通国内百度搜索引擎收录壁垒，登顶 Google 国际出海自然流量搜索结果第一梯队。
+      </p>
+    </div>
+  </section>
+
+  <!-- Track Chapters List -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div class="text-sm font-bold text-slate-900">专栏章节列表</div>
+      <div class="text-xs text-slate-500">累计深度阅读约 27 分钟</div>
+    </div>
+
+    <div class="space-y-4">
+      {chapters.map((item) => (
+        <a
+          href={item.href}
+          class="block p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-amber-300 hover:shadow-lg hover:shadow-amber-500/5 transition group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 font-black text-sm flex items-center justify-center shrink-0 border border-amber-200/60 group-hover:bg-amber-600 group-hover:text-white transition">
+                {item.order}
+              </span>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    {item.tag}
+                  </span>
+                  <span class="text-[11px] text-slate-400">阅读约 {item.readTime}</span>
+                </div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-amber-700 transition">
+                  {item.title}
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-3xl">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-amber-700 shrink-0 self-end sm:self-center">
+              <span>阅读长文</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const chapters = [
+  {
+    order: '01',
+    title: 'Wix Studio 流体排版完全指南：彻底搞懂自定义断点与等比缩放机制',
+    desc: '深度解析 Scale Proportionally 原理、clamp() 流体字号、自定义视口断点与容器 Docking 停靠规则。',
+    href: '/tutorials/design/fluid-engine/',
+    readTime: '15 分钟',
+    tag: '流体排版必修',
+  },
+  {
+    order: '02',
+    title: 'CSS Grid 与 Flexbox 在 Wix Studio 中的实战运用',
+    desc: '从 12 列响应式栅格、嵌套网格单元格到智能 Stack 排版，彻底解决跨屏布局错位难题。',
+    href: '/tutorials/design/css-grid-flexbox/',
+    readTime: '12 分钟',
+    tag: '布局架构',
+  },
+  {
+    order: '03',
+    title: 'Wix Studio 元素停靠与边距完全指南：彻底掌握 Docking、Margins 与 Padding',
+    desc: '对标 Wix 官方支持中心：深度剖析 9 点停靠（Docking）、外边距（Margins）与内边距（Padding）的协作机制，杜绝不同屏幕重叠错位。',
+    href: '/tutorials/design/docking-and-margins/',
+    readTime: '11 分钟',
+    tag: '支持中心精讲',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio 设计与响应式排版专栏 | 流体排版与网格系统实战 - wixstudio.cn"
+  description="面向网页设计师的 Wix Studio 视觉进阶教程。深度掌握比例缩放流体排版（Fluid Design）、自定义断点、CSS Grid网格与微交互动效。"
+  keywords="Wix Studio 流体排版, Wix Studio 响应式设计, Wix Studio 断点, Wix Studio CSS Grid, 网页设计师教程"
+>
+  <!-- Track Hero Header -->
+  <section class="relative py-16 sm:py-20 overflow-hidden text-center bg-gradient-to-b from-violet-50/60 via-white to-white border-b border-gray-150">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
+      <nav class="flex justify-center items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="/" class="hover:text-slate-900 transition">首页</a>
+        <span>/</span>
+        <a href="/tutorials/" class="hover:text-slate-900 transition">教程中心</a>
+        <span>/</span>
+        <span class="text-slate-900 font-medium">设计与流体排版</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-50 text-violet-700 text-xs font-bold border border-violet-200">
+        <Icon name="palette" class="w-3.5 h-3.5" />
+        <span>DESIGN & LAYOUT TRACK / 设计与流体排版</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+        Wix Studio <span class="bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">流体排版与响应式实战</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        告别传统断点反复调整的烦琐。彻底掌握比例缩放（Scale Proportionally）、网格系统与高级微交互动效。
+      </p>
+    </div>
+  </section>
+
+  <!-- Track Chapters List -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div class="text-sm font-bold text-slate-900">专栏章节列表</div>
+      <div class="text-xs text-slate-500">累计深度阅读约 40 分钟</div>
+    </div>
+
+    <div class="space-y-4">
+      {chapters.map((item) => (
+        <a
+          href={item.href}
+          class="block p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-violet-300 hover:shadow-lg hover:shadow-violet-500/5 transition group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 rounded-xl bg-violet-50 text-violet-600 font-black text-sm flex items-center justify-center shrink-0 border border-violet-200/60 group-hover:bg-violet-600 group-hover:text-white transition">
+                {item.order}
+              </span>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    {item.tag}
+                  </span>
+                  <span class="text-[11px] text-slate-400">阅读约 {item.readTime}</span>
+                </div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-violet-600 transition">
+                  {item.title}
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-3xl">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-violet-600 shrink-0 self-end sm:self-center">
+              <span>阅读长文</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

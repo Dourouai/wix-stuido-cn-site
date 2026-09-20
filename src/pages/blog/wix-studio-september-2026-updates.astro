@@ -1,0 +1,118 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒更新摘要' },
+  { id: 'alfred-agent', title: 'Alfred AI 语音客服：实测配置与应用' },
+  { id: 'aria-app-tools', title: 'Aria 2.0 开发者插件工具（App Tools）' },
+  { id: 'seo-console-api', title: 'Google Search Console 原生深度整合' },
+  { id: 'partner-earnings', title: '官方合作伙伴业绩与成就 API' },
+];
+---
+
+<ArticleLayout
+  title="Wix Studio 2026 年 9 月产品功能周报：Alfred AI 语音代理、Aria 开发者扩展与 SEO API 详解"
+  description="Wix Studio 2026 年 9 月最新产品更新速递。详解 Alfred AI 智能语音电话代理、Aria 2.0 自定义 App Tools 扩展及 Google Search Console 实时 SEO API。"
+  keywords="Wix Studio 9月更新, Alfred AI, Aria 开发者扩展, GSC API, Wix Studio 发版周报"
+  category="官方更新日志"
+  categorySlug="/blog/"
+  readTime="7 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  toc={toc}
+  nextArticle={{
+    title: "Wix Studio 2026 官方更新日志与发版总览：从 Studio 2.0 到 9 月最新特性",
+    href: "/blog/wix-studio-2026-changelog/",
+  }}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-blue-50/80 via-white to-purple-50/50 p-6 sm:p-8 rounded-2xl border border-blue-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-[#116DFF] text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>2026.09 最新发版 · Product Weekly Release</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      本周 Wix Studio 全球工程师团队正式向所有 Legend 合作伙伴及专业订阅用户推送了 <strong>2026 年 9 月重大更新（Build 2026.09.20）</strong>。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      三大主打特性全面上线：<strong>Alfred 智能电话接听代理、允许自建 App 接入 Aria 的 App Tools Extensions，以及自动化读取搜索流量的 GSC SEO API</strong>。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-studio-workspace.jpg"
+      alt="Wix Studio 2026 年 9 月最新产品功能更新与多端操作台"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：2026 年 9 月产品周报实测：从 Alfred 语音代理到 Aria 开发者扩展与 GSC API
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="alfred-agent" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>1. Alfred AI 语音客服：实测配置与应用场景</span>
+    </h2>
+    <p>
+      Alfred 彻底革新了传统外贸企业因时差无法接听欧美客户电话的痛点。你可以在仪表盘中为 Alfred 上传企业的 FAQ 知识库、产品手册与预约开放规则。
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl space-y-3 font-mono text-xs">
+      <div class="text-slate-400">// Alfred AI 呼叫路由与事件响应伪代码示意</div>
+      <div class="text-blue-400">onIncomingCall(callerNumber, callContext) &#123;</div>
+      <div class="pl-4 text-slate-300">const transcript = await alfred.listenAndTranscribe();</div>
+      <div class="pl-4 text-slate-300">const intent = alfred.detectIntent(transcript);</div>
+      <div class="pl-4 text-emerald-400">if (intent === 'BOOKING_REQUEST') &#123;</div>
+      <div class="pl-8 text-slate-300">await wixSms.send(callerNumber, 'Click here to book a slot: https://yourbrand.com/book');</div>
+      <div class="pl-8 text-slate-300">await wixCrm.createContact(&#123; phone: callerNumber, tags: ['Alfred-Lead'] &#125;);</div>
+      <div class="pl-4 text-emerald-400">&#125;</div>
+      <div class="text-blue-400">&#125;</div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="aria-app-tools" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>2. Aria 2.0 开发者插件工具扩展（App Tools Extensions）</span>
+    </h2>
+    <p>
+      过去，Aria 只能操作 Wix 原生的内置组件。9 月发布的 <code>App Tools Extensions</code> 允许开发者通过定义 JSON Schema，向 Aria 注册自定义工具函数（Tools）。
+    </p>
+    <p>
+      例如，建站团队可以注册一个 <code>checkWarehouseInventory()</code> 工具，之后设计师只要在画布中对 Aria 说：“帮我生成一个展示库存剩余量小于 10 件的清仓组件”，Aria 便会自动调用该插件 API 并精准排版。
+    </p>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="seo-console-api" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>3. Google Search Console 原生深度整合</span>
+    </h2>
+    <p>
+      9 月全新发布的 SEO API 矩阵中，Wix 首次开放了直接双向对接 Google Search Console 的原生端点。
+    </p>
+    <ul class="list-disc list-inside space-y-1.5 text-slate-700 text-xs sm:text-sm">
+      <li>自动化检查所有新发布的多语言 URL 是否已被 Google 正确编入索引；</li>
+      <li>当检测到页面发生 404 或重定向循环时，在 Studio 仪表盘发出实时告警；</li>
+      <li>一键将高频搜索关键词反向同步至 Wix CMS 字段作为 Meta 优化参考。</li>
+    </ul>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="partner-earnings" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>4. 官方合作伙伴业绩与成就 API（Partners API）</span>
+    </h2>
+    <p>
+      面向认证 Agency 与 Legend 合作伙伴，Wix 开放了自动化业绩报表 API。建站公司可将客户站点的续费周期、商业分成以及积分成就直接同步至内部钉钉/飞书或企业 ERP 仪表盘中，实现商业交付的全面自动化。
+    </p>
+  </section>
+</ArticleLayout>

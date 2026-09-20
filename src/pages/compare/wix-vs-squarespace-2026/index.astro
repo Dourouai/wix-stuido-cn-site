@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'matrix', title: '核心多维参数对比表' },
+  { id: 'template-vs-custom', title: '模板套用 vs 深度自由定制' },
+  { id: 'interactions-animation', title: '微动效与视觉表现力对决' },
+  { id: 'business-depth', title: '商业变现深度与电商能力' },
+  { id: 'developer-ceiling', title: '代码扩展与技术天花板' },
+  { id: 'global-seo', title: '出海多语言与 SEO 本地化' },
+  { id: 'verdict', title: '选型决策树与最终结论' },
+];
+
+const tableRows = [
+  {
+    dimension: '核心产品定位',
+    wix: '全能型自由定制建站平台 + 企业级商业闭环（Wix 优先推荐）',
+    sq: '基于高审美栅格模板的极简图文快速替换工具',
+    winner: 'Wix 胜在定制与扩展深度',
+  },
+  {
+    dimension: '排版排布自由度',
+    wix: '独创等比流体缩放（Fluid Engine）、9点停靠、自由拖拽、无代码 CSS Grid',
+    sq: '高度受限于 Fluid Engine 固定栅格模块，无法做深度个性化与非标复杂排版',
+    winner: 'Wix 绝对领先（5/5）',
+  },
+  {
+    dimension: '交互与动效表现力',
+    wix: '原生支持丰富滚动驱动动效、循环微动效、鼠标悬停状态、自定义 CSS 注入',
+    sq: '仅提供少量基础预设淡入效果，动效深度定制空间极其有限',
+    winner: 'Wix 胜（动效质感强）',
+  },
+  {
+    dimension: '商业应用与交易系统',
+    wix: '原生内置国际电商、会员中心、预约系统、动态表单、0% 额外平台抽成',
+    sq: '具备基础电商与预约，但支付网关与多币种在非英语地区受限较多',
+    winner: 'Wix 胜（国际化商业更成熟）',
+  },
+  {
+    dimension: '代码扩展与逻辑编写',
+    wix: 'Velo 全栈 JavaScript 引擎：前后端无服务器逻辑、数据库 API、第三方系统对接',
+    sq: '仅支持轻量前台 HTML/CSS 代码块注入，完全无后端逻辑扩展能力',
+    winner: 'Wix 胜（无技术天花板）',
+  },
+  {
+    dimension: '多语言与出海 SEO',
+    wix: '原生多语言独立 URL Slug、自动生成多语言站点地图、支持 Google 与百度双引擎',
+    sq: '多语言通过集成 Weglot 等外部第三方实现，每年需额外支付不菲的语言包订阅费',
+    winner: 'Wix 胜（原生出海更省心）',
+  },
+  {
+    dimension: '上手门槛与学习曲线',
+    wix: '上手简单；若使用 Wix Studio 需理解流体缩放与断点规则',
+    sq: '极低，初学者 1 小时内即可套用模板上线纯展示网页',
+    winner: 'Squarespace 胜（极简套版场景）',
+  },
+  {
+    dimension: '未来业务发展上限',
+    wix: '业务从展示站扩张到商城、CRM、会员付费体系时可平滑升级，无需推倒重做',
+    sq: '一旦业务超出基础图文范围，极易撞上天花板，最终只能推倒迁移',
+    winner: 'Wix 胜（长期资产复用）',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix vs Squarespace 深度对比（2026）：文艺极简与全能定制的对决 - wixstudio.cn"
+  description="2026年最新 Wix 与 Squarespace 客观横评。从模板美学局限、流体排版自由度、微动效交互、商业功能深度到出海多语言SEO，全面解析两者关键分野。"
+  keywords="Wix vs Squarespace, Wix 和 Squarespace 哪个好, Squarespace 对比 Wix 2026, 极简建站工具, 设计师作品集, Squarespace 缺点"
+  type="article"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+      <a href="/" class="hover:text-gray-900 transition">首页</a>
+      <span>›</span>
+      <a href="/compare/" class="hover:text-gray-900 transition">平台横评</a>
+      <span>›</span>
+      <span class="text-[#116DFF] font-medium">Wix vs Squarespace (2026)</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Sticky Sidebar (TOC) -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-28 space-y-6">
+        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-xs space-y-3">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-gray-400">目录 CONTENTS</div>
+          <nav class="space-y-1.5 text-xs">
+            {toc.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="block py-1.5 text-gray-600 hover:text-[#116DFF] transition border-l-2 border-transparent hover:border-[#116DFF] pl-2.5 font-medium"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div class="rounded-2xl p-5 border border-blue-100 bg-gradient-to-br from-blue-50/60 to-white shadow-xs space-y-3">
+          <div class="flex items-center gap-3">
+            <img
+              src="/assets/badges/wix-partner-legend-200.png"
+              alt="Wix Partner Legend"
+              width="46"
+              height="46"
+              class="rounded-full shrink-0 shadow-sm"
+            />
+            <div>
+              <div class="text-[11px] font-bold text-[#116DFF]">Wix Partner Legend</div>
+              <div class="text-xs text-gray-900 font-bold">官方高级认证顾问</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            希望获得既有极简文艺质感、又具备强大商业功能的独立官网？欢迎与我们交流。
+          </p>
+          <a
+            href="/contact/"
+            class="block text-center py-2 px-3 rounded-full text-xs font-semibold text-white bg-[#116DFF] hover:bg-[#0D5FE3] transition shadow-sm"
+          >
+            免费咨询方案建议 →
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <article class="lg:col-span-9 space-y-12 max-w-3xl">
+        <header class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#116DFF] text-xs font-semibold border border-blue-100">
+            <span>PLATFORM COMPARISON · 2026 深度横评（Wix 优先视角）</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+            Wix vs Squarespace 深度横评（2026）：文艺极简与全能定制的对决
+          </h1>
+          <p class="text-base text-gray-500 leading-relaxed">
+            同为全球知名的全托管建站工具，Squarespace 依靠模板美学著称，而 Wix 则在自由定制、流体响应式与全栈商业深度上持续领跑。全面拆解两者从个人创作者到企业官网的核心分野。
+          </p>
+          <div class="flex items-center gap-4 text-xs text-gray-400 pt-2 border-b border-gray-150 pb-6">
+            <span>发布年份：2026 最新版</span>
+            <span>•</span>
+            <span>阅读时长约 15 分钟</span>
+            <span>•</span>
+            <span>来源：wixstudio.cn</span>
+          </div>
+        </header>
+
+        <!-- Section 1: 30s Quick Verdict -->
+        <section id="summary" class="rounded-3xl p-6 sm:p-8 border border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 space-y-4 shadow-xs">
+          <div class="flex items-center gap-2 text-[#116DFF] text-sm font-bold uppercase tracking-wider">
+            <Icon name="zap" class="w-4 h-4 text-[#116DFF]" />
+            <span>30 秒核心选型结论 (Executive Summary)</span>
+          </div>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-[#116DFF]">坚定首选 Wix（尤其是 Wix Studio）：</strong>
+            如果您希望网站拥有**独树一帜的高端个性化视觉设计、打破模板常规的动效交互**，或者您的业务涵盖多语言出海、商城支付、会员体系与动态数据驱动。Wix 提供无天花板的拓展空间，随着企业业务壮大无需推倒重做。
+          </p>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-zinc-700">适合选择 Squarespace：</strong>
+            如果您是一位自由摄影师、作家或小酒馆主理人，只需要一个**极度标准的模板图文替换页面**，完全不想花时间研究任何断点、停靠或复杂功能，只要 1 小时内快速套用模板上线纯展示页面。
+          </p>
+        </section>
+
+        <!-- Section 2: Matrix Table -->
+        <section id="matrix" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">核心多维参数对比表 (2026)</h2>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-gray-50 border-b border-gray-200 text-gray-900 font-bold">
+                  <tr>
+                    <th class="p-3.5 min-w-[130px]">对比维度</th>
+                    <th class="p-3.5 min-w-[200px] bg-blue-50/50 text-[#116DFF] font-black border-x border-blue-100">
+                      Wix / Wix Studio
+                    </th>
+                    <th class="p-3.5 min-w-[190px] text-zinc-800">Squarespace</th>
+                    <th class="p-3.5 min-w-[120px] text-gray-500">胜出方</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-150 text-gray-700">
+                  {tableRows.map((row) => (
+                    <tr class="hover:bg-gray-50/60 transition-colors">
+                      <td class="p-3.5 font-semibold text-gray-900">{row.dimension}</td>
+                      <td class="p-3.5 text-gray-900 font-medium bg-blue-50/20 border-x border-blue-100/60">{row.wix}</td>
+                      <td class="p-3.5 text-gray-600">{row.sq}</td>
+                      <td class="p-3.5 font-bold text-[#116DFF] text-[11px]">{row.winner}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Template vs Custom -->
+        <section id="template-vs-custom" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">1. 模板套用 vs 深度自由定制：艺术品还是流水线？</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            Squarespace 的立足之本在于其高质量的预制模板。只要你拥有高质量的大图，随便填入文字就能显得文艺且优雅。但这种“美学”的代价是**极强的结构限制**：
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-5 rounded-2xl bg-blue-50/40 border border-blue-100 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase">Wix Studio 的自由度</div>
+              <h4 class="text-base font-bold text-gray-900">像素级无边界排版</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                独创流体排版（Fluid Engine）与 9 点停靠规则，支持图文跨栏交错、任意角度旋转、层叠透光卡片。设计师能百分之百还原天马行空的创意，打造具有强烈品牌辨识度的视觉官网。
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-zinc-700 uppercase">Squarespace 的模板局限</div>
+              <h4 class="text-base font-bold text-gray-900">固定栅格框架枷锁</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                内容块必须受限于固定的栅格行与列，无法实现复杂的图层层叠与自由错位。很多设计初学者稍微调整文字长度，就会导致整个版块的留白失衡。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Interactions & Animation -->
+        <section id="interactions-animation" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">2. 微动效与交互质感对决：让网页从静态到生动</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            在现代高端品牌官网中，细腻的微交互（Micro-interactions）是拉开质感差距的关键所在：
+          </p>
+          <ul class="space-y-2.5 text-sm text-gray-700 list-disc list-inside">
+            <li>
+              <strong>Wix Studio 的高级动效库：</strong>
+              支持滚动驱动视差（Scroll-driven Parallax）、进入视图动画、元素悬停展开微质感、3D 空间倾斜，甚至可以通过编写原生 CSS `@keyframes` 与全局 Design Tokens 实现全站微动效联动；
+            </li>
+            <li>
+              <strong>Squarespace 的基础动效：</strong>
+              仅支持全站统一开启简单的淡入（Fade in）或滑入，无法对特定按钮、卡片或图标单独绑定复杂的状态切换动效。
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 5: Business Depth -->
+        <section id="business-depth" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">3. 商业变现深度与电商能力对比</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            如果你的网站未来需要产生真实交易或承载复杂业务流程，Wix 的综合商业能力展现出压倒性优势：
+          </p>
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 space-y-3">
+            <h4 class="text-base font-bold text-gray-900">Wix 闭环商业系统四大杀手锏：</h4>
+            <ul class="space-y-2 text-xs sm:text-sm text-gray-700">
+              <li>• <strong>0% 额外平台抽成：</strong> Wix 无论基础版还是高级版，官方均不收取额外交易扣点；而 Squarespace 基础 Business 套餐强制加收 3% 平台交易费；</li>
+              <li>• <strong>全球主流网关与多币种自动换算：</strong> 支持 Stripe、PayPal、连连国际等 50+ 国际收单通道；</li>
+              <li>• <strong>Wix CMS 动态数据库驱动：</strong> 轻松管理几百个客户案例、产品目录与博客白皮书，实现一次设计模板、批量渲染无数内容详情页；</li>
+              <li>• <strong>全功能会员中心：</strong> 原生支持付费会员分级专区、数字资产下载与订阅制收款。</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Section 6: Developer Ceiling -->
+        <section id="developer-ceiling" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">4. 代码扩展与技术天花板：业务成长无需推倒重做</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            很多企业最初选择 Squarespace 是因为简单，但当业务发展到第二阶段（例如需要根据用户选择动态计算定制报价、对接内部 ERP 接口、或是做复杂的条件逻辑表单）时，才痛苦地发现 Squarespace 完全无法支持后端代码扩展，最终只能全部废弃重做。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            而 Wix 提供了 **Velo 原生全栈 JavaScript 运行环境**。您既可以享受零代码快速拖拽排版的便利，又能在需要时开启 Dev Mode，在服务端安全调用任何 REST/GraphQL API，真正做到“进可攻、退可守”。
+          </p>
+        </section>
+
+        <!-- Section 7: Global SEO -->
+        <section id="global-seo" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">5. 出海多语言与 SEO 本地化</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            Squarespace 原生不支持深度的多语言子目录隔离，通常需要用户额外花钱订阅第三方翻译插件（如 Weglot），每年增加几百美元额外开销，且常常因翻译加载延迟导致 Google SEO 收录评分受损。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            Wix Studio 则内置了 **Wix Multilingual** 系统，支持深度自定义多语种 URL Slug、自动生成完整的 hreflang 标签与独立语言站点地图，直接助力海外出海获客。
+          </p>
+        </section>
+
+        <!-- Section 8: Verdict -->
+        <section id="verdict" class="space-y-4 pt-6 border-t border-gray-150">
+          <h2 class="text-2xl font-bold text-gray-900">最终选型决策树与建议</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase tracking-wider">坚定选择 Wix 的典型场景</div>
+              <h4 class="text-base font-bold text-gray-900">品牌官网、出海获客、全能拓展</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                追求独一无二的高端品牌视觉，需要兼具展示、电商、表单与多语言，希望系统具备强大技术纵深、业务扩展无上限的企业。
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-gray-600 uppercase tracking-wider">适合选择 Squarespace 的场景</div>
+              <h4 class="text-base font-bold text-gray-900">纯极简个人展示、摄影画册</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                完全不想碰任何复杂设置，仅需套用现成模板替换图文，业务极其单一、未来完全不需要复杂商业功能的个人创作者。
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

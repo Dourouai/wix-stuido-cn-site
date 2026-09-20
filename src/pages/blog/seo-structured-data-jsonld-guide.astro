@@ -1,0 +1,189 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'what-is-jsonld', title: '为什么传统 Meta 标签已无法满足 2026 SEO？' },
+  { id: 'rich-snippets-types', title: '外贸独立站必备的 4 类 Schema 结构化数据' },
+  { id: 'wix-studio-injection', title: '在 Wix Studio 中编写与注入自定义 JSON-LD' },
+  { id: 'cms-dynamic-seo', title: '配合 Wix CMS 动态批量注入结构化数据' },
+  { id: 'google-rich-testing', title: 'Google 富媒体结果测试与实时索引监控' },
+  { id: 'seo-jsonld-checklist', title: 'JSON-LD 结构化数据上线 6 步验收清单' },
+];
+---
+
+<ArticleLayout
+  title="超越传统 SEO：在 Wix Studio 中定制 JSON-LD 结构化数据与 Google 富媒体摘要"
+  description="面向出海独立站的进阶 SEO 指南。掌握在 Wix Studio 中编写与注入定制 JSON-LD 结构化数据，点亮 Google 搜索结果星级评分、FAQ 折叠问答与富媒体展示，点击率飙升 30%+"
+  keywords="JSON-LD 结构化数据, Google 富媒体摘要, Wix SEO 进阶, Schema 标记, 富媒体卡片, 谷歌星级评价, 独立站SEO优化"
+  category="海外营销"
+  categorySlug="/blog/"
+  readTime="11 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/tutorial-featured-cover.jpg"
+  prevArticle={{
+    title: "Wix Stores 独立站结账转化率提升秘籍：从多币种展示到单页极速结算",
+    href: "/blog/ecommerce-conversion-rate-optimization/",
+  }}
+  nextArticle={{
+    title: "建站公司与自由设计师协作秘诀：Wix Studio 客户权限隔离与专属交付资产包",
+    href: "/blog/agency-collaboration-and-client-kit/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/50 p-6 sm:p-8 rounded-2xl border border-blue-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-blue-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      随着 Google 搜索结果页面全面引入 AI Overviews 与富媒体卡片（Rich Results），仅仅在后台填写常规的 Title 与 Meta Description 已无法帮助独立站在激烈的搜索结果中脱颖而出。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      通过在 Wix Studio 中注入符合 Schema.org 标准的 <strong>JSON-LD 结构化数据</strong>，可以直接在 Google 搜索结果下方展现<strong>黄色五星好评星级、实时价格与库存、FAQ 常见问答折叠框以及企业知识图谱</strong>，将自然搜索点击率（CTR）直接拉升 25%~35%。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-ai-automation.jpg"
+      alt="Wix Studio SEO 结构化数据与搜索引擎结果富媒体展示流程"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：结构化数据（Structured Data）在 Google 搜索结果中生成星级评分与 FAQ 富媒体摘要
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="what-is-jsonld" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>1. 为什么传统 Meta 标签已无法满足 2026 SEO？</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      传统 SEO 依赖搜索引擎蜘蛛去猜测纯文本页面的语义。例如，看到“$299”和“In Stock”，蜘蛛需要根据上下文推测这是商品价格还是新闻报价。
+    </p>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      而 **JSON-LD（JavaScript Object Notation for Linked Data）** 是直接提供给机器解析的标准元数据。Google 官方明确声明：**JSON-LD 是其最推荐的结构化数据格式**，能百分之百确定页面的商业属性与可信度。
+    </p>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="rich-snippets-types" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>2. 外贸独立站必备的 4 类 Schema 结构化数据</span>
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
+        <div class="font-bold text-blue-700">1. Product & AggregateRating</div>
+        <p class="text-slate-600 leading-relaxed">展现商品评测分数（如 4.9 星）、评价总数、美元价格与现货状态，在搜索结果中形成强烈的视觉购买刺激。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
+        <div class="font-bold text-blue-700">2. FAQPage 常见问题结构</div>
+        <p class="text-slate-600 leading-relaxed">直接在 Google 搜索摘要下方展开 3~4 个可点击的问答折叠框，使网页在搜索结果页占据比竞品大 2 倍的屏幕面积。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
+        <div class="font-bold text-blue-700">3. Organization / Corporation</div>
+        <p class="text-slate-600 leading-relaxed">声明企业官方 Logo、创始人、全球办事处地址、社媒链接与客服电话，点亮 Google 右侧品牌知识图谱。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-2">
+        <div class="font-bold text-blue-700">4. BreadcrumbList 面包屑导航</div>
+        <p class="text-slate-600 leading-relaxed">将搜索结果中的生硬 URL 替换为清晰易懂的层级路径（如：Home &gt; Products &gt; Industrial Valves）。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="wix-studio-injection" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>3. 在 Wix Studio 中编写与注入自定义 JSON-LD</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在 Wix Studio 中，您无需修改核心模板文件即可精准注入自定义结构化数据：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2">
+      <div class="text-blue-400">// 示例：外贸 B2B 工业品 Schema JSON-LD 结构</div>
+      <pre class="text-slate-300"><code>{`{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "Precision CNC Milling Machine X-2000",
+  "image": "https://wixstudio.cn/assets/products/cnc-x2000.jpg",
+  "description": "Industrial grade high precision 5-axis CNC machining center.",
+  "brand": {
+    "@type": "Brand",
+    "name": "Apex Precision"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "128"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "18500",
+    "availability": "https://schema.org/InStock",
+    "itemCondition": "https://schema.org/NewCondition"
+  }
+}`}</code></pre>
+    </div>
+    <p class="text-xs text-slate-500">
+      * 操作路径：进入目标页面设置 -&gt; 点击「SEO 基础与进阶」-&gt; 选择「结构化数据（Structured Data）」-&gt; 粘贴上述 JSON-LD 代码即可。
+    </p>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="cms-dynamic-seo" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>4. 配合 Wix CMS 动态批量注入结构化数据</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      如果有上千款产品或上百篇博客，逐页手动写代码是不现实的。Wix Studio 支持在 **动态页面 SEO 模板（SEO Pattern）** 中使用变量：
+    </p>
+    <div class="p-5 rounded-2xl bg-indigo-50/50 border border-indigo-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <p>通过使用占位符变量 <code>{"{item.title}"}</code>、<code>{"{item.mainImage}"}</code> 与 <code>{"{item.price}"}</code>，只需在全局模板配置一次 JSON-LD 框架，CMS 数据库中的数千款详情页发布时便会自动抓取对应字段渲染出专属结构化标记！</p>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="google-rich-testing" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>5. Google 富媒体结果测试与实时索引监控</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      注入代码后，必须通过官方工具验证语法正确性：
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-700">
+      <li><strong>Google 富媒体结果测试工具（Rich Results Test）：</strong> 输入网页 URL，确保显示“此页面符合富媒体结果资格”，并无任何红色 Error 字段；</li>
+      <li><strong>Schema.org Validator：</strong> 校验属性嵌套层级是否合法；</li>
+      <li><strong>Google Search Console 增强功能报告：</strong> 上线 1~2 周后，可在 GSC 控制台“增强功能”标签页查看被成功识别的富媒体卡片展示次数与点击率提升曲线。</li>
+    </ul>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="seo-jsonld-checklist" class="space-y-4 pt-4 border-t border-slate-150">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-[#116DFF] rounded-full inline-block"></span>
+      <span>6. JSON-LD 结构化数据上线 6 步验收清单</span>
+    </h2>
+    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>首页已注入 Organization 企业知识图谱</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>所有商品页注入 Product 与 AggregateRating 评分</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>重点帮助中心与落地页注入 FAQPage 常见问答</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>在 Google Rich Results Test 中获得 0 错误通过</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>动态页面已配置 CMS 变量自动映射</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>向 GSC 提交更新后的 URL 申请优先重抓取</span></div>
+      </div>
+    </div>
+  </section>
+</ArticleLayout>

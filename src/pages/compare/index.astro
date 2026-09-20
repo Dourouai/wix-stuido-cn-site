@@ -1,117 +1,676 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroListing from '../../components/HeroListing.astro';
 import Icon from '../../components/Icon.astro';
+
+interface PlatformEvaluation {
+  stars: number;
+  score: string;
+  tag: string;
+  title: string;
+  desc: string;
+}
+
+interface DimensionRow {
+  dimension: string;
+  advantage: string;
+  wix: PlatformEvaluation;
+  shopify: PlatformEvaluation;
+  wordpress: PlatformEvaluation;
+  webflow: PlatformEvaluation;
+  squarespace: PlatformEvaluation;
+}
+
+const dimensionMatrix: DimensionRow[] = [
+  {
+    dimension: '视觉排版与流体响应式',
+    advantage: '兼顾极致视觉设计与极速交付',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '行业标杆',
+      title: '独创等比流体引擎（Fluid Engine）',
+      desc: '支持 Scale Proportionally 比例等比缩放、9 点智能停靠（Docking）与无代码 CSS Grid，实现像素级精准控制。',
+    },
+    shopify: {
+      stars: 3,
+      score: '3.0',
+      tag: '模块骨架',
+      title: '基于 Liquid 预设模板',
+      desc: '页面布局受限于固定条状 Section 框架，跨端响应式排版如需定制必须直接手写 Liquid 代码。',
+    },
+    wordpress: {
+      stars: 3,
+      score: '3.0',
+      tag: '依赖外挂',
+      title: '依赖 Elementor / Divi',
+      desc: '虽然支持可视化拖拽，但生成多达 8~12 层无意义 DOM 嵌套，跨端极易发生样式错位与代码冲突。',
+    },
+    webflow: {
+      stars: 4,
+      score: '4.0',
+      tag: '手写代码',
+      title: '严格前端 CSS 盒模型',
+      desc: '视觉还原度极高，但每个断点都需要人工配置 Class 继承关系与手写布局，排版工时高出 50%+。',
+    },
+    squarespace: {
+      stars: 3,
+      score: '3.0',
+      tag: '固定栅格',
+      title: '标准化模块栅格',
+      desc: '内容块受制于固定的行与列，无法实现图层自由交叠、非对称错位排版与高阶微动效。',
+    },
+  },
+  {
+    dimension: '商业生态闭环与平台抽成',
+    advantage: '0% 额外抽成，原生全套应用闭环',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '0% 抽成',
+      title: '原生内置全功能商业系统',
+      desc: '0% 额外平台交易佣金；开箱即用跨境商城、预约日历、会员付费专区、动态表单与 CMS，无需采购第三方 App。',
+    },
+    shopify: {
+      stars: 4,
+      score: '4.0',
+      tag: '佣金抽成',
+      title: '成熟电商但含抽成与月租',
+      desc: '外部信用卡通道强制加收 0.5%~2.0% 平台抽成；常规营销与多语言功能需按月采购多款 App。',
+    },
+    wordpress: {
+      stars: 3,
+      score: '3.0',
+      tag: '拼装成本',
+      title: '需组装 WooCommerce 与插件',
+      desc: '核心开源免费，但必须购买大量商业插件年费授权（如表单/预约/多货币），维护配置繁重。',
+    },
+    webflow: {
+      stars: 2,
+      score: '2.0',
+      tag: '依赖外部',
+      title: '依赖 Zapier 外部工具拼接',
+      desc: '自带电商功能简陋且不支持复杂货币结算，会员与表单体系通常需要外接 Memberstack 等第三方。',
+    },
+    squarespace: {
+      stars: 3,
+      score: '3.0',
+      tag: '基础商业',
+      title: '基础电商但含 3% 佣金',
+      desc: '基础商业套餐对每笔交易加收 3% 平台佣金；支付网关与多币种在非英语地区受限较多。',
+    },
+  },
+  {
+    dimension: '免运维与企业级安全合规',
+    advantage: '金融级安全认证，99.99% 持续高可用',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '顶级安全',
+      title: 'SOC 2 Type II / PCI-DSS L1',
+      desc: '全球多区域多云架构，原生符合国际金融级 PCI-DSS Level 1 与 SOC 2 认证，全天候零维护与静默热补丁。',
+    },
+    shopify: {
+      stars: 5,
+      score: '5.0',
+      tag: '企业云端',
+      title: '全托管 SaaS 云端架构',
+      desc: '官方统一安全防护，抗高并发大促能力强，合规标准完备。',
+    },
+    wordpress: {
+      stars: 2,
+      score: '2.0',
+      tag: '高危漏洞',
+      title: '自建主机安全风险高',
+      desc: '需自配 Linux 主机与数据库，全球 90% 挂马被黑事件源于 WP 插件漏洞，频繁面临版本冲突白屏。',
+    },
+    webflow: {
+      stars: 4,
+      score: '4.0',
+      tag: '稳定云端',
+      title: 'AWS 全球云端基础设施',
+      desc: '全托管云端，免日常服务器维护，运行稳定性良好。',
+    },
+    squarespace: {
+      stars: 4,
+      score: '4.0',
+      tag: '免运维',
+      title: '闭环全托管 SaaS',
+      desc: '免去日常服务器升级维护，合规性基本满足常规中小企业展示需求。',
+    },
+  },
+  {
+    dimension: '全栈代码扩展与定制深度',
+    advantage: 'Velo 原生打通前后端，无技术天花板',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '全栈无界',
+      title: 'Velo 原生全栈 JavaScript',
+      desc: '支持在 backend/*.web.js 中编写无服务器服务端函数、安全访问 Secrets 密钥库并连接外部任意 API。',
+    },
+    shopify: {
+      stars: 4,
+      score: '4.0',
+      tag: '接口丰富',
+      title: 'Liquid + Storefront API',
+      desc: '支持 Liquid 模板与 Storefront API 扩展，但复杂后端无服务器逻辑通常需额外自行搭建服务。',
+    },
+    wordpress: {
+      stars: 4,
+      score: '4.0',
+      tag: '开源掌控',
+      title: 'PHP 源码自由度最高',
+      desc: '可完全掌控底层数据库与代码，但代码质量极度依赖个人能力，二次重构与维护成本极其昂贵。',
+    },
+    webflow: {
+      stars: 2,
+      score: '2.0',
+      tag: '仅限前台',
+      title: '仅支持前端代码嵌入',
+      desc: '仅支持在页面注入前台 HTML/CSS/JS 代码片段，无原生无服务器后端与数据库逻辑处理能力。',
+    },
+    squarespace: {
+      stars: 1,
+      score: '1.0',
+      tag: '扩展受限',
+      title: '仅基础代码注入',
+      desc: '仅支持基础的前端代码块注入，完全无后端逻辑扩展与第三方数据库交互能力。',
+    },
+  },
+  {
+    dimension: '出海多语言与全球 SEO 本地化',
+    advantage: '原生多语言独立 Slug，双引擎秒级收录',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '原生出海',
+      title: '多语言 URL Slug 与双引擎加速',
+      desc: '原生支持独立语种子目录（/de/、/es/）、自动生成多语言站点地图、深度兼顾 Google 与百度收录。',
+    },
+    shopify: {
+      stars: 4,
+      score: '4.0',
+      tag: '多币种佳',
+      title: 'Shopify Markets 跨国结算',
+      desc: '国际货币与运费换算成熟，但高级多语言翻译与子域名往往需要单独付费购买应用。',
+    },
+    wordpress: {
+      stars: 3,
+      score: '3.0',
+      tag: '插件繁琐',
+      title: '需依赖 WPML / Yoast 插件',
+      desc: '需配置重型多语言插件，容易在数据库中产生海量冗余表，导致后台卡顿与翻译串行。',
+    },
+    webflow: {
+      stars: 3,
+      score: '3.0',
+      tag: '额外按月',
+      title: 'Localization 功能单独按月收费',
+      desc: '官方多语言功能配置门槛高，且每个语种单独按月加价收费，长期支出昂贵。',
+    },
+    squarespace: {
+      stars: 2,
+      score: '2.0',
+      tag: '较初级',
+      title: '多语言支持较为初级',
+      desc: '通常需依赖第三方翻译插件（如 Weglot），对复杂出海 SEO 本地化缺乏灵活度。',
+    },
+  },
+  {
+    dimension: '综合拥有成本 (TCO) 与交付周期',
+    advantage: '交付提速 40%-50%，年省数万元维护费',
+    wix: {
+      stars: 5,
+      score: '5.0',
+      tag: '最高 ROI',
+      title: '透明年费订阅一价全包',
+      desc: '含高性能云主机、全球 CDN、全套商业应用与流体引擎，交付周期缩短 40%-50%，年均省数万元技术工时。',
+    },
+    shopify: {
+      stars: 3,
+      score: '3.0',
+      tag: '隐形成本',
+      title: '套餐费 + 交易抽成 + App月租',
+      desc: '实际运营中大量月租 App 与外部支付扣点使得每年的真实支出远超预期账单。',
+    },
+    wordpress: {
+      stars: 2,
+      score: '2.0',
+      tag: '沉没成本',
+      title: '服务器 + 插件年费 + 运维工时',
+      desc: '表面免费，但持续的主机、WAF 防火墙、插件商业授权与外包维护排障成本极高。',
+    },
+    webflow: {
+      stars: 3,
+      score: '3.0',
+      tag: '席位昂贵',
+      title: '团队席位费 + 站点计划',
+      desc: '多成员协作席位费昂贵，加上外接第三方支付与表单插件，综合持有成本偏高。',
+    },
+    squarespace: {
+      stars: 4,
+      score: '4.0',
+      tag: '资费固定',
+      title: '资费透明但存在业务天花板',
+      desc: '适合预算极其明确的小型个人展示站，但业务发展到第二阶段时缺乏平滑演进空间。',
+    },
+  },
+];
 
 const comparisons = [
   {
-    title: 'Wix vs Shopify 深度对比（2025）',
+    title: 'Wix vs Shopify 深度对比（2026）',
     target: 'Shopify',
-    slug: '/compare/wix-vs-shopify/',
-    verdict: '展示型品牌官网、轻量电商与外贸B2B选 Wix；超大海量SKU与强铺货电商选 Shopify。',
-    wixStrengths: ['设计排版自由度极高', '零额外月租抽成', '内置商务博客与预约'],
-    competitorStrengths: ['海量电商ERP插件生态', '高并发交易结算能力'],
+    targetLogoColor: 'bg-emerald-50 text-emerald-600 border-emerald-200',
+    slug: '/compare/wix-vs-shopify-2026/',
+    summary: '独立站选型：品牌展示+轻量电商选 Wix，海量SKU大宗交易选 Shopify。',
+    verdict: '做外贸 B2B 品牌出海、工厂实力背书、定制产品展示与精品 DTC 零售，坚定首选 Wix（设计自由度高且 0% 抽成）；海量铺货大宗标品且依赖深度 ERP 选 Shopify。',
+    wixStrengths: [
+      '独家流体排版引擎（Fluid Engine），自由实现非标震撼视觉',
+      '0% 额外平台交易佣金（仅收国际网关原生费率）',
+      '原生全套业务应用：商城、会员、预约、动态表单、CMS 数据库无需付费组装',
+      '外贸 B2B 验厂信任设计：灵活呈现企业资质、客户案例与定制能力',
+    ],
+    competitorStrengths: [
+      '适合上万款海量快消 SKU 铺货与分销联盟运作',
+      '成熟重度仓储物流 ERP 自动化 API 接口丰富',
+    ],
+    score: '9.5',
+    rank: 'WIX 胜出（品牌出海与综合展示）',
   },
   {
-    title: 'Wix vs WordPress 深度对比（2025）',
+    title: 'Wix vs WordPress 深度对比（2026）',
     target: 'WordPress',
-    slug: '/compare/wix-vs-wordpress/',
-    verdict: '追求省心免维护、稳定云端托管选 Wix；具备专业技术运维团队且追求完全源码自主选 WordPress。',
-    wixStrengths: ['零服务器与漏洞维护成本', '原生开箱即用可视化编辑', '全托管高防网络'],
-    competitorStrengths: ['开源自由度最高', '插件主题海量丰富'],
+    targetLogoColor: 'bg-blue-50 text-blue-600 border-blue-200',
+    slug: '/compare/wix-vs-wordpress-2026/',
+    summary: '维护成本对决：全托管省心云端 vs 开源源码自主控制。',
+    verdict: '告别半夜服务器宕机、黑客注入木马与插件版本冲突，追求极致省心与专注核心业务选 Wix；若必须掌控底层数据库或有大型本地化内网部署需求选 WordPress。',
+    wixStrengths: [
+      '零运维托管：免配置 Linux 主机、PHP/MySQL 缓存与 CDN 节点',
+      '官方统一安全审计与沙盒环境，根绝 WordPress 常见的漏洞挂马灾难',
+      '原生纯净响应式渲染，避免 Elementor 等插件带来的代码臃肿与性能下降',
+      '大幅降低综合拥有成本（TCO），年均节省数万元技术维护支出',
+    ],
+    competitorStrengths: [
+      '源码与数据库完全开源私有化，数据自主权最高',
+      '拥有全球庞大的开源插件与主题市场（需自行甄别安全性）',
+    ],
+    score: '9.4',
+    rank: 'WIX 胜出（企业高效运营与免运维）',
   },
   {
-    title: 'Wix Studio vs Webflow 深度对比（2025）',
+    title: 'Wix Studio vs Webflow 深度对比（2026）',
     target: 'Webflow',
-    slug: '/compare/wix-vs-webflow/',
-    verdict: '需要内置全套商业应用、快速交付且支持中文生态选 Wix Studio；追求代码级细微控制选 Webflow。',
-    wixStrengths: ['内置全套业务系统 (商城/预约/会员)', '交付周期短', '学习曲线较平缓'],
-    competitorStrengths: ['底层盒模型前端代码导向极深'],
+    targetLogoColor: 'bg-indigo-50 text-indigo-600 border-indigo-200',
+    slug: '/compare/wix-vs-webflow-2026/',
+    summary: '高端设计平台之争：全套内置商业生态 vs 底层盒模型代码控制。',
+    verdict: '追求前沿设计视觉，同时需要成熟商业变现系统（跨境支付、会员付费、预约、复杂表单）首选 Wix Studio；仅做纯静态展示且团队皆精通原生 CSS 盒模型选 Webflow。',
+    wixStrengths: [
+      '原生内置完整商业应用闭环，无需使用 Zapier 繁琐拼装外部工具',
+      '独创比例缩放（Scale Proportionally）与 9 点停靠，交付周期缩短约 40%-50%',
+      'Velo 全栈 JavaScript 引擎：支持后端无服务器函数、外部 API 安全调用与数据库操作',
+      '完善的官方中文环境与本土化多语言外贸支持体系',
+    ],
+    competitorStrengths: [
+      '严格遵循标准 CSS 类名继承逻辑，前端工程师上手倍感亲切',
+      '支持导出纯静态 HTML/CSS 代码到自有服务器运行',
+    ],
+    score: '9.6',
+    rank: 'WIX 胜出（商业落地与交付效率）',
   },
   {
-    title: 'Wix vs Squarespace 深度对比（2025）',
+    title: 'Wix vs Squarespace 深度对比（2026）',
     target: 'Squarespace',
-    slug: '/compare/wix-vs-squarespace/',
-    verdict: '追求高级个性化定制与拓展选 Wix Studio；只需要标准极简模板快速替换图文选 Squarespace。',
-    wixStrengths: ['更强定制能力与Velo代码拓展', '中文交互支持更优'],
-    competitorStrengths: ['模板原生文艺质感极强'],
+    targetLogoColor: 'bg-zinc-100 text-zinc-800 border-zinc-300',
+    slug: '/compare/wix-vs-squarespace-2026/',
+    summary: '美学与功能权衡：深度定制商业扩展 vs 极简模板图文替换。',
+    verdict: '想要独树一帜的非标定制品牌站、具备全渠道业务扩展与出海 SEO 竞争力的企业首选 Wix；仅需套用高审美模板替换图文的极简个人创作者选 Squarespace。',
+    wixStrengths: [
+      '自由流体排版与多断点自适应，打破固定模板栅格限制',
+      '丰富的滚动交互动效、悬停微质感与原生 CSS 深度控制',
+      '真正的出海多语言支持（双引擎 SEO 收录与独立本地化 Slug）',
+      '无代码/低代码/全代码平滑进阶，业务壮大无天花板限制',
+    ],
+    competitorStrengths: [
+      '原生模板摄影审美质感极高，初学者套用不易排版出错',
+      '界面极其克制极简，适合纯图文简单个人作品集展示',
+    ],
+    score: '9.3',
+    rank: 'WIX 胜出（定制自由度与功能深度）',
   },
 ];
 ---
 
 <BaseLayout
-  title="主流建站平台横评指南（2025）| Wix vs Shopify / WordPress / Webflow - wixstudio.cn"
-  description="2025最新主流建站平台全方位横评。从费用、功能、SEO、设计自由度到技术维护，对比 Wix 与 Shopify、WordPress、Webflow 及 Squarespace，助您做对技术选型。"
-  keywords="建站平台对比, Wix vs Shopify, Wix vs WordPress, Wix vs Webflow, 最好的建站工具, 外贸建站哪个好"
+  title="主流建站平台横评指南（2026）| Wix vs Shopify / WordPress / Webflow - wixstudio.cn"
+  description="2026最新主流建站平台全方位横评。以 Wix Studio 为核心基准，从设计自由度、商业生态、平台抽成、免运维安全、代码扩展与 TCO 等维度深入对比，助您做对技术选型。"
+  keywords="建站平台对比, Wix vs Shopify, Wix vs WordPress, Wix vs Webflow, 最好的建站工具, 外贸建站哪个好, Wix Studio 优势"
 >
-  <section class="relative py-20 overflow-hidden text-center bg-dots-light">
-    <div class="hero-glow-light opacity-60"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-        <Icon name="scale" class="w-3.5 h-3.5" />
-        <span>PLATFORM COMPARISON / 平台横评</span>
-      </div>
-      <h1 class="text-4xl sm:text-6xl font-black text-[#0F172A] tracking-tight">
-        主流建站平台 <span class="text-gradient-brand">全方位客观横评</span>
-      </h1>
-      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-        没有绝对完美的平台，只有最符合您当下商业阶段与团队能力的工具。我们拒绝拉踩，用事实说话。
-      </p>
-    </div>
-  </section>
+  <HeroListing
+    label="Platform Comparison · 平台客观横评（Wix 优先评估）"
+    title="主流建站平台全方位深度横评（2026）"
+    subtitle="基于客观实测数据与商业落地实践。以 Wix / Wix Studio 为核心坐标，深度剖析在排版自由度、商业闭环、交易抽成、免运维安全与综合 TCO 等关键维度的全景对比。"
+    stats={[
+      { value: '6 大', label: '核心评估维度' },
+      { value: '4 组', label: '主流平台深度对决' },
+      { value: '0%', label: 'Wix 额外交易佣金' },
+      { value: '2026', label: '最新版本基准' },
+    ]}
+  />
 
-  <!-- Comparison Cards in Crisp Light Theme -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-6">
-    {comparisons.map((item) => (
-      <div class="light-card p-8 border border-gray-200 space-y-5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
-          <h2 class="text-xl sm:text-2xl font-bold text-[#0F172A] hover:text-[#6D28D9] transition">
-            <a href={item.slug}>{item.title}</a>
-          </h2>
+  <main class="bg-gray-50/50 py-12 lg:py-16 space-y-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+      <!-- Section: Global Dimension Evaluation Matrix -->
+      <section class="bg-white rounded-3xl border border-gray-200/90 p-6 sm:p-8 shadow-sm space-y-6">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-150 pb-5">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#116DFF] text-xs font-bold border border-blue-100 mb-2">
+              <Icon name="sparkles" class="w-3.5 h-3.5" />
+              <span>全景雷达矩阵 · 核心维度评估（Wix 优先）</span>
+            </div>
+            <h2 class="text-2xl font-black text-gray-900 tracking-tight">主流建站平台 6 大核心维度总览表</h2>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">
+              全方位对比 Wix Studio 与主流竞品的技术底层、商业模型与长期维护成本
+            </p>
+          </div>
+          <div class="text-xs text-gray-400 font-medium shrink-0">
+            评测基准：2026 年最新稳定版本
+          </div>
+        </div>
+
+        <!-- Modern SaaS Comparison Table -->
+        <div class="overflow-x-auto rounded-2xl border border-gray-200/80 shadow-xs">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-gray-200 bg-gray-50/70">
+                <th class="py-4 px-4 sm:px-5 min-w-[170px] text-xs font-bold text-gray-500 uppercase tracking-wider">
+                  评估维度
+                </th>
+                <!-- Wix Studio Column Header (Highlighted) -->
+                <th class="py-4 px-4 sm:px-5 min-w-[240px] bg-gradient-to-b from-blue-600 to-[#116DFF] text-white border-x-2 border-blue-600 shadow-sm">
+                  <div class="flex items-center justify-between gap-2">
+                    <span class="font-black text-sm sm:text-base tracking-wide flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                      Wix / Wix Studio
+                    </span>
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20 text-white tracking-wide uppercase">
+                      推荐首选
+                    </span>
+                  </div>
+                  <div class="text-[11px] text-blue-100 font-normal mt-1">
+                    全功能 · 0%抽成 · 免运维
+                  </div>
+                </th>
+                <!-- Competitor Headers -->
+                <th class="py-4 px-4 sm:px-5 min-w-[200px] bg-gray-50/80 border-r border-gray-200">
+                  <div class="text-sm font-bold text-emerald-800">Shopify</div>
+                  <div class="text-[11px] text-emerald-600/80">专注大规模标品电商</div>
+                </th>
+                <th class="py-4 px-4 sm:px-5 min-w-[200px] bg-gray-50/80 border-r border-gray-200">
+                  <div class="text-sm font-bold text-blue-900">WordPress</div>
+                  <div class="text-[11px] text-blue-700/80">开源自托管 CMS</div>
+                </th>
+                <th class="py-4 px-4 sm:px-5 min-w-[200px] bg-gray-50/80 border-r border-gray-200">
+                  <div class="text-sm font-bold text-indigo-900">Webflow</div>
+                  <div class="text-[11px] text-indigo-700/80">纯前端 CSS 盒模型代码</div>
+                </th>
+                <th class="py-4 px-4 sm:px-5 min-w-[190px] bg-gray-50/80">
+                  <div class="text-sm font-bold text-zinc-800">Squarespace</div>
+                  <div class="text-[11px] text-zinc-500">固定栅格极简模板</div>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-150 text-xs sm:text-sm">
+              {dimensionMatrix.map((row, idx) => (
+                <tr class={idx % 2 === 0 ? 'bg-white hover:bg-slate-50/50 transition-colors' : 'bg-slate-50/30 hover:bg-slate-50/70 transition-colors'}>
+                  <!-- Dimension Column -->
+                  <td class="py-4 px-4 sm:px-5 align-top">
+                    <div class="font-black text-gray-900 text-sm">{row.dimension}</div>
+                    <div class="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-blue-50/80 border border-blue-100 text-[11px] font-medium text-[#116DFF] mt-2">
+                      <Icon name="sparkles" class="w-3 h-3 shrink-0" />
+                      <span>{row.advantage}</span>
+                    </div>
+                  </td>
+
+                  <!-- Wix Column (Elevated) -->
+                  <td class="py-4 px-4 sm:px-5 bg-blue-50/40 border-x-2 border-blue-500/20 align-top">
+                    <div class="space-y-2">
+                      <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100/70 border border-blue-200 text-[#116DFF]">
+                        <div class="flex items-center text-amber-500">
+                          {[...Array(5)].map(() => (
+                            <Icon name="star" class="w-3 h-3" />
+                          ))}
+                        </div>
+                        <span class="text-[11px] font-black">{row.wix.tag}</span>
+                      </div>
+                      <div class="font-bold text-gray-900 text-xs sm:text-sm">{row.wix.title}</div>
+                      <p class="text-xs text-gray-600 leading-relaxed">{row.wix.desc}</p>
+                    </div>
+                  </td>
+
+                  <!-- Shopify Column -->
+                  <td class="py-4 px-4 sm:px-5 border-r border-gray-150 align-top">
+                    <div class="space-y-2">
+                      <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600">
+                        <div class="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Icon name="star" class={`w-3 h-3 ${i < row.shopify.stars ? 'text-amber-400' : 'text-slate-200'}`} />
+                          ))}
+                        </div>
+                        <span class="text-[11px] font-semibold">{row.shopify.tag}</span>
+                      </div>
+                      <div class="font-bold text-gray-800 text-xs sm:text-sm">{row.shopify.title}</div>
+                      <p class="text-xs text-gray-500 leading-relaxed">{row.shopify.desc}</p>
+                    </div>
+                  </td>
+
+                  <!-- WordPress Column -->
+                  <td class="py-4 px-4 sm:px-5 border-r border-gray-150 align-top">
+                    <div class="space-y-2">
+                      <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600">
+                        <div class="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Icon name="star" class={`w-3 h-3 ${i < row.wordpress.stars ? 'text-amber-400' : 'text-slate-200'}`} />
+                          ))}
+                        </div>
+                        <span class="text-[11px] font-semibold">{row.wordpress.tag}</span>
+                      </div>
+                      <div class="font-bold text-gray-800 text-xs sm:text-sm">{row.wordpress.title}</div>
+                      <p class="text-xs text-gray-500 leading-relaxed">{row.wordpress.desc}</p>
+                    </div>
+                  </td>
+
+                  <!-- Webflow Column -->
+                  <td class="py-4 px-4 sm:px-5 border-r border-gray-150 align-top">
+                    <div class="space-y-2">
+                      <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600">
+                        <div class="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Icon name="star" class={`w-3 h-3 ${i < row.webflow.stars ? 'text-amber-400' : 'text-slate-200'}`} />
+                          ))}
+                        </div>
+                        <span class="text-[11px] font-semibold">{row.webflow.tag}</span>
+                      </div>
+                      <div class="font-bold text-gray-800 text-xs sm:text-sm">{row.webflow.title}</div>
+                      <p class="text-xs text-gray-500 leading-relaxed">{row.webflow.desc}</p>
+                    </div>
+                  </td>
+
+                  <!-- Squarespace Column -->
+                  <td class="py-4 px-4 sm:px-5 align-top">
+                    <div class="space-y-2">
+                      <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-slate-100 border border-slate-200 text-slate-600">
+                        <div class="flex items-center">
+                          {[...Array(5)].map((_, i) => (
+                            <Icon name="star" class={`w-3 h-3 ${i < row.squarespace.stars ? 'text-amber-400' : 'text-slate-200'}`} />
+                          ))}
+                        </div>
+                        <span class="text-[11px] font-semibold">{row.squarespace.tag}</span>
+                      </div>
+                      <div class="font-bold text-gray-800 text-xs sm:text-sm">{row.squarespace.title}</div>
+                      <p class="text-xs text-gray-500 leading-relaxed">{row.squarespace.desc}</p>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section: Detailed Platform Cards -->
+      <section class="space-y-6">
+        <div class="flex items-center justify-between pb-2">
+          <h3 class="text-xl font-black text-gray-900 tracking-tight">各平台深度对决与适用场景拆解</h3>
+          <span class="text-xs text-gray-400">点击进入长篇深度评测报告</span>
+        </div>
+
+        <div class="space-y-6">
+          {comparisons.map((item, index) => (
+            <article class="group bg-white rounded-3xl border border-gray-200/90 overflow-hidden card-lift card-glow transition-all duration-300">
+              <!-- Header bar -->
+              <div class="p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100/80 bg-gradient-to-r from-gray-50/50 via-white to-blue-50/30">
+                <div class="space-y-1.5">
+                  <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#116DFF]/10 text-[#116DFF] border border-[#116DFF]/20">
+                      深度对决 0{index + 1}
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      {item.rank}
+                    </span>
+                    <span class="text-xs text-gray-400 font-medium">评分：{item.score} / 10</span>
+                  </div>
+                  <h2 class="text-2xl font-black text-gray-900 group-hover:text-[#116DFF] transition-colors leading-tight">
+                    <a href={item.slug}>{item.title}</a>
+                  </h2>
+                  <p class="text-xs sm:text-sm text-gray-500">{item.summary}</p>
+                </div>
+
+                <div class="flex items-center gap-3 shrink-0 pt-2 md:pt-0">
+                  <a
+                    href={item.slug}
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-[#116DFF] hover:bg-[#0D5FE3] shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+                  >
+                    <span>阅读完整深度横评</span>
+                    <Icon name="arrow-right" class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              <!-- Body content -->
+              <div class="p-6 sm:p-8 space-y-6">
+                <!-- Verdict Banner -->
+                <div class="p-4 rounded-2xl bg-[#116DFF]/5 border border-[#116DFF]/15 text-xs sm:text-sm text-gray-800 flex items-start gap-3">
+                  <div class="w-7 h-7 rounded-xl bg-[#116DFF] text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                    <Icon name="sparkles" class="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <span class="font-bold text-[#116DFF] mr-1">选型结论速览：</span>
+                    <span class="leading-relaxed text-gray-700">{item.verdict}</span>
+                  </div>
+                </div>
+
+                <!-- Two column comparison details -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <!-- Wix Advantages (Highlighted) -->
+                  <div class="p-5 rounded-2xl bg-gradient-to-br from-blue-50/60 via-white to-indigo-50/20 border border-blue-200/70 space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-xs uppercase tracking-wider text-[#116DFF] flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+                        Wix / Wix Studio 核心优势
+                      </span>
+                      <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-blue-100 text-[#116DFF]">
+                        核心胜出点
+                      </span>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-gray-700">
+                      {item.wixStrengths.map((s) => (
+                        <li class="flex items-start gap-2">
+                          <div class="w-4 h-4 rounded-full bg-blue-100 text-[#116DFF] flex items-center justify-center shrink-0 mt-0.5">
+                            <Icon name="check" class="w-2.5 h-2.5" />
+                          </div>
+                          <span class="leading-relaxed">{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <!-- Competitor Focus -->
+                  <div class="p-5 rounded-2xl bg-gray-50/80 border border-gray-200/80 space-y-3">
+                    <div class="flex items-center justify-between">
+                      <span class="font-bold text-xs uppercase tracking-wider text-gray-600 flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                        {item.target} 适用边界与考量
+                      </span>
+                      <span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-white border border-gray-200 text-gray-500">
+                        特定垂直场景
+                      </span>
+                    </div>
+                    <ul class="space-y-2 text-xs sm:text-sm text-gray-600">
+                      {item.competitorStrengths.map((s) => (
+                        <li class="flex items-start gap-2">
+                          <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0 mt-2"></span>
+                          <span class="leading-relaxed">{s}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Section: 3-Second Decision Guide Banner -->
+      <section class="rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-slate-900 via-[#0B1528] to-slate-900 text-white border border-slate-800 shadow-xl space-y-6">
+        <div class="max-w-3xl space-y-2">
+          <span class="text-xs font-bold tracking-widest text-[#4A90E2] uppercase">DECISION FRAMEWORK</span>
+          <h3 class="text-2xl sm:text-3xl font-black tracking-tight text-white">如何 3 秒做出最理性的建站选型？</h3>
+          <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            建站工具的核心不是“哪一个最强”，而是“哪一个最能适配您的商业模式并以最低成本交付落地”。
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="text-xs font-bold text-[#4A90E2]">外贸 B2B 品牌出海</div>
+            <div class="text-sm font-black text-white">首选 Wix Studio</div>
+            <p class="text-xs text-slate-400">工厂实力背书、定制展示、0抽成与多语言 SEO 完备。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="text-xs font-bold text-emerald-400">海量 SKU 铺货零售</div>
+            <div class="text-sm font-black text-white">首选 Shopify</div>
+            <p class="text-xs text-slate-400">数千款标品高频买卖、重度分销与仓储物流 API 联动。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="text-xs font-bold text-violet-400">高端设计与商业变现</div>
+            <div class="text-sm font-black text-white">首选 Wix Studio</div>
+            <p class="text-xs text-slate-400">流体排版视觉惊艳，原生商城/预约/会员闭环极速交付。</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+            <div class="text-xs font-bold text-amber-400">企业级省心免运维</div>
+            <div class="text-sm font-black text-white">首选 Wix</div>
+            <p class="text-xs text-slate-400">彻底告别 WordPress 频繁被黑、漏洞挂马与宕机维护噩梦。</p>
+          </div>
+        </div>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/10">
+          <div class="text-xs text-slate-400">
+            还在犹豫不决？联系 Wix 官方 Legend 合作伙伴为您提供 1 对 1 技术架构选型评估。
+          </div>
           <a
-            href={item.slug}
-            class="btn-primary-glow shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-md transition text-center flex items-center justify-center gap-1.5"
+            href="/contact/"
+            class="px-6 py-2.5 rounded-full bg-[#116DFF] hover:bg-[#0D5FE3] text-white text-xs font-bold tracking-wide transition shadow-lg shrink-0"
           >
-            <span>阅读完整深度横评</span>
-            <Icon name="arrow-right" class="w-3.5 h-3.5" />
+            免费获取选型建议 →
           </a>
         </div>
+      </section>
 
-        <div class="p-4 rounded-xl bg-purple-50/50 border border-purple-100 text-xs sm:text-sm text-gray-800 flex items-start gap-2">
-          <span class="inline-flex items-center gap-1 text-[#6D28D9] font-bold shrink-0">
-            <Icon name="sparkles" class="w-4 h-4" />
-            <span>核心结论：</span>
-          </span>
-          <p class="leading-relaxed">{item.verdict}</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-          <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 space-y-2">
-            <div class="font-bold text-emerald-800 flex items-center gap-1.5">
-              <Icon name="check" class="w-3.5 h-3.5 text-emerald-700" />
-              <span>Wix 核心优势：</span>
-            </div>
-            <ul class="space-y-1 text-gray-700">
-              {item.wixStrengths.map((s) => (
-                <li class="flex items-center gap-1.5">
-                  <Icon name="check" class="w-3 h-3 text-emerald-600 shrink-0" />
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 space-y-2">
-            <div class="font-bold text-gray-700">{item.target} 核心侧重点：</div>
-            <ul class="space-y-1 text-gray-600">
-              {item.competitorStrengths.map((s) => (
-                <li class="flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0"></span>
-                  <span>{s}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    ))}
-  </section>
+    </div>
+  </main>
 </BaseLayout>

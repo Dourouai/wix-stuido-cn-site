@@ -1,25 +1,27 @@
 ---
 interface Props {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'xs' | 'sm' | 'md' | 'lg';
   class?: string;
 }
 
 const { size = 'md', class: className = '' } = Astro.props;
 
-const sizes = {
-  sm: 'text-lg',
-  md: 'text-2xl',
-  lg: 'text-3xl sm:text-4xl',
+// 纤巧精致微调：降低高度，与导航文字（14px）及按钮比例和谐，视觉更精致轻盈
+const heights = {
+  xs: 'h-3.5 sm:h-4',
+  sm: 'h-4 sm:h-[18px]',
+  md: 'h-[18px] sm:h-[20px]',
+  lg: 'h-6 sm:h-7',
 };
 
-const currentSize = sizes[size];
+const currentHeight = heights[size];
 ---
 
-<div class={`inline-flex items-baseline tracking-tight select-none font-sans group ${className}`}>
-  <span class={`font-black text-[#0F172A] ${currentSize} tracking-tight group-hover:opacity-90 transition`}>
-    wixstudio
-  </span>
-  <span class={`font-black text-[#6D28D9] ${currentSize} tracking-tight group-hover:text-[#7C3AED] transition`}>
-    .cn
-  </span>
+<div class={`inline-flex items-center select-none group ${className}`}>
+  <img
+    src="/logo.svg"
+    alt="Wix Studio 中文网"
+    class={`${currentHeight} w-auto object-contain transition-opacity duration-200 group-hover:opacity-85`}
+    loading="eager"
+  />
 </div>

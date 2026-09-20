@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroMarketing from '../../components/HeroMarketing.astro';
+import Icon from '../../components/Icon.astro';
 ---
 
 <BaseLayout
@@ -7,158 +9,189 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   description="告诉我们您的网站建设或出海官网需求。Wix 官方最高级 Legend 认证合作伙伴，提供专业 Wix Studio 外贸独立站、品牌官网定制与技术开发咨询。"
   keywords="Wix 代建站, Wix 建站服务, Wix Studio 定制, Wix 外贸建站, Wix 专家咨询"
 >
-  <section class="relative py-20 lg:py-28 overflow-hidden bg-dots-light">
-    <div class="hero-glow-light opacity-60"></div>
-    <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-          START A PROJECT
-        </div>
-        <h1 class="text-3xl sm:text-5xl font-black text-[#0F172A] tracking-tight">
-          开启您的 <span class="text-gradient-brand">Wix Studio 项目</span>
-        </h1>
-        <p class="text-sm sm:text-base text-gray-600">
-          无论您是有建站定制需求、企业内部培训，还是寻求战略合作，请随时与我们联络。
-        </p>
-      </div>
+  <!-- Marketing Hero Header -->
+  <HeroMarketing
+    label="START A PROJECT · 开启合作"
+    title="开启您的 Wix Studio 建站项目"
+    subtitle="无论您有外贸独立站定制、出海品牌重塑，还是复杂动态功能开发需求，请提交表单或即时与我们联络。"
+  />
 
+  <main class="bg-gray-50/50 py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-        <!-- Form Column -->
-        <div class="lg:col-span-7 light-card p-8 border border-gray-200 shadow-xl shadow-gray-200/50">
-          <form class="space-y-5" onsubmit="event.preventDefault(); alert('感谢您的咨询！我们会尽快与您取得联系。');">
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                您的称呼 / 姓名 *
-              </label>
-              <input
-                type="text"
-                required
-                placeholder="例如：张经理 / Alex"
-                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition"
-              />
-            </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                  微信号 / 手机 *
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="便于即时沟通方案"
-                  class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition"
-                />
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                  电子邮箱
-                </label>
-                <input
-                  type="email"
-                  placeholder="name@company.com"
-                  class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition"
-                />
-              </div>
+        <!-- Left Column: HubSpot Embed Form Container (7 Cols) -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/90 shadow-sm space-y-6">
+          <div class="border-b border-gray-150 pb-5">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-[#116DFF] text-xs font-bold mb-2">
+              <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+              在线咨询意向登记
             </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                网站类型 / 核心目标
-              </label>
-              <select class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition">
-                <option value="b2b">外贸出海 B2B 品牌企业官网</option>
-                <option value="ecom">跨境独立站 / 电子商务网店</option>
-                <option value="portfolio">创意设计 / 个人作品集 / 自由职业展示</option>
-                <option value="custom">定制开发 (含 Velo 代码或复杂交互)</option>
-                <option value="other">技术指导 / 疑难排错 / 其他合作</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                预估预算范围
-              </label>
-              <select class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition">
-                <option value="under5k">¥5,000 以下 (基础展示型)</option>
-                <option value="5k-15k">¥5,000 - ¥15,000 (精品出海标准官网)</option>
-                <option value="15k-30k">¥15,000 - ¥30,000 (高水准定制与动效商城)</option>
-                <option value="over30k">¥30,000 以上 (集团级全案或复杂动态平台)</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-bold uppercase tracking-wider text-gray-700 mb-2">
-                需求详细描述
-              </label>
-              <textarea
-                rows="4"
-                placeholder="例如：您心仪的参考网站、预期上线时间、需要包含哪些主要板块..."
-                class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:border-[#6D28D9] focus:bg-white transition resize-none"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              class="btn-primary-glow w-full py-3.5 rounded-full font-semibold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-lg shadow-purple-500/20 transition cursor-pointer"
-            >
-              提交咨询信息 →
-            </button>
-            <p class="text-center text-xs text-gray-400">
-              我们重视您的信息隐私，承诺在 24 小时内由资深官方认证顾问与您对接。
+            <h2 class="text-xl sm:text-2xl font-black text-gray-900">告诉我们您的项目需求</h2>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">
+              请尽量详尽填写您的核心诉求，官方 Legend 顾问将在 24 小时内与您深度对接。
             </p>
-          </form>
+          </div>
+
+          <!-- HubSpot Embed Form Target Container -->
+          <div id="hubspot-form-target" class="min-h-[380px] flex items-center justify-center">
+            <!-- Loading indicator before HS script initializes -->
+            <div class="text-center text-xs text-gray-400 py-12 space-y-3">
+              <div class="w-8 h-8 border-2 border-[#116DFF] border-t-transparent rounded-full animate-spin mx-auto"></div>
+              <div>正在加载官方安全咨询表单...</div>
+            </div>
+          </div>
         </div>
 
-        <!-- Right Contact Info & Badge Column -->
+        <!-- Right Column: Contact Cards, Legend Badge & Info (5 Cols) -->
         <div class="lg:col-span-5 space-y-6">
-          <!-- Legend Badge Card -->
-          <div class="light-card p-6 border-2 border-purple-200/80 bg-gradient-to-br from-purple-50/50 to-white space-y-4 shadow-md">
+
+          <!-- Direct WeChat & Email Contact Card -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-gray-400">即时沟通 / Direct Contact</span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-600 text-[11px] font-semibold border border-emerald-100">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                工作日即时响应
+              </span>
+            </div>
+
+            <div class="space-y-3 pt-1">
+              <!-- WeChat -->
+              <div class="p-4 rounded-2xl bg-gray-50/80 border border-gray-150 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8.691 2.188C3.891 2.188 0 5.478 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .161.13.292.292.292a.3.3 0 0 0 .151-.041l1.91-1.103a.74.74 0 0 1 .593-.08c1.02.26 2.09.4 3.19.4.19 0 .37-.01.55-.02-.13-.53-.2-1.09-.2-1.66 0-4.43 4.14-8.03 9.25-8.03.22 0 .44.01.66.03C17.65 5.258 13.51 2.188 8.69 2.188zm-2.3 4.094c.66 0 1.2.54 1.2 1.2s-.54 1.2-1.2 1.2-1.2-.54-1.2-1.2.54-1.2 1.2-1.2zm5.72 0c.66 0 1.2.54 1.2 1.2s-.54 1.2-1.2 1.2-1.2-.54-1.2-1.2.54-1.2 1.2-1.2z"/>
+                      <path d="M16.25 10.375c-4.14 0-7.5 2.92-7.5 6.523 0 1.954 1.01 3.712 2.61 4.9.15.11.23.29.19.47l-.27 1.04a.26.26 0 0 0 .35.31l1.37-.79c.17-.1.38-.13.57-.08.85.22 1.77.34 2.73.34 4.14 0 7.5-2.92 7.5-6.523s-3.36-6.523-7.5-6.523zm-2.05 3.61c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89zm4.28 0c.49 0 .89.4.89.89s-.4.89-.89.89-.89-.4-.89-.89.4-.89.89-.89z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-500 font-medium">微信咨询 (WeChat)</div>
+                    <div class="text-sm font-bold text-gray-900 font-mono mt-0.5 select-all">CloudCollect</div>
+                  </div>
+                </div>
+                <button
+                  class="copy-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#116DFF] hover:bg-blue-50 transition border border-blue-100"
+                  data-copy="CloudCollect"
+                >
+                  复制微信号
+                </button>
+              </div>
+
+              <!-- Email -->
+              <div class="p-4 rounded-2xl bg-gray-50/80 border border-gray-150 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#116DFF] text-white flex items-center justify-center shrink-0 shadow-xs">
+                    <Icon name="mail" class="w-5 h-5" />
+                  </div>
+                  <div>
+                    <div class="text-xs text-gray-500 font-medium">官方商务邮箱 (Email)</div>
+                    <a href="mailto:info@lopuo.com" class="text-sm font-bold text-gray-900 font-mono mt-0.5 hover:text-[#116DFF] transition block select-all">
+                      info@lopuo.com
+                    </a>
+                  </div>
+                </div>
+                <button
+                  class="copy-btn px-3 py-1.5 rounded-lg text-xs font-semibold text-[#116DFF] hover:bg-blue-50 transition border border-blue-100"
+                  data-copy="info@lopuo.com"
+                >
+                  复制邮箱
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legend Partner Badge Card -->
+          <div class="rounded-3xl p-7 border border-blue-100 bg-gradient-to-br from-blue-50/70 via-white to-white space-y-4 shadow-xs">
             <div class="flex items-center gap-4">
               <img
                 src="/assets/badges/wix-partner-legend-200.png"
                 alt="Wix Partner Legend"
-                width="72"
-                height="72"
-                class="rounded-full shadow-md shadow-gray-900/20"
+                width="64"
+                height="64"
+                class="rounded-full shadow-md shadow-gray-300/60"
               />
               <div>
-                <div class="text-xs font-bold uppercase tracking-wider text-[#6D28D9]">WIX PARTNER LEGEND</div>
-                <h3 class="text-base font-bold text-[#0F172A]">官方最高级认证合作伙伴</h3>
-                <div class="text-xs text-gray-500 mt-0.5">5年+ 实战，服务超数十家出海企业</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-[#116DFF]">WIX PARTNER LEGEND</div>
+                <h3 class="text-base font-black text-gray-900">官方最高等级认证伙伴</h3>
+                <div class="text-xs text-gray-500 mt-0.5">实战交付数十款企业级出海独立站</div>
               </div>
             </div>
-            <p class="text-xs text-gray-600 leading-relaxed pt-2 border-t border-purple-100">
-              依托 Wix Studio 全端流体响应式架构与 Velo 动态数据库能力，为企业量身定制兼具硅谷级美学设计与出色 Google 搜索引擎排名的出海门户。
+            <p class="text-xs text-gray-600 leading-relaxed pt-3 border-t border-gray-150">
+              依托 Wix Studio 流体引擎与 Velo 全栈能力，为企业量身定制兼具硅谷级美学设计、闪电加载速度与出色 Google 搜索引擎排名的出海门户。
             </p>
           </div>
 
-          <!-- Direct WeChat card -->
-          <div class="light-card p-6 border border-gray-200 space-y-3">
-            <div class="text-xs font-bold uppercase tracking-wider text-gray-400">即时沟通</div>
-            <div class="text-sm text-[#0F172A] font-semibold">想要立即交流方案或发送参考链接？</div>
-            <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-xs">
-              <span class="text-gray-600">微信 / 商务联络：</span>
-              <span class="font-mono text-[#6D28D9] font-bold">wixstudio_cn</span>
-            </div>
-            <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-xs">
-              <span class="text-gray-600">商务邮箱：</span>
-              <span class="font-mono text-gray-900 font-semibold">contact@wixstudio.cn</span>
-            </div>
-          </div>
-
-          <!-- Process Highlights -->
-          <div class="light-card p-6 border border-gray-200 space-y-3">
-            <div class="text-xs font-bold uppercase tracking-wider text-gray-400">标准服务交付流程</div>
-            <ol class="space-y-2 text-xs text-gray-600">
-              <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center font-bold">1</span> 需求沟通与参考风格对齐</li>
-              <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center font-bold">2</span> 首页与核心版面原型确认</li>
-              <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center font-bold">3</span> 响应式制作与动效交互开发</li>
-              <li class="flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center font-bold">4</span> 域名配置、SEO检验与后台培训交付</li>
+          <!-- Service Process Highlight -->
+          <div class="bg-white rounded-3xl p-6 sm:p-7 border border-gray-200/90 shadow-xs space-y-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-gray-400">标准交付工作流</div>
+            <ol class="space-y-3 text-xs text-gray-600">
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-50 text-[#116DFF] flex items-center justify-center font-bold shrink-0 mt-0.5">1</span>
+                <div><strong>需求梳理与标杆对齐：</strong>明确项目定位、目标受众与期望参考站点。</div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-50 text-[#116DFF] flex items-center justify-center font-bold shrink-0 mt-0.5">2</span>
+                <div><strong>原型与流体排版设计：</strong>首页视觉主张、断点网格与交互逻辑确认。</div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-50 text-[#116DFF] flex items-center justify-center font-bold shrink-0 mt-0.5">3</span>
+                <div><strong>全响应式开发与动效：</strong>Velo 动态数据绑定与微交互落地。</div>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-50 text-[#116DFF] flex items-center justify-center font-bold shrink-0 mt-0.5">4</span>
+                <div><strong>域名上线与后台交付培训：</strong>Google/百度收录配置、上线验收与使用培训。</div>
+              </li>
             </ol>
           </div>
+
         </div>
+
       </div>
     </div>
-  </section>
+  </main>
+
+  <!-- HubSpot Embed Form Script -->
+  <script is:inline charset="utf-8" type="text/javascript" src="//js-na2.hsforms.net/forms/embed/v2.js"></script>
+  <script is:inline>
+    // Initialize HubSpot form
+    if (window.hbspt) {
+      window.hbspt.forms.create({
+        portalId: "22304341",
+        formId: "9201ea63-a8ff-45f0-afea-3979c65950c1",
+        region: "na2",
+        target: "#hubspot-form-target"
+      });
+    } else {
+      // Fallback polling in case script is async
+      var checkHS = setInterval(function() {
+        if (window.hbspt) {
+          clearInterval(checkHS);
+          window.hbspt.forms.create({
+            portalId: "22304341",
+            formId: "9201ea63-a8ff-45f0-afea-3979c65950c1",
+            region: "na2",
+            target: "#hubspot-form-target"
+          });
+        }
+      }, 100);
+    }
+
+    // Quick Copy interaction
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var text = btn.getAttribute('data-copy');
+        if (text && navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(function() {
+            var oldText = btn.innerText;
+            btn.innerText = '已复制！';
+            setTimeout(function() {
+              btn.innerText = oldText;
+            }, 1500);
+          });
+        }
+      });
+    });
+  </script>
 </BaseLayout>

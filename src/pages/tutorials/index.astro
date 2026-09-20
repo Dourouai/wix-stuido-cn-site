@@ -1,173 +1,300 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroListing from '../../components/HeroListing.astro';
 import Icon from '../../components/Icon.astro';
 
 const tracks = [
   {
+    id: 'getting-started',
     title: '新手入门实战 (Getting Started)',
     slug: '/tutorials/getting-started/',
     icon: 'book-open',
-    color: 'from-blue-500 to-indigo-600',
-    desc: '专为初次接触 Wix Studio 的用户设计。从账户创建、编辑器核心面板、流体响应式机制到发布第一个网站。',
+    badge: '零基础必修',
+    color: 'text-[#116DFF] bg-blue-50/80 border-blue-150',
+    accentBg: 'from-blue-500/8 to-transparent',
+    desc: '从平台底层架构认知、账户注册创建、熟悉流体工作台面板，到独立域名解析绑定与 SSL 部署上线。',
     articles: [
-      'Wix Studio 是什么？与普通经典版 Wix 的核心区别',
-      '从零开始：注册账号并创建第一个空白项目',
-      '深入浅出：Wix Studio 编辑器工作区全解析',
-      '如何为网站绑定自己的顶级独立域名与开启 SSL',
+      { title: 'Wix Studio 是什么？与普通经典版 Wix 的核心区别', href: '/tutorials/getting-started/what-is-wix-studio/', time: '10 min', tag: '基础认知' },
+      { title: '从零开始：注册账号并创建第一个空白工作区', href: '/tutorials/getting-started/account-setup/', time: '8 min', tag: '环境初始化' },
+      { title: '深入浅出：Wix Studio 编辑器工作区全解析', href: '/tutorials/getting-started/editor-walkthrough/', time: '12 min', tag: '核心面板' },
+      { title: '如何为网站绑定自己的顶级独立域名与开启 SSL', href: '/tutorials/getting-started/connect-domain/', time: '9 min', tag: '域名解析' },
     ],
   },
   {
+    id: 'design',
     title: '设计与响应式排版 (Design & Layout)',
     slug: '/tutorials/design/',
     icon: 'palette',
-    color: 'from-purple-500 to-pink-600',
-    desc: '从视觉设计出发，探索比例缩放（Scale Proportionally）、网格系统（Grid）、CSS 布局与微交互动效。',
+    badge: '设计师推荐',
+    color: 'text-violet-600 bg-violet-50/80 border-violet-150',
+    accentBg: 'from-violet-500/8 to-transparent',
+    desc: '从视觉设计美学出发，深度探索比例缩放（Scale Proportionally）、网格系统（Grid）、流体断点与高级微交互动效。',
     articles: [
-      '流体引擎完全指南：彻底搞懂自定义断点与等比缩放',
-      'CSS Grid 与 Flexbox 在 Wix Studio 中的实战运用',
-      '利用微动效（Hover & Scroll Animations）提升高级质感',
-      '官方 Figma to Studio 插件：设计稿一键无缝转换',
+      { title: '流体引擎完全指南：彻底搞懂自定义断点与等比缩放', href: '/tutorials/design/fluid-engine/', time: '15 min', tag: '流体引擎' },
+      { title: 'CSS Grid 与 Flexbox 在 Wix Studio 中的实战运用', href: '/tutorials/design/css-grid-flexbox/', time: '12 min', tag: '排版架构' },
+      { title: '元素停靠与边距完全指南：彻底掌握 Docking 与 Margins', href: '/tutorials/design/docking-and-margins/', time: '11 min', tag: '停靠锚定' },
     ],
   },
   {
-    title: 'Velo 全栈开发与动态代码 (Velo Dev)',
+    id: 'velo',
+    title: 'Velo 全栈开发 (Velo Development)',
     slug: '/tutorials/velo/',
     icon: 'code',
-    color: 'from-indigo-500 to-purple-600',
-    desc: '面向有编程或进阶动态数据需求的用户。掌握 JavaScript 语法、Wix CMS 数据集与第三方 API 联动。',
+    badge: '全栈进阶',
+    color: 'text-emerald-600 bg-emerald-50/80 border-emerald-150',
+    accentBg: 'from-emerald-500/8 to-transparent',
+    desc: '进阶到代码层级。通过 Wix Velo 平台编写前后端 JavaScript，无缝连接 CMS 动态数据库与外部 RESTful API。',
     articles: [
-      'Velo 开发入门：前端页面元素交互与代码逻辑',
-      'Wix CMS 数据库建立与动态页面（Dynamic Pages）绑定',
-      '在 Wix Studio 中编写自定义 CSS 类名与全局变量',
-      '调用外部 REST API 接口并在页面动态渲染数据',
+      { title: 'Velo 基础概念：从 $w 页面元素选择器到数据绑定', href: '/tutorials/velo/getting-started-velo/', time: '14 min', tag: 'JS基础' },
+      { title: 'Wix Studio CMS 动态数据库实战：构建多对多关系型内容页面', href: '/tutorials/velo/cms-database/', time: '16 min', tag: 'CMS开发' },
+      { title: 'Velo 后端 Web 模块（.web.js）实战：前后端解耦与 API 安全', href: '/tutorials/velo/backend-web-modules/', time: '14 min', tag: '后端安全' },
     ],
   },
   {
-    title: 'SEO 搜索引擎优化指南 (SEO Guide)',
+    id: 'seo',
+    title: 'SEO 双引擎优化 (SEO Optimization)',
     slug: '/tutorials/seo/',
     icon: 'search',
-    color: 'from-emerald-500 to-teal-600',
-    desc: '打通百度与 Google 双端搜索引擎收录逻辑。从元标签、结构化数据 Schema 到核心网页指标速度调优。',
+    badge: '流量获客',
+    color: 'text-amber-600 bg-amber-50/80 border-amber-150',
+    accentBg: 'from-amber-500/8 to-transparent',
+    desc: '面向中国大陆与海外双端搜索需求。深度讲解百度站长收录、Google 搜索面板、结构化数据 Schema 与性能指标优化。',
     articles: [
-      'Wix 网站 SEO 全攻略：让 Google 与百度快速抓取',
-      '如何生成与提交标准 Sitemap 站点地图到各大搜索引擎',
-      '页面速度性能优化：Core Web Vitals 指标全绿秘诀',
+      { title: 'Wix Studio 百度 + Google 双引擎 SEO 实战优化指南（2026 最新版）', href: '/tutorials/seo/baidu-google-seo/', time: '15 min', tag: '双端SEO' },
+      { title: 'Core Web Vitals 核心指标全绿策略：图片、字体与性能提速', href: '/tutorials/seo/core-web-vitals/', time: '12 min', tag: '性能提速' },
     ],
   },
   {
-    title: '外贸电商与出海独立站 (E-Commerce)',
+    id: 'ecommerce',
+    title: '外贸独立站与电商 (E-Commerce)',
     slug: '/tutorials/ecommerce/',
     icon: 'shopping-bag',
-    color: 'from-amber-500 to-orange-600',
-    desc: '专为跨境与出海商家提供。涵盖产品目录管理、PayPal / Stripe 多币种海外金流配置与运费规则。',
+    badge: '出海出单',
+    color: 'text-orange-600 bg-orange-50/80 border-orange-150',
+    accentBg: 'from-orange-500/8 to-transparent',
+    desc: '专为跨境外贸与 DTC 出海商家定制。涵盖产品目录规划、PayPal / Stripe 多币种海外金流配置与运费税率规则。',
     articles: [
-      '从零搭建跨境外贸商城：商品录入与品类规划',
-      '海外支付网关接入：PayPal / Stripe 实操指南',
-      '多语言（Multilingual）与多币种自动汇率切换配置',
+      { title: '从零搭建 Wix Stores 外贸独立站：商品录入、多变体 SKU 与多币种结算', href: '/tutorials/ecommerce/setup-store/', time: '15 min', tag: '商城搭建' },
+      { title: '出海金流避坑指南：Wix 接入 PayPal、Stripe 与多国本地支付全解析', href: '/tutorials/ecommerce/payment-gateways/', time: '14 min', tag: '海外金流' },
     ],
+  },
+];
+
+const learningPaths = [
+  {
+    step: '01',
+    title: '零基础新手路线',
+    target: '第一次接触 Wix Studio 的用户',
+    icon: 'book-open',
+    color: 'text-[#116DFF] border-blue-200 bg-blue-50/40',
+    steps: ['熟悉工作台面板与组件', '理解响应式流体容器机制', '按规范完成域名绑定上线'],
+    href: '/tutorials/getting-started/',
+  },
+  {
+    step: '02',
+    title: '设计师视觉进阶 (推荐)',
+    target: '追求高端非标排版的设计师',
+    icon: 'palette',
+    color: 'text-violet-600 border-violet-200 bg-violet-50/40',
+    steps: ['掌握自定义流体断点与比例缩放', '运用 Figma to Studio 转化插件', '落地吸睛微交互与复杂悬停动效'],
+    href: '/tutorials/design/',
+  },
+  {
+    step: '03',
+    title: '全栈开发与商业定制',
+    target: '需要动态 CMS 与自研逻辑的工程师',
+    icon: 'code',
+    color: 'text-emerald-600 border-emerald-200 bg-emerald-50/40',
+    steps: ['掌握 Velo 前端事件监听与API', '建立多对多关系型 CMS 动态页面', '对接支付、Webhook 与自动化流'],
+    href: '/tutorials/velo/',
   },
 ];
 ---
 
 <BaseLayout
-  title="Wix Studio 中文教程中心 | 从零基础入门到进阶开发指南 - wixstudio.cn"
+  title="Wix Studio 中文教程中心 | 从零基础入门到全栈进阶开发指南 - wixstudio.cn"
   description="中国最系统全面的 Wix Studio 中文教程体系。提供零基础入门、流体响应式排版、Velo 代码开发、SEO优化与外贸独立站全流程指南。"
-  keywords="Wix 教程, Wix Studio 教程, Wix Studio 怎么用, Wix 建站教程, Wix 中文教程, Wix Velo"
 >
-  <section class="relative py-20 overflow-hidden text-center bg-dots-light">
-    <div class="hero-glow-light opacity-60"></div>
-    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-50 text-[#6D28D9] text-xs font-semibold border border-purple-200">
-        <Icon name="book-open" class="w-3.5 h-3.5" />
-        <span>教程中心 / TUTORIAL CENTER</span>
-      </div>
-      <h1 class="text-4xl sm:text-6xl font-black text-[#0F172A] tracking-tight">
-        Wix Studio <span class="text-gradient-brand">中文教程中心</span>
-      </h1>
-      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-        系统化、实战导向的课程路径。无论您是追求极致视觉的设计师，还是开拓海外市场的外贸创业者，这里都有最清晰的中文指引。
-      </p>
-    </div>
-  </section>
 
-  <!-- Tutorial Tracks List in Crisp White Cards -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-24 space-y-8">
-    {tracks.map((track) => (
-      <div class="light-card p-8 border border-gray-200 space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-gray-100">
-          <div class="flex items-start sm:items-center gap-3.5">
-            <div class="w-11 h-11 rounded-xl bg-purple-50 border border-purple-200/60 flex items-center justify-center shrink-0 text-[#6D28D9]">
-              <Icon name={track.icon} class="w-5 h-5" />
-            </div>
-            <div>
-              <h2 class="text-2xl font-bold text-[#0F172A] hover:text-[#6D28D9] transition">
-                <a href={track.slug}>{track.title}</a>
-              </h2>
-              <p class="text-xs sm:text-sm text-gray-500 mt-1">{track.desc}</p>
-            </div>
+  <HeroListing
+    label="教程中心 · Tutorials"
+    title="Wix Studio 中文教程中心"
+    subtitle="系统化、实战导向的课程体系。无论你是追求极致视觉的设计师，还是开拓海外市场的创业者，这里都有最清晰的中文实战指引。"
+    stats={[
+      { value: '35+', label: '篇实战教程' },
+      { value: '5', label: '大进阶专栏' },
+      { value: '100%', label: '开源免费学习' },
+      { value: '每周', label: '持续同步更新' },
+    ]}
+  />
+
+  <!-- Main Tutorial Tracks Section -->
+  <main class="bg-gray-50/50 py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <!-- Featured Guide Banner -->
+      <div class="bg-white rounded-3xl border border-gray-200/90 overflow-hidden card-lift card-glow grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+        <div class="lg:col-span-5 h-64 sm:h-72 lg:h-full min-h-[260px] w-full bg-slate-100 overflow-hidden border-b lg:border-b-0 lg:border-r border-gray-100">
+          <img
+            src="/assets/images/tutorial-featured-cover.jpg"
+            alt="Wix Studio 教程精选"
+            class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+        <div class="lg:col-span-7 p-6 sm:p-10 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-50 text-[#116DFF] border border-blue-200/60">
+              新手必读置顶
+            </span>
+            <span class="text-xs text-gray-400 font-mono">2026.09 最新重构</span>
           </div>
-          <a
-            href={track.slug}
-            class="shrink-0 px-5 py-2.5 rounded-full text-xs font-semibold text-gray-700 hover:text-white bg-gray-100 hover:bg-[#6D28D9] transition text-center flex items-center justify-center gap-1.5"
-          >
-            <span>进入系列专栏</span>
-            <Icon name="arrow-right" class="w-3.5 h-3.5" />
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {track.articles.map((item, idx) => (
-            <div class="p-3.5 rounded-xl bg-gray-50/80 border border-gray-150 hover:border-purple-200 transition flex items-center gap-3">
-              <span class="w-6 h-6 rounded-full bg-purple-100 text-[#6D28D9] text-xs font-bold flex items-center justify-center shrink-0">
-                {idx + 1}
-              </span>
-              <span class="text-xs sm:text-sm text-gray-700 line-clamp-1 font-medium">{item}</span>
-            </div>
-          ))}
+          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 leading-snug">
+            <a href="/tutorials/getting-started/what-is-wix-studio/" class="hover:text-[#116DFF] transition">
+              Wix Studio 是什么？与普通经典版 Wix 的核心区别全解析
+            </a>
+          </h2>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            深度拆解什么是 Wix Studio。从流体响应式引擎、CSS 底层支持、全栈 Velo 开发到团队权限隔离，全面对比普通经典版 Wix，助您快速掌握下一代企业级建站操作系统。
+          </p>
+          <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <a
+              href="/tutorials/getting-started/what-is-wix-studio/"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold text-white bg-[#116DFF] hover:bg-blue-600 transition shadow-xs"
+            >
+              <span>立即开始第一课</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5" />
+            </a>
+            <span class="text-xs text-gray-400">阅读时长约 10 分钟</span>
+          </div>
         </div>
       </div>
-    ))}
-  </section>
 
-  <!-- Learning Path Roadmap in Light Slate -->
-  <section class="py-20 bg-[#F8FAFC] border-t border-gray-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      <div class="text-center space-y-2">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-[#0F172A]">推荐学习路径 (Learning Path)</h2>
-        <p class="text-sm text-gray-600">根据您的背景，选择最适合的高效进阶路线</p>
+      <!-- Track List Cards -->
+      <div class="space-y-6">
+        {tracks.map((track, trackIdx) => (
+          <article class="group bg-white rounded-3xl border border-gray-200/90 overflow-hidden card-lift card-glow transition-all duration-300">
+            <!-- Header bar with icon and title -->
+            <div class={`p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-150 bg-gradient-to-r ${track.accentBg}`}>
+              <div class="flex items-start sm:items-center gap-4">
+                <div class={`w-12 h-12 rounded-2xl border flex items-center justify-center shrink-0 shadow-xs ${track.color}`}>
+                  <Icon name={track.icon} class="w-6 h-6" />
+                </div>
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2.5">
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#116DFF]/10 text-[#116DFF] border border-[#116DFF]/20">
+                      TRACK 0{trackIdx + 1}
+                    </span>
+                    <span class="text-xs font-semibold px-2 py-0.5 rounded-md bg-white border border-gray-200 text-gray-500">
+                      {track.badge}
+                    </span>
+                    <span class="text-xs text-gray-400 font-medium hidden sm:inline">共 {track.articles.length} 篇精选</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-black text-gray-900 group-hover:text-[#116DFF] transition-colors">
+                    <a href={track.slug}>{track.title}</a>
+                  </h2>
+                  <p class="text-xs sm:text-sm text-gray-500 max-w-2xl leading-relaxed">{track.desc}</p>
+                </div>
+              </div>
+
+              <!-- Action Button -->
+              <div class="shrink-0 pt-2 md:pt-0">
+                <a
+                  href={track.slug}
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold text-white bg-[#116DFF] hover:bg-[#0D5FE3] shadow-md shadow-blue-500/20 active:scale-95 transition-all"
+                >
+                  <span>进入系列专栏</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Articles Sub-grid -->
+            <div class="p-6 sm:p-8">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {track.articles.map((art, idx) => (
+                  <a
+                    href={art.href}
+                    class="group/item flex items-center justify-between gap-3 p-4 rounded-2xl bg-gray-50/70 hover:bg-blue-50/50 border border-gray-150 hover:border-blue-200 transition-all duration-200"
+                  >
+                    <div class="flex items-center gap-3 min-w-0">
+                      <span class="w-6 h-6 rounded-lg bg-white border border-gray-200 group-hover/item:border-[#116DFF] group-hover/item:bg-[#116DFF] group-hover/item:text-white text-gray-500 text-xs font-bold flex items-center justify-center shrink-0 transition-colors">
+                        {idx + 1}
+                      </span>
+                      <div class="min-w-0">
+                        <span class="text-xs sm:text-sm font-semibold text-gray-800 group-hover/item:text-[#116DFF] transition-colors line-clamp-1">
+                          {art.title}
+                        </span>
+                        <div class="flex items-center gap-2 mt-0.5 text-[11px] text-gray-400">
+                          <span>{art.tag}</span>
+                          <span>·</span>
+                          <span>{art.time}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <svg class="w-4 h-4 text-gray-300 group-hover/item:text-[#116DFF] group-hover/item:translate-x-1 transition-all shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Recommended Learning Path Roadmap (Styled modern) -->
+  <section class="py-16 sm:py-20 bg-white border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+      <div class="text-center space-y-2 max-w-xl mx-auto">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#116DFF]">
+          <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+          ROADMAP & PROGRESSION
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">推荐系统学习路线</h2>
+        <p class="text-xs sm:text-sm text-gray-500">根据您的从业背景与业务诉求，选择最高效的进阶成长路径</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="light-card p-6 space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-[#6D28D9]">PATH 1</div>
-          <h3 class="text-lg font-bold text-[#0F172A]">零基础新手路线</h3>
-          <div class="text-xs text-gray-600 space-y-2">
-            <p>1. 熟悉工作区面板与常用组件</p>
-            <p>2. 掌握容器与基础布局逻辑</p>
-            <p>3. 学习模板修改并绑定域名上线</p>
-          </div>
-        </div>
+        {learningPaths.map((p) => (
+          <a href={p.href} class="group rounded-3xl border border-gray-200/90 p-7 bg-white card-lift card-glow flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-black text-gray-400 font-mono">PHASE {p.step}</span>
+                <span class={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${p.color}`}>
+                  {p.target}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#116DFF] transition-colors">
+                {p.title}
+              </h3>
+              <ul class="space-y-2.5 text-xs sm:text-sm text-gray-600">
+                {p.steps.map((s, idx) => (
+                  <li class="flex items-center gap-2">
+                    <span class="w-4 h-4 rounded-full bg-blue-50 text-[#116DFF] flex items-center justify-center text-[10px] font-bold shrink-0">
+                      {idx + 1}
+                    </span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-        <div class="light-card p-6 space-y-3 border-2 border-purple-200 bg-purple-50/30">
-          <div class="text-xs font-bold uppercase tracking-wider text-emerald-600">PATH 2 (推荐)</div>
-          <h3 class="text-lg font-bold text-[#0F172A]">设计师接单进阶</h3>
-          <div class="text-xs text-gray-600 space-y-2">
-            <p>1. 深入理解流体断点与比例缩放</p>
-            <p>2. 熟练运用 Figma 转换插件</p>
-            <p>3. 打造高级悬停微动效与交付体系</p>
-          </div>
-        </div>
-
-        <div class="light-card p-6 space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-blue-600">PATH 3</div>
-          <h3 class="text-lg font-bold text-[#0F172A]">全栈与商业定制</h3>
-          <div class="text-xs text-gray-600 space-y-2">
-            <p>1. 学习 Velo JavaScript 事件与API</p>
-            <p>2. 构建 CMS 数据库与动态列表</p>
-            <p>3. 整合海外第三方支付与工作流</p>
-          </div>
-        </div>
+            <div class="pt-5 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#116DFF]">
+              <span>进入该学习阶段</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
+
 </BaseLayout>

@@ -1,0 +1,85 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'vitals-metrics', title: '核心网页指标三大核心：LCP、INP、CLS' },
+  { id: 'lcp-acceleration', title: '攻克 LCP 最大内容绘制：首屏大图优化' },
+  { id: 'cls-stability', title: '消除 CLS 累计布局偏移：图片尺寸占位' },
+  { id: 'cdn-china', title: '国内加速与全球 CDN 多节点协同实测' },
+];
+---
+
+<ArticleLayout
+  title="Wix Studio Core Web Vitals 核心指标全绿攻关：图片、字体与性能提速"
+  description="Wix Studio 性能优化终极指南。拆解 Google Lighthouse 90+ 高分秘诀，攻克 LCP、INP 与 CLS 指标，深度优化全球 CDN 与国内访问加载速度。"
+  keywords="Core Web Vitals, Wix 速度优化, LCP 优化, CLS 偏移, 网页性能测试, Google Lighthouse"
+  category="SEO 优化与收录"
+  categorySlug="/tutorials/seo/"
+  readTime="12 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-cdn-speed.jpg"
+  prevArticle={{
+    title: "Wix Studio 百度 + Google 双引擎 SEO 实战优化指南（2026 最新版）",
+    href: "/tutorials/seo/baidu-google-seo/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-amber-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-amber-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-amber-800 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      Google 官方已明确将 <strong>Core Web Vitals（核心网页体验指标）</strong> 列为搜索排名的关键权重算法。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      Wix Studio 底层拥有全球多活云端基础设施，原生支持 WebP/AVIF 图片无损转码、CSS 关键路径提前渲染与 Brotli 高倍压缩。只要建站时不盲目堆砌第三方无用 JS 插件并规范首屏配图尺寸，在 Google PageSpeed Insights 跑出 <strong>95+ 甚至 100 满分</strong> 完全可以轻松达成。
+    </p>
+  </section>
+
+  <!-- Section 1: Metrics -->
+  <section id="vitals-metrics" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
+      <span>1. 核心网页指标三大核心：LCP、INP、CLS</span>
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-emerald-700">LCP (&lt; 2.5s)</div>
+        <div class="text-xs text-slate-500">最大内容绘制。首屏最显眼的巨幅封面图或主标语渲染完成的耗时。</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-blue-700">INP (&lt; 200ms)</div>
+        <div class="text-xs text-slate-500">交互到下一次绘制。取代旧的 FID，衡量点击按钮或菜单后的响应流畅度。</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-purple-700">CLS (&lt; 0.1)</div>
+        <div class="text-xs text-slate-500">累计布局偏移。页面加载过程中文字或按钮突然跳动位移的程度。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: LCP -->
+  <section id="lcp-acceleration" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-amber-600 rounded-full inline-block"></span>
+      <span>2. 攻克 LCP 最大内容绘制：首屏大图优化</span>
+    </h2>
+    <p>
+      90% 的 LCP 飘红都是由首屏一张数兆大小的未压缩 PNG 图片造成的。实操准则：
+    </p>
+    <ul class="space-y-2 pl-4 text-slate-700">
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>上传前控制原始体积：</strong> 无论上传多大尺寸，建议单张原始图体积控制在 500KB 以内（上传后 Wix 会自动压缩生成 WebP 并按终端视口智能分发最佳尺寸）；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>首屏主图禁用延迟加载（Lazy Loading）：</strong> 首屏第一视口图应保证在 HTML 首批解析中优先发起下载。</span>
+      </li>
+    </ul>
+  </section>
+</ArticleLayout>

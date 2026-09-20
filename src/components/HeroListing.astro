@@ -1,0 +1,66 @@
+---
+/**
+ * HeroListing — 内容列表型 Hero
+ * 用于：教程列表、博客列表、对比列表
+ * 特征：渐变背景 + 标签 + 大标题 + 副标题 + 可选统计行
+ */
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  /** 顶部小标签，如 "TUTORIALS" */
+  label: string;
+  /** 页面主标题 */
+  title: string;
+  /** 副标题描述 */
+  subtitle?: string;
+  /** 统计数据行 */
+  stats?: Stat[];
+}
+
+const { label, title, subtitle, stats } = Astro.props;
+---
+
+<section class="relative overflow-hidden bg-gradient-to-b from-[#F0F4FF] to-white border-b border-gray-100">
+  <!-- 背景纹理 -->
+  <div class="absolute inset-0 opacity-25 pointer-events-none"
+       style="background-image: radial-gradient(circle, #C7D2FE 1px, transparent 1px); background-size: 32px 32px;"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 py-14 lg:py-20 relative">
+    <div class="max-w-2xl">
+
+      <p class="text-[13px] font-semibold text-[#116DFF] tracking-widest uppercase mb-3 hero-enter hero-enter-d1">
+        {label}
+      </p>
+
+      <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight mb-4 hero-enter hero-enter-d2"
+          style="font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;">
+        {title}
+      </h1>
+
+      {subtitle && (
+        <p class="text-[17px] text-gray-400 leading-relaxed hero-enter hero-enter-d3">
+          {subtitle}
+        </p>
+      )}
+
+      {stats && stats.length > 0 && (
+        <div class="flex flex-wrap gap-6 mt-8 pt-6 border-t border-gray-200/50 hero-enter hero-enter-d4">
+          {stats.map(s => (
+            <div>
+              <span class="text-lg font-black text-gray-900">{s.value}</span>
+              <span class="text-[13px] text-gray-400 ml-1.5">{s.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+    </div>
+
+    <!-- Slot for extra content (e.g. filter tabs) -->
+    <slot />
+  </div>
+</section>

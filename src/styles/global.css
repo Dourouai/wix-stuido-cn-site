@@ -1,153 +1,161 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg-base: #FFFFFF;
-  --color-bg-surface: #F8FAFC;
-  --color-bg-elevated: #F1F5F9;
-  --color-accent-purple: #7C3AED;
-  --color-accent-purple-dark: #6D28D9;
-  --color-accent-blue: #2563EB;
-
-  --font-sans: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Hiragino Sans GB', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    background-color: #FFFFFF;
-    color: #0F172A;
-  }
-  ::selection {
-    background: rgba(124, 58, 237, 0.2);
-    color: #4C1D95;
-  }
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  ::selection { background: rgba(17,109,255,0.15); color: #0D5FE3; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #9CA3AF; }
 }
 
-/* Rich Aurora Light Effect (Vibrant, Not Washed Out) */
-.hero-aurora {
-  position: absolute;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1000px;
-  height: 650px;
-  background: 
-    radial-gradient(ellipse at 30% 30%, rgba(139, 92, 246, 0.35) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 35%, rgba(59, 130, 246, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 65%, rgba(236, 72, 153, 0.18) 0%, transparent 55%);
-  filter: blur(75px);
-  pointer-events: none;
-  z-index: 0;
+
+/* ═══════════════════════════════════
+   ENTRANCE ANIMATIONS
+   ═══════════════════════════════════ */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
-/* Subtle Grid Texture */
-.bg-subtle-grid {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+/* 初始状态 — 等 JS 触发 */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-/* Elevated Premium Card with Multi-layer Shadow & Hover Glow */
-.premium-card {
-  background: #FFFFFF;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  border-radius: 20px;
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.04),
-    0 4px 16px -2px rgba(15, 23, 42, 0.05);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  position: relative;
-  overflow: hidden;
+/* Hero 入场 — 带 stagger */
+.hero-enter { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.hero-enter-d1 { animation-delay: 0.05s; }
+.hero-enter-d2 { animation-delay: 0.15s; }
+.hero-enter-d3 { animation-delay: 0.25s; }
+.hero-enter-d4 { animation-delay: 0.35s; }
+.hero-enter-d5 { animation-delay: 0.50s; }
+
+/* Bento 卡片 stagger */
+.bento-enter { animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.bento-enter:nth-child(1) { animation-delay: 0.10s; }
+.bento-enter:nth-child(2) { animation-delay: 0.18s; }
+.bento-enter:nth-child(3) { animation-delay: 0.26s; }
+.bento-enter:nth-child(4) { animation-delay: 0.34s; }
+.bento-enter:nth-child(5) { animation-delay: 0.42s; }
+.bento-enter:nth-child(6) { animation-delay: 0.50s; }
+
+
+/* ═══════════════════════════════════
+   NAVBAR SCROLL STATE
+   ═══════════════════════════════════ */
+
+.navbar-transparent {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.navbar-solid {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-color: rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 }
 
-.premium-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(124, 58, 237, 0.4);
-  box-shadow: 
-    0 20px 35px -10px rgba(124, 58, 237, 0.15),
-    0 8px 16px -4px rgba(15, 23, 42, 0.06);
+
+/* ═══════════════════════════════════
+   CARD HOVER MICRO-INTERACTIONS
+   ═══════════════════════════════════ */
+
+.card-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease,
+              border-color 0.2s ease;
+}
+.card-lift:hover {
+  transform: translateY(-3px);
 }
 
-/* Gradient Text Utilities */
-.text-gradient-purple {
-  background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 50%, #2563EB 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.card-glow {
+  transition: box-shadow 0.3s ease, border-color 0.2s ease;
+}
+.card-glow:hover {
+  box-shadow: 0 0 0 1px rgba(17,109,255,0.1),
+              0 8px 24px rgba(17,109,255,0.08);
 }
 
-.text-gradient-gold {
-  background: linear-gradient(135deg, #B45309 0%, #F59E0B 50%, #D97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-/* Smooth Marquee Mask */
+/* ═══════════════════════════════════
+   MARQUEE (kept from before)
+   ═══════════════════════════════════ */
+
 .marquee-mask {
-  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
-
 @keyframes marquee {
-  0% { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-
 .animate-marquee-scroll {
   display: flex;
   width: max-content;
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
 }
+.animate-marquee-scroll:hover { animation-play-state: paused; }
 
-.animate-marquee-scroll:hover {
-  animation-play-state: paused;
-}
 
-/* Primary Button Glow */
-.btn-vibrant-glow {
-  position: relative;
-  transition: all 0.25s ease;
-}
-.btn-vibrant-glow::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #7C3AED, #2563EB);
-  filter: blur(10px);
-  opacity: 0.4;
-  transition: opacity 0.25s ease, filter 0.25s ease;
-  z-index: -1;
-}
-.btn-vibrant-glow:hover::before {
-  opacity: 0.8;
-  filter: blur(14px);
-}
+/* ═══════════════════════════════════
+   SCROLL-TO-TOP BUTTON
+   ═══════════════════════════════════ */
 
-/* Shimmer Animation */
-@keyframes badge-shimmer-anim {
-  0% { transform: translateX(-100%) rotate(25deg); }
-  100% { transform: translateX(200%) rotate(25deg); }
+.scroll-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  color: #6B7280;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.2s, color 0.2s;
+  z-index: 40;
 }
-
-.shimmer-pill {
-  position: relative;
-  overflow: hidden;
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
-.shimmer-pill::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.6) 50%,
-    transparent 80%
-  );
-  transform: rotate(25deg);
-  animation: badge-shimmer-anim 3.5s infinite ease-in-out;
+.scroll-top-btn:hover {
+  background: #116DFF;
+  color: white;
+  border-color: #116DFF;
+  box-shadow: 0 4px 16px rgba(17,109,255,0.25);
 }

@@ -74,7 +74,7 @@ const schemaPartner = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImageUrl} />
 
-    <!-- Fonts: Inter & Noto Sans SC -->
+  <!-- Google Fonts: enhancement only, safe fallback to system fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -86,7 +86,7 @@ const schemaPartner = {
     <script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
     <script type="application/ld+json" set:html={JSON.stringify(schemaPartner)} />
   </head>
-  <body class="bg-[#FAFAFB] text-[#111827] min-h-screen flex flex-col font-sans antialiased selection:bg-purple-100 selection:text-purple-900">
+  <body class="bg-white text-[#111111] min-h-screen flex flex-col antialiased" style="font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei UI', 'Microsoft YaHei', 'Hiragino Sans GB', system-ui, sans-serif;">
     <Navbar />
     <main class="flex-grow">
       <slot />

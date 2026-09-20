@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'matrix', title: '核心多维参数对比表' },
+  { id: 'layout-engine', title: '流体排版引擎 vs 纯前端盒模型' },
+  { id: 'business-ecosystem', title: '原生商业生态 vs 纯前台排版' },
+  { id: 'fullstack-velo', title: 'Velo 全栈扩展 vs 纯前台嵌入' },
+  { id: 'delivery-efficiency', title: '交付效率与 Agency 工作流' },
+  { id: 'localization-china', title: '中文本土化与出海多语言' },
+  { id: 'verdict', title: '选型决策树与最终结论' },
+];
+
+const tableRows = [
+  {
+    dimension: '核心产品定位',
+    wix: '高端视觉设计 + 原生全套商业系统 + 全栈代码扩展（Wix 优先推荐）',
+    wf: '纯前端 CSS 视觉化代码生成器（专注前端视觉还原）',
+    winner: 'Wix 胜在商业全面性',
+  },
+  {
+    dimension: '排版布局模型',
+    wix: '独创比例等比缩放（Scale Proportionally）+ 9点停靠 + 无代码 CSS Grid',
+    wf: '严格遵循前端 CSS 盒模型（必须掌握类名继承、Flexbox、Grid 手工配置）',
+    winner: 'Wix 胜（效率高 40%+）',
+  },
+  {
+    dimension: '内置原生商业功能',
+    wix: '原生内置跨境商城、会员系统、预约排期、动态表单、事件活动、博客',
+    wf: '基础 CMS 较强；但电商功能简陋，复杂表单/预约/会员必须外接 Zapier 插件',
+    winner: 'Wix 绝对胜出（开箱即用）',
+  },
+  {
+    dimension: '代码扩展能力',
+    wix: 'Velo 全栈 JavaScript：支持服务端 .web.js 模块、无服务器数据库、API 密钥库',
+    wf: '仅支持前台 HTML/CSS/JS 嵌入，无原生无服务器后端与安全数据库调用能力',
+    winner: 'Wix 胜（真全栈能力）',
+  },
+  {
+    dimension: '项目交付周期',
+    wix: '极速原型设计与页面落地，交付周期通常比 Webflow 缩短 40% ~ 50%',
+    wf: '断点调校与手写类名耗时极长，初学者排版极易错位崩塌',
+    winner: 'Wix 胜（ROI 极高）',
+  },
+  {
+    dimension: '客户交接与权限隔离',
+    wix: '官方原生 Client Kit 客户交付模式：锁定画布布局，仅允许客户修改图文内容',
+    wf: 'Editor 模式存在一定限制，客户误触容易破坏复杂嵌套的 CSS 样式类',
+    winner: 'Wix 胜（省心售后交付）',
+  },
+  {
+    dimension: '中文本土化与支持',
+    wix: '全中文编辑界面、官方中文支持与针对中国大陆节点的 CDN 智能解析',
+    wf: '全英文后台界面，无本土化客服支持，国内非技术客户验收门槛极高',
+    winner: 'Wix 胜（本土化友好）',
+  },
+  {
+    dimension: '纯静态代码导出',
+    wix: '基于云端全栈运行，不支持直接导出原始 HTML/CSS 静态包离线运行',
+    wf: '支持导出纯静态 HTML/CSS 代码压缩包（需较高订阅套餐）',
+    winner: 'Webflow 胜（纯代码导出）',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio vs Webflow 深度对比（2026）：高端设计建站选型 - wixstudio.cn"
+  description="2026最新 Wix Studio 与 Webflow 全方位对比。从流体排版效率、原生商业生态闭环、Velo全栈JavaScript扩展到客户交付体验，助设计师与创意机构做出最优决策。"
+  keywords="Wix Studio vs Webflow, Wix 和 Webflow 哪个好, Webflow 对比 Wix 2026, 设计师建站平台, 高端网页设计, Velo 开发, Webflow 评测"
+  type="article"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+      <a href="/" class="hover:text-gray-900 transition">首页</a>
+      <span>›</span>
+      <a href="/compare/" class="hover:text-gray-900 transition">平台横评</a>
+      <span>›</span>
+      <span class="text-[#116DFF] font-medium">Wix Studio vs Webflow (2026)</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Sticky Sidebar (TOC) -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-28 space-y-6">
+        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-xs space-y-3">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-gray-400">目录 CONTENTS</div>
+          <nav class="space-y-1.5 text-xs">
+            {toc.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="block py-1.5 text-gray-600 hover:text-[#116DFF] transition border-l-2 border-transparent hover:border-[#116DFF] pl-2.5 font-medium"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div class="rounded-2xl p-5 border border-blue-100 bg-gradient-to-br from-blue-50/60 to-white shadow-xs space-y-3">
+          <div class="flex items-center gap-3">
+            <img
+              src="/assets/badges/wix-partner-legend-200.png"
+              alt="Wix Partner Legend"
+              width="46"
+              height="46"
+              class="rounded-full shrink-0 shadow-sm"
+            />
+            <div>
+              <div class="text-[11px] font-bold text-[#116DFF]">Wix Partner Legend</div>
+              <div class="text-xs text-gray-900 font-bold">官方认证专家团队</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            需要具备 Webflow 级像素美感且具备完整交易业务系统的品牌网站？我们为您量身定制。
+          </p>
+          <a
+            href="/contact/"
+            class="block text-center py-2 px-3 rounded-full text-xs font-semibold text-white bg-[#116DFF] hover:bg-[#0D5FE3] transition shadow-sm"
+          >
+            免费获取设计建站方案 →
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <article class="lg:col-span-9 space-y-12 max-w-3xl">
+        <header class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#116DFF] text-xs font-semibold border border-blue-100">
+            <span>PLATFORM COMPARISON · 2026 深度横评（Wix 优先视角）</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+            Wix Studio vs Webflow 深度横评（2026）：高端设计建站选型之争
+          </h1>
+          <p class="text-base text-gray-500 leading-relaxed">
+            高端视觉建站的两大巅峰对决：一个是原生集成全套商业引擎、流体极速排版的创新王者，一个是恪守纯前端 CSS 类名盒模型的经典工具。深度剖析谁才是设计公司与企业的最佳武器。
+          </p>
+          <div class="flex items-center gap-4 text-xs text-gray-400 pt-2 border-b border-gray-150 pb-6">
+            <span>发布年份：2026 最新版</span>
+            <span>•</span>
+            <span>阅读时长约 15 分钟</span>
+            <span>•</span>
+            <span>来源：wixstudio.cn</span>
+          </div>
+        </header>
+
+        <!-- Section 1: 30s Quick Verdict -->
+        <section id="summary" class="rounded-3xl p-6 sm:p-8 border border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 space-y-4 shadow-xs">
+          <div class="flex items-center gap-2 text-[#116DFF] text-sm font-bold uppercase tracking-wider">
+            <Icon name="zap" class="w-4 h-4 text-[#116DFF]" />
+            <span>30 秒核心选型结论 (Executive Summary)</span>
+          </div>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-[#116DFF]">坚定首选 Wix Studio：</strong>
+            如果您的项目不仅需要震撼的国际一线视觉设计，更需要**开箱即用的成熟商业系统**（商城支付、会员中心、动态表单、预约管理）以及**极速的交付节奏**。Wix Studio 的等比缩放流体排版（Fluid Engine）与原生全栈 Velo 扩展，能将建站落地周期大幅缩短 40%~50%，且无需通过 Zapier 繁琐拼装外部脆弱工具。
+          </p>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-indigo-700">适合选择 Webflow：</strong>
+            如果您的团队全部由精通标准前端 CSS 盒模型（Class 类名继承、Flex/Grid 手写嵌套）的专业代码型网页设计师组成，网站定位为纯静态内容展示，或者因特定企业合规必须将纯 HTML/CSS 静态包导出至自有服务器。
+          </p>
+        </section>
+
+        <!-- Section 2: Matrix Table -->
+        <section id="matrix" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">核心多维参数对比表 (2026)</h2>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-gray-50 border-b border-gray-200 text-gray-900 font-bold">
+                  <tr>
+                    <th class="p-3.5 min-w-[130px]">对比维度</th>
+                    <th class="p-3.5 min-w-[200px] bg-blue-50/50 text-[#116DFF] font-black border-x border-blue-100">
+                      Wix Studio
+                    </th>
+                    <th class="p-3.5 min-w-[190px] text-indigo-700">Webflow</th>
+                    <th class="p-3.5 min-w-[120px] text-gray-500">胜出方</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-150 text-gray-700">
+                  {tableRows.map((row) => (
+                    <tr class="hover:bg-gray-50/60 transition-colors">
+                      <td class="p-3.5 font-semibold text-gray-900">{row.dimension}</td>
+                      <td class="p-3.5 text-gray-900 font-medium bg-blue-50/20 border-x border-blue-100/60">{row.wix}</td>
+                      <td class="p-3.5 text-gray-600">{row.wf}</td>
+                      <td class="p-3.5 font-bold text-[#116DFF] text-[11px]">{row.winner}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Layout Engine -->
+        <section id="layout-engine" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">1. 流体排版引擎 vs 纯前端盒模型：效率与自由度的平衡</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            Webflow 本质上是一个“前端 CSS 代码的可视化包装器”。在 Webflow 中排版，您必须像前端工程师一样思考：建立父容器、定义 Flex 方向、命名 Class、处理选择器继承与断点覆盖。如果不懂前端盒模型，稍有不慎整个页面就会彻底挤压错乱。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            而 **Wix Studio** 带来了革命性的 **流体引擎（Fluid Engine）** 与 **比例缩放（Scale Proportionally）**：
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-5 rounded-2xl bg-blue-50/40 border border-blue-100 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase">Wix Studio 创新体验</div>
+              <h4 class="text-base font-bold text-gray-900">等比自适应 + 自由停靠</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                无需在每个断点反复微调几像素的内边距。设计稿定稿后，系统自动基于视口宽度等比比例缩放（clamp() 计算）。再配合 9 点智能停靠，即可在几分钟内完成一个复杂响应式版块。
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-indigo-700 uppercase">Webflow 传统体验</div>
+              <h4 class="text-base font-bold text-gray-900">严格手写盒模型约束</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                设计极度严谨，但每个断点都需要重新排查类名权重与继承关系。一个标准页面在 Webflow 中的耗时往往是 Figma 设计耗时的 2~3 倍。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Business Ecosystem -->
+        <section id="business-ecosystem" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">2. 原生商业生态 vs 纯前台排版：谁能真正支撑业务变现？</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            建站不仅是为了“好看”，最终都要为了商业转化服务。而这正是 Webflow 最大的软肋：
+          </p>
+          <ul class="space-y-2.5 text-sm text-gray-700 list-disc list-inside">
+            <li>
+              <strong>Webflow 的“空架子”困境：</strong>
+              Webflow 本身几乎没有深度电商能力（不支持复杂结账、多币种与复杂会员逻辑）。要实现一个带付费会员、在线预约排期或多步骤表单的网站，您必须外接 Memberstack + Outseta + Calendly + Zapier，不仅每个月要支付数百美元跨平台订阅费，且一旦某个服务宕机，全站业务立刻停摆；
+            </li>
+            <li>
+              <strong>Wix Studio 的一站式商业闭环：</strong>
+              官方原生打通 **Wix Stores（跨境电商）、Wix Bookings（在线预约）、Wix Members（会员付费专区）、Wix Forms（动态智能表单）与 Wix Events（活动售票）**。所有数据均汇聚在同一个控制台，零第三方粘合成本，0 额外抽成，坚固稳定。
+            </li>
+          </ul>
+        </section>
+
+        <!-- Section 5: FullStack Velo -->
+        <section id="fullstack-velo" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">3. Velo 全栈扩展 vs 纯前台嵌入：无代码之后的技术纵深</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            当项目遇到复杂业务逻辑（如调用企业 ERP 接口、外部物流跟踪或敏感 API 鉴权）时：
+          </p>
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 space-y-3">
+            <h4 class="text-base font-bold text-gray-900">Wix Velo 原生无服务器全栈架构：</h4>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              支持在 `backend/*.web.js` 中直接编写 Node.js 服务端函数，利用 `wix-secrets-backend` 安全存储 API Key，杜绝前端源码泄露；内置无服务器数据库集合（Collections），无需自建后端服务器即可实现完整企业级 Web 应用。
+            </p>
+            <p class="text-xs text-slate-500">
+              * 对比：Webflow 仅支持在前台注入 HTML/JS 代码片段。由于缺乏后端沙盒与密钥库，任何敏感 API 密钥放在前台都会面临直接被盗刷的严重安全风险。
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 6: Delivery Efficiency -->
+        <section id="delivery-efficiency" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">4. 建站交付效率与 Agency 团队协作</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            对于设计事务所与建站工作室而言，交付周期的长短直接决定了公司的毛利率：
+          </p>
+          <ul class="space-y-2 text-sm text-gray-700 list-disc list-inside">
+            <li><strong>Figma 一键转换：</strong>利用 Figma to Wix Studio 插件，设计稿几秒内转换为交互原型；</li>
+            <li><strong>Client Kit 客户交接模式：</strong>交付给客户时，可设置内容编辑锁，客户只能替换文字与图片，杜绝因客户误操作导致排版布局毁坏的售后扯皮；</li>
+            <li><strong>多人实时协同编辑：</strong>支持多名设计师与文案在同一画布上并发协作，自带画板批注与审核流。</li>
+          </ul>
+        </section>
+
+        <!-- Section 7: Localization China -->
+        <section id="localization-china" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">5. 中文本土化与出海多语言支持</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            Webflow 全站为纯英文操作界面，且在中国大陆没有官方办事处或专属客服渠道，很多国内客户在验收交付后根本无法自行登录后台维护。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            而 Wix 拥有成熟的官方中文界面与本地化技术支持，同时在多语言出海能力上，支持自动为每个目标语种生成符合 Google 规范的独立 URL Slug，兼顾百度与 Google 双重搜索引擎收录。
+          </p>
+        </section>
+
+        <!-- Section 8: Verdict -->
+        <section id="verdict" class="space-y-4 pt-6 border-t border-gray-150">
+          <h2 class="text-2xl font-bold text-gray-900">最终选型决策树与建议</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase tracking-wider">坚定选择 Wix Studio 的典型场景</div>
+              <h4 class="text-base font-bold text-gray-900">高端品牌官网、全能商业落地</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                希望拥有不输于 Webflow 的极致视觉排版，但同时需要成熟的商业变现（商城/预约/会员）且追求快速交付落地、不想拼装外部插件的团队。
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-gray-600 uppercase tracking-wider">适合选择 Webflow 的场景</div>
+              <h4 class="text-base font-bold text-gray-900">纯前端设计师与纯静态展示</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                公司设计师具有极其扎实的前端 CSS 盒模型功底，项目以静态品牌展示为主，或者需要将导出的静态源码放进自建服务器集群。
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</BaseLayout>

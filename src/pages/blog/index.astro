@@ -1,72 +1,541 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroListing from '../../components/HeroListing.astro';
+import Icon from '../../components/Icon.astro';
 
 const posts = [
   {
-    title: 'Wix Studio 2025 年新特性汇总与深度解读',
-    date: '2025-09-15',
-    category: '产品动态',
-    desc: '从 AI 生成代码到增强版 Figma 插件集成，一文看懂 Wix Studio 在今年带来的颠覆性升级。',
-    readTime: '6 分钟',
+    category: '官方更新日志',
+    title: 'Wix Studio 2026 官方更新日志与发版总览：从 Studio 2.0 到 9 月最新特性',
+    date: '2026-09-20',
+    readTime: '10 分钟',
+    desc: '汇集官方 2026 最新发版总览：Alfred AI 电话客服代理、Aria 2.0 开发者插件、CMS Drafts 灰度暂存机制与多语言 URL Slug 本地化。',
+    href: '/blog/wix-studio-2026-changelog/',
+    badgeColor: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    coverImage: '/assets/images/blog-ai-figma.jpg',
+    featured: true,
   },
   {
-    title: '外贸企业出海建站避坑指南：为什么 90% 的企业官网转化率低下？',
-    date: '2025-09-10',
-    category: '建站实战',
-    desc: '深度解析外贸官网在排版审美、移动端留白、CTA 按钮布局及海外买家信任背书方面的核心失误。',
+    category: '官方更新日志',
+    title: 'Wix Studio 2.0 规划模式（Plan Mode）完全评测：建站为何要“架构先行”？',
+    date: '2026-09-20',
     readTime: '8 分钟',
+    desc: '深入评测 2026 最新发布的 Wix Studio Plan Mode 规划模式：从站点地图生成、线框原型推导到设计稿无缝迁移，带你体验架构先行的建站新标准。',
+    href: '/blog/wix-studio-plan-mode-review/',
+    badgeColor: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    coverImage: '/assets/images/tutorial-featured-cover.jpg',
   },
   {
-    title: '中国大陆访问 Wix 速度优化方案与 CDN 配置实践',
-    date: '2025-09-02',
-    category: '技术优化',
-    desc: '针对国内客户或公司内部预览加载缓慢的问题，系统拆解 DNS 智能解析、图片压缩及缓存优化策略。',
+    category: '官方更新日志',
+    title: 'Wix Studio 2026 年 9 月产品功能周报：Alfred AI 语音代理、Aria 开发者扩展与 SEO API 详解',
+    date: '2026-09-20',
     readTime: '7 分钟',
+    desc: '聚焦 9 月最新上线的 Alfred AI 智能语音电话代理配置指南、Aria 2.0 自定义 App Tools Extensions 与 GSC 实时 SEO API。',
+    href: '/blog/wix-studio-september-2026-updates/',
+    badgeColor: 'bg-blue-50 text-[#116DFF] border-blue-100',
+    coverImage: '/assets/images/blog-cdn-speed.jpg',
+  },
+  {
+    category: '设计前沿',
+    title: '2026 全球网页设计与数字视觉趋势报告：从多巴胺色彩到流体反设计',
+    date: '2026-09-20',
+    readTime: '9 分钟',
+    desc: '参考 Wix 官方博客最新全球趋势报告，深度解析多巴胺调色盘、反设计解构网格、动态超大排版与拟物微质感的工程化落地实践。',
+    href: '/blog/web-design-trends-2026/',
+    badgeColor: 'bg-violet-50 text-violet-600 border-violet-100',
+    coverImage: '/assets/images/blog-design-trends.jpg',
+  },
+  {
+    category: '海外营销',
+    title: '2026 海外数字营销新法则：第一人称叙事、微网红生态与反向破圈',
+    date: '2026-09-20',
+    readTime: '8 分钟',
+    desc: '深入剖析海外买家心理变化，拆解如何通过第一人称真实故事、粉丝 5k-50k 垂直微网红矩阵以及自嘲包装引爆海外获客飞轮。',
+    href: '/blog/marketing-trends-2026/',
+    badgeColor: 'bg-blue-50 text-[#116DFF] border-blue-100',
+    coverImage: '/assets/images/blog-b2b-export.jpg',
+  },
+  {
+    category: '技术进阶',
+    title: 'Wix Studio 官方 AI 生产力全面升级：从提示词排版到代码辅助生成的深度剖析',
+    date: '2026-09-20',
+    readTime: '7 分钟',
+    desc: '从 AI Responsive Assistant 响应式自动排版到 Velo 代码生成，深度剖析 Wix Studio 如何彻底颠覆传统建站开发工作流。',
+    href: '/blog/wix-studio-ai-features/',
+    badgeColor: 'bg-indigo-50 text-indigo-600 border-indigo-100',
+    coverImage: '/assets/images/blog-ai-figma.jpg',
+  },
+  {
+    category: '设计前沿',
+    title: '官方 Figma to Wix Studio 插件工作流：如何一键将设计稿无损转换为响应式网页',
+    date: '2026-09-18',
+    readTime: '8 分钟',
+    desc: '规范 Figma Auto Layout 结构，实现一键将设计原型直接复制粘贴为高保真、可交互的流体响应式网站。',
+    href: '/blog/figma-to-wix-studio-workflow/',
+    badgeColor: 'bg-violet-50 text-violet-600 border-violet-100',
+    coverImage: '/assets/images/blog-ai-figma.jpg',
+  },
+  {
+    category: '商业电商',
+    title: '为什么 90% 的外贸企业官网转化率低下？出海独立站买家信任与询盘避坑指南',
+    date: '2026-09-16',
+    readTime: '9 分钟',
+    desc: '深度拆解海外采购商决策心理、国际认证背书布局、HubSpot 表单精简与多币种多语言避坑法则。',
+    href: '/blog/b2b-export-conversion-guide/',
+    badgeColor: 'bg-orange-50 text-orange-600 border-orange-100',
+    coverImage: '/assets/images/blog-b2b-export.jpg',
+  },
+  {
+    category: '技术进阶',
+    title: '中国大陆访问 Wix 速度优化实践：智能 DNS 解析与多节点边缘 CDN 加速实测',
+    date: '2026-09-14',
+    readTime: '8 分钟',
+    desc: '系统拆解 DNS 分线路智能解析、WebP/AVIF 图片无损压缩、全站静态资源多节点边缘缓存的工程化落地清单。',
+    href: '/blog/china-speed-cdn-optimization/',
+    badgeColor: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    coverImage: '/assets/images/blog-cdn-speed.jpg',
+  },
+  {
+    category: '技术进阶',
+    title: 'Wix Studio 开放平台深度探索：自定义原生 CSS 与全局设计令牌（Design Tokens）',
+    date: '2026-09-11',
+    readTime: '7 分钟',
+    desc: '编写原生 Global CSS 样式表、利用 Design Tokens CSS 变量实现全站样式联动，解锁专业前端自由度。',
+    href: '/blog/custom-css-and-open-platform/',
+    badgeColor: 'bg-indigo-50 text-indigo-600 border-indigo-100',
+    coverImage: '/assets/images/tutorial-featured-cover.jpg',
+  },
+  {
+    category: '技术进阶',
+    title: 'Headless Wix 架构实战：用 React / Next.js 调用 Wix 商业核心能力',
+    date: '2026-09-08',
+    readTime: '8 分钟',
+    desc: '利用 Headless Wix 与 @wix/sdk，在 React/Next.js 自建前端中调用电商、会员与 CMS 底层引擎。',
+    href: '/blog/headless-wix-developer-guide/',
+    badgeColor: 'bg-teal-50 text-teal-600 border-teal-100',
+    coverImage: '/assets/images/blog-ai-figma.jpg',
+  },
+  {
+    category: '商业电商',
+    title: '出海合规与数据安全：Wix 全球 SOC 2、ISO 27001 与 GDPR / CCPA 认证全景',
+    date: '2026-09-05',
+    readTime: '7 分钟',
+    desc: '拆解 Wix 企业级 SOC 2 Type II 认证、PCI-DSS Level 1 国际金融防盗刷与欧洲 GDPR 隐私合规体系。',
+    href: '/blog/enterprise-security-and-compliance/',
+    badgeColor: 'bg-blue-50 text-blue-600 border-blue-100',
+    coverImage: '/assets/images/blog-cdn-speed.jpg',
+  },
+  {
+    category: '商业电商',
+    title: 'Wix Stores 独立站结账转化率提升秘籍：从多币种展示到单页极速结算',
+    date: '2026-09-02',
+    readTime: '8 分钟',
+    desc: '解决购物车弃单痛点，实测单页结账（One-Page Checkout）、动态多币种换算与自动挽回邮件流提升转化 35%+。',
+    href: '/blog/ecommerce-conversion-rate-optimization/',
+    badgeColor: 'bg-amber-50 text-amber-600 border-amber-100',
+    coverImage: '/assets/images/blog-b2b-export.jpg',
+  },
+  {
+    category: '海外营销',
+    title: '超越传统 SEO：在 Wix Studio 中定制 JSON-LD 结构化数据与 Google 富媒体摘要',
+    date: '2026-08-28',
+    readTime: '8 分钟',
+    desc: '掌握在 Wix Studio 中编写与注入定制 JSON-LD，点亮 Google 搜索结果星级评分与 FAQ 富媒体展现。',
+    href: '/blog/seo-structured-data-jsonld-guide/',
+    badgeColor: 'bg-blue-50 text-blue-600 border-blue-100',
+    coverImage: '/assets/images/tutorial-featured-cover.jpg',
+  },
+  {
+    category: '设计前沿',
+    title: '建站公司与自由设计师协作秘诀：Wix Studio 客户权限隔离与专属交付资产包',
+    date: '2026-08-20',
+    readTime: '7 分钟',
+    desc: '深度解析 Wix Studio 客户内容编辑锁、画布批注协作、自定义资产库以及构建长期高客单价商业模式。',
+    href: '/blog/agency-collaboration-and-client-kit/',
+    badgeColor: 'bg-violet-50 text-violet-600 border-violet-100',
+    coverImage: '/assets/images/blog-design-trends.jpg',
   },
 ];
+
+const categories = ['全部文章', '官方更新日志', '设计前沿', '海外营销', '商业电商', '技术进阶'];
 ---
 
 <BaseLayout
-  title="博客与最新资讯 | Wix Studio 行业洞察与建站干货 - wixstudio.cn"
-  description="汇集 Wix Studio 最新产品功能解读、外贸独立站出海运营经验、建站避坑指南与高端网页设计实战技巧。"
-  keywords="Wix 博客, Wix 资讯, Wix 网站速度优化, 外贸建站避坑, Wix Studio 新功能"
+  title="博客与最新资讯 | 对标 Wix 官方博客的前沿洞察与中文实战 - wixstudio.cn"
+  description="对标 Wix 官方博客（wix.com/blog），汇集全球 2026 网页设计趋势、官方最新发版更新日志、海外数字营销与 Wix Studio 核心技术实战。"
 >
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 space-y-12">
-    <!-- Header -->
-    <header class="space-y-4 text-center max-w-2xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] text-xs font-semibold">
-        BLOG & INSIGHTS
-      </div>
-      <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight">
-        建站干货与 <span class="text-gradient">官方最新动态</span>
-      </h1>
-      <p class="text-sm sm:text-base text-white/60">
-        定期分享设计经验、外贸出海获客心得与 Wix 生态前沿观察。
-      </p>
-    </header>
 
-    <!-- Post List -->
-    <div class="space-y-6">
-      {posts.map((post) => (
-        <article class="glass-card p-6 sm:p-8 border border-white/10 hover:border-[#7C5CFC]/40 transition space-y-3">
-          <div class="flex items-center gap-3 text-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-[#7C5CFC]/20 text-[#9D82FF] font-semibold">{post.category}</span>
-            <span class="text-white/40">{post.date}</span>
-            <span class="text-white/40">•</span>
-            <span class="text-white/40">{post.readTime}</span>
+  <HeroListing
+    label="Blog & Official Insights · 官方博客与更新日志"
+    title="全球前沿资讯与官方发版日志"
+    subtitle="同步 wix.com/blog 全球视觉设计与商业洞察，汇集 2026 官方发版更新日志、网页设计趋势、海外获客营销与 Studio 核心技术实战。"
+    stats={[
+      { value: '15 篇', label: '深度官方文章' },
+      { value: '5 大', label: '核心专栏分类' },
+      { value: '2026.09', label: '最新发版日志' },
+    ]}
+  />
+
+  <!-- Main Content Area -->
+  <main class="bg-gray-50/50 py-12 lg:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+      <!-- Official Source Callout -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-blue-100 shadow-xs">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-[#116DFF]/10 flex items-center justify-center text-[#116DFF] shrink-0">
+            <Icon name="sparkles" class="w-5 h-5" />
           </div>
-          <h2 class="text-xl sm:text-2xl font-bold text-white hover:text-[#9D82FF] transition">
-            <a href="#">{post.title}</a>
-          </h2>
-          <p class="text-sm text-white/60 leading-relaxed">{post.desc}</p>
-          <div class="pt-2">
-            <a href="#" class="text-xs font-semibold text-[#9D82FF] hover:underline inline-flex items-center gap-1">
-              <span>阅读全文</span>
-              <span>→</span>
-            </a>
+          <div>
+            <div class="text-sm font-bold text-gray-900 flex items-center gap-2">
+              <span>Wix Official Blog & Changelog 中文精选专区</span>
+              <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-50 text-[#116DFF] border border-blue-200/60">Official Reference</span>
+            </div>
+            <p class="text-xs text-gray-500 mt-0.5">
+              内容严格对齐 <a href="https://www.wix.com/blog" target="_blank" rel="noopener noreferrer" class="text-[#116DFF] underline hover:text-blue-700">wix.com/blog</a> 与官方产品发版日志，结合中国出海品牌与设计师实战场景深度本地化编写。
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-semibold text-gray-500 shrink-0">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>2026.09 最新发版已同步</span>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="category-filters">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-cat={cat}
+            class={`category-tab px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
+              idx === 0
+                ? 'active-tab bg-[#116DFF] text-white shadow-md shadow-blue-500/20'
+                : 'bg-white text-gray-600 hover:text-gray-900 hover:bg-gray-100 border border-gray-200/80 shadow-xs'
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Featured / Top Post (Bento style) -->
+      <div id="featured-section" class="grid grid-cols-1 lg:grid-cols-3 gap-6" data-category={posts[0].category}>
+        <!-- Main Highlight Card -->
+        <article class="lg:col-span-2 group relative bg-white rounded-3xl border border-gray-200/90 overflow-hidden card-lift card-glow flex flex-col justify-between">
+          <!-- 配图区 (全宽贴边无间距) -->
+          <div class="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-100 border-b border-gray-100">
+            <img
+              src={posts[0].coverImage}
+              alt={posts[0].title}
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              loading="eager"
+            />
+            <div class="absolute top-5 left-5 z-10 flex items-center gap-2">
+              <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-[#116DFF] border border-gray-200/70 shadow-xs">
+                {posts[0].category}
+              </span>
+              <span class="text-[11px] font-bold text-gray-700 bg-white/90 px-2.5 py-1 rounded-full border border-gray-200/70 shadow-xs backdrop-blur-xs">最新官方更新</span>
+            </div>
+          </div>
+
+          <div class="p-8 sm:p-10 space-y-4">
+            <div class="text-xs text-gray-400 font-mono">{posts[0].date} · {posts[0].readTime}</div>
+            <h2 class="text-2xl sm:text-3xl font-black text-gray-900 group-hover:text-[#116DFF] transition-colors duration-200 leading-snug">
+              <a href={posts[0].href}>{posts[0].title}</a>
+            </h2>
+
+            <p class="text-sm sm:text-base text-gray-500 leading-relaxed">
+              {posts[0].desc}
+            </p>
+
+            <div class="pt-6 border-t border-gray-100 flex items-center justify-between">
+              <a href={posts[0].href} class="inline-flex items-center gap-2 text-sm font-bold text-[#116DFF] group-hover:translate-x-1 transition-transform">
+                <span>阅读完整发版解读</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+              <span class="text-xs text-gray-400 font-medium">官方发版报告</span>
+            </div>
           </div>
         </article>
-      ))}
+
+        <!-- Newsletter / Service Card on the right -->
+        <div class="bg-gradient-to-br from-[#0C0C0E] to-[#16161a] rounded-3xl p-8 text-white flex flex-col justify-between relative overflow-hidden shadow-xl shadow-black/5">
+          <div class="absolute -top-12 -right-12 w-48 h-48 rounded-full pointer-events-none"
+               style="background: radial-gradient(circle, rgba(17,109,255,0.3) 0%, transparent 70%);"></div>
+
+          <div class="relative z-10 space-y-4">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/90 text-[11px] font-semibold border border-white/15">
+              <svg class="w-3.5 h-3.5 text-amber-400 fill-amber-400" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              官方认证咨询
+            </div>
+            <h3 class="text-xl font-bold leading-snug">需要专业团队帮您规划网站与设计？</h3>
+            <p class="text-xs text-white/50 leading-relaxed">
+              作为 Wix 官方 Legend 合作伙伴，我们提供从品牌原型、流体视觉 UI 到全响应式上线的一站式建站交付服务。
+            </p>
+          </div>
+
+          <div class="relative z-10 pt-6 mt-6 border-t border-white/10">
+            <a
+              href="/contact/"
+              class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-[#0C0C0E] bg-white hover:bg-gray-100 active:scale-95 transition-all shadow-md"
+            >
+              <span>预约免费建站方案评估</span>
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Articles Grid (2 columns) -->
+      <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        {posts.slice(1).map((post) => (
+          <article
+            class="article-card group bg-white rounded-3xl border border-gray-200/90 overflow-hidden card-lift card-glow flex flex-col justify-between transition-all duration-300"
+            data-category={post.category}
+          >
+            <div class="relative h-56 w-full overflow-hidden bg-slate-100 border-b border-gray-100">
+              <img
+                src={post.coverImage}
+                alt={post.title}
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4 z-10">
+                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-[#116DFF] border border-gray-200/70 shadow-xs">
+                  {post.category}
+                </span>
+              </div>
+            </div>
+
+            <div class="p-7 space-y-3 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="text-[11px] text-gray-400 font-mono mb-2 flex items-center justify-between">
+                  <span>{post.date}</span>
+                  <span>{post.readTime}</span>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#116DFF] transition-colors leading-snug line-clamp-2">
+                  <a href={post.href}>{post.title}</a>
+                </h3>
+
+                <p class="text-sm text-gray-500 leading-relaxed line-clamp-2 mt-2">
+                  {post.desc}
+                </p>
+              </div>
+
+              <div class="pt-5 border-t border-gray-100 flex items-center justify-between">
+                <a href={post.href} class="inline-flex items-center gap-1.5 text-xs font-bold text-[#116DFF] group-hover:translate-x-1 transition-transform">
+                  <span>阅读全文</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
+                </a>
+                <span class="text-xs text-gray-300">干货推荐</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Pagination Controls Bar -->
+      <div id="pagination-wrapper" class="pt-8 pb-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-200/80">
+        <div class="text-xs text-gray-500 font-medium">
+          显示第 <span id="page-range-start" class="font-bold text-gray-900">1</span> - <span id="page-range-end" class="font-bold text-gray-900">6</span> 篇，共 <span id="total-articles-count" class="font-bold text-[#116DFF]">14</span> 篇干货资讯
+        </div>
+
+        <nav class="flex items-center gap-2" aria-label="博客分页导航">
+          <!-- Prev Button -->
+          <button
+            id="prev-page-btn"
+            type="button"
+            class="px-3.5 py-2 rounded-xl text-xs font-bold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-1.5 shadow-xs cursor-pointer"
+          >
+            <Icon name="chevron-right" class="w-3.5 h-3.5 rotate-180" />
+            <span>上一页</span>
+          </button>
+
+          <!-- Page Numbers -->
+          <div id="page-numbers-container" class="flex items-center gap-1.5">
+            <!-- Dynamically populated page buttons -->
+          </div>
+
+          <!-- Next Button -->
+          <button
+            id="next-page-btn"
+            type="button"
+            class="px-3.5 py-2 rounded-xl text-xs font-bold border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-900 disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center gap-1.5 shadow-xs cursor-pointer"
+          >
+            <span>下一页</span>
+            <Icon name="chevron-right" class="w-3.5 h-3.5" />
+          </button>
+        </nav>
+      </div>
+
     </div>
-  </div>
+  </main>
+
+  <!-- Client-side Category Filter & Pagination Script -->
+  <script>
+    const PAGE_SIZE = 6;
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
+    const articles = Array.from(document.querySelectorAll<HTMLElement>('.article-card'));
+    const featured = document.getElementById('featured-section');
+    const prevBtn = document.getElementById('prev-page-btn') as HTMLButtonElement | null;
+    const nextBtn = document.getElementById('next-page-btn') as HTMLButtonElement | null;
+    const pageNumbersContainer = document.getElementById('page-numbers-container');
+    const pageRangeStart = document.getElementById('page-range-start');
+    const pageRangeEnd = document.getElementById('page-range-end');
+    const totalArticlesCount = document.getElementById('total-articles-count');
+
+    // Parse URL params for initial state
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentCategory = urlParams.get('cat') || '全部文章';
+    let currentPage = parseInt(urlParams.get('page') || '1', 10);
+    if (isNaN(currentPage) || currentPage < 1) currentPage = 1;
+
+    function updateView(scrollIntoGrid = false) {
+      // 1. Filter articles by category
+      const filteredArticles = articles.filter((art) => {
+        const artCat = art.dataset.category;
+        return currentCategory === '全部文章' || artCat === currentCategory;
+      });
+
+      const totalFiltered = filteredArticles.length;
+      const totalPages = Math.ceil(totalFiltered / PAGE_SIZE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      // 2. Featured Section visibility
+      if (featured) {
+        const featCat = featured.dataset.category;
+        const isCategoryMatch = currentCategory === '全部文章' || featCat === currentCategory;
+        // Show featured hero only on page 1 of matching category
+        if (currentPage === 1 && isCategoryMatch) {
+          featured.style.display = 'grid';
+        } else {
+          featured.style.display = 'none';
+        }
+      }
+
+      // 3. Grid articles visibility
+      articles.forEach((art) => {
+        art.style.display = 'none';
+      });
+
+      const startIndex = (currentPage - 1) * PAGE_SIZE;
+      const endIndex = Math.min(startIndex + PAGE_SIZE, totalFiltered);
+
+      for (let i = startIndex; i < endIndex; i++) {
+        filteredArticles[i].style.display = 'flex';
+      }
+
+      // 4. Update count indicators
+      if (pageRangeStart && pageRangeEnd && totalArticlesCount) {
+        if (totalFiltered === 0) {
+          pageRangeStart.textContent = '0';
+          pageRangeEnd.textContent = '0';
+          totalArticlesCount.textContent = '0';
+        } else {
+          pageRangeStart.textContent = String(startIndex + 1);
+          pageRangeEnd.textContent = String(endIndex);
+          totalArticlesCount.textContent = String(totalFiltered);
+        }
+      }
+
+      // 5. Update Prev/Next buttons
+      if (prevBtn) {
+        prevBtn.disabled = currentPage <= 1;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = currentPage >= totalPages;
+      }
+
+      // 6. Update Page Number buttons
+      if (pageNumbersContainer) {
+        pageNumbersContainer.innerHTML = '';
+        for (let p = 1; p <= totalPages; p++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = String(p);
+          btn.className = p === currentPage
+            ? 'w-9 h-9 rounded-xl flex items-center justify-center text-xs font-bold bg-[#116DFF] text-white border border-[#116DFF] shadow-sm shadow-blue-500/20 cursor-pointer transition'
+            : 'w-9 h-9 rounded-xl flex items-center justify-center text-xs font-medium bg-white text-gray-700 hover:bg-gray-50 hover:text-gray-900 border border-gray-200 shadow-xs cursor-pointer transition';
+
+          btn.addEventListener('click', () => {
+            currentPage = p;
+            updateView(true);
+          });
+          pageNumbersContainer.appendChild(btn);
+        }
+      }
+
+      // 7. Update URL search params without page reload
+      const newParams = new URLSearchParams();
+      if (currentCategory !== '全部文章') newParams.set('cat', currentCategory);
+      if (currentPage > 1) newParams.set('page', String(currentPage));
+      const queryStr = newParams.toString();
+      const newUrl = queryStr ? `${window.location.pathname}?${queryStr}` : window.location.pathname;
+      window.history.replaceState(null, '', newUrl);
+
+      // 8. Smooth scroll if requested
+      if (scrollIntoGrid) {
+        const target = document.getElementById('category-filters');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    }
+
+    // Bind category tabs
+    tabs.forEach((tab) => {
+      const cat = tab.dataset.cat;
+      // Set active style for initial category
+      if (cat === currentCategory) {
+        tabs.forEach((t) => {
+          t.classList.remove('active-tab', 'bg-[#116DFF]', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+          t.classList.add('bg-white', 'text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100', 'border', 'border-gray-200/80', 'shadow-xs');
+        });
+        tab.classList.add('active-tab', 'bg-[#116DFF]', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+        tab.classList.remove('bg-white', 'text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100');
+      }
+
+      tab.addEventListener('click', () => {
+        if (cat) {
+          currentCategory = cat;
+          currentPage = 1; // Reset to page 1 on category switch
+
+          // Update active tab styles
+          tabs.forEach((t) => {
+            t.classList.remove('active-tab', 'bg-[#116DFF]', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+            t.classList.add('bg-white', 'text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100', 'border', 'border-gray-200/80', 'shadow-xs');
+          });
+          tab.classList.add('active-tab', 'bg-[#116DFF]', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+          tab.classList.remove('bg-white', 'text-gray-600', 'hover:text-gray-900', 'hover:bg-gray-100');
+
+          updateView(false);
+        }
+      });
+    });
+
+    // Prev / Next button listeners
+    prevBtn?.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        updateView(true);
+      }
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      currentPage++;
+      updateView(true);
+    });
+
+    // Initial render
+    updateView(false);
+  </script>
+
 </BaseLayout>

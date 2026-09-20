@@ -1,0 +1,130 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'grid-vs-flexbox', title: 'CSS Grid 与 Flexbox 在 Studio 中的分工' },
+  { id: 'grid-12-col', title: '12 列网格实战：跨列与跨行自由排版' },
+  { id: 'stack-auto-layout', title: 'Stack 堆叠容器：等同于 Figma Auto Layout' },
+  { id: 'repeaters', title: 'Repeater 重复列表：结构统一与动态赋能' },
+  { id: 'responsive-reorder', title: '移动端网格重排序（Order）与断点重组' },
+];
+---
+
+<ArticleLayout
+  title="CSS Grid 与 Flexbox 在 Wix Studio 中的深度排版实战"
+  description="掌握 Wix Studio 现代布局核心。深度讲解 12 列网格系统、嵌套单元格、Stack 堆叠（Figma Auto Layout 对应概念）与 Repeater 重复列表响应式实战。"
+  keywords="Wix Studio CSS Grid, Wix Studio Flexbox, Wix Studio Stack, 网页排版, 响应式布局, 网站架构设计"
+  category="设计与流体排版"
+  categorySlug="/tutorials/design/"
+  readTime="12 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/tutorial-featured-cover.jpg"
+  prevArticle={{
+    title: "Wix Studio 流体排版完全指南：彻底搞懂自定义断点与等比缩放机制",
+    href: "/tutorials/design/fluid-engine/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-violet-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-violet-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-violet-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      如果你熟悉 Figma 的 Auto Layout，那么 Wix Studio 的 <strong>Stack（堆叠容器）</strong> 和 <strong>CSS Grid（网格）</strong> 会让你有如神助。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      掌握两者的黄金协作原则：<strong>宏观骨架用 Grid（二维控制行与列），微观内容用 Stack（一维控制横向或纵向自动间距排列）</strong>。这种架构能彻底杜绝绝对定位导致的元素挤压和移动端错乱。
+    </p>
+  </section>
+
+  <!-- Section 1: Grid vs Flexbox -->
+  <section id="grid-vs-flexbox" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>1. CSS Grid 与 Flexbox 在 Studio 中的分工</span>
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
+        <div class="text-sm font-bold text-violet-700 flex items-center gap-1.5">
+          <Icon name="layout" class="w-4 h-4" />
+          <span>CSS Grid (网格容器)</span>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          适合构建页面宏观结构，如 Bento 卡片网格、12 列设计栅格、不规则图文交织混排。可以精准定义每一个单元格占据几行几列（fr 或 %）。
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-white border border-slate-200 space-y-2">
+        <div class="text-sm font-bold text-blue-700 flex items-center gap-1.5">
+          <Icon name="layers" class="w-4 h-4" />
+          <span>Stack (Flexbox 堆叠)</span>
+        </div>
+        <p class="text-xs text-slate-600 leading-relaxed">
+          适合构建局部微观内容，如：头像+标题+描述+按钮的垂直组合，或者标签组、导航链接的水平排列。自带统一的 Gap 间距设定。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: 12-col Grid -->
+  <section id="grid-12-col" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>2. 12 列网格实战：跨列与跨行自由排版</span>
+    </h2>
+    <p>
+      在任何 Section 选中后，点击右侧检查器的 <strong>Layout Grid</strong>，即可添加 12 默认列栅格。
+    </p>
+    <ul class="space-y-2 pl-4 text-slate-700">
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>跨列拉伸（Span）：</strong> 按住元素右边缘拖动，直接跨越 6 列（占据屏幕 50% 宽）或 4 列（占据三分之一宽）；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>单元格嵌套（Subgrid）：</strong> 可以在单个 Grid 单元格内再嵌套独立的子网格，实现高度复杂的非对称 Bento 设计；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>列间距（Gutter）：</strong> 统一设置列与行之间的 Padding 与 Gap，避免手动测量像素偏差。</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Section 3: Stack -->
+  <section id="stack-auto-layout" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>3. Stack 堆叠容器：等同于 Figma Auto Layout</span>
+    </h2>
+    <p>
+      在画布中同时选中两个或多个元素（例如一个小图标、一个标题和一段正文），按下快捷键 <code>Shift + A</code> 或点击悬浮栏上的 <strong>Stack</strong> 按钮：
+    </p>
+    <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-3">
+      <div class="text-xs font-bold text-slate-800">Stack 核心优势：</div>
+      <div class="text-xs text-slate-600 space-y-1.5 leading-relaxed">
+        <div>1. <strong>文字增减自适应：</strong> 当客户修改正文长度时，下方按钮会自动向下平滑顺延，绝不会发生文字覆盖在按钮上的惨剧；</div>
+        <div>2. <strong>一键切换方向：</strong> 桌面端横向排列（Horizontal），在手机端一键切换为垂直排列（Vertical）；</div>
+        <div>3. <strong>统一内边距：</strong> 支持四周统一定义 Padding，保证组件内部留白呼吸感一致。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Repeaters -->
+  <section id="repeaters" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>4. Repeater 重复列表：结构统一与动态赋能</span>
+    </h2>
+    <p>
+      当需要展示服务项目、团队成员、博客卡片或产品特性时，<strong>切勿手动复制 4 个普通容器</strong>！应当使用 <strong>Repeater（重复项组件）</strong>：
+    </p>
+    <p class="text-slate-600">
+      在 Repeater 中，您只需设计第 1 个项（Item 1），其余各项会自动同步结构、字体与动画。后续连接 CMS 数据库或 Velo 代码时，Repeater 能自动根据数据行数无缝展开，极大地减少了重复劳动。
+    </p>
+  </section>
+</ArticleLayout>

@@ -1,0 +1,179 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'handoff-nightmare', title: '传统交付噩梦：误改排版与售后扯皮' },
+  { id: 'client-mode', title: 'Wix Studio 客户权限隔离与内容锁' },
+  { id: 'custom-templates', title: '沉淀机构私域资产：自定义模板与资产包' },
+  { id: 'realtime-canvas-collab', title: '团队并发协作：画板批注与审批流' },
+  { id: 'subscription-revenue', title: '长期商业模式：从一次性项目到年付代运营' },
+  { id: 'agency-workflow-checklist', title: '建站工作室交付闭环 8 步清单' },
+];
+---
+
+<ArticleLayout
+  title="建站公司与自由设计师协作秘诀：Wix Studio 客户权限隔离与专属交付资产包"
+  description="面向数字营销机构与自由设计师的高端交付运维秘籍。深度解析 Wix Studio 客户内容编辑锁、画布批注协作、自定义资产库以及构建长期高客单价商业模式。"
+  keywords="Wix Studio 交付, 客户权限管理, 设计师工作流, Agency 协作, 网站交付清单, 建站公司运维, 客户内容编辑锁"
+  category="设计前沿"
+  categorySlug="/blog/"
+  readTime="11 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-design-trends.jpg"
+  prevArticle={{
+    title: "超越传统 SEO：在 Wix Studio 中定制 JSON-LD 结构化数据与 Google 富媒体摘要",
+    href: "/blog/seo-structured-data-jsonld-guide/",
+  }}
+  nextArticle={{
+    title: "官方 Figma to Wix Studio 插件工作流：如何一键将设计稿无损转换为响应式网页",
+    href: "/blog/figma-to-wix-studio-workflow/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-purple-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-purple-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-purple-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      建站机构在项目尾期最常遭遇的痛点：网站上线交付给客户后，客户在后台误删栅格网格、不小心拖动断点容器，导致精心调校的响应式排版瞬间错乱，陷入漫长无休止的“免费售后维修”拉锯战。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      Wix Studio 专为数字代理机构设计了 <strong>Client Mode（仅内容编辑锁模式）</strong>、画布实时批注与专属资产库。设计师可以将底层响应式骨架、断点规则与 Velo 代码严密加锁，仅允许客户自由更新文本、图片与 CMS 博客，彻底切断交付后的人力内耗，并借此建立起高复购的“年付技术代运营”盈利闭环。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-studio-workspace.jpg"
+      alt="Wix Studio 代理商工作区与多角色权限协作面板"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：Wix Studio 机构工作区（Workspace）支持多客户站点集中管控与细粒度角色分权
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="handoff-nightmare" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>1. 传统交付噩梦：误改排版与售后扯皮</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在传统的开源建站（如 WordPress）或自由度过高的建站工具中，交付给非技术客户往往是一场灾难的开始：
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm pt-2">
+      <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-xs space-y-2">
+        <div class="font-bold text-rose-600">断点与容器误触</div>
+        <p class="text-slate-600 leading-relaxed">客户只是想换一张宣传横幅，结果误拖动了断点边缘，导致手机端页面出现巨大横向滚动条。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-xs space-y-2">
+        <div class="font-bold text-rose-600">全局字体样式崩坏</div>
+        <p class="text-slate-600 leading-relaxed">客户在正文编辑框里随意从 Word 粘贴带内联格式的彩色大号字体，破坏精心制定的 Design Tokens 品牌规范。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 shadow-xs space-y-2">
+        <div class="font-bold text-rose-600">关键代码与 DNS 误删</div>
+        <p class="text-slate-600 leading-relaxed">客户员工好奇点击后台 Dev Mode 或域名管理，误删跟踪像素代码或主机解析，全站陷入停摆。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="client-mode" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>2. Wix Studio 客户权限隔离与内容锁（Content Editing Mode）</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在 Wix Studio 的团队角色中，你可以为甲方分配专属的 <strong>Content Editor</strong> 或 <strong>Back-Office Business Manager</strong> 角色：
+    </p>
+    <div class="p-5 rounded-2xl bg-purple-50/40 border border-purple-200 space-y-3">
+      <div class="text-xs font-bold text-purple-800 uppercase tracking-wider">权限隔离体系的三大技术防线：</div>
+      <ul class="space-y-2 text-xs sm:text-sm text-slate-700">
+        <li>• <strong>画布布局严格锁定（Layout Lockdown）：</strong> 客户登录编辑器后，只能双击文字改字、点击图片替换素材。无法新增或拖动任何 Section 容器，内外边距（Margins/Padding）完全置灰；</li>
+        <li>• <strong>仅限预设字符样式：</strong> 客户仅能应用设计团队预设的“标题一、副标题、正文”样式，杜绝外部杂乱字号格式污染；</li>
+        <li>• <strong>开发者工具完全隐匿：</strong> 隐去全部 Velo JavaScript 代码面板、原生 CSS 编辑器以及危险的 SEO 重定向管理。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="custom-templates" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>3. 沉淀机构私域资产：自定义模板与资产包（Custom App & Libraries）</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      优秀的建站团队从不“从零开始重复造轮子”。Wix Studio 允许机构将积累的高价值设计方案封装为私有资产包：
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-700">
+      <li><strong>自定义 Section 模板库：</strong> 将打磨极致的 FAQ 折叠面板、客户案例滚动卡片、B2B 验厂展播块保存到私有库，在新项目中一键拖入；</li>
+      <li><strong>全站自建设计系统（Custom Design Tokens）：</strong> 沉淀专属于本机构的调色盘、排版比例尺与阴影系统，新项目立项 5 分钟完成基础风格规范；</li>
+      <li><strong>可复用的 Velo 自定义 App：</strong> 将写好的“询盘表单自动推送到钉钉/飞书群”或“企业定制报价计算器”封装成私有应用，全站一键安装。</li>
+    </ul>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="realtime-canvas-collab" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>4. 团队并发协作：画板批注与审批流</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      告别过去在微信群、邮件里截图来回确认修改的低效方式。Wix Studio 支持**多人实时在线协作**：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl space-y-2 text-xs font-mono">
+      <div class="text-purple-400">// 多人画板实时协作特性</div>
+      <div class="text-slate-300">✓ 多光标实时显示：文案编辑与 UI 设计师可同屏协作不同 Section</div>
+      <div class="text-slate-300">✓ 原生画板打点批注（In-canvas Comments）：甲方直接在元素上留言提要求</div>
+      <div class="text-slate-300">✓ 历史版本差异回滚：按分钟级记录所有修改，一键还原任意历史版本</div>
+    </div>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="subscription-revenue" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>5. 长期商业模式：从一次性项目到年付代运营</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      传统建站公司最大的痛点是“客户做完就走，营收极不稳定”。借助 Wix Studio 的 Workspace 集中式控制台，机构可以轻松构建**高客单价年付增值服务（Retainer Model）**：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-2">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+        <div class="font-bold text-purple-700">出海 SEO 与内容月更代运营</div>
+        <p class="text-slate-600">每月为客户撰写 4 篇出海行业博客并优化 JSON-LD 结构化数据，按年收取服务费（¥15,000~¥30,000/年）。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1.5">
+        <div class="font-bold text-purple-700">节日大促专题页与转化率优化</div>
+        <p class="text-slate-600">在黑五、网一等重要促销节点，为客户快速定制高转化落地页与弹窗自动化，按效果或项目抽佣分成。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6 -->
+  <section id="agency-workflow-checklist" class="space-y-4 pt-4 border-t border-slate-150">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-purple-600 rounded-full inline-block"></span>
+      <span>6. 建站工作室标准化交付 8 步闭环清单</span>
+    </h2>
+    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>完成所有响应式断点等比缩放测试</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>配置独立域名 SSL 证书与 301 重定向</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>向 Google Search Console 提交自动站点地图</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>将客户账户权限配置为 Content Editor</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>锁定全部 Section 结构与容器尺寸</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>录制 10 分钟专属后台改字图文教学视频</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>在控制台绑定客户信用卡自动扣缴服务年费</span></div>
+        <div class="flex items-center gap-2"><Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0" /><span>开启自动化网站运行健康度监测警报</span></div>
+      </div>
+    </div>
+  </section>
+</ArticleLayout>

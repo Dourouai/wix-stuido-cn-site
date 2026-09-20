@@ -1,0 +1,116 @@
+---
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'cms-architecture', title: 'Wix Studio CMS 底层架构设计' },
+  { id: 'create-collection', title: '创建数据集合（Collection）与字段选型' },
+  { id: 'dynamic-pages', title: '动态列表页与动态详情页（URL 路由规则）' },
+  { id: 'reference-fields', title: '引用字段（Reference）：构建多对多数据关联' },
+  { id: 'security-permissions', title: '数据权限隔离（Read/Write Roles）安全防线' },
+];
+---
+
+<ArticleLayout
+  title="Wix Studio CMS 动态数据库实战：构建多对多关系型内容页面"
+  description="Wix Studio CMS 数据库权威教程。深入集合创建、字段规范、动态详情页路由绑定、多对多关联与前端零代码表单数据提交流程。"
+  keywords="Wix CMS, Wix 动态页面, Wix 数据库, 关系型数据库, 内容管理系统, 无代码数据库"
+  category="Velo 全栈开发"
+  categorySlug="/tutorials/velo/"
+  readTime="16 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  prevArticle={{
+    title: "Velo 入门完全实战：从 $w 元素选择器到页面数据动态绑定",
+    href: "/tutorials/velo/getting-started-velo/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Executive Summary -->
+  <section id="summary" class="bg-gradient-to-br from-emerald-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-emerald-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-emerald-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      如果一个网站有 100 个客户案例或 500 个产品，纯手工复制 500 个静态网页是灾难性的做法。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      <strong>Wix Studio CMS 的本质是“一套模板，无限渲染”：</strong> 你只需设计一个通用的“动态详情页模板”，并将排版容器中的文字、图片和按钮连接到数据库集合的对应字段。系统会自动根据每一条数据库记录，在访问时极速动态生成独立的 SEO 友好 URL（例如 <code>/portfolio/nike-redesign</code>）。
+    </p>
+  </section>
+
+  <!-- Section 1: Architecture -->
+  <section id="cms-architecture" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>1. Wix Studio CMS 底层架构设计</span>
+    </h2>
+    <p>
+      Wix CMS 由三个核心支柱紧密协作构成：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-emerald-700">1. Collections (数据集合)</div>
+        <div class="text-xs text-slate-500">类似于 Excel 表格或云端数据库表，存储纯粹的文本、图片、富文本、标签与附件。</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-blue-700">2. Datasets (数据中继器)</div>
+        <div class="text-xs text-slate-500">充当连接桥梁，控制页面从哪个集合取数、取多少条、如何排序与过滤。</div>
+      </div>
+      <div class="p-4 rounded-xl bg-white border border-slate-200 space-y-1">
+        <div class="text-xs font-bold text-purple-700">3. Dynamic UI (动态组件)</div>
+        <div class="text-xs text-slate-500">如 Repeater 列表、画廊、文字框，将数据中继器的数据实时渲染为页面视觉。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Create Collection -->
+  <section id="create-collection" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>2. 创建数据集合（Collection）与字段选型</span>
+    </h2>
+    <p>
+      在左侧工具栏点击 <strong>CMS</strong> 图标，点击 <strong>Create Collection</strong>：
+    </p>
+    <ul class="space-y-2 pl-4 text-slate-700">
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>Title 字段（默认主键）：</strong> 用于生成 URL Slug 基础，建议填写英文标识或规范标题；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>Rich Text（富文本）：</strong> 适合存储长篇博客正文或多段落案例介绍，支持排版加粗与嵌入多媒体；</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <Icon name="check" class="w-4 h-4 text-emerald-600 shrink-0 mt-1" />
+        <span><strong>Multi-Reference（多对多引用）：</strong> 例如文章归属于多个分类，一个设计师参与过多个项目。</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Section 3: Dynamic Pages -->
+  <section id="dynamic-pages" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-emerald-600 rounded-full inline-block"></span>
+      <span>3. 动态列表页与动态详情页（URL 路由规则）</span>
+    </h2>
+    <p>
+      在创建集合后，Wix Studio 允许您一键生成两种动态页面：
+    </p>
+    <div class="space-y-3">
+      <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+        <div class="text-xs font-bold text-slate-900">动态列表页（Category/Index Page）</div>
+        <div class="text-xs text-slate-500 font-mono">URL 示例：https://yourdomain.com/portfolio</div>
+        <div class="text-xs text-slate-600">放置 Repeater 列表，按创建时间倒序显示所有数据项缩略图，自带分页与搜索。</div>
+      </div>
+      <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-1">
+        <div class="text-xs font-bold text-slate-900">动态详情页（Item Detail Page）</div>
+        <div class="text-xs text-slate-500 font-mono">URL 示例：https://yourdomain.com/portfolio/&#123;title&#125;</div>
+        <div class="text-xs text-slate-600">展示特定一条数据的完整细节，自动在 head 注入该条数据独有的 Title 和 Meta 标签。</div>
+      </div>
+    </div>
+  </section>
+</ArticleLayout>

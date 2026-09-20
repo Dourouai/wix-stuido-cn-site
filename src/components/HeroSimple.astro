@@ -1,0 +1,38 @@
+---
+/**
+ * HeroSimple — 精简型 Hero
+ * 用于：条款页、隐私政策、法律声明等
+ * 特征：纯白背景，仅标题 + 可选日期/描述
+ */
+
+interface Props {
+  title: string;
+  date?: string;
+  description?: string;
+}
+
+const { title, date, description } = Astro.props;
+---
+
+<section class="bg-white border-b border-gray-100">
+  <div class="max-w-3xl mx-auto px-6 py-12 lg:py-16">
+
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight leading-snug mb-2"
+        style="font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;">
+      {title}
+    </h1>
+
+    {date && (
+      <p class="text-[13px] text-gray-400 mt-2">
+        最后更新：{date}
+      </p>
+    )}
+
+    {description && (
+      <p class="text-[15px] text-gray-500 leading-relaxed mt-3">
+        {description}
+      </p>
+    )}
+
+  </div>
+</section>

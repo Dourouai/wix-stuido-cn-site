@@ -2,543 +2,719 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 
-const platforms = [
-  { name: 'Wix Studio', icon: 'zap', color: 'bg-purple-50 text-purple-700 border-purple-200' },
-  { name: 'Velo JavaScript', icon: 'code', color: 'bg-indigo-50 text-indigo-700 border-indigo-200' },
-  { name: 'Shopify', icon: 'shopping-bag', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-  { name: 'WordPress', icon: 'globe', color: 'bg-sky-50 text-sky-700 border-sky-200' },
-  { name: 'Webflow', icon: 'layout', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-  { name: 'Squarespace', icon: 'scale', color: 'bg-slate-50 text-slate-700 border-slate-200' },
-  { name: 'Framer', icon: 'sparkles', color: 'bg-pink-50 text-pink-700 border-pink-200' },
-];
+// 精选主打教程
+const featured = {
+  tag: '新手入门必读',
+  title: 'Wix Studio 完整入门指南：从 0 到 1 上线首个流体响应式站点',
+  desc: '深度拆解 Studio 编辑器核心面板、比例缩放机制（Scale Proportionally）、断点级排版与独立域名绑定全流程。',
+  href: '/tutorials/getting-started/what-is-wix-studio/',
+  time: '45 分钟 · 8 篇系统系列',
+  badge: '旗舰教程',
+  image: '/assets/images/tutorial-featured-cover.jpg',
+};
 
+// 教程专栏
 const tutorials = [
+  { tag: 'Velo 开发', icon: 'code', title: '用 Velo 连接 CMS 数据库，构建企业级动态内容页面', href: '/tutorials/velo/', time: '60 min', color: 'text-emerald-600 bg-emerald-50' },
+  { tag: 'SEO 优化', icon: 'search', title: 'Wix Studio 百度 + Google 双引擎 SEO 深度优化指南', href: '/tutorials/seo/', time: '40 min', color: 'text-amber-600 bg-amber-50' },
+  { tag: '设计排版', icon: 'palette', title: 'Fluid Engine 流体响应式布局深度解析与微动效落地', href: '/tutorials/design/', time: '55 min', color: 'text-violet-600 bg-violet-50' },
+  { tag: '外贸电商', icon: 'shopping-bag', title: '外贸独立站从零搭建：Wix Stores 多币种与支付网关配置', href: '/tutorials/ecommerce/', time: '70 min', color: 'text-orange-600 bg-orange-50' },
+  { tag: '平台横评', icon: 'scale', title: 'Wix Studio vs Webflow：设计师视角的深度对比（2026）', href: '/compare/wix-vs-webflow-2026/', time: '30 min', color: 'text-blue-600 bg-blue-50' },
+];
+
+// 横评快捷入口
+const comparisonCards = [
   {
-    icon: 'book-open',
-    iconBg: 'from-blue-500 to-indigo-600',
-    title: '入门基础实战',
-    tag: '新手第一课',
-    tagColor: 'bg-blue-50 text-blue-700 border-blue-200',
-    desc: '从账号注册、Studio 界面工作流认知到发布首个响应式站点，手把手零基础教程。',
-    href: '/tutorials/getting-started/',
+    target: 'Shopify',
+    tag: '独立站选型',
+    title: 'Wix vs Shopify 2026 横评',
+    desc: '品牌官网+轻量电商选 Wix（0%平台抽成）；海量大宗 SKU 铺货选 Shopify。',
+    href: '/compare/wix-vs-shopify-2026/',
+    score: '9.4',
+    badge: '外贸必读',
+    accent: 'from-emerald-500/10 to-transparent border-emerald-200/60',
   },
   {
-    icon: 'palette',
-    iconBg: 'from-purple-500 to-violet-600',
-    title: '流体响应式排版',
-    tag: '设计核心',
-    tagColor: 'bg-purple-50 text-purple-700 border-purple-200',
-    desc: '掌握比例缩放（Fluid Engine）、无限断点适配与滚动微交互动效，告别多端错乱。',
-    href: '/tutorials/design/',
+    target: 'WordPress',
+    tag: '运维与安全',
+    title: 'Wix vs WordPress 2026 横评',
+    desc: '省心免运维高防全托管选 Wix；配备全职运维团队、追求代码私有化选 WP。',
+    href: '/compare/wix-vs-wordpress-2026/',
+    score: '9.2',
+    badge: '成本对比',
+    accent: 'from-blue-500/10 to-transparent border-blue-200/60',
   },
   {
-    icon: 'code',
-    iconBg: 'from-emerald-500 to-teal-600',
-    title: 'Velo 全栈开发',
-    tag: '动态扩展',
-    tagColor: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    desc: '利用 JavaScript、Wix CMS 数据库及 API 接口，轻松实现企业级动态数据交互。',
-    href: '/tutorials/velo/',
-  },
-  {
-    icon: 'search',
-    iconBg: 'from-amber-500 to-orange-600',
-    title: 'SEO 排名优化',
-    tag: '流量收录',
-    tagColor: 'bg-amber-50 text-amber-700 border-amber-200',
-    desc: '百度与 Google 双引擎技术 SEO 调优、Sitemap 自动提交及 Core Web Vitals 达标。',
-    href: '/tutorials/seo/',
-  },
-  {
-    icon: 'shopping-bag',
-    iconBg: 'from-rose-500 to-pink-600',
-    title: '外贸商城独立站',
-    tag: '跨境出海',
-    tagColor: 'bg-rose-50 text-rose-700 border-rose-200',
-    desc: '跨境多币种独立站、PayPal / Stripe 海外金流收款及库存物流系统全流程配置。',
-    href: '/tutorials/ecommerce/',
-  },
-  {
-    icon: 'scale',
-    iconBg: 'from-cyan-500 to-blue-600',
-    title: '主流平台深度横评',
-    tag: '技术选型',
-    tagColor: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    desc: '客观深度对比 Wix 与 Shopify、WordPress、Webflow、Squarespace，明晰优劣。',
-    href: '/compare/',
+    target: 'Webflow',
+    tag: '视觉排版高峰',
+    title: 'Wix Studio vs Webflow 2026',
+    desc: '内置全套商业应用+流体排版选 Wix；追求严苛 CSS 类名手写控制选 Webflow。',
+    href: '/compare/wix-vs-webflow-2026/',
+    score: '9.5',
+    badge: '设计师必读',
+    accent: 'from-indigo-500/10 to-transparent border-indigo-200/60',
   },
 ];
 
-const compareItems = [
+// 博客动态
+const posts = [
   {
-    name: 'Wix vs Shopify',
-    badge: '跨境出海选型',
-    highlight: '外贸商城与独立站首选对比',
-    wixAdv: '设计自由度极高，无需月度昂贵插件堆砌，展示型外贸B2B与精品独立站首选',
-    otherAdv: '海量 SKU 铺货型 B2C 具备深厚 ERP 发货生态',
-    href: '/compare/wix-vs-shopify/',
+    category: '设计前沿',
+    title: '2026 全球网页设计与数字视觉趋势报告：从多巴胺色彩到流体反设计',
+    date: '2026-09-20',
+    readTime: '9 分钟',
+    href: '/blog/web-design-trends-2026/',
+    image: '/assets/images/blog-design-trends.jpg',
   },
   {
-    name: 'Wix vs WordPress',
-    badge: '现代架构对比',
-    highlight: '闭源现代SaaS vs 开源CMS终极选型',
-    wixAdv: '零运维成本、无需担心安全漏洞攻击挂马、原生云端全托管高防，极度省心',
-    otherAdv: '开源生态与二次开发源码自主权最高',
-    href: '/compare/wix-vs-wordpress/',
+    category: '海外营销',
+    title: '2026 海外数字营销新法则：第一人称叙事、微网红生态与反向破圈',
+    date: '2026-09-20',
+    readTime: '8 分钟',
+    href: '/blog/marketing-trends-2026/',
+    image: '/assets/images/blog-b2b-export.jpg',
   },
   {
-    name: 'Wix Studio vs Webflow',
-    badge: '高阶设计工具',
-    highlight: '专业设计师建站平台深度较量',
-    wixAdv: '原生内置全套商务应用（预约/商城/会员/表单）、中文生态友好、交付周期更短',
-    otherAdv: '底层 CSS 盒模型代码控制极深',
-    href: '/compare/wix-vs-webflow/',
+    category: '技术进阶',
+    title: 'Wix Studio 官方 AI 生产力全面升级：从提示词排版到代码辅助生成的深度剖析',
+    date: '2026-09-20',
+    readTime: '7 分钟',
+    href: '/blog/wix-studio-ai-features/',
+    image: '/assets/images/blog-ai-figma.jpg',
   },
 ];
 
-const stats = [
-  { value: '35+', label: '篇系统中文教程' },
-  { value: '5年+', label: 'Wix 实战出海经验' },
-  { value: '100%', label: '原生流体响应式' },
-  { value: 'Legend', label: 'Wix 官方最高认证' },
-];
-
-const faqs = [
-  {
-    q: 'Wix Studio 是什么？和普通的经典版 Wix 有什么区别？',
-    a: 'Wix Studio 是 Wix 专为设计师、建站代理商和技术开发者打造的下一代旗舰平台。它支持像素级流体断点（Fluid Responsive）、自定义 CSS、团队共享设计系统（Design System）及更强大的 Velo 代码扩展，突破了经典版 Wix 的自由度局限。',
-  },
-  {
-    q: '使用 Wix 建站需要懂得写代码吗？',
-    a: '完全不需要。Wix Studio 提供所见即所得的可视化流体编辑器与内置智能 AI 辅助，小白和设计师均可轻松拖拽排版发布上线；如果遇到复杂业务数据逻辑，开发者也可以随时开启 Velo 编写全栈 JavaScript。',
-  },
-  {
-    q: 'Wix 网站在中国大陆访问速度如何？能做外贸独立站吗？',
-    a: 'Wix 采用全球 300+ 节点的多区域 CDN 架构，针对海外买家访问极其高速流畅，是外贸 B2B 官网和跨境品牌出海的理想之选；对于国内大陆访客，我们提供了完整的 DNS 优化与静态资源加速调优方案。',
-  },
-  {
-    q: 'wixstudio.cn 能够帮我们定制企业官网或商城吗？',
-    a: '可以！我们是获得 Wix 官方认证的最高级别 Legend 级合作伙伴（Wix Partner Legend），拥有丰富的出海官网、设计作品集及动态交互网站定制经验，提供从品牌策划、视觉设计到交付上线的一站式服务。',
-  },
-  {
-    q: 'Wix 建站如何绑定自己的独立顶级域名？',
-    a: '只需购买任意 Wix 商业套餐，即可在后台直接将您的 .com、.cn 或其他国际域名 DNS 解析至 Wix 服务器，系统会自动签发免费的全球高可用 SSL 安全证书。',
-  },
+// 平台特色保障与学习价值点
+const trustPoints = [
+  { icon: 'book-open', title: '系统化免费教程', desc: '从新手入门到 Velo 全栈开发，35+ 篇实战图文全流程公开' },
+  { icon: 'sparkles', title: '生态前沿持续追踪', desc: '每周同步 Wix 官方最新更新、AI 工具演进与外贸建站风向' },
+  { icon: 'shield', title: 'Legend 导师实力背书', desc: '官方最高级认证伙伴执笔，拒绝纸上谈兵，纯一线实操复盘' },
+  { icon: 'scale', title: '2026 客观平台横评', desc: '横向深度比对 Shopify、WordPress、Webflow，理性辅助选型' },
 ];
 ---
 
-<BaseLayout>
-  <!-- Section 1: Hero Section (Vibrant Light Aurora + Grid Texture) -->
-  <section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-36 bg-subtle-grid">
-    <!-- Rich Aurora Gradient Glow -->
-    <div class="hero-aurora"></div>
+<BaseLayout
+  title="wixstudio.cn — 中文最系统的 Wix Studio 教程与建站资讯平台"
+  description="中国权威 Wix Studio 中文学习与建站推广中心。由官方 Legend 级认证伙伴倾力打造，系统涵盖入门教程、流体设计排版、Velo全栈开发与主流平台横评。"
+>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        <!-- Left Hero Content -->
-        <div class="lg:col-span-7 space-y-7 text-left">
-          <!-- Official Trust Badge Pill with Shimmer and SVG Star Icon (No Emojis) -->
-          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 border border-purple-200/90 shadow-lg shadow-purple-500/5 shimmer-pill backdrop-blur-md hover:border-purple-300 transition">
-            <Icon name="star" class="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-            <span class="text-xs font-bold text-slate-800 tracking-wide">
-              Wix 官方认证 <span class="text-[#6D28D9] font-black">Legend</span> 最高级合作伙伴
+  <!-- ══════════════════════════════════════════
+       SECTION 1: HERO (Wix Studio 交互式设计工作台旗舰展示)
+       ══════════════════════════════════════════ -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-[#F0F5FF] via-[#F8FAFC] to-white border-b border-gray-200/70">
+
+    <!-- 背景质感光效与微圆点纹理 -->
+    <div class="absolute inset-0 opacity-40 pointer-events-none"
+         style="background-image: radial-gradient(circle, #BFDBFE 1.2px, transparent 1.2px); background-size: 32px 32px;"></div>
+    <div class="absolute -top-40 right-10 w-[640px] h-[640px] rounded-full pointer-events-none"
+         style="background: radial-gradient(circle, rgba(17,109,255,0.12) 0%, rgba(99,102,241,0.06) 40%, transparent 70%);"></div>
+    <div class="absolute top-1/3 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+         style="background: radial-gradient(circle, rgba(147,197,253,0.2) 0%, transparent 70%);"></div>
+
+    <!-- 顶部极简装饰标尺元素 -->
+    <div class="hidden lg:flex absolute top-4 left-1/2 -translate-x-1/2 items-center gap-6 text-[10px] font-mono text-gray-300 pointer-events-none select-none">
+      <span>+ [0, 0]</span>
+      <span class="w-32 h-px bg-gray-200"></span>
+      <span>CANVAS: FLUID RESPONSIVE</span>
+      <span class="w-32 h-px bg-gray-200"></span>
+      <span>+ [1920, 1080]</span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 relative">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+        <!-- 左侧：文案与核心呼吁 (6 Cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          <!-- 官方认证品质徽章 -->
+          <div class="hero-enter hero-enter-d1 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border border-blue-200/90 bg-white/95 shadow-xs text-xs font-semibold text-gray-700 backdrop-blur-md">
+            <span class="flex h-2 w-2 relative">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#116DFF] opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-[#116DFF]"></span>
+            </span>
+            <span class="text-gray-500">Wix 官方最高级认证</span>
+            <span class="h-3 w-px bg-gray-200"></span>
+            <span class="text-[#116DFF] font-bold flex items-center gap-1">
+              <svg class="w-3.5 h-3.5 text-amber-500 fill-amber-400" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Legend 导师团队主编
             </span>
           </div>
 
-          <!-- Hero Headline -->
-          <div class="space-y-3">
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 leading-none">
-              Wix Studio
-            </h1>
-            <div class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-gradient-purple leading-tight">
-              中文学习与建站平台
+          <!-- 主标题：强化 Wix Studio 与权威教程资讯定位 -->
+          <div class="hero-enter hero-enter-d2 space-y-2">
+            <div class="text-xs font-bold tracking-widest text-[#116DFF] uppercase flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#116DFF]"></span>
+              WIX STUDIO KNOWLEDGE HUB · 2026
             </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-[50px] font-black leading-[1.14] tracking-tight text-gray-900"
+                style="font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', system-ui, sans-serif;">
+              中文最系统的<br />
+              <span class="bg-gradient-to-r from-[#116DFF] via-[#0D5FE3] to-[#4F46E5] bg-clip-text" style="-webkit-text-fill-color: transparent;">Wix Studio</span>
+              教程与前沿资讯中心
+            </h1>
           </div>
 
-          <!-- Subtitle -->
-          <p class="text-lg sm:text-xl text-slate-600 max-w-xl font-normal leading-relaxed">
-            中文互联网最系统的 Wix Studio 专属生态。从零基础建站到设计师进阶，提供实战教程、平台横评与高水准外贸出海官网定制。
+          <!-- 副标题：突出受众、路径与避坑价值 -->
+          <p class="hero-enter hero-enter-d3 text-sm sm:text-base text-gray-600 leading-relaxed max-w-xl">
+            面向网页设计师、出海从业者与独立创作者。涵盖从零基础入门、流体排版进阶到 Velo 全栈开发，每天同步生态前沿动态与深度横评。
           </p>
 
-          <!-- Dual CTAs -->
-          <div class="flex flex-wrap items-center gap-4 pt-2">
-            <a
-              href="/tutorials/"
-              class="btn-vibrant-glow inline-flex items-center gap-2.5 px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 active:scale-95 transition"
-            >
-              <span>查看全部教程</span>
-              <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </a>
-            <a
-              href="/contact/"
-              class="inline-flex items-center gap-2 px-8 py-4 rounded-full text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-200/90 shadow-md shadow-slate-200/50 hover:border-purple-300 active:scale-95 transition"
-            >
-              <span>委托建站咨询</span>
-              <span class="text-purple-600 font-black">→</span>
-            </a>
+          <!-- 按钮组与安心保障说明 -->
+          <div class="hero-enter hero-enter-d4 space-y-3 pt-1">
+            <div class="flex flex-wrap items-center gap-3.5">
+              <a href="/tutorials/"
+                 class="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-full text-sm font-bold text-white bg-[#116DFF] hover:bg-[#0D5FE3] shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35 hover:-translate-y-0.5 active:scale-95 transition-all duration-200">
+                <Icon name="book-open" class="w-4 h-4" />
+                <span>免费开启系统学习（35+篇）</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                </svg>
+              </a>
+              <a href="/compare/"
+                 class="inline-flex items-center gap-2 px-5 sm:px-6 py-3.5 rounded-full text-sm font-semibold text-gray-700 border border-gray-200/90 bg-white hover:border-gray-300 hover:bg-gray-50 shadow-xs active:scale-95 transition-all duration-200">
+                <Icon name="scale" class="w-4 h-4 text-gray-500" />
+                <span>2026 平台横评</span>
+              </a>
+            </div>
+
+            <!-- 微承诺 -->
+            <div class="flex items-center gap-4 text-xs text-gray-400 font-medium pt-1">
+              <span class="flex items-center gap-1 text-gray-500">
+                <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                全开源免费教程
+              </span>
+              <span class="flex items-center gap-1 text-gray-500">
+                <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                官方导师一线实操
+              </span>
+              <span class="flex items-center gap-1 text-gray-500">
+                <svg class="w-3.5 h-3.5 text-emerald-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                拒绝纯理论灌输
+              </span>
+            </div>
           </div>
 
-          <!-- Stats Strip -->
-          <div class="pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-            {stats.map((s) => (
-              <div class="p-3 rounded-2xl bg-white/60 border border-slate-100 backdrop-blur-xs">
-                <div class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">{s.value}</div>
-                <div class="text-xs font-medium text-slate-500 mt-0.5">{s.label}</div>
+          <!-- 社区受众与学习指标数据带 -->
+          <div class="hero-enter hero-enter-d5 pt-6 border-t border-gray-200/70 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-1.5 overflow-hidden py-0.5">
+                <div class="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-gradient-to-tr from-blue-500 to-indigo-600 items-center justify-center text-white shadow-xs" title="UI 视觉设计">
+                  <Icon name="palette" class="w-4 h-4 text-white" />
+                </div>
+                <div class="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-gradient-to-tr from-violet-500 to-purple-600 items-center justify-center text-white shadow-xs" title="Velo 全栈开发">
+                  <Icon name="code" class="w-4 h-4 text-white" />
+                </div>
+                <div class="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-gradient-to-tr from-emerald-500 to-teal-600 items-center justify-center text-white shadow-xs" title="B2B 出海贸易">
+                  <Icon name="globe" class="w-4 h-4 text-white" />
+                </div>
+                <div class="inline-flex h-8 w-8 rounded-full ring-2 ring-white bg-gradient-to-tr from-amber-500 to-orange-600 items-center justify-center text-white shadow-xs" title="SEO 增长获客">
+                  <Icon name="search" class="w-4 h-4 text-white" />
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Right Hero Mockup: High-Contrast Creative Studio Window -->
-        <div class="lg:col-span-5 relative">
-          <!-- Window Outer Shadow and Border -->
-          <div class="relative rounded-3xl p-3 bg-gradient-to-b from-slate-800 to-slate-950 shadow-2xl shadow-purple-950/25 border border-slate-700/60 overflow-hidden">
-            <!-- Studio Dark App Chrome Header -->
-            <div class="flex items-center justify-between px-3 py-2 border-b border-slate-800 bg-slate-900/90 rounded-t-2xl text-xs">
-              <div class="flex items-center gap-1.5">
-                <div class="w-3 h-3 rounded-full bg-[#EF4444]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#F59E0B]"></div>
-                <div class="w-3 h-3 rounded-full bg-[#10B981]"></div>
-              </div>
-
-              <!-- Breakpoint Switcher Pills -->
-              <div class="flex items-center gap-1 bg-slate-800 p-1 rounded-xl border border-slate-700">
-                <span class="px-2 py-0.5 rounded-lg bg-[#7C3AED] text-white text-[10px] font-bold flex items-center gap-1">
-                  <span>1920 桌面端</span>
-                </span>
-                <span class="px-2 py-0.5 text-slate-400 text-[10px]">平板</span>
-                <span class="px-2 py-0.5 text-slate-400 text-[10px]">移动端</span>
-              </div>
-
-              <!-- Status badge -->
-              <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-[10px] font-bold">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>已上线</span>
+              <div>
+                <div class="text-xs font-bold text-gray-900">3,200+ 名创作者</div>
+                <div class="text-[11px] text-gray-400">正在此学习与交流经验</div>
               </div>
             </div>
 
-            <!-- Workspace Editor Layout -->
-            <div class="flex bg-slate-950 rounded-b-2xl overflow-hidden min-h-[320px]">
-              <!-- Left Tool Rail with Clean Vector Icons (No Emojis) -->
-              <div class="w-11 border-r border-slate-800 bg-slate-900/70 py-3 flex flex-col items-center gap-3 text-slate-400 text-xs">
-                <span class="w-7 h-7 rounded-lg flex items-center justify-center bg-[#7C3AED] text-white font-black cursor-pointer shadow-md">+</span>
-                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="layout" class="w-4 h-4" /></span>
-                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="palette" class="w-4 h-4" /></span>
-                <span class="p-1 rounded hover:text-white cursor-pointer"><Icon name="layers" class="w-4 h-4" /></span>
-                <span class="p-1 rounded hover:text-purple-400 font-mono font-bold text-xs text-purple-400 cursor-pointer">{ }</span>
+            <div class="h-8 w-px bg-gray-200 hidden sm:block"></div>
+
+            <div class="flex items-center gap-5 sm:gap-6">
+              <div>
+                <div class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">35<span class="text-[#116DFF]">+</span></div>
+                <div class="text-[10px] sm:text-[11px] text-gray-400">中文系统专栏</div>
               </div>
-
-              <!-- Center Interactive Canvas Simulator -->
-              <div class="flex-1 p-5 relative flex flex-col justify-between bg-gradient-to-br from-slate-900 via-slate-950 to-[#1e1438]">
-                <!-- Active Visual Element Selection Frame -->
-                <div class="border-2 border-[#8B5CF6] rounded-2xl p-5 relative bg-slate-900/90 shadow-2xl backdrop-blur-md">
-                  <!-- Responsive resize handles -->
-                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -top-1.5 -left-1.5 border-2 border-white shadow-sm"></div>
-                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -top-1.5 -right-1.5 border-2 border-white shadow-sm"></div>
-                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -bottom-1.5 -left-1.5 border-2 border-white shadow-sm"></div>
-                  <div class="w-3 h-3 rounded-full bg-[#8B5CF6] absolute -bottom-1.5 -right-1.5 border-2 border-white shadow-sm"></div>
-
-                  <div class="flex items-center justify-between mb-3">
-                    <span class="text-[10px] uppercase font-mono px-2.5 py-0.5 rounded-full bg-purple-500/25 text-purple-300 font-bold border border-purple-500/30">
-                      Fluid: 等比缩放 100%
-                    </span>
-                    <span class="text-[10px] text-slate-400 font-mono">12 列 CSS 网格</span>
-                  </div>
-
-                  <div class="space-y-2.5">
-                    <div class="h-3 w-1/3 rounded-full bg-purple-400/80"></div>
-                    <div class="h-6 w-5/6 rounded-lg bg-gradient-to-r from-white via-slate-100 to-slate-400 font-bold"></div>
-                    <div class="h-2.5 w-1/2 rounded-full bg-slate-600"></div>
-                  </div>
-
-                  <div class="mt-4 flex items-center gap-2">
-                    <span class="px-3.5 py-1 rounded-full text-xs font-bold bg-[#7C3AED] text-white shadow-md">品牌案例</span>
-                    <span class="px-3.5 py-1 rounded-full text-xs font-semibold border border-slate-600 text-slate-300 bg-slate-800">在线交互</span>
-                  </div>
-                </div>
-
-                <!-- Bottom Status info -->
-                <div class="mt-4 flex items-center justify-between text-[11px] text-slate-400 font-mono border-t border-slate-800/80 pt-2">
-                  <span>断点: 响应式流体引擎</span>
-                  <span class="text-purple-400 font-bold">Velo: Connected</span>
-                </div>
+              <div>
+                <div class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">每周<span class="text-[#116DFF]">更</span></div>
+                <div class="text-[10px] sm:text-[11px] text-gray-400">前沿动态横评</div>
               </div>
-            </div>
-
-            <!-- Floating Wix Partner Legend Badge Seal -->
-            <div class="absolute -bottom-4 -right-4 w-22 h-22 sm:w-26 sm:h-26 z-20 transition-transform hover:scale-105">
-              <div class="relative w-full h-full">
-                <div class="absolute inset-0 rounded-full bg-purple-500 blur-xl opacity-50 animate-pulse"></div>
-                <img
-                  src="/assets/badges/wix-partner-legend-200.png"
-                  alt="Wix Partner Legend"
-                  width="104"
-                  height="104"
-                  class="relative rounded-full border-4 border-slate-900 shadow-2xl shadow-black/80"
-                />
+              <div>
+                <div class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">100<span class="text-[#116DFF]">%</span></div>
+                <div class="text-[10px] sm:text-[11px] text-gray-400">实操避坑原创</div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- 右侧：Wix Studio 视觉 IDE & 交互式学习工作台 (6 Cols) -->
+        <div class="lg:col-span-6 hero-enter hero-enter-d3">
+          <div class="relative mx-auto max-w-lg lg:max-w-none">
+
+            <!-- 装饰外光晕 -->
+            <div class="absolute -inset-1.5 bg-gradient-to-r from-blue-500/20 via-indigo-500/15 to-purple-500/20 rounded-3xl blur-xl opacity-75"></div>
+
+            <!-- 主工作台卡片 (Mac 窗口风格) -->
+            <div class="relative bg-white rounded-3xl border border-gray-200/90 shadow-2xl shadow-blue-900/10 overflow-hidden">
+
+              <!-- 顶部工具栏 (Studio Editor Header) -->
+              <div class="bg-gray-50/90 border-b border-gray-200/80 px-4 py-3 flex items-center justify-between">
+                <!-- Mac 交通灯 -->
+                <div class="flex items-center gap-1.5">
+                  <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10"></span>
+                  <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10"></span>
+                </div>
+
+                <!-- 响应式视口切换指示器 (Desktop / Tablet / Mobile) -->
+                <div class="flex items-center gap-1 bg-white px-2 py-1 rounded-full border border-gray-200 shadow-2xs text-[11px] font-semibold text-gray-600">
+                  <span class="px-2 py-0.5 rounded-full bg-blue-50 text-[#116DFF] font-bold flex items-center gap-1">
+                    <svg class="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    1920 Desktop
+                  </span>
+                  <span class="px-1.5 py-0.5 text-gray-400 hover:text-gray-700 cursor-default">768</span>
+                  <span class="px-1.5 py-0.5 text-gray-400 hover:text-gray-700 cursor-default">390</span>
+                </div>
+
+                <!-- 流体缩放状态 -->
+                <div class="flex items-center gap-1.5 text-[11px] font-mono text-gray-400">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span class="hidden sm:inline">Scale 100%</span>
+                </div>
+              </div>
+
+              <!-- 主画布工作区 (Canvas Live Preview) -->
+              <div class="relative bg-[#F8FAFC] p-4 sm:p-6 overflow-hidden min-h-[300px] flex flex-col justify-between">
+
+                <!-- 画布背景网格参考线 -->
+                <div class="absolute inset-0 opacity-25 pointer-events-none"
+                     style="background-image: linear-gradient(to right, #94a3b8 1px, transparent 1px), linear-gradient(to bottom, #94a3b8 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+                <!-- 正在编辑中的选中容器 (Selected Element with Studio Transform Anchors) -->
+                <div class="relative z-10 bg-white/95 rounded-2xl border-2 border-[#116DFF] p-4 sm:p-5 shadow-lg shadow-blue-500/10">
+
+                  <!-- Wix Studio 元素选框标牌 -->
+                  <div class="absolute -top-3 left-4 px-2 py-0.5 rounded-md bg-[#116DFF] text-white text-[10px] font-mono font-bold uppercase tracking-wider flex items-center gap-1 shadow-xs">
+                    <span>Section: Hero</span>
+                    <span class="text-blue-200">· Fluid 100vw</span>
+                  </div>
+
+                  <!-- 8 个控制定位锚点 (Handles) -->
+                  <span class="absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#116DFF] rounded-xs"></span>
+                  <span class="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#116DFF] rounded-xs"></span>
+                  <span class="absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-2 border-[#116DFF] rounded-xs"></span>
+                  <span class="absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-2 border-[#116DFF] rounded-xs"></span>
+
+                  <!-- 画布内部模拟排版展示 -->
+                  <div class="space-y-3 pt-1">
+                    <div class="flex items-center justify-between">
+                      <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-blue-50 text-[10px] font-bold text-[#116DFF]">
+                        <span>Fluid Typography</span>
+                        <span class="text-blue-400">clamp(1.5rem, 4vw, 3rem)</span>
+                      </div>
+                      <span class="text-[10px] font-mono text-gray-400">Flexbox: Row</span>
+                    </div>
+
+                    <div class="h-3 w-3/4 rounded-full bg-gray-200/80"></div>
+                    <div class="h-2.5 w-1/2 rounded-full bg-gray-100"></div>
+
+                    <!-- 模拟按钮与微动效指示器 -->
+                    <div class="flex items-center gap-2 pt-1">
+                      <div class="px-3 py-1 rounded-full bg-[#116DFF] text-white text-[10px] font-semibold flex items-center gap-1 shadow-xs">
+                        <span>Get Started</span>
+                        <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                      </div>
+                      <div class="px-2.5 py-1 rounded-full bg-gray-100 text-gray-500 text-[10px] font-medium">
+                        Scroll Trigger: Parallax
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 浮动悬浮卡片 1：流体排版属性检查器 (Inspector Floating Card) -->
+                <div class="relative z-10 mt-4 sm:mt-5 bg-white/90 backdrop-blur-md rounded-2xl border border-gray-200/80 p-3 shadow-md flex items-center justify-between">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center font-bold text-xs">
+                      CSS
+                    </div>
+                    <div>
+                      <div class="text-xs font-bold text-gray-900">Fluid Engine 排版引擎</div>
+                      <div class="text-[10px] font-mono text-gray-400">比例缩放无需每屏手动微调</div>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-100 text-[10px] font-bold">
+                    Core Web Vitals: 99
+                  </span>
+                </div>
+
+                <!-- 浮动悬浮卡片 2：Velo 代码编辑器抽屉 (Velo Code Mini IDE) -->
+                <div class="relative z-10 mt-3 bg-[#0C0C0E] text-white rounded-2xl p-3 shadow-xl font-mono text-[11px] border border-white/10 flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">$w</span>
+                    <span class="text-gray-400">.</span>
+                    <span class="text-blue-300">onReady</span>
+                    <span class="text-gray-400">(() =&gt;</span>
+                    <span class="text-amber-300">initStudioAnimation()</span>
+                    <span class="text-gray-400">)</span>
+                  </div>
+                  <span class="text-[9px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/30">
+                    Velo Dev
+                  </span>
+                </div>
+
+              </div>
+
+              <!-- 底部专属学习专栏快速通道 (Course Tracks Quick Launch Dock) -->
+              <div class="bg-gray-50/90 border-t border-gray-200/80 p-3">
+                <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider px-2 mb-2">快速进入系统学习专栏</div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  <a href="/tutorials/getting-started/" class="group p-2 rounded-xl bg-white border border-gray-200/80 hover:border-blue-400 hover:shadow-xs transition-all text-center">
+                    <div class="text-xs font-bold text-gray-900 group-hover:text-[#116DFF]">新手入门</div>
+                    <div class="text-[10px] text-gray-400">8 篇系统系列</div>
+                  </a>
+                  <a href="/tutorials/design/" class="group p-2 rounded-xl bg-white border border-gray-200/80 hover:border-violet-400 hover:shadow-xs transition-all text-center">
+                    <div class="text-xs font-bold text-gray-900 group-hover:text-violet-600">流体设计</div>
+                    <div class="text-[10px] text-gray-400">6 篇实战专栏</div>
+                  </a>
+                  <a href="/tutorials/velo/" class="group p-2 rounded-xl bg-white border border-gray-200/80 hover:border-emerald-400 hover:shadow-xs transition-all text-center">
+                    <div class="text-xs font-bold text-gray-900 group-hover:text-emerald-600">Velo 全栈</div>
+                    <div class="text-[10px] text-gray-400">7 篇进阶代码</div>
+                  </a>
+                  <a href="/compare/" class="group p-2 rounded-xl bg-white border border-gray-200/80 hover:border-amber-400 hover:shadow-xs transition-all text-center">
+                    <div class="text-xs font-bold text-gray-900 group-hover:text-amber-600">平台横评</div>
+                    <div class="text-[10px] text-gray-400">2026 客观对比</div>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Section 2: Rich Platform Marquee with SVG Icons (Zero Emojis) -->
-  <section class="border-y border-slate-200 bg-slate-50/80 py-6 overflow-hidden">
-    <div class="marquee-mask">
-      <div class="animate-marquee-scroll items-center gap-6 whitespace-nowrap">
-        {platforms.concat(platforms).map((p) => (
-          <div class={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold border shadow-xs bg-white ${p.color}`}>
-            <Icon name={p.icon} class="w-4 h-4" />
-            <span>{p.name}</span>
+
+  <!-- ══════════════════════════════════════════
+       SECTION 2: 品牌信任与专业背书 (Trust Bar)
+       ══════════════════════════════════════════ -->
+  <section class="bg-white border-b border-gray-100 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {trustPoints.map((item) => (
+          <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-gray-50/60 border border-gray-100 hover:border-blue-100 transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-white border border-gray-200/80 text-[#116DFF] flex items-center justify-center shrink-0 shadow-xs">
+              <Icon name={item.icon} class="w-5 h-5" />
+            </div>
+            <div>
+              <div class="text-sm font-bold text-gray-900">{item.title}</div>
+              <p class="text-xs text-gray-500 mt-1 leading-relaxed">{item.desc}</p>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Section 3: Tutorials Cards Grid with Vector SVG Icons -->
-  <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
-      <div class="inline-block text-xs font-black uppercase tracking-widest text-[#6D28D9] px-4 py-1.5 rounded-full bg-purple-50 border border-purple-200/90 shadow-xs">
-        TUTORIALS 教程体系
+
+  <!-- ══════════════════════════════════════════
+       SECTION 3: 精选教程专栏 (Bento Showcase)
+       ══════════════════════════════════════════ -->
+  <section class="bg-white py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- 标题栏 -->
+      <div class="animate-on-scroll flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#116DFF] mb-1">
+            <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+            TUTORIAL MATRIX
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">精选核心教程推荐</h2>
+        </div>
+        <a href="/tutorials/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#116DFF] hover:underline">
+          <span>查看全部 35+ 篇系列指南</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
       </div>
-      <h2 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
-        从零开始学 Wix Studio
-      </h2>
-      <p class="text-base sm:text-lg text-slate-600">
-        循序渐进的系统化中文课程，覆盖从基础搭建、高阶设计到代码扩展全流程。
-      </p>
-    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {tutorials.map((card) => (
-        <a
-          href={card.href}
-          class="premium-card p-8 group flex flex-col justify-between block relative"
-        >
-          <!-- Top Colored Accent Stripe on Hover -->
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#6D28D9] to-[#2563EB] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      <!-- Bento 教程栅格：左侧旗舰大卡 + 右侧细分列表 -->
+      <div class="animate-on-scroll grid grid-cols-1 lg:grid-cols-12 gap-5">
 
-          <div class="space-y-5">
-            <div class="flex items-center justify-between">
-              <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.iconBg} text-white flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-lg shadow-slate-200`}>
-                <Icon name={card.icon} class="w-7 h-7" />
-              </div>
-              <span class={`text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${card.tagColor}`}>
-                {card.tag}
+        <!-- 左侧：置顶旗舰教程大卡 (5 Cols) -->
+        <a href={featured.href}
+           class="lg:col-span-5 group relative rounded-3xl overflow-hidden bg-white border border-gray-200/90 flex flex-col justify-between card-lift card-glow">
+          <!-- 配图区 (全宽贴边无间隙) -->
+          <div class="relative h-56 sm:h-64 bg-slate-100 overflow-hidden border-b border-gray-100">
+            <img
+              src={featured.image}
+              alt="Wix Studio 快速起步实战教程"
+              class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+              loading="eager"
+            />
+            <div class="absolute top-4 left-4 z-10 flex items-center gap-2">
+              <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-[#116DFF] text-white shadow-xs">
+                {featured.badge}
+              </span>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/90 text-gray-700 shadow-xs backdrop-blur-xs">
+                {featured.time}
               </span>
             </div>
-            <h3 class="text-xl font-extrabold text-slate-900 group-hover:text-[#6D28D9] transition">
-              {card.title}
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              {card.desc}
-            </p>
           </div>
 
-          <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-slate-700 group-hover:text-[#6D28D9] transition">
-            <span>进入专栏学习</span>
-            <span class="transform group-hover:translate-x-1.5 transition-transform text-purple-600 text-sm">→</span>
+          <div class="p-7 space-y-3 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-black text-gray-900 group-hover:text-[#116DFF] transition-colors leading-snug">
+                {featured.title}
+              </h3>
+              <p class="text-sm text-gray-500 leading-relaxed mt-2.5">
+                {featured.desc}
+              </p>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-[#116DFF]">
+              <span>开始阅读入门教程</span>
+              <div class="w-7 h-7 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-[#116DFF] group-hover:text-white transition-all">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+            </div>
           </div>
         </a>
-      ))}
-    </div>
 
-    <div class="mt-14 text-center">
-      <a
-        href="/tutorials/"
-        class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 hover:border-purple-300 shadow-md shadow-slate-200/50 hover:shadow-lg transition"
-      >
-        <span>查看全部 35+ 篇系统教程大纲</span>
-        <span class="text-purple-600">→</span>
-      </a>
-    </div>
-  </section>
-
-  <!-- Section 4: High-Contrast Midnight Navy Compare Section -->
-  <section class="py-24 bg-[#0B0F19] text-white relative overflow-hidden border-y border-slate-800">
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <div class="lg:col-span-4 space-y-5">
-          <div class="inline-block text-xs font-black uppercase tracking-widest text-purple-400 px-3.5 py-1 rounded-full bg-purple-500/20 border border-purple-500/30">
-            COMPARISONS 选型横评
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
-            选对建站平台<br />
-            <span class="text-gradient-purple">事半功倍</span>
-          </h2>
-          <p class="text-sm text-slate-400 leading-relaxed">
-            不知道是用 Wix、Shopify 还是 WordPress？我们以中国企业和出海卖家的真实业务场景为准绳，为您做客观深度的剖析横评。
-          </p>
-          <div class="pt-2">
-            <a
-              href="/compare/"
-              class="inline-flex items-center gap-1.5 text-sm font-bold text-purple-400 hover:text-purple-300 hover:underline"
-            >
-              <span>查看 5 大主流建站平台综合横评报告</span>
-              <span>→</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-8 space-y-4">
-          {compareItems.map((item) => (
-            <a
-              href={item.href}
-              class="p-6 rounded-2xl block group border border-slate-800 bg-slate-900/80 hover:border-purple-500/60 hover:bg-slate-900 transition-all shadow-xl"
-            >
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-4 border-b border-slate-800">
-                <div class="flex items-center gap-3">
-                  <h3 class="text-lg font-bold text-white group-hover:text-purple-300 transition">
-                    {item.name}
-                  </h3>
-                  <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
-                    {item.badge}
+        <!-- 右侧：5 个关键方向专栏卡片 (7 Cols) -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          {tutorials.map((t, idx) => (
+            <a href={t.href}
+               class={`group flex flex-col justify-between p-5 rounded-2xl border border-gray-200/80 bg-white card-lift card-glow ${idx === 4 ? 'sm:col-span-2' : ''}`}>
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class={`text-[11px] font-bold px-2.5 py-0.5 rounded-full ${t.color}`}>
+                    {t.tag}
                   </span>
+                  <span class="text-[11px] text-gray-400 font-medium">{t.time}</span>
                 </div>
-                <span class="text-xs font-bold text-purple-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  查看深度对比报告 →
-                </span>
+                <h4 class="text-sm sm:text-[15px] font-bold text-gray-900 group-hover:text-[#116DFF] transition-colors leading-snug">
+                  {t.title}
+                </h4>
               </div>
-              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs leading-relaxed">
-                <div class="p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-200">
-                  <span class="text-emerald-400 font-bold mb-1 flex items-center gap-1.5">
-                    <Icon name="check" class="w-3.5 h-3.5" />
-                    <span>Wix 核心优势：</span>
-                  </span>
-                  {item.wixAdv}
-                </div>
-                <div class="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 text-slate-300">
-                  <span class="text-slate-400 font-bold block mb-1">• 竞品核心侧重点：</span>
-                  {item.otherAdv}
-                </div>
+
+              <div class="pt-3 mt-3 border-t border-gray-100/70 flex items-center justify-between text-xs text-gray-400 group-hover:text-[#116DFF]">
+                <span class="font-medium">专栏解读</span>
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
               </div>
             </a>
           ))}
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Section 5: Wix Partner Legend Certification Authority -->
-  <section class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="rounded-3xl p-8 sm:p-14 border border-purple-200/90 bg-gradient-to-br from-purple-100/60 via-white to-blue-100/50 relative overflow-hidden shadow-2xl shadow-purple-500/10">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
-        <div class="lg:col-span-8 space-y-5">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-200/60 text-[#6D28D9] text-xs font-black border border-purple-300/80">
-            OFFICIAL CERTIFIED PARTNER
-          </div>
-          <h2 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight">
-            Wix 官方最高级 Legend 认证合作伙伴
-          </h2>
-          <p class="text-base text-slate-600 leading-relaxed max-w-2xl">
-            wixstudio.cn 不只是教程分享者，更是拥有丰富实战交付经验的专业团队。依托 Wix Studio 尖端流体引擎与 Velo 动态架构，为中国出海企业与品牌商量身打造高水准官网与外贸独立站。
-          </p>
 
-          <!-- Delivery Metrics Chips -->
-          <div class="grid grid-cols-3 gap-3 max-w-lg pt-1">
-            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
-              <div class="text-xl font-black text-purple-700">100%</div>
-              <div class="text-[11px] text-slate-500 font-medium">响应式适配</div>
-            </div>
-            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
-              <div class="text-xl font-black text-purple-700">5-10天</div>
-              <div class="text-[11px] text-slate-500 font-medium">极速周期交付</div>
-            </div>
-            <div class="p-3 rounded-2xl bg-white/80 border border-purple-200/80 text-center shadow-xs">
-              <div class="text-xl font-black text-purple-700">7x24</div>
-              <div class="text-[11px] text-slate-500 font-medium">售后运维保障</div>
-            </div>
-          </div>
+  <!-- ══════════════════════════════════════════
+       SECTION 4: 2026 主流建站平台深度横评速览
+       ══════════════════════════════════════════ -->
+  <section class="bg-gray-50/70 border-t border-gray-200/80 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div class="pt-3 flex flex-wrap gap-4">
-            <a
-              href="/contact/"
-              class="btn-vibrant-glow inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 transition"
-            >
-              委托我们建站咨询
-            </a>
-            <a
-              href="/studio/"
-              class="inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 shadow-md shadow-slate-200/50 transition"
-            >
-              深入了解 Wix Studio
-            </a>
+      <div class="animate-on-scroll flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#116DFF] mb-1">
+            <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+            PLATFORM COMPARISONS 2026
           </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">主流建站平台客观横评</h2>
         </div>
-
-        <div class="lg:col-span-4 flex justify-center lg:justify-end">
-          <div class="relative group">
-            <div class="absolute inset-0 rounded-full bg-purple-400 blur-2xl opacity-40 group-hover:opacity-70 transition duration-300"></div>
-            <img
-              src="/assets/badges/wix-partner-legend-400.png"
-              alt="Wix Partner Legend 认证徽章"
-              width="210"
-              height="210"
-              class="relative rounded-full shadow-2xl shadow-purple-950/30 hover:scale-105 transition"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 6: FAQs -->
-  <section class="py-20 bg-slate-50 border-t border-slate-200">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-14 space-y-2">
-        <div class="inline-block text-xs font-black uppercase tracking-widest text-[#6D28D9] px-4 py-1.5 rounded-full bg-purple-100/70 border border-purple-200">
-          FAQS 常见问题
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900">关于 Wix Studio 的常见解答</h2>
+        <a href="/compare/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#116DFF] hover:underline">
+          <span>查看全部横评报告</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
       </div>
 
-      <div class="space-y-4">
-        {faqs.map((faq) => (
-          <div class="premium-card p-6 border border-slate-200">
-            <h3 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2.5">
-              <span class="w-6 h-6 rounded-full bg-purple-100 text-[#6D28D9] flex items-center justify-center text-xs font-black shrink-0">问</span>
-              <span>{faq.q}</span>
-            </h3>
-            <p class="text-sm text-slate-600 leading-relaxed pl-8.5">{faq.a}</p>
-          </div>
+      <!-- 3列横评特色卡片 -->
+      <div class="animate-on-scroll grid grid-cols-1 md:grid-cols-3 gap-5">
+        {comparisonCards.map((c) => (
+          <a href={c.href}
+             class="group rounded-3xl bg-white border border-gray-200/90 p-7 flex flex-col justify-between card-lift card-glow relative overflow-hidden">
+            <div class={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${c.accent} rounded-bl-full pointer-events-none`}></div>
+
+            <div class="space-y-4 relative z-10">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-[#116DFF] border border-blue-100">
+                  {c.badge}
+                </span>
+                <span class="text-xs font-black text-gray-400">综合得分 <span class="text-gray-900">{c.score}</span></span>
+              </div>
+
+              <div>
+                <div class="text-xs font-bold text-gray-400 uppercase tracking-wider">{c.tag}</div>
+                <h3 class="text-xl font-bold text-gray-900 group-hover:text-[#116DFF] transition-colors mt-1">
+                  {c.title}
+                </h3>
+              </div>
+
+              <p class="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                {c.desc}
+              </p>
+            </div>
+
+            <div class="pt-5 mt-6 border-t border-gray-100 flex items-center justify-between relative z-10">
+              <span class="text-xs font-bold text-[#116DFF] group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                阅读 2026 深度横评报告
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+                </svg>
+              </span>
+              <span class="text-xs text-gray-300 font-mono">VS</span>
+            </div>
+          </a>
         ))}
       </div>
+
     </div>
   </section>
 
-  <!-- Section 7: Final CTA -->
-  <section class="py-24 relative overflow-hidden text-center bg-white border-t border-slate-200">
-    <div class="hero-aurora opacity-70"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4 space-y-6">
-      <h2 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-        准备好开始打造您的<br />
-        <span class="text-gradient-purple">国际水准网站了吗？</span>
-      </h2>
-      <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto">
-        无论您是希望通过我们的教程自学掌握 Wix Studio，还是需要由官方认证专家为您代劳定制，我们都在这里。
-      </p>
-      <div class="flex flex-wrap justify-center gap-4 pt-2">
-        <a
-          href="/tutorials/"
-          class="btn-vibrant-glow inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-white bg-gradient-to-r from-[#6D28D9] to-[#2563EB] shadow-xl shadow-purple-600/25 transition"
-        >
-          查看全部教程体系
+
+  <!-- ══════════════════════════════════════════
+       SECTION 5: 官方博客与前沿动态 (3 Cards)
+       ══════════════════════════════════════════ -->
+  <section class="bg-white border-t border-gray-100 py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="animate-on-scroll flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#116DFF] mb-1">
+            <span class="w-2 h-2 rounded-full bg-[#116DFF]"></span>
+            BLOG & INSIGHTS
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">建站实战与生态观察</h2>
+        </div>
+        <a href="/blog/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#116DFF] hover:underline">
+          <span>进入博客专区</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
         </a>
-        <a
-          href="/contact/"
-          class="inline-flex items-center px-8 py-4 rounded-full text-base font-bold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 shadow-md shadow-slate-200/50 transition"
-        >
-          委托建站咨询 →
-        </a>
+      </div>
+
+      <div class="animate-on-scroll grid grid-cols-1 md:grid-cols-3 gap-6">
+        {posts.map((p) => (
+          <a href={p.href}
+             class="group rounded-3xl bg-white border border-gray-200/90 overflow-hidden card-lift card-glow flex flex-col justify-between">
+            <!-- 封面图 (全宽贴边无间隙) -->
+            <div class="relative h-52 bg-slate-100 overflow-hidden border-b border-gray-100">
+              <img
+                src={p.image}
+                alt={p.title}
+                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4 z-10">
+                <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-white/95 text-[#116DFF] border border-gray-200/70 backdrop-blur-xs shadow-xs">
+                  {p.category}
+                </span>
+              </div>
+            </div>
+
+            <!-- 卡片文本 -->
+            <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="text-[11px] text-gray-400 font-mono mb-2 flex items-center justify-between">
+                  <span>{p.date}</span>
+                  <span>{p.readTime}</span>
+                </div>
+                <h3 class="text-base sm:text-lg font-bold text-gray-900 group-hover:text-[#116DFF] transition-colors leading-snug line-clamp-2">
+                  {p.title}
+                </h3>
+              </div>
+            </div>
+
+            <div class="px-6 pb-6 pt-2 flex items-center justify-between text-xs text-[#116DFF] font-semibold border-t border-gray-100">
+              <span>阅读全文解读</span>
+              <svg class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════
+       SECTION 6: CTA BANNER (深蓝极具质感转化)
+       ══════════════════════════════════════════ -->
+  <section class="bg-gray-50/70 py-12 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="animate-on-scroll relative rounded-3xl overflow-hidden bg-gradient-to-r from-[#0C0C0E] via-[#0F172A] to-[#111827] p-8 sm:p-12 shadow-xl shadow-black/5">
+        <!-- 装饰渐变光 -->
+        <div class="absolute top-0 right-0 w-80 h-80 rounded-full pointer-events-none opacity-40"
+             style="background: radial-gradient(circle, rgba(17,109,255,0.3) 0%, transparent 70%);"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-400 text-xs font-semibold border border-white/10">
+              <svg class="w-3.5 h-3.5 fill-amber-400" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <span>Wix 官方认证最高级 Legend 级建站伙伴</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              需要经验丰富的团队帮您打造专业出海独立站？
+            </h2>
+            <p class="text-sm sm:text-base text-white/50 leading-relaxed">
+              从外贸 B2B 品牌出海、响应式视觉设计到深度 Velo 定制开发，我们协助数百家企业完成了高水准商业站交付。
+            </p>
+          </div>
+
+          <div class="shrink-0 flex flex-col sm:flex-row gap-3.5">
+            <a href="/contact/"
+               class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-[#0C0C0E] bg-white hover:bg-gray-100 shadow-lg active:scale-95 transition-all">
+              <span>预约免费项目评估</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </a>
+            <a href="/studio/"
+               class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-sm font-semibold text-white border border-white/20 hover:bg-white/10 active:scale-95 transition-all">
+              <span>深入了解 Wix Studio</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+
+
+  <!-- 返回顶部按钮 -->
+  <button id="scroll-top" class="scroll-top-btn" aria-label="返回顶部">
+    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
 </BaseLayout>
+
+<script>
+  // 滚动触发入场动画
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+  // 返回顶部交互
+  const scrollBtn = document.getElementById('scroll-top');
+  if (scrollBtn) {
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('is-visible', window.scrollY > 400);
+    }, { passive: true });
+
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const chapters = [
+  {
+    order: '01',
+    title: 'Velo 入门完全实战：从 $w 元素选择器到页面数据动态绑定',
+    desc: '开启开发人员模式（Dev Mode），掌握 $w.onReady 生命周期、事件监听与原生 JavaScript 逻辑控制。',
+    href: '/tutorials/velo/getting-started-velo/',
+    readTime: '14 分钟',
+    tag: 'JS 编程基础',
+  },
+  {
+    order: '02',
+    title: 'Wix Studio CMS 动态数据库实战：构建多对多关系型内容页面',
+    desc: '集合（Collections）创建、引用字段（Reference Fields）、动态页面路由模板与前端免代码过滤排序。',
+    href: '/tutorials/velo/cms-database/',
+    readTime: '16 分钟',
+    tag: 'CMS 与数据库',
+  },
+  {
+    order: '03',
+    title: 'Velo 后端 Web 模块（.web.js）实战：前后端解耦与外部 API 安全调用',
+    desc: '对标 Wix 官方开发文档：在 backend/*.web.js 中封装服务端代码，利用 wix-secrets-backend 保护敏感密钥与鉴权令牌。',
+    href: '/tutorials/velo/backend-web-modules/',
+    readTime: '13 分钟',
+    tag: '后端安全架构',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix Studio Velo 全栈开发专栏 | JavaScript 代码扩展与动态 CMS - wixstudio.cn"
+  description="面向前端工程师与进阶建站者的 Wix Studio Velo 教程。掌握全栈 JS 编写、CMS 无服务器数据库、自定义 API 对接与企业级动态网站开发。"
+  keywords="Wix Velo, Wix Studio 代码开发, Wix JavaScript, Wix CMS, Wix 动态页面, Velo 教程"
+>
+  <!-- Track Hero Header -->
+  <section class="relative py-16 sm:py-20 overflow-hidden text-center bg-gradient-to-b from-emerald-50/60 via-white to-white border-b border-gray-150">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 space-y-4">
+      <nav class="flex justify-center items-center gap-2 text-xs text-slate-500 mb-2">
+        <a href="/" class="hover:text-slate-900 transition">首页</a>
+        <span>/</span>
+        <a href="/tutorials/" class="hover:text-slate-900 transition">教程中心</a>
+        <span>/</span>
+        <span class="text-slate-900 font-medium">Velo 全栈开发</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
+        <Icon name="code" class="w-3.5 h-3.5" />
+        <span>VELO DEV TRACK / Velo 全栈开发</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+        Wix Studio <span class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Velo 全栈代码开发专栏</span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        告别无代码工具的边界限制。编写原生 JavaScript，掌控无服务器后端、CMS 数据库与任意第三方 API。
+      </p>
+    </div>
+  </section>
+
+  <!-- Track Chapters List -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-6">
+    <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+      <div class="text-sm font-bold text-slate-900">专栏章节列表</div>
+      <div class="text-xs text-slate-500">累计深度阅读约 40 分钟</div>
+    </div>
+
+    <div class="space-y-4">
+      {chapters.map((item) => (
+        <a
+          href={item.href}
+          class="block p-6 sm:p-7 rounded-2xl bg-white border border-slate-200 hover:border-emerald-300 hover:shadow-lg hover:shadow-emerald-500/5 transition group"
+        >
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 font-black text-sm flex items-center justify-center shrink-0 border border-emerald-200/60 group-hover:bg-emerald-600 group-hover:text-white transition">
+                {item.order}
+              </span>
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                    {item.tag}
+                  </span>
+                  <span class="text-[11px] text-slate-400">阅读约 {item.readTime}</span>
+                </div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">
+                  {item.title}
+                </h2>
+                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed max-w-3xl">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 text-xs font-bold text-emerald-600 shrink-0 self-end sm:self-center">
+              <span>阅读长文</span>
+              <Icon name="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition" />
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,162 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'global-css-panel', title: '开启全局 CSS 面板与类名体系' },
+  { id: 'design-tokens', title: '设计令牌（Design Tokens）与 CSS 变量' },
+  { id: 'pseudo-classes', title: '高级伪类与复杂关键帧动画（@keyframes）' },
+  { id: 'custom-css-benefits', title: '团队组件库工程化复用价值' },
+  { id: 'css-best-practices', title: 'Wix Studio 原生 CSS 规范与避坑原则' },
+];
+---
+
+<ArticleLayout
+  title="Wix Studio 开放平台深度探索：自定义原生 CSS 与全局设计令牌（Design Tokens）"
+  description="Wix Studio 现代前端开放能力全景。编写原生 Global CSS、利用 Design Tokens CSS 变量实现全站样式联动，解锁专业前端开发自由度。"
+  keywords="Wix Studio CSS, 自定义 CSS, Design Tokens, CSS 变量, 网页样式代码, 前端开发, 全局样式表"
+  category="技术进阶"
+  categorySlug="/blog/"
+  readTime="12 分钟"
+  publishDate="2026-09-20"
+  heroImage="/assets/images/tutorial-featured-cover.jpg"
+  prevArticle={{
+    title: "中国大陆访问 Wix 速度优化实践：智能 DNS 解析与多节点边缘 CDN 加速实测",
+    href: "/blog/china-speed-cdn-optimization/",
+  }}
+  nextArticle={{
+    title: "Headless Wix 架构实战：用 React / Next.js 调用 Wix 商业核心能力",
+    href: "/blog/headless-wix-developer-guide/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-indigo-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-indigo-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      传统无代码工具最受专业前端诟病的一点，就是“样式封闭死板、无法手写代码控制细微层级”。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      Wix Studio 打破了这一边界：<strong>原生内置全局 CSS 样式表（global.css）与自定义类名挂载体系</strong>。前端工程师可以直接编写高级伪类（<code>:hover</code>、<code>:focus-visible</code>、<code>:has()</code>）、复杂的 <code>@keyframes</code> 动画微质感，并通过与平台视觉面板双向绑定的 <strong>Design Tokens（CSS 变量）</strong> 实现全站主题色与排版比例的一键动态刷新。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-bento-layout.jpg"
+      alt="Wix Studio 原生 CSS 布局与 Design Tokens 便捷控制"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：通过全局 CSS 与设计令牌（Tokens）实现的现代 Bento 响应式网格布局
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="global-css-panel" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>1. 开启全局 CSS 面板与类名体系</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在 Wix Studio 编辑器底部开启“开发人员模式（Dev Mode）”，左侧代码资源目录中将自动生成 <code>src/styles/global.css</code>。您可以像在 VS Code 中一样编写标准 CSS：
+    </p>
+    <div class="bg-[#0C0C0E] text-white p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-2 border border-slate-800">
+      <div class="text-indigo-400">/* 定义高品质毛玻璃卡片与发光边框 */</div>
+      <div>.glass-card &#123;</div>
+      <div class="pl-4">backdrop-filter: blur(16px);</div>
+      <div class="pl-4">-webkit-backdrop-filter: blur(16px);</div>
+      <div class="pl-4">background: rgba(255, 255, 255, 0.05);</div>
+      <div class="pl-4">border: 1px solid rgba(255, 255, 255, 0.12);</div>
+      <div class="pl-4">box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.2);</div>
+      <div class="pl-4">transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;</div>
+      <div>&#125;</div>
+      <div class="text-indigo-400 pt-2">/* 鼠标悬停高级上浮质感 */</div>
+      <div>.glass-card:hover &#123;</div>
+      <div class="pl-4">transform: translateY(-4px) scale(1.01);</div>
+      <div class="pl-4">border-color: var(--color-brand-primary);</div>
+      <div class="pl-4">box-shadow: 0 25px 50px -12px rgba(17, 109, 255, 0.25);</div>
+      <div>&#125;</div>
+    </div>
+    <p class="text-xs text-slate-500">
+      编写完成后，点击画布上的任意元素，在右侧检查器属性面板中输入类名 <code>glass-card</code>，即可实时渲染该样式。
+    </p>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="design-tokens" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>2. 设计令牌（Design Tokens）与 CSS 变量</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      Wix Studio 将整个站点的调色盘、排版字号和圆角映射为符合 W3C 标准的原生 CSS 自定义属性（CSS Variables）：
+    </p>
+    <div class="bg-slate-900 text-slate-100 p-5 rounded-2xl font-mono text-xs overflow-x-auto space-y-1">
+      <div class="text-indigo-400">// 系统内置标准设计令牌变量示例</div>
+      <div>:root &#123;</div>
+      <div class="pl-4 text-emerald-400">--color-brand-primary: #116DFF; /* 主品牌色 */</div>
+      <div class="pl-4 text-emerald-400">--color-brand-secondary: #7C5CFC; /* 辅品牌色 */</div>
+      <div class="pl-4 text-emerald-400">--font-heading: 'Noto Sans SC', sans-serif; /* 标题字体 */</div>
+      <div class="pl-4 text-emerald-400">--radius-card: 16px; /* 卡片统一圆角 */</div>
+      <div class="pl-4 text-emerald-400">--spacing-gutter: clamp(16px, 3vw, 40px); /* 流体间距 */</div>
+      <div>&#125;</div>
+    </div>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      这意味着：当非技术的甲方客户在可视化“网站样式面板”中修改了主色调时，代码中所有引用 <code>var(--color-brand-primary)</code> 的手写 CSS 类会自动同步更新，既保障了工程师的代码自由度，又保留了可视化的便捷性。
+    </p>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="pseudo-classes" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>3. 高级伪类与复杂关键帧动画（@keyframes）</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      许多在可视化界面难以点选配置的交互，通过原生 CSS 可以一行搞定：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-1">
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="font-bold text-indigo-700">无限平滑跑马灯（Marquee）</div>
+        <p class="text-slate-600 leading-relaxed">编写 <code>@keyframes marquee &#123; 0% &#123; transform: translateX(0); &#125; 100% &#123; transform: translateX(-50%); &#125; &#125;</code>，实现合作伙伴 Logo 墙的丝滑无缝滚动。</p>
+      </div>
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
+        <div class="font-bold text-indigo-700">光泽掠过微动效（Shimmer Effect）</div>
+        <p class="text-slate-600 leading-relaxed">通过 <code>::after</code> 伪元素配合线性渐变与倾斜位移，为重点 CTA 按钮添加高级金融级流光质感。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="custom-css-benefits" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>4. 团队组件库工程化复用价值</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      对于管理数十个客户站点的开发团队，您可以将经过严格测试的 CSS 类名打包为专属样式库，并在多个 Wix Studio 项目间一键导入导出，使团队在交付高要求定制项目时的速度提升 3 倍以上。
+    </p>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="css-best-practices" class="space-y-4 pt-4 border-t border-slate-150">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-indigo-600 rounded-full inline-block"></span>
+      <span>5. Wix Studio 原生 CSS 规范与避坑原则</span>
+    </h2>
+    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <ul class="space-y-2 list-disc pl-4">
+        <li><strong>不要强行覆盖定位属性：</strong> 尽量避免使用 <code>position: absolute !important</code> 粗暴覆盖平台的流体引擎，应优先依赖 Studio 内置的 9 点 Docking 停靠与 Grid 栅格；</li>
+        <li><strong>优先使用 clamp() 计算流体字号：</strong> 例如 <code>font-size: clamp(1rem, 2vw + 0.5rem, 2.5rem);</code>，确保跨设备等比平滑缩放；</li>
+        <li><strong>遵循 BEM 命名规范：</strong> 推荐使用 <code>.c-hero-card__title--featured</code> 等清晰命名前缀，避免与系统内部保留类名产生选择器冲突。</li>
+      </ul>
+    </div>
+  </section>
+</ArticleLayout>

@@ -1,0 +1,182 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import Icon from '../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'plugin-setup', title: '安装与连接 Figma to Studio 官方插件' },
+  { id: 'figma-rules', title: '设计稿规范：Auto Layout 决定成败' },
+  { id: 'conversion-process', title: '一键转换：图层结构到 DOM 元素的映射' },
+  { id: 'responsive-tweak', title: '转换完成后的 10 分钟响应式复查' },
+  { id: 'common-pitfalls', title: '初学者最常犯的 5 大排版转换错误' },
+];
+---
+
+<ArticleLayout
+  title="官方 Figma to Wix Studio 插件工作流：如何一键将设计稿无损转换为响应式网页"
+  description="Wix 官方 Figma 插件深度测评与工作流指南。规范 Figma Auto Layout 结构，实现一键将设计原型直接转换为高保真、可交互的流体响应式网站。"
+  keywords="Figma to Wix Studio, Figma 插件, 设计稿转代码, 响应式设计, 网页切图自动化, Auto Layout 转网页"
+  category="设计前沿"
+  categorySlug="/blog/"
+  readTime="11 分钟"
+  publishDate="2026-09-18"
+  heroImage="/assets/images/blog-ai-figma.jpg"
+  prevArticle={{
+    title: "Wix Studio 官方 AI 生产力全面升级：从提示词排版到代码辅助生成的深度剖析",
+    href: "/blog/wix-studio-ai-features/",
+  }}
+  nextArticle={{
+    title: "为什么 90% 的外贸企业官网转化率低下？出海独立站买家信任与询盘避坑指南",
+    href: "/blog/b2b-export-conversion-guide/",
+  }}
+  toc={toc}
+>
+  <!-- 30s Summary -->
+  <section id="summary" class="bg-gradient-to-br from-violet-50/80 via-white to-blue-50/50 p-6 sm:p-8 rounded-2xl border border-violet-200/80 shadow-xs space-y-3">
+    <div class="flex items-center gap-2 text-violet-700 text-xs font-bold uppercase tracking-wider">
+      <Icon name="sparkles" class="w-4 h-4" />
+      <span>30秒核心速览 (Executive Summary)</span>
+    </div>
+    <p class="text-sm sm:text-base text-slate-800 leading-relaxed font-medium">
+      传统建站最大的协作摩擦，在于设计师在 Figma 画好华丽的 UI 原型，交付给前端时往往被还原得面目全非，或切图耗费数周时间。
+    </p>
+    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+      Wix 官方推出的 <strong>Figma to Studio 插件</strong>彻底重塑了这一工作流：只要在 Figma 中严格使用 Auto Layout 规范组织图层，点击复制并在 Studio 画布中一键粘贴，插件能自动将 Figma Frame 映射为 Studio 的 Stack/Grid，将矢量图标转为纯净 SVG，将文字段落转为流体排版，<strong>10 秒内即可完成高保真网页重建</strong>，节省 80% 的前端切图工时。
+    </p>
+  </section>
+
+  <!-- Illustration Figure -->
+  <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-slate-50">
+    <img
+      src="/assets/images/blog-ai-figma.jpg"
+      alt="Figma 自动布局设计稿与 Wix Studio 流体引擎无缝转换工作流"
+      class="w-full h-auto object-cover max-h-[380px]"
+      loading="lazy"
+    />
+    <figcaption class="p-3 text-center text-xs text-slate-500 bg-white border-t border-slate-150">
+      图 1：从 Figma 矢量画板（Auto Layout）到 Wix Studio 响应式流体页面的无损映射转换
+    </figcaption>
+  </figure>
+
+  <!-- Section 1 -->
+  <section id="plugin-setup" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>1. 安装与连接 Figma to Studio 官方插件</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      在 Figma Community（社区）搜索“<strong>Wix Studio</strong>”，安装官方认证的正式插件：
+    </p>
+    <ol class="list-decimal list-inside space-y-2 text-xs sm:text-sm text-slate-700">
+      <li>在 Figma 画布中选中目标设计稿的顶层 Frame 容器；</li>
+      <li>右键菜单选择 Plugins -&gt; Wix Studio，插件会自动在后台校验图层是否符合网页规范；</li>
+      <li>点击插件面板底部的 <strong>Copy to Wix Studio</strong> 按钮；</li>
+      <li>切换到 Wix Studio 编辑器页面，选中目标 Section，按下 <code>Cmd + V</code>（Mac）或 <code>Ctrl + V</code>（Windows）即可完成粘贴。</li>
+    </ol>
+  </section>
+
+  <!-- Section 2 -->
+  <section id="figma-rules" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>2. 设计稿规范：Auto Layout 决定成败</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      很多设计师尝试粘贴后发现排版变形，核心原因在于<strong>没有使用规范的 Figma 自动布局（Auto Layout）</strong>：
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm pt-1">
+      <div class="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+        <div class="font-bold text-emerald-800">推荐规范（正确做法）</div>
+        <ul class="space-y-1.5 text-slate-700">
+          <li>• 所有内容块均包裹在 <strong>Auto Layout（Shift + A）</strong> 框架内；</li>
+          <li>• 明确指定宽度的拉伸模式：横向使用 <code>Fill container</code>，固定元素使用 <code>Fixed</code>；</li>
+          <li>• 复杂网格使用嵌套 Frame 模拟 CSS Grid 行与列。</li>
+        </ul>
+      </div>
+      <div class="p-4 rounded-xl bg-rose-50/60 border border-rose-200 space-y-2">
+        <div class="font-bold text-rose-800">致命错误（导致错乱）</div>
+        <ul class="space-y-1.5 text-slate-700">
+          <li>• 使用普通的 Group（组）直接包裹松散元素；</li>
+          <li>• 包含隐藏图层或未闭合的多边形路径；</li>
+          <li>• 文本框使用非标准的绝对定位坐标堆叠。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section id="conversion-process" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>3. 一键转换：图层结构到 DOM 元素的映射</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      官方插件在转换时，遵循严格的现代前端语义化规则：
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+        <thead class="bg-slate-50 text-slate-800 font-bold border-b border-slate-200">
+          <tr>
+            <th class="p-3">Figma 原生元素</th>
+            <th class="p-3 text-violet-700">Wix Studio 映射组件</th>
+            <th class="p-3">前端生成结果</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-150 text-slate-700">
+          <tr>
+            <td class="p-3">水平 / 垂直 Auto Layout</td>
+            <td class="p-3 text-violet-700 font-medium">Stack（智能堆叠）</td>
+            <td class="p-3">原生 CSS Flexbox 容器</td>
+          </tr>
+          <tr>
+            <td class="p-3">多列自适应卡片组</td>
+            <td class="p-3 text-violet-700 font-medium">CSS Grid 网格</td>
+            <td class="p-3">具备 fr 比例的二维栅格</td>
+          </tr>
+          <tr>
+            <td class="p-3">矢量图形与钢笔路径</td>
+            <td class="p-3 text-violet-700 font-medium">Vector Art（矢量图形）</td>
+            <td class="p-3">纯净轻量的内嵌 SVG 代码</td>
+          </tr>
+          <tr>
+            <td class="p-3">带圆角与投影的卡片</td>
+            <td class="p-3 text-violet-700 font-medium">Container（带样式容器）</td>
+            <td class="p-3">box-shadow 与 border-radius</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section 4 -->
+  <section id="responsive-tweak" class="space-y-4">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>4. 转换完成后的 10 分钟响应式复查</span>
+    </h2>
+    <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+      粘贴进 Studio 后，建议按照以下顺序快速检查：
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-xs sm:text-sm text-slate-700">
+      <li><strong>开启等比缩放（Scale Proportionally）：</strong> 确保容器在不同宽度显示器上等比拉伸；</li>
+      <li><strong>移动端断点适配：</strong> 点击上方手机端图标，检查横向排列的卡片是否需要一键转为垂直纵向流（Vertical Stack）；</li>
+      <li><strong>图片填充模式：</strong> 检查大图背景是否设置为 <code>Cover（自适应覆盖）</code>，避免移动端拉伸变形。</li>
+    </ul>
+  </section>
+
+  <!-- Section 5 -->
+  <section id="common-pitfalls" class="space-y-4 pt-4 border-t border-slate-150">
+    <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
+      <span class="w-2 h-6 bg-violet-600 rounded-full inline-block"></span>
+      <span>5. 初学者最常犯的 5 大排版转换错误</span>
+    </h2>
+    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 text-xs sm:text-sm text-slate-700 space-y-2">
+      <ul class="space-y-2 list-disc pl-4">
+        <li><strong>忘设字体回退：</strong> 使用了罕见的收费本地字体而未嵌入 WebFont，导致网页端显示为系统默认宋体；</li>
+        <li><strong>未做文本框自适应：</strong> 文字层固定了硬编码高度（Fixed height），在多语言翻译文本变长时产生文字截断；</li>
+        <li><strong>图标未合并不规则图层：</strong> 多个小路径未执行 Union 联合，导致转换出若干个零散的 SVG 小碎片；</li>
+        <li><strong>过多无意义的嵌套层级：</strong> 超过 6 层嵌套会增加渲染计算开销，建议合理扁平化图层。</li>
+      </ul>
+    </div>
+  </section>
+</ArticleLayout>

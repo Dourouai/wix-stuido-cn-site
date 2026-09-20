@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Icon from '../../../components/Icon.astro';
+
+const toc = [
+  { id: 'summary', title: '30秒核心速览' },
+  { id: 'matrix', title: '核心多维参数对比表' },
+  { id: 'architecture', title: '云端全托管 vs 开源自托管' },
+  { id: 'tco-cost', title: '真实持有成本（TCO）核算' },
+  { id: 'security-maintenance', title: '安全防黑与运维灾难对比' },
+  { id: 'editing-performance', title: '排版体验与页面性能深度分析' },
+  { id: 'multilingual-business', title: '多语言出海与商业功能整合' },
+  { id: 'verdict', title: '选型决策树与最终结论' },
+];
+
+const tableRows = [
+  {
+    dimension: '产品形态与架构',
+    wix: '现代化云端 SaaS 全托管架构（多区域 AWS / Google Cloud 基础设施）',
+    wp: '开源软件（需自备 Linux 主机、配置 Nginx/Apache/PHP/MySQL 环境）',
+    winner: 'Wix 胜（开箱即用免安装）',
+  },
+  {
+    dimension: '安全与漏洞防黑',
+    wix: '官方统一安全审计与沙盒隔离，符合 SOC 2 Type II 与 PCI-DSS Level 1',
+    wp: '全球黑客攻击重灾区，第三方插件与主题常年曝出 SQL 注入与挂马后门',
+    winner: 'Wix 绝对胜出（安全零事故）',
+  },
+  {
+    dimension: '运维与系统升级',
+    wix: '零运维，底层系统、安全补丁、全球 CDN 无感自动静默升级',
+    wp: '需手动频繁备份、更新核心与几十款插件，经常因版本冲突导致网站白屏',
+    winner: 'Wix 胜（年均节省数百工时）',
+  },
+  {
+    dimension: '视觉排版与编辑体验',
+    wix: '独创流体排版（Fluid Engine）、9点停靠、CSS Grid，无代码精准对齐',
+    wp: '原生古腾堡编辑器排版能力弱；若用 Elementor/Divi 则导致代码极度臃肿',
+    winner: 'Wix 胜（纯净现代渲染）',
+  },
+  {
+    dimension: '页面加载与性能分数',
+    wix: '自动 WebP/AVIF 图片无损转换、边缘 CDN 节点缓存，稳定保障高分',
+    wp: '需配置复杂缓存插件（WP Rocket / Redis）、优化数据库，否则极易卡顿',
+    winner: 'Wix 胜（省心稳定）',
+  },
+  {
+    dimension: '多语言与出海本地化',
+    wix: '原生内置多语言本地化 URL Slug、多币种切换、自动多语言站点地图',
+    wp: '需购买 WPML 或 Polylang 付费插件，配置极其沉重且极易拖慢后台响应',
+    winner: 'Wix 胜（原生流畅集成）',
+  },
+  {
+    dimension: '综合拥有成本 (TCO)',
+    wix: '透明年费订阅一价全包（含主机、安全、CDN、全套商业应用）',
+    wp: '服务器费 + 商业插件年费 + 域名安全证书 + 专职技术运维工时，隐性成本极高',
+    winner: 'Wix 胜（每年节省数万元）',
+  },
+  {
+    dimension: '源码自主权与本地部署',
+    wix: '闭环 SaaS 云端托管，不支持直接导出原始 PHP 后端代码',
+    wp: '100% 掌握底层开源源码与 MySQL 数据库，支持内网私有化部署',
+    winner: 'WordPress 胜（纯私有化场景）',
+  },
+];
+---
+
+<BaseLayout
+  title="Wix vs WordPress 深度对比（2026）：闭源SaaS vs 开源CMS终极选型 - wixstudio.cn"
+  description="2026年最新 Wix 与 WordPress 客观横评。从隐性持有成本（TCO）、安全性防黑灾难、页面加载性能、流体排版自由度到运维心智负担，助企业做出最稳妥理性的建站决策。"
+  keywords="Wix vs WordPress, Wix 和 WordPress 哪个好, WordPress 对比 Wix 2026, 外贸建站选择, CMS建站对比, WordPress 安全漏洞"
+  type="article"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-xs text-gray-500 mb-8">
+      <a href="/" class="hover:text-gray-900 transition">首页</a>
+      <span>›</span>
+      <a href="/compare/" class="hover:text-gray-900 transition">平台横评</a>
+      <span>›</span>
+      <span class="text-[#116DFF] font-medium">Wix vs WordPress (2026)</span>
+    </nav>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Left Sidebar TOC -->
+      <aside class="hidden lg:block lg:col-span-3 sticky top-28 space-y-6">
+        <div class="bg-white rounded-2xl p-5 border border-gray-200/90 shadow-xs space-y-3">
+          <div class="text-[11px] font-bold uppercase tracking-wider text-gray-400">目录 CONTENTS</div>
+          <nav class="space-y-1.5 text-xs">
+            {toc.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="block py-1.5 text-gray-600 hover:text-[#116DFF] transition border-l-2 border-transparent hover:border-[#116DFF] pl-2.5 font-medium"
+              >
+                {item.title}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div class="rounded-2xl p-5 border border-blue-100 bg-gradient-to-br from-blue-50/60 to-white shadow-xs space-y-3">
+          <div class="flex items-center gap-3">
+            <img
+              src="/assets/badges/wix-partner-legend-200.png"
+              alt="Wix Partner Legend"
+              width="46"
+              height="46"
+              class="rounded-full shrink-0 shadow-sm"
+            />
+            <div>
+              <div class="text-[11px] font-bold text-[#116DFF]">Wix Partner Legend</div>
+              <div class="text-xs text-gray-900 font-bold">官方认证资深伙伴</div>
+            </div>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            厌倦了频繁修补 WordPress 漏洞、插件冲突与服务器宕机？我们协助您平滑无缝迁移至 Wix Studio。
+          </p>
+          <a
+            href="/contact/"
+            class="block text-center py-2 px-3 rounded-full text-xs font-semibold text-white bg-[#116DFF] hover:bg-[#0D5FE3] transition shadow-sm"
+          >
+            咨询网站平滑迁移 →
+          </a>
+        </div>
+      </aside>
+
+      <!-- Main Article Content -->
+      <article class="lg:col-span-9 space-y-12 max-w-3xl">
+        <header class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-[#116DFF] text-xs font-semibold border border-blue-100">
+            <span>PLATFORM COMPARISON · 2026 深度横评（Wix 优先视角）</span>
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-tight">
+            Wix vs WordPress 深度横评（2026）：现代化企业 SaaS 对决开源 CMS 终极选型
+          </h1>
+          <p class="text-base text-gray-500 leading-relaxed">
+            是选择全托管、零维护、企业级安全的现代化 SaaS，还是看似免费、实则运维沉重的开源 WordPress？全面拆解两者的真实持有成本与技术风险。
+          </p>
+          <div class="flex items-center gap-4 text-xs text-gray-400 pt-2 border-b border-gray-150 pb-6">
+            <span>发布年份：2026 最新版</span>
+            <span>•</span>
+            <span>阅读时长约 15 分钟</span>
+            <span>•</span>
+            <span>来源：wixstudio.cn</span>
+          </div>
+        </header>
+
+        <!-- Section 1: 30s Quick Verdict -->
+        <section id="summary" class="rounded-3xl p-6 sm:p-8 border border-blue-100 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 space-y-4 shadow-xs">
+          <div class="flex items-center gap-2 text-[#116DFF] text-sm font-bold uppercase tracking-wider">
+            <Icon name="zap" class="w-4 h-4 text-[#116DFF]" />
+            <span>30 秒核心选型结论 (Executive Summary)</span>
+          </div>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-[#116DFF]">坚定首选 Wix（尤其是 Wix Studio）：</strong>
+            如果您希望把 100% 精力放在品牌策划、视觉设计、客户拓客与核心业务上，**绝不想半夜处理服务器宕机、数据库 SQL 注入漏洞、插件版本冲突导致的网站白屏**。Wix 提供的全托管免运维体验，不仅让网站 365 天持续高可用，更能为企业每年省下数万元的技术维护外包与专职程序员开销。
+          </p>
+          <p class="text-sm sm:text-base text-gray-800 leading-relaxed">
+            <strong class="text-gray-900 font-bold text-blue-800">适合选择 WordPress：</strong>
+            如果您的公司拥有**专职的常驻全栈开发与 Linux 运维团队**，因政策监管要求必须将数据库物理私有化部署在自有局域网内，或者需要对底层底层 PHP 代码进行极其冷门的定制化重构。
+          </p>
+        </section>
+
+        <!-- Section 2: Matrix Table -->
+        <section id="matrix" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">核心多维参数对比表 (2026)</h2>
+          <div class="bg-white rounded-2xl overflow-hidden border border-gray-200/90 shadow-xs">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-gray-50 border-b border-gray-200 text-gray-900 font-bold">
+                  <tr>
+                    <th class="p-3.5 min-w-[130px]">对比维度</th>
+                    <th class="p-3.5 min-w-[200px] bg-blue-50/50 text-[#116DFF] font-black border-x border-blue-100">
+                      Wix / Wix Studio
+                    </th>
+                    <th class="p-3.5 min-w-[190px] text-blue-800">WordPress</th>
+                    <th class="p-3.5 min-w-[120px] text-gray-500">胜出方</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-150 text-gray-700">
+                  {tableRows.map((row) => (
+                    <tr class="hover:bg-gray-50/60 transition-colors">
+                      <td class="p-3.5 font-semibold text-gray-900">{row.dimension}</td>
+                      <td class="p-3.5 text-gray-900 font-medium bg-blue-50/20 border-x border-blue-100/60">{row.wix}</td>
+                      <td class="p-3.5 text-gray-600">{row.wp}</td>
+                      <td class="p-3.5 font-bold text-[#116DFF] text-[11px]">{row.winner}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Architecture -->
+        <section id="architecture" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">1. 云端全托管 SaaS vs 开源自托管 CMS：时代的代际演进</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            WordPress 诞生于 2003 年，它所代表的“下载源码、买虚拟主机、上传 FTP、配置 MySQL 数据库”的模式，是二十年前 Web 1.0/2.0 时代的产物。在当时，开源自建站是唯一的出路。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            而进入 2026 年，软件工程的主流已全面演进为 **全托管云端 SaaS 架构（Wix Studio）**。企业不再需要关心 Linux 内核升级、Nginx 负载均衡或数据库索引优化。Wix 背靠全球多区域 AWS / Google Cloud 企业级基建与边缘 CDN，任何一个建站企业都能开箱享有世界 500 强级别的网络吞吐与高可用保障。
+          </p>
+        </section>
+
+        <!-- Section 4: TCO Cost -->
+        <section id="tco-cost" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">2. 真实持有成本（TCO）深度核算：WordPress 的“免费谎言”</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            许多企业常被“WordPress 软件本身免费”所迷惑，但在实际商业运作中，开源站点的隐性成本往往令人震惊：
+          </p>
+
+          <div class="bg-white rounded-2xl p-6 border border-gray-200 space-y-4">
+            <h3 class="text-base font-bold text-gray-900">年度全生命周期综合持有成本对比（TCO）</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left text-xs sm:text-sm">
+                <thead class="bg-gray-50 text-gray-800 font-bold border-b border-gray-200">
+                  <tr>
+                    <th class="p-3">费用科目</th>
+                    <th class="p-3 text-[#116DFF]">Wix 企业方案</th>
+                    <th class="p-3 text-blue-800">WordPress 自托管方案</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-150 text-gray-600">
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">服务器与云托管</td>
+                    <td class="p-3 text-gray-900">已全包在年费中</td>
+                    <td class="p-3 text-red-500">企业级云主机 + 高防 CDN（约 $500 ~ $1,200 / 年）</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">商业插件与主题年费</td>
+                    <td class="p-3 text-emerald-600 font-bold">官方原生全包（$0）</td>
+                    <td class="p-3 text-red-500">Elementor Pro + WPML + WP Rocket + 安全插件（约 $400 ~ $800 / 年）</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">安全防护与 SSL 证书</td>
+                    <td class="p-3 text-emerald-600 font-bold">官方免费赠送与自动续期</td>
+                    <td class="p-3">商业防火墙 WAF + 漏洞扫描备份插件（约 $200 ~ $400 / 年）</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3 font-medium text-gray-900">专职运维与技术外包工时</td>
+                    <td class="p-3 text-emerald-600 font-bold">0 人力维护开销（$0）</td>
+                    <td class="p-3 text-red-600 font-bold">日常插件升级修补排障（外包或专人约 ¥20,000 ~ ¥50,000 / 年）</td>
+                  </tr>
+                  <tr class="bg-blue-50/40 font-bold text-gray-900">
+                    <td class="p-3">年度总综合支出</td>
+                    <td class="p-3 text-[#116DFF] text-base">约 $300 ~ $450 / 年</td>
+                    <td class="p-3 text-red-600 text-base">约 ¥25,000 ~ ¥60,000 / 年</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-xs text-slate-500 italic">
+              * 测算说明：统计显示，85% 的外贸企业在使用 WordPress 1 年后，由于技术人员离职或插件升级导致全站错位崩溃，不得不花费数千到上万元找外部团队重构修复。
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 5: Security & Maintenance -->
+        <section id="security-maintenance" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">3. 安全防黑与运维噩梦：WordPress 最大的致命硬伤</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            根据 Sucuri 全球网络安全年度报告，在全球被黑客入侵、挂马篡改的网站中，**超过 90% 是 WordPress 站点**。其根源在于：
+          </p>
+          <ul class="space-y-2.5 text-sm text-gray-700 list-disc list-inside">
+            <li>
+              <strong>插件供应链污染与后门漏洞：</strong>
+              WordPress 依赖第三方个人或小作坊开发的插件。一旦某个插件停止维护或作者被收购，极易被植入恶意后门代码；
+            </li>
+            <li>
+              <strong>黑产自动化扫描注入：</strong>
+              黑客机器人每天全网扫描 WP 站点的 `/wp-login.php` 与已知漏洞，暴力破解弱口令、篡改前台展示为赌博/非法引流链接，导致 Google 官方直接标红封杀域；
+            </li>
+            <li>
+              <strong>升级白屏死机（White Screen of Death）：</strong>
+              更新 WordPress 核心版本或某个插件时，经常因为 PHP 版本不兼容或第三方依赖冲突，瞬间导致全站瘫痪白屏。
+            </li>
+          </ul>
+          <div class="p-5 rounded-2xl bg-emerald-50/60 border border-emerald-200 space-y-2">
+            <h4 class="text-sm font-bold text-emerald-800">Wix 的企业级闭环安全护城河：</h4>
+            <p class="text-xs sm:text-sm text-emerald-900 leading-relaxed">
+              Wix 采用闭环沙盒托管架构，杜绝任何外部未审计的 PHP 代码执行。全站原生符合国际金融级 **PCI-DSS Level 1** 认证与企业级 **SOC 2 Type II** 审计合规，企业建站者永无被黑客挂马篡改之忧。
+            </p>
+          </div>
+        </section>
+
+        <!-- Section 6: Editing & Performance -->
+        <section id="editing-performance" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">4. 排版体验与页面性能深度分析：Studio 纯净流体 vs Elementor 臃肿 DOM</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            为了在 WordPress 中实现可视化编辑，大部分团队选择安装 **Elementor** 或 **Divi** 等插件。然而，这种“外挂式可视化”带来了严重的性能副作用：
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-5 rounded-2xl bg-blue-50/40 border border-blue-100 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase">Wix Studio 原生流体引擎</div>
+              <h4 class="text-base font-bold text-gray-900">纯净轻量渲染</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                底层采用现代 CSS Grid 与原生 Flexbox，输出纯净的语义化 DOM 结构，无任何多余嵌套；自动生成流体 clamp() 计算规则，跨设备性能得分轻松突破 90+。
+              </p>
+            </div>
+            <div class="p-5 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-red-600 uppercase">WordPress + Elementor 外挂</div>
+              <h4 class="text-base font-bold text-gray-900">严重 DOM 深度膨胀</h4>
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                为了实现一个简单的文字居中，往往生成多达 8~12 层无意义的 `div.elementor-container` 嵌套标签，加载大量臃肿的 JS/CSS 依赖，直接拖垮 Google Core Web Vitals 分数。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 7: Multilingual & Business -->
+        <section id="multilingual-business" class="space-y-4">
+          <h2 class="text-2xl font-bold text-gray-900">5. 多语言出海与商业功能整合</h2>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            在做多语言外贸网站时，WordPress 必须安装 WPML 或 TranslatePress 插件。不仅每年需支付授权费，而且因为会在数据库中成倍复制内容表，往往导致后台操作极其卡顿，且经常因主题更新出现翻译串行、丢失的问题。
+          </p>
+          <p class="text-sm sm:text-base text-gray-600 leading-relaxed">
+            而在 Wix Studio 中，**Wix Multilingual** 是深度写在系统底层的功能。您只需一键添加目标语言，系统自动生成符合 Google 规范的子目录本地化链接，并支持原生多币种汇率切换，整个过程流畅如丝，无需担心数据库崩溃。
+          </p>
+        </section>
+
+        <!-- Section 8: Verdict -->
+        <section id="verdict" class="space-y-4 pt-6 border-t border-gray-150">
+          <h2 class="text-2xl font-bold text-gray-900">最终选型决策树与建议</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-6 rounded-2xl bg-blue-50/60 border border-blue-200 space-y-2">
+              <div class="text-xs font-bold text-[#116DFF] uppercase tracking-wider">坚定选择 Wix 的典型场景</div>
+              <h4 class="text-base font-bold text-gray-900">企业官网、外贸出海、设计机构</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                追求极致的运营效率、要求 99.99% 安全高可用、希望告别一切服务器运维琐事，让团队专注于营销获客的企业。
+              </p>
+            </div>
+            <div class="p-6 rounded-2xl bg-gray-50 border border-gray-200 space-y-2">
+              <div class="text-xs font-bold text-gray-600 uppercase tracking-wider">适合选择 WordPress 的场景</div>
+              <h4 class="text-base font-bold text-gray-900">具备专职技术团队的私有化项目</h4>
+              <p class="text-xs text-gray-600 leading-relaxed">
+                公司拥有专职 PHP 程序员与 Linux 运维工程师，有强监管法律必须私有化物理部署数据库的政企特殊项目。
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+</BaseLayout>
