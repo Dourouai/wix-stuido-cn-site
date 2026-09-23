@@ -167,6 +167,11 @@ export const calculateInternationalShipping = webMethod(
 - **现代图片格式**：自动进行 WebP / AVIF 无损高压缩与懒加载（`loading="lazy"`）。
 - **国内访问保障**：配置优质 DNS 解析（如 Cloudflare / DNSPod），避免国内特定解析污染。
 
+### 4.4 GEO（生成式引擎优化）与程序化 SEO 规范
+- **GEO 引用优化**：采用 Answer-First 倒金字塔语义结构，通过结构化事实与问答语义，提高在 ChatGPT Search、Perplexity、Google AI Overviews 中的引用权重（[深度指南](https://www.wixstudio.cn/blog/generative-engine-optimization-geo-guide/)）。
+- **多区域 Geo-Targeting**：基于子目录架构配合 Hreflang 自动化自指标签与多币种本地信号（[深度指南](https://www.wixstudio.cn/blog/international-geo-targeting-multilingual-seo/)）。
+- **程序化 SEO (pSEO)**：基于 Wix CMS 数据集合结合多层级动态路由模版与自动模式公式，批量拓展千级长尾商业词（[深度指南](https://www.wixstudio.cn/blog/programmatic-seo-wix-cms-guide/)）。
+
 ---
 
 ## 五、官方套餐与商业咨询指南

@@ -5,6 +5,36 @@ import Icon from '../../components/Icon.astro';
 
 const posts = [
   {
+    category: 'SEO 与 GEO',
+    title: 'GEO（生成式引擎优化）完全实战：让独立站在 ChatGPT、Perplexity 与 Google AI 中被优先引用',
+    date: '2026-09-24',
+    readTime: '12 分钟',
+    desc: '深入解析 Generative Engine Optimization（GEO）底层逻辑，配合 Wix 官方 AI Visibility 监控、Answer-First 倒金字塔架构与 llms.txt 规范，抢占大模型引荐流量高地。',
+    href: '/blog/generative-engine-optimization-geo-guide/',
+    badgeColor: 'bg-indigo-50 text-[#6D28D9] border-indigo-100',
+    coverImage: '/assets/images/blog-ai-automation.jpg',
+  },
+  {
+    category: 'SEO 与 GEO',
+    title: '外贸出海多语言多区域 GEO-Targeting 架构：Hreflang、独立子目录与本地化排名实操',
+    date: '2026-09-24',
+    readTime: '11 分钟',
+    desc: '深度拆解 Wix Studio 多语言与地理位置定位（Geo-Targeting）架构，攻克 Hreflang 自动化映射、多币种结账、本地化 Schema 与独立子目录权重聚合。',
+    href: '/blog/international-geo-targeting-multilingual-seo/',
+    badgeColor: 'bg-emerald-50 text-emerald-600 border-emerald-100',
+    coverImage: '/assets/images/blog-b2b-export.jpg',
+  },
+  {
+    category: 'SEO 与 GEO',
+    title: '程序化 SEO（Programmatic SEO）实战：用 Wix CMS 批量生成百级高权重长尾落地页',
+    date: '2026-09-24',
+    readTime: '11 分钟',
+    desc: '深入拆解如何利用 Wix Studio CMS 与动态页面底层引擎实施程序化 SEO（pSEO），规避 Google 门面页算法风险，自动化生成上百个高权重长尾落地页。',
+    href: '/blog/programmatic-seo-wix-cms-guide/',
+    badgeColor: 'bg-amber-50 text-amber-600 border-amber-100',
+    coverImage: '/assets/images/blog-studio-workspace.jpg',
+  },
+  {
     category: '官方更新日志',
     title: 'Wix Studio 2026 官方更新日志与发版总览：从 Studio 2.0 到 9 月最新特性',
     date: '2026-09-20',
@@ -157,7 +187,7 @@ const posts = [
   },
 ];
 
-const categories = ['全部文章', '官方更新日志', '设计前沿', '海外营销', '商业电商', '技术进阶'];
+const categories = ['全部文章', 'SEO 与 GEO', '官方更新日志', '设计前沿', '海外营销', '商业电商', '技术进阶'];
 ---
 
 <BaseLayout
@@ -171,8 +201,8 @@ const categories = ['全部文章', '官方更新日志', '设计前沿', '海�
     title="全球前沿资讯与官方发版日志"
     subtitle="同步 wix.com/blog 全球视觉设计与商业洞察，汇集 2026 官方发版更新日志、网页设计趋势、海外获客营销与 Studio 核心技术实战。"
     stats={[
-      { value: '15 篇', label: '深度官方文章' },
-      { value: '5 大', label: '核心专栏分类' },
+      { value: '18 篇', label: '深度官方文章' },
+      { value: '6 大', label: '核心专栏分类' },
       { value: '2026.09', label: '最新发版日志' },
     ]}
   />

@@ -64,7 +64,10 @@ B2B 验厂信任站与品牌精品 DTC 独立站。
 
 ## 官方发版更新日志与前沿洞察 (Blog & Changelog)
 
-- [博客资讯总览 (带分类与分页)](https://www.wixstudio.cn/blog/): 覆盖更新日志、设计前沿、海外营销、商业电商、技术进阶
+- [博客资讯总览 (带分类与分页)](https://www.wixstudio.cn/blog/): 覆盖 SEO/GEO、更新日志、设计前沿、海外营销、商业电商、技术进阶
+- [GEO 生成式引擎优化完全实战](https://www.wixstudio.cn/blog/generative-engine-optimization-geo-guide/): 让独立站在 ChatGPT、Perplexity 与 Google AI 中被优先引用的底层逻辑与 llms.txt 配置
+- [外贸出海多语言多区域 GEO-Targeting 架构](https://www.wixstudio.cn/blog/international-geo-targeting-multilingual-seo/): Hreflang 规则、独立子目录与本地化排名实操
+- [程序化 SEO（Programmatic SEO）实战指南](https://www.wixstudio.cn/blog/programmatic-seo-wix-cms-guide/): 用 Wix CMS 批量生成百级高权重长尾落地页
 - [Wix Studio 2026 官方发版总览](https://www.wixstudio.cn/blog/wix-studio-2026-changelog/): 从 Studio 2.0 架构重构到最新功能全景
 - [2026 年 9 月最新产品功能周报](https://www.wixstudio.cn/blog/wix-studio-september-2026-updates/): Alfred AI 语音代理、Aria 开发者扩展与官方 SEO API
 - [Wix Studio 2.0 规划模式（Plan Mode）评测](https://www.wixstudio.cn/blog/wix-studio-plan-mode-review/): 为何专业建站必须架构先行？

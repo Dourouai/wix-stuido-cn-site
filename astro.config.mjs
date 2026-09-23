@@ -33,7 +33,7 @@ export default defineConfig({
           item.priority = 0.8;
           item.changefreq = 'weekly';
         }
-        item.lastmod = new Date('2026-09-20T10:00:00.000Z');
+        item.lastmod = new Date('2026-09-24T00:00:00.000Z');
         return item;
       },
     }),
